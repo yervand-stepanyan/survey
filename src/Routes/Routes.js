@@ -1,1 +1,3 @@
-export const ROUTES = {};
+const ROUTES = {};
+
+export { ROUTES as default };
