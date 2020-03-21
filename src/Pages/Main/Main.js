@@ -1,14 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Home from '../Home';
 
-function Main() {
+function Main(props) {
+  const { classes } = props;
+
   return (
-    <div>
-      <div>Main works!!!</div>
+    <div className={classes.mainContainer}>
+      <div className={classes.headerContainer}>Header</div>
       <Home />
+      <div className={classes.footerContainer}>Footer</div>
     </div>
   );
 }
+
+Main.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default Main;

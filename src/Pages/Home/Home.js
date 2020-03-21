@@ -10,9 +10,10 @@ function Home(props) {
 
   return (
     <div className={classes.container}>
-      <div>Home Works!!!</div>
-      <HomeBlock />
-      <AdPanel />
+      <div className={classes.homeAndAdsWrapper}>
+        <HomeBlock />
+        <AdPanel />
+      </div>
       <OurPartnersBlock />
     </div>
   );

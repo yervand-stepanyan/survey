@@ -1,7 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function OurPartnersBlock() {
-  return <div>OurPartnersBlock works!!!</div>;
+function OurPartnersBlock(props) {
+  const { classes } = props;
+
+  return <div className={classes.container}>OurPartnersBlock works!!!</div>;
 }
+
+OurPartnersBlock.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default OurPartnersBlock;
