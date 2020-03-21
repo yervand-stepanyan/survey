@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import HomeBlock from '../../Components/HomeBlock';
 import AdPanel from '../../Components/AdPanel';
 import OurPartnersBlock from '../../Components/OurPartnersBlock';
 
-function Home() {
+function Home(props) {
+  const { classes } = props;
+
   return (
-    <div>
+    <div className={classes.container}>
       <div>Home Works!!!</div>
       <HomeBlock />
       <AdPanel />
@@ -14,5 +17,9 @@ function Home() {
     </div>
   );
 }
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default Home;
