@@ -1,4 +1,4 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyle';
+import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 
 export const styles = {
   container: {
