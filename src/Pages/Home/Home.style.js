@@ -2,11 +2,11 @@ import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 
 export const styles = {
   container: {
-    padding: `0 ${GLOBAL_STYLES.defaultPadding}`,
-    marginTop: `${GLOBAL_STYLES.defaultMargin}`,
-    height: '78%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: '78%',
+    marginTop: `${GLOBAL_STYLES.spacing.base}`,
+    padding: `0 ${GLOBAL_STYLES.spacing.base}`
   },
   homeAndAdsWrapper: {
     display: 'flex',

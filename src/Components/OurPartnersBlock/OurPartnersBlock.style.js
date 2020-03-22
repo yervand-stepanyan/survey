@@ -2,10 +2,14 @@ import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 
 export const styles = {
   container: {
-    boxShadow: `${GLOBAL_STYLES.defaultBoxShadow}`,
-    borderRadius: `${GLOBAL_STYLES.defaultBorderRadius}`,
-    marginTop: `${GLOBAL_STYLES.defaultMargin}`,
-    width: '100%',
-    height: '20%'
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
+    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
+    boxSizing: 'border-box',
+    height: '20%',
+    marginTop: `${GLOBAL_STYLES.spacing.base}`,
+    padding: `${GLOBAL_STYLES.spacing.small}`,
+    width: '100%'
   }
 };
