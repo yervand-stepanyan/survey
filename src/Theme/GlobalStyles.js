@@ -17,8 +17,11 @@ const GLOBAL_STYLES = {
     mainColor,
     boxShadowColor
   },
-  font: {
-    base: 'sans-serif'
+  typography: {
+    size: {},
+    fontFamily: {
+      base: 'sans-serif'
+    }
   },
   spacing: {
     small: `${MAIN_SPACING_VALUE * 0.5}px`,

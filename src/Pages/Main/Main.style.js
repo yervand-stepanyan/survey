@@ -3,7 +3,7 @@ import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 export const styles = {
   mainContainer: {
     height: '100vh',
-    fontFamily: `${GLOBAL_STYLES.font.base}`
+    fontFamily: `${GLOBAL_STYLES.typography.fontFamily.base}`
   },
   headerContainer: {
     height: '10%'
