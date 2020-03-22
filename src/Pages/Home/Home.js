@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import HomeBlock from '../../Components/HomeBlock';
 import AdPanel from '../../Components/AdPanel';
+import HomeBlock from '../../Components/HomeBlock';
 import OurPartnersBlock from '../../Components/OurPartnersBlock';
 
 function Home(props) {
