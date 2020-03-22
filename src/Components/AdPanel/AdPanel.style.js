@@ -9,5 +9,13 @@ export const styles = {
     boxSizing: 'border-box',
     padding: `${GLOBAL_STYLES.spacing.small}`,
     width: '19%'
+  },
+  imageWrapper: {
+    width: '100%',
+    height: '100%'
+  },
+  adImage: {
+    width: 'inherit',
+    height: 'inherit'
   }
 };
