@@ -1,6 +1,5 @@
 import GLOBAL_STYLES from "../../Theme/GlobalStyle";
 
-// eslint-disable-next-line import/prefer-default-export
 export const styles = {
     header: {
         backgroundColor: GLOBAL_STYLES.mainBackgroundColor,
@@ -33,7 +32,4 @@ export const styles = {
       fontWeight: 700,
     }
 
-  };
-
-
-
+  };  

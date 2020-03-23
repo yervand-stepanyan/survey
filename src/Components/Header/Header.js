@@ -7,15 +7,15 @@ import Button from '@material-ui/core/Button';
 
 const menuItems = ["Create Survey", "Results", "Take Survey", "About", "Contact"];
 
+function Header (props) {
+  const { classes } = props;
+  console.log(props)
 
-
-function Header(props){
-  const {classes} = props;
   return (
     <Router>
       <AppBar position="static" className={classes.header}>
         <Toolbar>
-          <Link to="/" className={`${classes.menuItem  } ${  classes.logo}`}>
+          <Link to="/" className={`${classes.menuItem  } ${classes.logo}`}>
             Survey
           </Link>
 
@@ -38,8 +38,7 @@ function Header(props){
 };
 
 Header.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default Header;
