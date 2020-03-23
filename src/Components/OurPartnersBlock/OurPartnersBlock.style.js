@@ -7,7 +7,6 @@ export const styles = {
     borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
     boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
     boxSizing: 'border-box',
-    minHeight: '20%',
     marginTop: `${GLOBAL_STYLES.spacing.base}`,
     padding: `${GLOBAL_STYLES.spacing.small}`,
     width: '100%'
@@ -16,12 +15,20 @@ export const styles = {
     display: 'flex',
     justifyContent: 'center'
   },
+  sliderContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
+    padding: `${GLOBAL_STYLES.spacing.small}`
+  },
   sliderWrapper: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%'
   },
   partnerImage: {
-    width: '150px',
-    height: '150px'
+    height: '100px',
+    width: '100px'
   }
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
@@ -10,19 +10,60 @@ import sfl from '../../assets/images/partners/sfl.png';
 import teamable from '../../assets/images/partners/teamable.png';
 import workfront from '../../assets/images/partners/workfront_new.png';
 
-const PARTNER_IMAGES = [betconstruct, helix, picsart, sfl, teamable, workfront];
+const PARTNERS_IMAGES = [
+  betconstruct,
+  helix,
+  picsart,
+  sfl,
+  teamable,
+  workfront
+];
+const SLIDER_TIMER = 4000;
 
 function OurPartnersBlock(props) {
+  const [images, setImages] = useState(
+    PARTNERS_IMAGES.slice(0, PARTNERS_IMAGES.length - 1)
+  );
   const { classes } = props;
+
+  useEffect(() => {
+    let count = 1;
+
+    const slider = setInterval(() => {
+      if (PARTNERS_IMAGES.length - count > 5) {
+        setImages(
+          PARTNERS_IMAGES.slice(count, PARTNERS_IMAGES.length - 1 + count)
+        );
+      } else if (PARTNERS_IMAGES.length - count === 5) {
+        setImages(PARTNERS_IMAGES.slice(count));
+      } else {
+        setImages(
+          PARTNERS_IMAGES.slice(count).concat(
+            PARTNERS_IMAGES.slice(0, count - 1)
+          )
+        );
+      }
+
+      if (count < PARTNERS_IMAGES.length - 1) {
+        count += 1;
+      } else {
+        count = 0;
+      }
+    }, SLIDER_TIMER);
+
+    return () => {
+      clearInterval(slider);
+    };
+  }, []);
 
   return (
     <div className={classes.container}>
       <div className={classes.titleWrapper}>
         <Typography variant="h6">Our Partners</Typography>
       </div>
-      <div>
+      <div className={classes.sliderContainer}>
         <div className={classes.sliderWrapper}>
-          {PARTNER_IMAGES.map(image => (
+          {images.map(image => (
             <div key={image}>
               <img src={image} alt={image} className={classes.partnerImage} />
             </div>
