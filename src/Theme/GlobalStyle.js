@@ -1,5 +1,7 @@
 const GLOBAL_STYLES = {
-  mainColor: '#3ACEB2',
+  mainBackgroundColor: '#3ACEB2',
+  mainHoverColor: '#107461',
+  mainColor: 'white',
   boxShadowColor: '#3ACEB2'
 };
 
