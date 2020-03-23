@@ -25,7 +25,8 @@ const GLOBAL_STYLES = {
   },
   spacing: {
     small: `${MAIN_SPACING_VALUE * 0.5}px`,
-    base: `${MAIN_SPACING_VALUE}px`
+    base: `${MAIN_SPACING_VALUE}px`,
+    xLarge: `${MAIN_SPACING_VALUE * 3}px`
   }
 };
 
