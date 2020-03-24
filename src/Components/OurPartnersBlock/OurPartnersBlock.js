@@ -18,8 +18,8 @@ const PARTNERS_IMAGES = [
   teamable,
   workfront
 ];
-const TITLE = 'Our Partners';
 const SLIDER_TIMER = 4000;
+const TITLE = 'Our Partners';
 
 function OurPartnersBlock(props) {
   const [images, setImages] = useState(
