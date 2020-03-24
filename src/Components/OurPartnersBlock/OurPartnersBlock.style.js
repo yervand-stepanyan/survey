@@ -24,7 +24,7 @@ export const styles = {
   sliderWrapper: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     width: '80%'
   },
   partnerImage: {

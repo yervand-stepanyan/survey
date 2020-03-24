@@ -31,11 +31,14 @@ function OurPartnersBlock(props) {
     let count = 1;
 
     const slider = setInterval(() => {
-      if (PARTNERS_IMAGES.length - count > 5) {
+      if (PARTNERS_IMAGES.length - count > PARTNERS_IMAGES.length - 1) {
         setImages(
           PARTNERS_IMAGES.slice(count, PARTNERS_IMAGES.length - 1 + count)
         );
-      } else if (PARTNERS_IMAGES.length - count === 5) {
+      } else if (
+        PARTNERS_IMAGES.length - count ===
+        PARTNERS_IMAGES.length - 1
+      ) {
         setImages(PARTNERS_IMAGES.slice(count));
       } else {
         setImages(
