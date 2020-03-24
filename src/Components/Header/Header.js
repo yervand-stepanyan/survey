@@ -11,13 +11,13 @@ function Header (props) {
   const { classes } = props;
   return (
     <Router>
-      <AppBar position="static" className={classes.header}>
+      <AppBar position="static" className={classes.container}>
         <Toolbar>
           <Link to="/" className={`${classes.menuItem  } ${classes.logo}`}>
             Survey
           </Link>
 
-          <nav className={classes.rightToolbar}>
+          <nav className={classes.menu}>
             {menuItems.map(item => {
               return (
                 <Link to="/" className={classes.menuItem}>
@@ -27,7 +27,7 @@ function Header (props) {
             })}
           </nav>
           <Link to="/" className={classes.menuItem}>
-            <Button variant="outlined" className={classes.logIn}>Log in</Button>
+            <Button variant="outlined" className={classes.logInButton}>Log in</Button>
           </Link>
         </Toolbar>
       </AppBar>
