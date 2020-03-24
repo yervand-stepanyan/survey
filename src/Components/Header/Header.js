@@ -1,13 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
 
-import logo from '../../assets/images/logo/logo2.png';
+import logo from '../../assets/images/logo/logo.png';
 
-const menuItems = [
+const LOGIN_BUTTON = 'Log in';
+const MENU_ITEMS = [
   'Create Survey',
   'Results',
   'Take Survey',
@@ -20,22 +22,19 @@ function Header({ classes }) {
     <Router>
       <AppBar position="static" className={classes.container}>
         <Toolbar>
-          <Link to="/" className={`${classes.logo}`}>
+          <Link to="/" className={classes.logo}>
             <img src={logo} alt="logo" />
           </Link>
-
           <nav className={classes.menu}>
-            {menuItems.map(item => {
-              return (
-                <Link to="/" className={classes.menuItem}>
-                  {item}
-                </Link>
-              );
-            })}
+            {MENU_ITEMS.map(item => (
+              <Link to="/" className={classes.menuItem}>
+                {item}
+              </Link>
+            ))}
           </nav>
           <Link to="/" className={classes.menuItemLogin}>
             <Button variant="outlined" className={classes.logInButton}>
-              Log in
+              {LOGIN_BUTTON}
             </Button>
           </Link>
         </Toolbar>

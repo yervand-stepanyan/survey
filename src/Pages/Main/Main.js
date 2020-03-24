@@ -9,7 +9,6 @@ function Main(props) {
 
   return (
     <div className={classes.mainContainer}>
-      <div className={classes.headerContainer}>Header</div>
       <Header />
       <Home />
       <div className={classes.footerContainer}>Footer</div>

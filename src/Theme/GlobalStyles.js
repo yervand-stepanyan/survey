@@ -1,7 +1,9 @@
-const boxShadowColor = '#3ACEB2';
-const mainColor = '#3ACEB2';
+const boxShadowColor = '#20BA66';
+const mainColorDarkBlue = '#282C34';
+const mainColorGreen = '#20BA66';
 
 const BORDER_RADIUS_VALUE = 10;
+const MAIN_FONT_SIZE = 14;
 const MAIN_SPACING_VALUE = 14;
 
 const GLOBAL_STYLES = {
@@ -14,8 +16,9 @@ const GLOBAL_STYLES = {
     base: `0px 0px 5px 1px ${boxShadowColor}`
   },
   color: {
-    mainColor,
-    boxShadowColor
+    boxShadowColor,
+    mainColorDarkBlue,
+    mainColorGreen
   },
   spacing: {
     small: `${MAIN_SPACING_VALUE * 0.5}px`,
@@ -23,7 +26,9 @@ const GLOBAL_STYLES = {
     xLarge: `${MAIN_SPACING_VALUE * 3}px`
   },
   typography: {
-    size: {},
+    fontSize: {
+      base: `${MAIN_FONT_SIZE}px`
+    },
     fontFamily: {
       base: 'sans-serif'
     }
