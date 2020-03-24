@@ -18,6 +18,7 @@ const PARTNERS_IMAGES = [
   teamable,
   workfront
 ];
+const TITLE = 'Our Partners';
 const SLIDER_TIMER = 4000;
 
 function OurPartnersBlock(props) {
@@ -59,7 +60,7 @@ function OurPartnersBlock(props) {
   return (
     <div className={classes.container}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h6">Our Partners</Typography>
+        <Typography variant="h6">{TITLE}</Typography>
       </div>
       <div className={classes.sliderContainer}>
         <div className={classes.sliderWrapper}>
