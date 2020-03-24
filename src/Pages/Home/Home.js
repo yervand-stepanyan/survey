@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import HomeBlock from '../../Components/HomeBlock';
 import AdPanel from '../../Components/AdPanel';
+import HomeBlock from '../../Components/HomeBlock';
 import OurPartnersBlock from '../../Components/OurPartnersBlock';
 
 function Home(props) {
@@ -10,9 +10,10 @@ function Home(props) {
 
   return (
     <div className={classes.container}>
-      <div>Home Works!!!</div>
-      <HomeBlock />
-      <AdPanel />
+      <div className={classes.homeAndAdsWrapper}>
+        <HomeBlock />
+        <AdPanel />
+      </div>
       <OurPartnersBlock />
     </div>
   );
