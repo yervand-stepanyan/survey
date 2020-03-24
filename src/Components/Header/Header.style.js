@@ -35,9 +35,8 @@ export const styles = {
       textDecoration: "none",
       border: `1px solid ${GLOBAL_STYLES.color.transparent}`,
       '&:hover': {
-          color: GLOBAL_STYLES.color.mainGreen,
           borderRadius: GLOBAL_STYLES.borders.borderRadius.small,
-          border: `1px solid ${GLOBAL_STYLES.color.mainTextColor}`,
+          border: `1px solid ${GLOBAL_STYLES.color.mainGreen}`,
         }
     },
     menuItemLogin: {
