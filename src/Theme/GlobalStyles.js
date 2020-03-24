@@ -17,16 +17,16 @@ const GLOBAL_STYLES = {
     mainColor,
     boxShadowColor
   },
+  spacing: {
+    small: `${MAIN_SPACING_VALUE * 0.5}px`,
+    base: `${MAIN_SPACING_VALUE}px`,
+    xLarge: `${MAIN_SPACING_VALUE * 3}px`
+  },
   typography: {
     size: {},
     fontFamily: {
       base: 'sans-serif'
     }
-  },
-  spacing: {
-    small: `${MAIN_SPACING_VALUE * 0.5}px`,
-    base: `${MAIN_SPACING_VALUE}px`,
-    xLarge: `${MAIN_SPACING_VALUE * 3}px`
   }
 };
 
