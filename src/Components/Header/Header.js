@@ -9,8 +9,6 @@ const menuItems = ["Create Survey", "Results", "Take Survey", "About", "Contact"
 
 function Header (props) {
   const { classes } = props;
-  console.log(props)
-
   return (
     <Router>
       <AppBar position="static" className={classes.header}>
