@@ -26,7 +26,7 @@ function Header (props) {
               )
             })}
           </nav>
-          <Link to="/" className={classes.menuItem}>
+          <Link to="/" className={classes.menuItemLogin}>
             <Button variant="outlined" className={classes.logInButton}>Log in</Button>
           </Link>
         </Toolbar>
