@@ -10,6 +10,7 @@ export const styles = {
       borderColor: GLOBAL_STYLES.color.mainTextColor,
       color: GLOBAL_STYLES.mainTextColor,
       textDecoration: "none",
+      marginLeft: GLOBAL_STYLES.spacing.base,
       '&:hover': {
         background: GLOBAL_STYLES.color.mainTextColor,
         borderColor: GLOBAL_STYLES.color.mainColor,
@@ -19,6 +20,9 @@ export const styles = {
     
     logo: {
       fontWeight: 700,
+      color: GLOBAL_STYLES.color.mainTextColor,
+      padding: `24px ${GLOBAL_STYLES.spacing.base}`,
+      textDecoration: "none",
     },
 
     menu: {
@@ -27,15 +31,12 @@ export const styles = {
     },
 
     menuItem: {
-      border: `1px solid ${GLOBAL_STYLES.color.transparent}`,
-      borderRadius: GLOBAL_STYLES.borders.borderRadius.small,
       color: GLOBAL_STYLES.color.mainTextColor,
       padding: `24px ${GLOBAL_STYLES.spacing.base}`,
       minWidth:100,
       textDecoration: "none",
       '&:hover': {
           backgroundColor: `${GLOBAL_STYLES.color.mainHoverColor}`,
-          borderRadius: 0,
         }
     },
     menuItemLogin: {

@@ -13,7 +13,7 @@ function Header (props) {
     <Router>
       <AppBar position="static" className={classes.container}>
         <Toolbar>
-          <Link to="/" className={`${classes.menuItem  } ${classes.logo}`}>
+          <Link to="/" className={`${classes.logo}`}>
             Survey
           </Link>
 

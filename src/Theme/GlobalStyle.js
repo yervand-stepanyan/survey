@@ -5,6 +5,7 @@ const mainHoverColor= '#107461';
 const transparent = "transparent";
 
 const BORDER_RADIUS_VALUE = 10;
+const MAIN_FONT_SIZE = 14;
 const MAIN_SPACING_VALUE = 14;
 
 const GLOBAL_STYLES = {
@@ -30,7 +31,9 @@ const GLOBAL_STYLES = {
     xLarge: `${MAIN_SPACING_VALUE * 3}px`
   },
   typography: {
-    size: {},
+    fontSize: {
+      base: MAIN_FONT_SIZE,
+    },
     fontFamily: {
       base: 'sans-serif'
     }
