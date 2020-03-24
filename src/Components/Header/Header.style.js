@@ -17,13 +17,6 @@ export const styles = {
         color: GLOBAL_STYLES.color.mainColor,
      },
     },
-    
-    logo: {
-      fontWeight: 700,
-      color: GLOBAL_STYLES.color.mainTextColor,
-      padding: `24px ${GLOBAL_STYLES.spacing.base}`,
-      textDecoration: "none",
-    },
 
     menu: {
       display: "flex",
