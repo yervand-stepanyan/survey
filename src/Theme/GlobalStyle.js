@@ -1,7 +1,7 @@
 const boxShadowColor = '#3ACEB2';
-const mainColor = '#3ACEB2';
+const mainColor = '#282C34';
+const mainGreen = '#20BA66';
 const mainTextColor = 'white';
-const mainHoverColor= '#107461';
 const transparent = "transparent";
 
 const BORDER_RADIUS_VALUE = 10;
@@ -20,8 +20,8 @@ const GLOBAL_STYLES = {
   },
   color: {
     mainColor,
+    mainGreen,
     mainTextColor,
-    mainHoverColor,
     boxShadowColor,
     transparent
   },

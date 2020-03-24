@@ -6,15 +6,15 @@ export const styles = {
     },
 
     logInButton: {
-      backgroundColor: GLOBAL_STYLES.color.mainColor,
-      borderColor: GLOBAL_STYLES.color.mainTextColor,
-      color: GLOBAL_STYLES.mainTextColor,
+      backgroundColor: GLOBAL_STYLES.color.mainGreen,
+      borderColor: GLOBAL_STYLES.color.mainColor,
+      color: GLOBAL_STYLES.color.mainTextColor,
       textDecoration: "none",
       marginLeft: GLOBAL_STYLES.spacing.base,
       '&:hover': {
         background: GLOBAL_STYLES.color.mainTextColor,
         borderColor: GLOBAL_STYLES.color.mainColor,
-        color: GLOBAL_STYLES.color.mainColor,
+        color: GLOBAL_STYLES.color.mainGreen,
      },
     },
     
@@ -29,11 +29,15 @@ export const styles = {
 
     menuItem: {
       color: GLOBAL_STYLES.color.mainTextColor,
-      padding: `24px ${GLOBAL_STYLES.spacing.base}`,
+      padding: `${GLOBAL_STYLES.spacing.small} ${GLOBAL_STYLES.spacing.base}`,
       minWidth:100,
+      textAlign: "center",
       textDecoration: "none",
+      border: `1px solid ${GLOBAL_STYLES.color.transparent}`,
       '&:hover': {
-          backgroundColor: `${GLOBAL_STYLES.color.mainHoverColor}`,
+          color: GLOBAL_STYLES.color.mainGreen,
+          borderRadius: GLOBAL_STYLES.borders.borderRadius.small,
+          border: `1px solid ${GLOBAL_STYLES.color.mainTextColor}`,
         }
     },
     menuItemLogin: {

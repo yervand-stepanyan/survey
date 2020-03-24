@@ -9,8 +9,7 @@ import logo from "../../assets/images/logo/logo2.png"
 
 const menuItems = ["Create Survey", "Results", "Take Survey", "About", "Contact"];
 
-function Header (props) {
-  const { classes } = props;
+function Header ({ classes }) {
   return (
     <Router>
       <AppBar position="static" className={classes.container}>
