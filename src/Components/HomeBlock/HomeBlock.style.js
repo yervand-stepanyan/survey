@@ -1,8 +1,13 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyle';
+import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 
 export const styles = {
   container: {
-    border: `1px solid ${GLOBAL_STYLES.mainColor}`,
-    width: '60%'
+    display: 'flex',
+    justifyContent: 'center',
+    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
+    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
+    boxSizing: 'border-box',
+    padding: `${GLOBAL_STYLES.spacing.small}`,
+    width: '75%'
   }
 };
