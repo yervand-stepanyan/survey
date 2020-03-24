@@ -17,6 +17,10 @@ export const styles = {
         color: GLOBAL_STYLES.color.mainColor,
      },
     },
+    
+    logo: {
+      height: "100%",
+    },
 
     menu: {
       display: "flex",
