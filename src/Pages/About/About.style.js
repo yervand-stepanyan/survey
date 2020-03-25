@@ -7,10 +7,5 @@ export const styles = {
     height: '78%',
     marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`,
     padding: `0 ${GLOBAL_STYLES.spacing.base}`
-  },
-  homeAndAdsWrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    height: '80%'
   }
 };

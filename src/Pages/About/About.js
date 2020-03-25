@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AboutBlock from '../../Components/AboutBlock';
+
 function About(props) {
   const { classes } = props;
 
-  return <div className={classes.container}>About Page works!!!</div>;
+  return (
+    <div className={classes.container}>
+      <AboutBlock />
+    </div>
+  );
 }
 
 About.propTypes = {
