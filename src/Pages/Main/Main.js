@@ -12,7 +12,6 @@ function Main(props) {
     <div className={classes.mainContainer}>
       <Header />
       <Home />
-
       <Footer />
     </div>
   );

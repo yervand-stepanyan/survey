@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function Footer(props) {
   const { classes } = props;
 
-  return <footer className={classes.container}>Footer works!!</footer>;
+  return <footer className={classes.container}>Hello from Footer</footer>;
 }
 
 Footer.propTypes = {
