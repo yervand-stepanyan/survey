@@ -11,10 +11,10 @@ import logo from '../../assets/images/logo/logo.png';
 const LOGIN_BUTTON_TEXT = 'Log in';
 const MENU_ITEMS = [
   'Create Survey',
-  'Results',
   'Take Survey',
+  'Results',
   'About',
-  'Contact'
+  'Contacts'
 ];
 
 function Header({ classes }) {
