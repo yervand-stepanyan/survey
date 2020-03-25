@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/core';
 
 import { styles } from './Home.style';
-import HomeBlock from './Home';
+import Home from './Home';
 
-export default withStyles(styles)(HomeBlock);
+export default withStyles(styles)(Home);
