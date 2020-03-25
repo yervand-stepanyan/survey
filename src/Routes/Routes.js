@@ -4,7 +4,8 @@ const ROUTES = {
   survey: '/survey',
   results: '/results',
   about: '/about',
-  contacts: '/contacts'
+  contacts: '/contacts',
+  auth: '/'
 };
 
 export { ROUTES as default };
