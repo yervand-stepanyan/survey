@@ -8,13 +8,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import logo from '../../assets/images/logo/logo.png';
 
-const LOGIN_BUTTON = 'Log in';
+const LOGIN_BUTTON_TEXT = 'Log in';
 const MENU_ITEMS = [
   'Create Survey',
-  'Results',
   'Take Survey',
+  'Results',
   'About',
-  'Contact'
+  'Contacts'
 ];
 
 function Header({ classes }) {
@@ -27,14 +27,14 @@ function Header({ classes }) {
           </Link>
           <nav className={classes.menu}>
             {MENU_ITEMS.map(item => (
-              <Link to="/" className={classes.menuItem}>
+              <Link to="/" className={classes.menuItem} key={item}>
                 {item}
               </Link>
             ))}
           </nav>
           <Link to="/" className={classes.menuItemLogin}>
             <Button variant="outlined" className={classes.logInButton}>
-              {LOGIN_BUTTON}
+              {LOGIN_BUTTON_TEXT}
             </Button>
           </Link>
         </Toolbar>
