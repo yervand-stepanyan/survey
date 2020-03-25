@@ -7,12 +7,9 @@ export const styles = {
     position: 'relative',
     left: 0,
     bottom: 0,
-    width: '100%',
     display: 'flex',
-    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`
-  },
-  footer: {
-    width: '100%',
+    flexDirection: 'column',
+    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
     padding: `${GLOBAL_STYLES.spacing.base}`,
     textTransform: 'capitalize'
   },
