@@ -4,10 +4,8 @@ export const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
     boxSizing: 'border-box',
-    marginTop: `${GLOBAL_STYLES.spacing.base}`,
+    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`,
     padding: `${GLOBAL_STYLES.spacing.small}`,
     width: '100%'
   },
