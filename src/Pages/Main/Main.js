@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from '../About';
+import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import ROUTES from '../../Routes/Routes';
-import Footer from '../../Components/Footer';
 
 function Main(props) {
   const { classes } = props;

@@ -35,8 +35,8 @@ export const styles = {
     }
   },
   infoWrapper: {
-    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`,
-    color: 'white'
+    color: 'white',
+    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`
   },
   infoSection: {
     display: 'flex',

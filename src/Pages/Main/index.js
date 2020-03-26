@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/core';
 
-import { styles } from './Main.style';
 import Main from './Main';
+import { styles } from './Main.style';
 
 export default withStyles(styles)(Main);

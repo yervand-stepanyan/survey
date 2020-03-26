@@ -1,11 +1,11 @@
 const ROUTES = {
-  home: '/',
-  create: '/create',
-  survey: '/survey',
-  results: '/results',
   about: '/about',
+  auth: '/',
   contacts: '/contacts',
-  auth: '/'
+  create: '/create',
+  home: '/',
+  results: '/results',
+  survey: '/survey'
 };
 
 export { ROUTES as default };

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import logo from '../../assets/images/logo/logo.png';
 import ROUTES from '../../Routes/Routes';
 
+const COPY_INFO = 'Copyright © 2020 Survey';
 const MENU_ITEMS = [
   { name: 'Create Survey', route: ROUTES.create },
   { name: 'Take Survey', route: ROUTES.survey },
@@ -12,7 +13,6 @@ const MENU_ITEMS = [
   { name: 'About', route: ROUTES.about },
   { name: 'Contacts', route: ROUTES.contacts }
 ];
-const COPY_INFO = 'Copyright © 2020 Survey';
 const WEBSITE_CREATOR = 'Website by ...';
 
 function Footer(props) {

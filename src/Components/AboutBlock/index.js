@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/core';
 
-import { styles } from './AboutBlock.style';
 import AboutBlock from './AboutBlock';
+import { styles } from './AboutBlock.style';
 
 export default withStyles(styles)(AboutBlock);
