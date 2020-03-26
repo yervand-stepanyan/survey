@@ -1,6 +1,6 @@
 import { withStyles } from '@material-ui/core';
 
-import TakeSurvey from './TakeSurvey';
 import { styles } from './TakeSurvey.style';
+import TakeSurvey from './TakeSurvey';
 
 export default withStyles(styles)(TakeSurvey);
