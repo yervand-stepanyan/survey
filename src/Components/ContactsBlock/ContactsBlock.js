@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function ContactsBlock ({ classes }) {
   return (
-    <div>
+    <div className={classes.mapContainer}>
       ContactsBlock
     </div>
   )

@@ -4,19 +4,16 @@ import PropTypes from "prop-types";
 
 function MapBlock (props) {
   const { classes, google } = props;
-  const style = {
-    width: "600px",
-    height: "500px",
-    }
+
   return (
-    <div>
+    <div className={classes.container}>
       <Map 
+        className={classes.map}
         google={google} 
         zoom={20}
         initialCenter={{
         lat: 40.200451,
         lng: 44.491296}}
-        style={style}
       >
         <Marker position={{ lat: 40.200451, lng: 44.491296}} />
 
