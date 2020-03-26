@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from '../About';
+import CreateSurvey from '../CreateSurvey';
 import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
@@ -18,6 +19,9 @@ function Main(props) {
         <Switch>
           <Route exact path={ROUTES.home}>
             <Home />
+          </Route>
+          <Route path={ROUTES.create}>
+            <CreateSurvey />
           </Route>
           <Route path={ROUTES.about}>
             <About />
