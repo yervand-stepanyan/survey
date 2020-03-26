@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CreateSurveyBlock from '../../Components/CreateSurveyBlock';
+
 function CreateSurvey(props) {
   const { classes } = props;
 
-  return <div className={classes.container}>CreateSurvey works!!!</div>;
+  return (
+    <div className={classes.container}>
+      <CreateSurveyBlock />
+    </div>
+  );
 }
 
 CreateSurvey.propTypes = {
