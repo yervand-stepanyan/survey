@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from '../About';
+import Contacts from '../Contacts';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import ROUTES from '../../Routes/Routes';
@@ -20,6 +21,9 @@ function Main(props) {
           </Route>
           <Route path={ROUTES.about}>
             <About />
+          </Route>
+          <Route path={ROUTES.contacts}>
+            <Contacts />
           </Route>
         </Switch>
         <div className={classes.footerContainer}>Footer</div>
