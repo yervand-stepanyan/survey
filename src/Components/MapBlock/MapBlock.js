@@ -1,5 +1,5 @@
 import React from "react";
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker } from 'google-maps-react';
 import PropTypes from "prop-types";
 
 function MapBlock (props) {
@@ -16,9 +16,7 @@ function MapBlock (props) {
         lng: 44.491296}}
       >
         <Marker position={{ lat: 40.200451, lng: 44.491296}} />
-
       </Map>
-
     </div>
   )
 }
@@ -28,9 +26,7 @@ MapBlock.propTypes = {
   google: PropTypes.object.isRequired
 }
 
-export default GoogleApiWrapper({
-  apiKey: ('AIzaSyBUNE5LteRpA0HS8_0AZTYD6RabO_Ze3AM')
- })(MapBlock);
+export default MapBlock;
 
 
 

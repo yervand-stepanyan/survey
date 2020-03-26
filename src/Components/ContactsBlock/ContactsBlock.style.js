@@ -7,6 +7,7 @@ export const styles = {
     boxSizing: "border-box",
     color: "white",
     height: "55%",
+    marginLeft: `${GLOBAL_STYLES.spacing.xLarge}`,
     padding: `${GLOBAL_STYLES.spacing.xxLarge} ${GLOBAL_STYLES.spacing.xxxLarge}`,
     width: "60%",
   },

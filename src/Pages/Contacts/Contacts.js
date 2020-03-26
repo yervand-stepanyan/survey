@@ -12,6 +12,7 @@ function Contacts ({ classes }) {
     </div>
   )
 }
+
 Contacts.propTypes = {
   classes: PropTypes.object.isRequired,
 }

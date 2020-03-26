@@ -7,8 +7,8 @@ export const styles = {
   },
   map: {
     width: "500px!important",
+    flexGrow: 2,
     height: "350px!important",
-    flexGrow: 2
 
   }
 }
