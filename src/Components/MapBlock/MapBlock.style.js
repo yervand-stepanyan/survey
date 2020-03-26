@@ -2,11 +2,13 @@ import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 
 export const styles = {
   container: {
-    width: "40%",
-    float: "right"
+    padding: `0 ${GLOBAL_STYLES.spacing.base}` 
+
   },
   map: {
-    width: "600px!important",
-    height: "500px",
+    width: "500px!important",
+    height: "350px!important",
+    flexGrow: 2
+
   }
 }

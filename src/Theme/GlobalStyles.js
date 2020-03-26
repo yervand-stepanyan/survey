@@ -25,7 +25,9 @@ const GLOBAL_STYLES = {
     small: `${MAIN_SPACING_VALUE * 0.5}px`,
     base: `${MAIN_SPACING_VALUE}px`,
     xLarge: `${MAIN_SPACING_VALUE * 3}px`,
-    xxLarge: `${MAIN_SPACING_VALUE * 4}px`
+    xxLarge: `${MAIN_SPACING_VALUE * 4}px`,
+    xxxLarge: `${MAIN_SPACING_VALUE * 8}px`
+
   },
   typography: {
     fontColor: {

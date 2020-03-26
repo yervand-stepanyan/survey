@@ -10,7 +10,7 @@ function MapBlock (props) {
       <Map 
         className={classes.map}
         google={google} 
-        zoom={20}
+        zoom={15}
         initialCenter={{
         lat: 40.200451,
         lng: 44.491296}}
