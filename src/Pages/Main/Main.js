@@ -6,6 +6,7 @@ import About from '../About';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import ROUTES from '../../Routes/Routes';
+import Footer from '../../Components/Footer';
 
 function Main(props) {
   const { classes } = props;
@@ -22,7 +23,7 @@ function Main(props) {
             <About />
           </Route>
         </Switch>
-        <div className={classes.footerContainer}>Footer</div>
+        <Footer />
       </Router>
     </div>
   );
