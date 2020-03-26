@@ -7,6 +7,7 @@ import CreateSurvey from '../CreateSurvey';
 import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
+import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
 import TakeSurvey from '../TakeSurvey';
 
@@ -26,6 +27,9 @@ function Main(props) {
           </Route>
           <Route path={ROUTES.survey}>
             <TakeSurvey />
+          </Route>
+          <Route path={ROUTES.results}>
+            <Results />
           </Route>
           <Route path={ROUTES.about}>
             <About />
