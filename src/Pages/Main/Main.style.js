@@ -19,6 +19,7 @@ export const styles = {
   },
   mainContainer: {
     color: `${GLOBAL_STYLES.typography.fontColor.base}`,
+    backgroundColor: 'white',
     fontFamily: `${GLOBAL_STYLES.typography.fontFamily.base}`
   },
   headerContainer: {
