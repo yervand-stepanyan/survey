@@ -22,7 +22,7 @@ function Header({ classes }) {
   return (
     <AppBar position="static" className={classes.container}>
       <Toolbar>
-        <Link to={ROUTES.home} className={classes.logo}>
+        <Link to={ROUTES.home}>
           <img src={logo} alt="logo" />
         </Link>
         <nav className={classes.menu}>

@@ -4,9 +4,6 @@ export const styles = {
   container: {
     backgroundColor: `${GLOBAL_STYLES.color.mainColorDarkBlue}`
   },
-  logo: {
-    height: '100%'
-  },
   menu: {
     display: 'flex',
     marginLeft: 'auto'
@@ -14,7 +11,7 @@ export const styles = {
   menuItem: {
     border: '1px solid transparent',
     color: 'white',
-    minWidth: 100,
+    minWidth: '100px',
     padding: `${GLOBAL_STYLES.spacing.small} ${GLOBAL_STYLES.spacing.base}`,
     textAlign: 'center',
     textDecoration: 'none',

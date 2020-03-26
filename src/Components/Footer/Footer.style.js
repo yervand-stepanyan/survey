@@ -3,33 +3,30 @@ import GLOBAL_STYLES from '../../Theme/GlobalStyles';
 export const styles = {
   container: {
     backgroundColor: `${GLOBAL_STYLES.color.mainColorDarkBlue}`,
-    color: 'white',
-    position: 'relative',
-    left: 0,
-    bottom: 0,
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
-    padding: `${GLOBAL_STYLES.spacing.base}`,
-    textTransform: 'capitalize'
+    marginTop: `${GLOBAL_STYLES.spacing.xxxLarge}`,
+    padding: `${GLOBAL_STYLES.spacing.large} ${GLOBAL_STYLES.spacing.base}`
   },
-  footerTopPart: {
+  logoAndMenuWrapper: {
     display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'space-around'
   },
-  footerLogo: {
-    cursor: 'pointer'
+  logoSection: {
+    alignSelf: 'center'
   },
-  menuItemContainer: {
-    marginTop: `${GLOBAL_STYLES.spacing.large}`
+  menuSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop: `${GLOBAL_STYLES.spacing.base}`
+  },
+  menu: {
+    marginBottom: `${GLOBAL_STYLES.spacing.base}`
   },
   menuItem: {
     border: '1px solid transparent',
     color: 'white',
-    minWidth: 100,
     padding: `${GLOBAL_STYLES.spacing.small} ${GLOBAL_STYLES.spacing.base}`,
-    textAlign: 'center',
     textDecoration: 'none',
     '&:hover': {
       border: `1px solid ${GLOBAL_STYLES.color.mainColorGreen}`,
@@ -37,18 +34,17 @@ export const styles = {
       color: `${GLOBAL_STYLES.color.mainColorGreen}`
     }
   },
-  footerBottomPart: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`
+  infoWrapper: {
+    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`,
+    color: 'white'
   },
-  footerBottom: {
-    width: '55%',
+  infoSection: {
     display: 'flex',
-    justifyContent: 'space-between',
-    fontSize: '10px'
+    justifyContent: 'center',
+    position: 'relative'
   },
-  madeBy: {
-    paddingRight: `${GLOBAL_STYLES.spacing.base}`
+  websiteCreator: {
+    position: 'absolute',
+    right: 0
   }
 };
