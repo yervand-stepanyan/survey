@@ -5,12 +5,11 @@ import PropTypes from "prop-types";
 function MapBlock (props) {
   const { classes, google } = props;
   const style = {
-    width: "700px",
-    height: "700px",
+    width: "600px",
+    height: "500px",
     }
   return (
-    <div className={classes.container}>
-      mapblock
+    <div>
       <Map 
         google={google} 
         zoom={20}

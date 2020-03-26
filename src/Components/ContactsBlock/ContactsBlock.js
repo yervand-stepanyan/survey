@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function ContactsBlock ({ classes }) {
   return (
-    <div className={classes.container}>
+    <div>
       ContactsBlock
     </div>
   )
