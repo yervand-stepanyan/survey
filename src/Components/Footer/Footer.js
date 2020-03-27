@@ -13,7 +13,7 @@ const MENU_ITEMS = [
   { name: 'About', route: ROUTES.about },
   { name: 'Contacts', route: ROUTES.contacts }
 ];
-const WEBSITE_CREATOR = 'Website by ...';
+const WEBSITE_CREATOR = 'Website by SED Team';
 
 function Footer({ classes }) {
   return (

@@ -62,7 +62,7 @@ function OurPartnersBlock({ classes }) {
   return (
     <div className={classes.container}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h6">{TITLE}</Typography>
+        <Typography variant="h4">{TITLE}</Typography>
       </div>
       <div className={classes.sliderContainer}>
         <div className={classes.sliderWrapper}>

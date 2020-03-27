@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ContactsBlock from '../../Components/ContactsBlock';
-import MapBlock from '../../Components/MapBlock';
+import ContactsBlock from '../../Components/ContactsBlock/ContactsBlock';
 
 function Contacts({ classes }) {
   return (
     <div className={classes.container}>
       <ContactsBlock />
-      <MapBlock />
     </div>
   );
 }

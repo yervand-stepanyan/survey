@@ -21,11 +21,5 @@ export const styles = {
     color: `${GLOBAL_STYLES.typography.fontColor.base}`,
     backgroundColor: 'white',
     fontFamily: `${GLOBAL_STYLES.typography.fontFamily.base}`
-  },
-  headerContainer: {
-    height: '10%'
-  },
-  footerContainer: {
-    height: '8%'
   }
 };
