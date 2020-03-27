@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function AboutBlock(props) {
-  const { classes } = props;
-
+function AboutBlock({ classes }) {
   return <div className={classes.container}>AboutBlock works!!!</div>;
 }
 

@@ -11,9 +11,7 @@ import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
 import TakeSurvey from '../TakeSurvey';
 
-function Main(props) {
-  const { classes } = props;
-
+function Main({ classes }) {
   return (
     <div className={classes.mainContainer}>
       <Router>

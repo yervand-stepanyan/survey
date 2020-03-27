@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import ResultsBlock from '../../Components/ResultsBlock';
 
-function Results(props) {
-  const { classes } = props;
-
+function Results({ classes }) {
   return (
     <div className={classes.container}>
       <ResultsBlock />

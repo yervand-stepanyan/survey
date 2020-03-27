@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 const adImageIRL = 'https://bit.ly/aca-logo';
 const adURL = 'https://bit.ly/aca-url';
 
-function AdPanel(props) {
-  const { classes } = props;
-
+function AdPanel({ classes }) {
   return (
     <div className={classes.container}>
       <a href={adURL} target="_blank" rel="noreferrer noopener">

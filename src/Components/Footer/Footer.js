@@ -15,9 +15,7 @@ const MENU_ITEMS = [
 ];
 const WEBSITE_CREATOR = 'Website by ...';
 
-function Footer(props) {
-  const { classes } = props;
-
+function Footer({ classes }) {
   return (
     <footer className={classes.container}>
       <div className={classes.logoAndMenuWrapper}>

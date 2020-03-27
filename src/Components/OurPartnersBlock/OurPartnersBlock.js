@@ -21,11 +21,10 @@ const PARTNERS_IMAGES = [
 const SLIDER_TIMER = 4000;
 const TITLE = 'Our Partners';
 
-function OurPartnersBlock(props) {
+function OurPartnersBlock({ classes }) {
   const [images, setImages] = useState(
     PARTNERS_IMAGES.slice(0, PARTNERS_IMAGES.length - 1)
   );
-  const { classes } = props;
 
   useEffect(() => {
     let count = 1;

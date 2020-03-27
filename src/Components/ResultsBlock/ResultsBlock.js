@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ResultsBlock(props) {
-  const { classes } = props;
-
+function ResultsBlock({ classes }) {
   return <div className={classes.container}>ResultsBlock works!!!</div>;
 }
 

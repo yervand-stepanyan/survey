@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function HomeBlock(props) {
-  const { classes } = props;
-
+function HomeBlock({ classes }) {
   return <div className={classes.container}>HomeBlock works!!!</div>;
 }
 

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import CreateSurveyBlock from '../../Components/CreateSurveyBlock';
 
-function CreateSurvey(props) {
-  const { classes } = props;
-
+function CreateSurvey({ classes }) {
   return (
     <div className={classes.container}>
       <CreateSurveyBlock />

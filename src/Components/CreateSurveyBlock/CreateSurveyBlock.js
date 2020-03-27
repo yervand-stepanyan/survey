@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CreateSurveyBlock(props) {
-  const { classes } = props;
-
+function CreateSurveyBlock({ classes }) {
   return <div className={classes.container}>CreateSurveyBlock works!!!</div>;
 }
 
