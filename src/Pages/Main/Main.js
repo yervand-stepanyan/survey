@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import About from '../About';
 import CreateSurvey from '../CreateSurvey';
 import Footer from '../../Components/Footer';
+import Contacts from '../Contacts';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
@@ -31,6 +32,9 @@ function Main({ classes }) {
           </Route>
           <Route path={ROUTES.about}>
             <About />
+          </Route>
+          <Route path={ROUTES.contacts}>
+            <Contacts />
           </Route>
         </Switch>
         <Footer />
