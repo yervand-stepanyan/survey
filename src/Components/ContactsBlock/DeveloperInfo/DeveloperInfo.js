@@ -33,7 +33,6 @@ function DeveloperInfo({ classes, developer }) {
             <span>{developer.email}</span>
           </div>
         </div>
-
         <div className={classes.socialSection}>
           <a
             href={developer.githubPageURL}
