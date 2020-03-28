@@ -6,7 +6,7 @@ import DeveloperInfo from '../DeveloperInfo';
 const DEVELOPERS = [
   {
     firstName: 'Sose',
-    lastName: 'Lastname',
+    lastName: 'Ghadyan',
     email: 'karnosose@gmail.com',
     phone: '+37493212564',
     githubPageURL: process.env.REACT_APP_SOSE_GITHUB_URL,
