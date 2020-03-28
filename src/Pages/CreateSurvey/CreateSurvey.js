@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CreateSurveyBlock from '../../Components/CreateSurveyBlock';
+import CreateSurveyBlock from '../../Components/CreateSurveyBlock/CreateSurveyBlock';
 
 function CreateSurvey({ classes }) {
   return (

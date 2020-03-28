@@ -1,4 +1,4 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
 
 export const styles = {
   container: {
@@ -10,8 +10,14 @@ export const styles = {
     height: '100%',
     padding: `${GLOBAL_STYLES.spacing.small}`
   },
-  titleWrapper: {
+  blockTitleWrapper: {
     display: 'flex',
     justifyContent: 'center'
+  },
+  createSurveyWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
+    padding: `${GLOBAL_STYLES.spacing.small}`
   }
 };
