@@ -7,10 +7,9 @@ export const styles = {
     justifyContent: 'center',
     padding: `${GLOBAL_STYLES.spacing.small}`
   },
-  titleWrapper: {
+  textFieldWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    position: 'relative',
     width: '100%'
   },
   titleLabel: {
@@ -18,9 +17,19 @@ export const styles = {
     alignItems: 'center',
     paddingRight: `${GLOBAL_STYLES.spacing.small}`
   },
-  editIcon: {
-    marginLeft: 'auto',
-    position: 'absolute',
-    right: 0
+  textFieldSection: {
+    width: '50%'
+  },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: `${GLOBAL_STYLES.spacing.base}`
+  },
+  button: {
+    backgroundColor: `${GLOBAL_STYLES.color.mainColorGreen}`,
+    color: 'white',
+    '&:hover': {
+      backgroundColor: '#11703C'
+    }
   }
 };

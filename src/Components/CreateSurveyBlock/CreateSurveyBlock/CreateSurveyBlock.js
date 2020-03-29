@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
+import SurveyContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
+import SurveyTitleCreator from '../SurveyTitleCreator';
+import titleReducer from '../../../State/reducer';
 
 const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock({ classes }) {
+  const [state, dispatch] = useReducer(titleReducer, {
+    title: '',
+    isTitle: false
+  });
+  const { isTitle } = state;
+
   return (
     <div className={classes.container}>
       <div className={classes.blockTitleWrapper}>
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
-      <div className={classes.createSurveyWrapper}>
-        <SurveyTitle />
-      </div>
+      <SurveyContext.Provider value={{ state, dispatch }}>
+        <div className={classes.createSurveyWrapper}>
+          {!isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
+        </div>
+      </SurveyContext.Provider>
     </div>
   );
 }
