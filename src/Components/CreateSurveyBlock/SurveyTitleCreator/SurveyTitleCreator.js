@@ -5,8 +5,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import SurveyContext from '../../../State/context';
 import removeSpaces from '../../../Helpers/removeSpaces';
+import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit';
 const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
@@ -31,9 +31,8 @@ function SurveyTitleCreator({ classes }) {
   };
 
   const handleSubmit = () => {
-    if (title) {
-      dispatch({ type: 'SET_TITLE', payload: removeSpaces(title) });
-    } else setIsEmpty(false);
+    if (title) dispatch({ type: 'SET_TITLE', payload: removeSpaces(title) });
+    else setIsEmpty(false);
   };
 
   const handleSubmitOnEnter = event => {
