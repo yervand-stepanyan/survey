@@ -30,8 +30,13 @@ function SurveyTitleCreator({ classes }) {
   };
 
   const handleSubmit = () => {
-    if (title) dispatch({ type: 'SET_TITLE', payload: title });
-    else setIsEmpty(false);
+    if (title) {
+      const checkedTitle = title
+        .replace(/\s\s+/g, ' ')
+        .replace(/^\s*|\s*$/g, '');
+
+      dispatch({ type: 'SET_TITLE', payload: checkedTitle });
+    } else setIsEmpty(false);
   };
 
   const handleSubmitOnEnter = event => {
