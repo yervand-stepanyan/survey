@@ -15,6 +15,10 @@ export const styles = {
     display: 'flex',
     padding: `0 ${GLOBAL_STYLES.spacing.xxLarge}`
   },
+  question: {
+    marginLeft: `${GLOBAL_STYLES.spacing.base}`,
+    color: `${GLOBAL_STYLES.color.mainColorGreen}`
+  },
   editIcon: {
     position: 'absolute',
     right: 0

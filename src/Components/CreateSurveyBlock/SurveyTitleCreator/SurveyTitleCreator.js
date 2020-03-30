@@ -11,7 +11,7 @@ import SurveyContext from '../../../State/context';
 const BUTTON_LABEL = 'Submit';
 const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
 const TITLE_PLACEHOLDER = '* Title';
-const TITLE_TEXT = "Survey's title:";
+const TITLE_TEXT = 'Survey title:';
 
 function SurveyTitleCreator({ classes }) {
   const { state, dispatch } = useContext(SurveyContext);

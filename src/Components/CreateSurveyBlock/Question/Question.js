@@ -7,11 +7,13 @@ import Typography from '@material-ui/core/Typography';
 
 import SurveyContext from '../../../State/context';
 
+const QUESTION_LABEL = 'Question:';
+
 function Question({ classes }) {
   const { state, dispatch } = useContext(SurveyContext);
   const { question } = state;
 
-  const handleIsEdit = () => {
+  const handleEdit = () => {
     dispatch({ type: 'EDIT_QUESTION', payload: question });
   };
 
@@ -19,10 +21,13 @@ function Question({ classes }) {
     <div className={classes.container}>
       <div className={classes.questionWrapper}>
         <div className={classes.questionLabel}>
-          <Typography variant="h5">{question}</Typography>
+          <Typography variant="h5">{QUESTION_LABEL}</Typography>
+          <Typography variant="h5" className={classes.question}>
+            {question}
+          </Typography>
         </div>
         <div className={classes.editIcon}>
-          <IconButton onClick={handleIsEdit}>
+          <IconButton onClick={handleEdit}>
             <CreateIcon />
           </IconButton>
         </div>
