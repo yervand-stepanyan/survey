@@ -9,9 +9,7 @@ function AnswerTypes({ classes }) {
   return (
     <div className={classes.container}>
       <div className={classes.titleWrapper}>
-        <div className={classes.titleLabel}>
-          <Typography variant="h5">{TITLE}</Typography>
-        </div>
+        <Typography variant="h5">{TITLE}</Typography>
       </div>
     </div>
   );

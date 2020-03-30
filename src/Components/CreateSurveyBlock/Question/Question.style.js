@@ -22,5 +22,8 @@ export const styles = {
   editIcon: {
     position: 'absolute',
     right: 0
+  },
+  answerTypesWrapper: {
+    marginTop: `${GLOBAL_STYLES.spacing.large}`
   }
 };

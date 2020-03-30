@@ -5,6 +5,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
+import AnswerTypes from '../AnswerTypes';
 import SurveyContext from '../../../State/context';
 
 const QUESTION_LABEL = 'Question:';
@@ -31,6 +32,9 @@ function Question({ classes }) {
             <CreateIcon />
           </IconButton>
         </div>
+      </div>
+      <div className={classes.answerTypesWrapper}>
+        <AnswerTypes />
       </div>
     </div>
   );
