@@ -16,7 +16,7 @@ export const styles = {
   titleLabel: {
     display: 'flex',
     alignItems: 'center',
-    paddingRight: `${GLOBAL_STYLES.spacing.small}`
+    padding: `0 ${GLOBAL_STYLES.spacing.xxLarge}`
   },
   editIcon: {
     marginLeft: 'auto',

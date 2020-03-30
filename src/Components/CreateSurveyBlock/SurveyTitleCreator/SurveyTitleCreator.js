@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit';
-const TITLE_ERROR_PLACEHOLDER = 'Invalid Title';
-const TITLE_PLACEHOLDER = 'Title';
+const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
+const TITLE_PLACEHOLDER = '* Title';
 const TITLE_TEXT = "Survey's title:";
 
 function SurveyTitleCreator({ classes }) {
