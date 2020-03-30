@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
+import AnswerOptions from '../AnswerOptions';
+
 const TITLE = 'Answer type';
 
 function AnswerTypes({ classes }) {
@@ -11,6 +13,7 @@ function AnswerTypes({ classes }) {
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
+      <AnswerOptions />
     </div>
   );
 }
