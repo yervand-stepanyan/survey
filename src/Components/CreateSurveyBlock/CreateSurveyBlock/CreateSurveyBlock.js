@@ -7,7 +7,7 @@ import QuestionSection from '../QuestionSection';
 import SurveyContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
-import titleReducer from '../../../State/reducer';
+import { titleReducer } from '../../../State/reducer';
 
 const BLOCK_TITLE = 'Create survey';
 

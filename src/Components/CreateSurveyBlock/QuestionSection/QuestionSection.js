@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
+import QuestionCreator from '../QuestionCreator';
+import { questionReducer } from '../../../State/reducer';
+import SurveyContext from '../../../State/context';
+
 function QuestionSection({ classes }) {
-  return <div className={classes.container}>Question Section</div>;
+  const [state, dispatch] = useReducer(questionReducer, {
+    question: '',
+    isQuestion: false
+  });
+  const { isQuestion } = state;
+
+  return (
+    <div className={classes.container}>
+      <SurveyContext.Provider value={{ state, dispatch }}>
+        {!isQuestion ? <QuestionCreator /> : null}
+      </SurveyContext.Provider>
+    </div>
+  );
 }
 
 QuestionSection.propTypes = {
