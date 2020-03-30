@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function QuestionSection({ classes }) {
+function Question({ classes }) {
   return <div className={classes.container}>Question Section</div>;
 }
 
-QuestionSection.propTypes = {
+Question.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default QuestionSection;
+export default Question;

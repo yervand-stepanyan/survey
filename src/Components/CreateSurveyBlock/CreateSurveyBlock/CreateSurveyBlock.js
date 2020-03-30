@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
+import QuestionSection from '../QuestionSection';
 import SurveyContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
@@ -25,6 +26,7 @@ function CreateSurveyBlock({ classes }) {
       <SurveyContext.Provider value={{ state, dispatch }}>
         <div className={classes.createSurveyWrapper}>
           {!isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
+          {isTitle ? <QuestionSection /> : null}
         </div>
       </SurveyContext.Provider>
     </div>
