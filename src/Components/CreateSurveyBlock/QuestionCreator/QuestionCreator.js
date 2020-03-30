@@ -15,7 +15,7 @@ const QUESTION_PLACEHOLDER = '* Question';
 
 function QuestionCreator({ classes }) {
   const { state, dispatch } = useContext(SurveyContext);
-  const [question, setQuestion] = useState(state.title);
+  const [question, setQuestion] = useState(state.question);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
 
@@ -48,6 +48,7 @@ function QuestionCreator({ classes }) {
         </div>
         <div className={classes.textFieldSection}>
           <TextField
+            autoFocus
             id="outlined-basic"
             fullWidth
             label={isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
