@@ -33,7 +33,7 @@ function SurveyTitle({ classes }) {
           </div>
         </div>
         <div className={classes.editIcon}>
-          <Tooltip title="Edit" TransitionComponent={Zoom}>
+          <Tooltip title="Edit" TransitionComponent={Zoom} arrow>
             <IconButton onClick={handleEdit}>
               <CreateIcon />
             </IconButton>
