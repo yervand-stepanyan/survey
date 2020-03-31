@@ -5,7 +5,11 @@ import inputImage from '../../../assets/images/answerOptions/textfields-720x420.
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
 
-const IMAGE_NAMES = { first: 'input', second: 'radiobutton', third: 'range' };
+const IMAGES = [
+  { name: 'input', src: inputImage },
+  { name: 'radiobutton', src: radiobuttonImage },
+  { name: 'range', src: rangeImage }
+];
 
 function AnswerOptions({ classes }) {
   const [image, setImage] = useState(null);
@@ -21,63 +25,28 @@ function AnswerOptions({ classes }) {
 
   return (
     <div className={classes.container}>
-      <div
-        className={
-          image === IMAGE_NAMES.first
-            ? classes.imageContainerClicked
-            : classes.imageContainer
-        }
-        onClick={e => handleImageClick(e)}
-        onKeyDown={e => handleEnterKey(e)}
-        role="button"
-        tabIndex={0}
-      >
-        <img
-          src={inputImage}
-          alt={IMAGE_NAMES.first}
+      {IMAGES.map(img => (
+        <div
           className={
-            image === IMAGE_NAMES.first ? classes.imageClicked : classes.image
+            image === img.name
+              ? classes.imageContainerClicked
+              : classes.imageContainer
           }
-        />
-      </div>
-      <div
-        className={
-          image === IMAGE_NAMES.second
-            ? classes.imageContainerClicked
-            : classes.imageContainer
-        }
-        onClick={e => handleImageClick(e)}
-        onKeyDown={e => handleEnterKey(e)}
-        role="button"
-        tabIndex={0}
-      >
-        <img
-          src={radiobuttonImage}
-          alt={IMAGE_NAMES.second}
-          className={
-            image === IMAGE_NAMES.second ? classes.imageClicked : classes.image
-          }
-        />
-      </div>
-      <div
-        className={
-          image === IMAGE_NAMES.third
-            ? classes.imageContainerClicked
-            : classes.imageContainer
-        }
-        onClick={e => handleImageClick(e)}
-        onKeyDown={e => handleEnterKey(e)}
-        role="button"
-        tabIndex={0}
-      >
-        <img
-          src={rangeImage}
-          alt={IMAGE_NAMES.third}
-          className={
-            image === IMAGE_NAMES.third ? classes.imageClicked : classes.image
-          }
-        />
-      </div>
+          key={img.name}
+          onClick={e => handleImageClick(e)}
+          onKeyDown={e => handleEnterKey(e)}
+          role="button"
+          tabIndex={0}
+        >
+          <img
+            src={img.src}
+            alt={img.name}
+            className={
+              image === img.name ? classes.imageClicked : classes.image
+            }
+          />
+        </div>
+      ))}
     </div>
   );
 }
