@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
 
 import SurveyContext from '../../../State/context';
 
@@ -31,9 +33,11 @@ function SurveyTitle({ classes }) {
           </div>
         </div>
         <div className={classes.editIcon}>
-          <IconButton onClick={handleEdit}>
-            <CreateIcon />
-          </IconButton>
+          <Tooltip title="Edit" TransitionComponent={Zoom}>
+            <IconButton onClick={handleEdit}>
+              <CreateIcon />
+            </IconButton>
+          </Tooltip>
         </div>
       </div>
     </div>
