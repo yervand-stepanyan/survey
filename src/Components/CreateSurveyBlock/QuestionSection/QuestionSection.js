@@ -21,7 +21,9 @@ function QuestionSection({ classes }) {
       <SurveyContext.Provider
         value={{ state, dispatch, surveyState, surveyDispatch }}
       >
-        {!isQuestion ? <QuestionCreator /> : <Question />}
+        <div className={classes.questionSection}>
+          {!isQuestion ? <QuestionCreator /> : <Question />}
+        </div>
         <div className={classes.answerTypesWrapper}>
           {question ? <AnswerTypes /> : null}
         </div>

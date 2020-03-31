@@ -4,10 +4,12 @@ export const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${GLOBAL_STYLES.spacing.large}`,
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${GLOBAL_STYLES.spacing.small}`
+  },
+  questionSection: {
+    height: '114px'
   },
   answerTypesWrapper: {
-    marginTop: `${GLOBAL_STYLES.spacing.large}`
+    marginTop: `${GLOBAL_STYLES.spacing.small}`
   }
 };

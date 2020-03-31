@@ -4,11 +4,12 @@ export const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    height: 'inherit'
   },
   titleWrapper: {
     display: 'flex',
     justifyContent: 'center',
+    height: 'inherit',
     position: 'relative',
     width: '100%'
   },
@@ -16,9 +17,14 @@ export const styles = {
     display: 'flex',
     padding: `0 ${GLOBAL_STYLES.spacing.xxLarge}`
   },
+  label: {
+    whiteSpace: 'nowrap'
+  },
   title: {
+    color: `${GLOBAL_STYLES.color.mainColorGreen}`,
+    height: 'inherit',
     marginLeft: `${GLOBAL_STYLES.spacing.base}`,
-    color: `${GLOBAL_STYLES.color.mainColorGreen}`
+    overflowY: 'auto'
   },
   editIcon: {
     position: 'absolute',

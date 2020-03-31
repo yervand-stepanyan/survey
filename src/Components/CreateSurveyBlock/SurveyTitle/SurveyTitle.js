@@ -23,10 +23,12 @@ function SurveyTitle({ classes }) {
     <div className={classes.container}>
       <div className={classes.titleWrapper}>
         <div className={classes.titleLabel}>
-          <Typography variant="h5">{TITLE_LABEL}</Typography>
-          <Typography variant="h5" className={classes.title}>
-            {title}
-          </Typography>
+          <div className={classes.label}>
+            <Typography variant="h5">{TITLE_LABEL}</Typography>
+          </div>
+          <div className={classes.title}>
+            <Typography variant="h5">{title}</Typography>
+          </div>
         </div>
         <div className={classes.editIcon}>
           <IconButton onClick={handleEdit}>

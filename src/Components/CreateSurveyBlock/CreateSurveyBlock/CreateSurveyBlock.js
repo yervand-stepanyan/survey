@@ -32,7 +32,9 @@ function CreateSurveyBlock({ classes }) {
         value={{ state, dispatch, surveyState, surveyDispatch }}
       >
         <div className={classes.createSurveyWrapper}>
-          {!title || !isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
+          <div className={classes.titleWrapper}>
+            {!title || !isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
+          </div>
           {question || isTitle ? <QuestionSection /> : null}
         </div>
       </SurveyContext.Provider>

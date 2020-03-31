@@ -4,7 +4,7 @@ export const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    padding: `0 ${GLOBAL_STYLES.spacing.small}`
   },
   textFieldWrapper: {
     display: 'flex',

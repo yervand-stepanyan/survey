@@ -8,7 +8,7 @@ export const styles = {
     boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
     boxSizing: 'border-box',
     height: '100%',
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    padding: `0 ${GLOBAL_STYLES.spacing.small}`
   },
   blockTitleWrapper: {
     display: 'flex',
@@ -17,7 +17,10 @@ export const styles = {
   createSurveyWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${GLOBAL_STYLES.spacing.large}`,
+    padding: `0 ${GLOBAL_STYLES.spacing.small}`
+  },
+  titleWrapper: {
+    height: '114px'
   }
 };

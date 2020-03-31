@@ -21,10 +21,12 @@ function Question({ classes }) {
     <div className={classes.container}>
       <div className={classes.questionWrapper}>
         <div className={classes.questionLabel}>
-          <Typography variant="h5">{QUESTION_LABEL}</Typography>
-          <Typography variant="h5" className={classes.question}>
-            {question}
-          </Typography>
+          <div className={classes.label}>
+            <Typography variant="h5">{QUESTION_LABEL}</Typography>
+          </div>
+          <div className={classes.question}>
+            <Typography variant="h5">{question}</Typography>
+          </div>
         </div>
         <div className={classes.editIcon}>
           <IconButton onClick={handleEdit}>

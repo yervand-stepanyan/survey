@@ -4,8 +4,7 @@ export const styles = {
   container: {
     display: 'flex',
     justifyContent: 'space-around',
-    marginTop: `${GLOBAL_STYLES.spacing.large}`,
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${GLOBAL_STYLES.spacing.small}`
   },
   imageContainer: {
     border: '10px solid transparent',
