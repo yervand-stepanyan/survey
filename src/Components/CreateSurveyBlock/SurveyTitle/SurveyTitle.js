@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 
 import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,10 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
 import SurveyContext from '../../../State/context';
+import { useStyles } from './SurveyTitle.style';
 
 const TITLE_LABEL = 'Survey title:';
 
-function SurveyTitle({ classes }) {
+function SurveyTitle() {
+  const classes = useStyles();
   const { state, dispatch } = useContext(SurveyContext);
   const { surveyDispatch } = useContext(SurveyContext);
   const { title } = state;
@@ -43,9 +44,5 @@ function SurveyTitle({ classes }) {
     </div>
   );
 }
-
-SurveyTitle.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default SurveyTitle;

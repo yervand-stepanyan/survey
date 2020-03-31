@@ -1,18 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AboutBlock from '../../Components/AboutBlock';
+import { useStyles } from './About.style';
 
-function About({ classes }) {
+function About() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <AboutBlock />
     </div>
   );
 }
-
-About.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default About;

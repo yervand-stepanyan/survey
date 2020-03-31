@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from '../About';
@@ -11,8 +10,11 @@ import Home from '../Home';
 import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
 import TakeSurvey from '../TakeSurvey';
+import { useStyles } from './Main.style';
 
-function Main({ classes }) {
+function Main() {
+  const classes = useStyles();
+
   return (
     <div className={classes.mainContainer}>
       <Router>
@@ -42,9 +44,5 @@ function Main({ classes }) {
     </div>
   );
 }
-
-Main.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Main;

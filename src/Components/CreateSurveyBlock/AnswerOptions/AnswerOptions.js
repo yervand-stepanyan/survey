@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
+import { useStyles } from './AnswerOptions.style';
 import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
 import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.png';
@@ -18,7 +18,8 @@ const IMAGES = [
   { name: 'range', src: rangeImage, tooltip: 'Range' }
 ];
 
-function AnswerOptions({ classes }) {
+function AnswerOptions() {
+  const classes = useStyles();
   const [image, setImage] = useState(null);
 
   const handleImageClick = e => {
@@ -63,9 +64,5 @@ function AnswerOptions({ classes }) {
     </div>
   );
 }
-
-AnswerOptions.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default AnswerOptions;

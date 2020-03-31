@@ -1,13 +1,14 @@
 import React, { useContext, useReducer } from 'react';
-import PropTypes from 'prop-types';
 
 import AnswerTypes from '../AnswerTypes';
 import Question from '../Question';
 import QuestionCreator from '../QuestionCreator';
 import { questionReducer } from '../../../State/reducer';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './QuestionSection.style';
 
-function QuestionSection({ classes }) {
+function QuestionSection() {
+  const classes = useStyles();
   const [state, dispatch] = useReducer(questionReducer, {
     question: '',
     isQuestion: false
@@ -31,9 +32,5 @@ function QuestionSection({ classes }) {
     </div>
   );
 }
-
-QuestionSection.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default QuestionSection;

@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import DeveloperInfo from '../DeveloperInfo';
+import { useStyles } from './DevelopersSection.style';
 
 const DEVELOPERS = [
   {
@@ -30,7 +30,9 @@ const DEVELOPERS = [
   }
 ];
 
-function DevelopersSection({ classes }) {
+function DevelopersSection() {
+  const classes = useStyles();
+
   return (
     <div className={classes.developersSection}>
       {DEVELOPERS.map(developer => (
@@ -39,9 +41,5 @@ function DevelopersSection({ classes }) {
     </div>
   );
 }
-
-DevelopersSection.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default DevelopersSection;

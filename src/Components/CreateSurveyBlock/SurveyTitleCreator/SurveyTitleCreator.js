@@ -1,5 +1,4 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,13 +6,15 @@ import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './SurveyTitleCreator.style';
 
 const BUTTON_LABEL = 'Submit';
 const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
 const TITLE_PLACEHOLDER = '* Title';
 const TITLE_TEXT = 'Survey title:';
 
-function SurveyTitleCreator({ classes }) {
+function SurveyTitleCreator() {
+  const classes = useStyles();
   const { state, dispatch } = useContext(SurveyContext);
   const { surveyDispatch } = useContext(SurveyContext);
   const [title, setTitle] = useState(state.title);
@@ -76,9 +77,5 @@ function SurveyTitleCreator({ classes }) {
     </div>
   );
 }
-
-SurveyTitleCreator.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default SurveyTitleCreator;

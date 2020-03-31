@@ -1,18 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ResultsBlock from '../../Components/ResultsBlock';
+import { useStyles } from './Results.style';
 
-function Results({ classes }) {
+function Results() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <ResultsBlock />
     </div>
   );
 }
-
-Results.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Results;

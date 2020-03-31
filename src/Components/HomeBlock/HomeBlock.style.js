@@ -1,13 +1,13 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
+    borderRadius: `${theme.borders.borderRadius.base}`,
+    boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    padding: `${GLOBAL_STYLES.spacing.small}`,
+    padding: `${theme.customSpacing.small}`,
     width: '75%'
   }
-};
+}));

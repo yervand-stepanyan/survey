@@ -1,14 +1,14 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
+    borderRadius: `${theme.borders.borderRadius.base}`,
+    boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
     minHeight: '100%',
-    padding: `0 ${GLOBAL_STYLES.spacing.small}`
+    padding: `0 ${theme.customSpacing.small}`
   },
   blockTitleWrapper: {
     display: 'flex',
@@ -17,10 +17,10 @@ export const styles = {
   createSurveyWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${GLOBAL_STYLES.spacing.large}`,
-    padding: `0 ${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${theme.customSpacing.large}`,
+    padding: `0 ${theme.customSpacing.small}`
   },
   titleWrapper: {
     height: '114px'
   }
-};
+}));

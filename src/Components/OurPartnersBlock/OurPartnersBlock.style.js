@@ -1,12 +1,12 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
     boxSizing: 'border-box',
-    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`,
-    padding: `${GLOBAL_STYLES.spacing.small}`,
+    marginTop: `${theme.customSpacing.xxLarge}`,
+    padding: `${theme.customSpacing.small}`,
     width: '100%'
   },
   titleWrapper: {
@@ -16,8 +16,8 @@ export const styles = {
   sliderContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${theme.customSpacing.xLarge}`,
+    padding: `${theme.customSpacing.small}`
   },
   sliderWrapper: {
     display: 'flex',
@@ -29,4 +29,4 @@ export const styles = {
     height: '100px',
     width: '100px'
   }
-};
+}));

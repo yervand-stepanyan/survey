@@ -1,10 +1,10 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   addressSection: {
     display: 'flex',
     flexDirection: 'column',
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    padding: `${theme.customSpacing.small}`
   },
   address: {
     display: 'flex'
@@ -16,10 +16,10 @@ export const styles = {
     display: 'flex'
   },
   iconContainer: {
-    marginRight: `${GLOBAL_STYLES.spacing.small}`
+    marginRight: `${theme.customSpacing.small}`
   },
   icon: {
     height: '20px',
     width: '20px'
   }
-};
+}));

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import logo from '../../assets/images/logo/logo.png';
 import ROUTES from '../../Routes/Routes';
+import { useStyles } from './Footer.style';
 
 const COPY_INFO = 'Copyright © 2020 Survey';
 const MENU_ITEMS = [
@@ -15,7 +15,9 @@ const MENU_ITEMS = [
 ];
 const WEBSITE_CREATOR = 'Website by SED Team';
 
-function Footer({ classes }) {
+function Footer() {
+  const classes = useStyles();
+
   return (
     <footer className={classes.container}>
       <div className={classes.logoAndMenuWrapper}>
@@ -47,9 +49,5 @@ function Footer({ classes }) {
     </footer>
   );
 }
-
-Footer.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Footer;

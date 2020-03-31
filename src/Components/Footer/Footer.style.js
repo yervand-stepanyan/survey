@@ -1,12 +1,12 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
-    backgroundColor: `${GLOBAL_STYLES.color.mainColorDarkBlue}`,
+    backgroundColor: `${theme.color.mainColorDarkBlue}`,
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${GLOBAL_STYLES.spacing.xxxLarge}`,
-    padding: `${GLOBAL_STYLES.spacing.large} ${GLOBAL_STYLES.spacing.base}`
+    marginTop: `${theme.customSpacing.xxxLarge}`,
+    padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`
   },
   logoAndMenuWrapper: {
     display: 'flex',
@@ -18,25 +18,25 @@ export const styles = {
   menuSection: {
     display: 'flex',
     flexDirection: 'column',
-    paddingTop: `${GLOBAL_STYLES.spacing.base}`
+    paddingTop: `${theme.customSpacing.base}`
   },
   menu: {
-    marginBottom: `${GLOBAL_STYLES.spacing.base}`
+    marginBottom: `${theme.customSpacing.base}`
   },
   menuItem: {
     border: '1px solid transparent',
     color: 'white',
-    padding: `${GLOBAL_STYLES.spacing.small} ${GLOBAL_STYLES.spacing.base}`,
+    padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`,
     textDecoration: 'none',
     '&:hover': {
-      border: `1px solid ${GLOBAL_STYLES.color.mainColorGreen}`,
-      borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-      color: `${GLOBAL_STYLES.color.mainColorGreen}`
+      border: `1px solid ${theme.color.mainColorGreen}`,
+      borderRadius: `${theme.borders.borderRadius.base}`,
+      color: `${theme.color.mainColorGreen}`
     }
   },
   infoWrapper: {
     color: 'white',
-    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`
+    marginTop: `${theme.customSpacing.xxLarge}`
   },
   infoSection: {
     display: 'flex',
@@ -47,4 +47,4 @@ export const styles = {
     position: 'absolute',
     right: 0
   }
-};
+}));

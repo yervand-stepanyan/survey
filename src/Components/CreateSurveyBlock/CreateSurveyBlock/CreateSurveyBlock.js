@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -8,10 +7,13 @@ import SurveyContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
 import { surveyReducer, titleReducer } from '../../../State/reducer';
+import { useStyles } from './CreateSurveyBlock.style';
 
 const BLOCK_TITLE = 'Create survey';
 
-function CreateSurveyBlock({ classes }) {
+function CreateSurveyBlock() {
+  const classes = useStyles();
+
   const [surveyState, surveyDispatch] = useReducer(surveyReducer, {
     title: '',
     question: ''
@@ -41,9 +43,5 @@ function CreateSurveyBlock({ classes }) {
     </div>
   );
 }
-
-CreateSurveyBlock.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default CreateSurveyBlock;

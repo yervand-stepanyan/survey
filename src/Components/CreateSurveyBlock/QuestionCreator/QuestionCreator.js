@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,13 +6,15 @@ import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './QuestionCreator.style';
 
 const BUTTON_LABEL = 'Submit';
 const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
 
-function QuestionCreator({ classes }) {
+function QuestionCreator() {
+  const classes = useStyles();
   const { state, dispatch } = useContext(SurveyContext);
   const { surveyDispatch } = useContext(SurveyContext);
   const [question, setQuestion] = useState(state.question);
@@ -77,9 +78,5 @@ function QuestionCreator({ classes }) {
     </div>
   );
 }
-
-QuestionCreator.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default QuestionCreator;

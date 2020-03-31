@@ -1,17 +1,17 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   developerInfo: {
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    padding: `${theme.customSpacing.small}`
   },
   socialWrapper: {
-    marginLeft: `${GLOBAL_STYLES.spacing.xxLarge}`
+    marginLeft: `${theme.customSpacing.xxLarge}`
   },
   socialSection: {
     display: 'flex'
   },
   iconContainer: {
-    marginRight: `${GLOBAL_STYLES.spacing.small}`
+    marginRight: `${theme.customSpacing.small}`
   },
   icon: {
     height: '20px',
@@ -19,10 +19,10 @@ export const styles = {
   },
   link: {
     display: 'flex',
-    color: `${GLOBAL_STYLES.typography.fontColor.base}`,
+    color: `${theme.customTypography.fontColor.base}`,
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline'
     }
   }
-};
+}));

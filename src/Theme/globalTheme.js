@@ -1,3 +1,5 @@
+import { createMuiTheme } from '@material-ui/core/styles';
+
 const boxShadowColor = '#79d5a3';
 const mainColorDarkBlue = '#282C34';
 const mainColorGreen = '#20BA66';
@@ -7,7 +9,7 @@ const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
 const MAIN_SPACING_VALUE = 14;
 
-const GLOBAL_STYLES = {
+const theme = createMuiTheme({
   borders: {
     borderRadius: {
       base: `${BORDER_RADIUS_VALUE}px`
@@ -21,7 +23,7 @@ const GLOBAL_STYLES = {
     mainColorDarkBlue,
     mainColorGreen
   },
-  spacing: {
+  customSpacing: {
     small: `${MAIN_SPACING_VALUE * 0.5}px`,
     base: `${MAIN_SPACING_VALUE}px`,
     large: `${MAIN_SPACING_VALUE * 2}px`,
@@ -30,7 +32,7 @@ const GLOBAL_STYLES = {
     xxxLarge: `${MAIN_SPACING_VALUE * 6}px`,
     xxxxLarge: `${MAIN_SPACING_VALUE * 8}px`
   },
-  typography: {
+  customTypography: {
     fontColor: {
       base: mainTextColor
     },
@@ -41,6 +43,6 @@ const GLOBAL_STYLES = {
       base: `${MAIN_FONT_SIZE}px`
     }
   }
-};
+});
 
-export { GLOBAL_STYLES as default };
+export { theme as default };

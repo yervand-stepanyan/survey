@@ -1,6 +1,6 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column'
@@ -19,10 +19,10 @@ export const styles = {
   typeWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
-    marginTop: `${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${theme.customSpacing.small}`
   },
   imageContainerClicked: {
-    border: `10px solid ${GLOBAL_STYLES.color.mainColorGreen}`,
+    border: `10px solid ${theme.color.mainColorGreen}`,
     cursor: 'pointer',
     filter: 'drop-shadow(8px 8px 10px gray)',
     height: '75px',
@@ -37,4 +37,4 @@ export const styles = {
     height: 'inherit',
     width: 'inherit'
   }
-};
+}));

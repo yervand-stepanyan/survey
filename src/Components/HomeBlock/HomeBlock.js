@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function HomeBlock({ classes }) {
+import { useStyles } from './HomeBlock.style';
+
+function HomeBlock() {
+  const classes = useStyles();
+
   return <div className={classes.container}>HomeBlock works!!!</div>;
 }
-
-HomeBlock.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default HomeBlock;

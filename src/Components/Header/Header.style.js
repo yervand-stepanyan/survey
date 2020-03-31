@@ -1,8 +1,8 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
-    backgroundColor: `${GLOBAL_STYLES.color.mainColorDarkBlue}`
+    backgroundColor: `${theme.color.mainColorDarkBlue}`
   },
   menu: {
     display: 'flex',
@@ -12,28 +12,28 @@ export const styles = {
     border: '1px solid transparent',
     color: 'white',
     minWidth: '100px',
-    padding: `${GLOBAL_STYLES.spacing.small} ${GLOBAL_STYLES.spacing.base}`,
+    padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`,
     textAlign: 'center',
     textDecoration: 'none',
     '&:hover': {
-      border: `1px solid ${GLOBAL_STYLES.color.mainColorGreen}`,
-      borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-      color: `${GLOBAL_STYLES.color.mainColorGreen}`
+      border: `1px solid ${theme.color.mainColorGreen}`,
+      borderRadius: `${theme.borders.borderRadius.base}`,
+      color: `${theme.color.mainColorGreen}`
     }
   },
   menuItemLogin: {
     textDecoration: 'none'
   },
   logInButton: {
-    backgroundColor: `${GLOBAL_STYLES.color.mainColorGreen}`,
-    borderColor: `${GLOBAL_STYLES.color.mainColorDarkBlue}`,
+    backgroundColor: `${theme.color.mainColorGreen}`,
+    borderColor: `${theme.color.mainColorDarkBlue}`,
     color: 'white',
-    marginLeft: `${GLOBAL_STYLES.spacing.base}`,
+    marginLeft: `${theme.customSpacing.base}`,
     textDecoration: 'none',
     '&:hover': {
       background: 'white',
-      borderColor: `${GLOBAL_STYLES.color.mainColorDarkBlue}`,
-      color: `${GLOBAL_STYLES.color.mainColorGreen}`
+      borderColor: `${theme.color.mainColorDarkBlue}`,
+      color: `${theme.color.mainColorGreen}`
     }
   }
-};
+}));

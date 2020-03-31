@@ -1,15 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import addressIcon from '../../../assets/icons/address-240px.png';
 import emailIcon from '../../../assets/icons/email-240px.png';
 import phoneIcon from '../../../assets/icons/phone-240px.png';
+import { useStyles } from './AddressSection.style';
 
 const ADDRESS = '3 Hakob Hakobyan, Yerevan, Armenia';
 const EMAIL = 'info@aca.am';
 const PHONE = '+374 (12) 48-16-32';
 
-function AddressSection({ classes }) {
+function AddressSection() {
+  const classes = useStyles();
+
   return (
     <div className={classes.addressSection}>
       <div className={classes.address}>
@@ -39,9 +41,5 @@ function AddressSection({ classes }) {
     </div>
   );
 }
-
-AddressSection.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default AddressSection;

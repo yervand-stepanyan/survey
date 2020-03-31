@@ -1,11 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AdPanel from '../../Components/AdPanel';
 import HomeBlock from '../../Components/HomeBlock';
 import OurPartnersBlock from '../../Components/OurPartnersBlock';
+import { useStyles } from './Home.style';
 
-function Home({ classes }) {
+function Home() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <div className={classes.homeAndAdsWrapper}>
@@ -16,9 +18,5 @@ function Home({ classes }) {
     </div>
   );
 }
-
-Home.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Home;

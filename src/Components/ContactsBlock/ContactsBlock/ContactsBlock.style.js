@@ -1,13 +1,13 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
+    borderRadius: `${theme.borders.borderRadius.base}`,
+    boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    padding: `${theme.customSpacing.small}`
   },
   title: {
     display: 'flex',
@@ -17,8 +17,8 @@ export const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     boxSizing: 'border-box',
-    marginTop: `${GLOBAL_STYLES.spacing.xLarge}`,
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    marginTop: `${theme.customSpacing.xLarge}`,
+    padding: `${theme.customSpacing.small}`
   },
   contactsWrapper: {
     display: 'flex',
@@ -27,15 +27,15 @@ export const styles = {
     width: '49%'
   },
   addressWrapper: {
-    margin: `${GLOBAL_STYLES.spacing.xLarge} 0`,
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    margin: `${theme.customSpacing.xLarge} 0`,
+    padding: `${theme.customSpacing.small}`
   },
   mapWrapper: {
-    borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
-    boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
+    borderRadius: `${theme.borders.borderRadius.base}`,
+    boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    padding: `${GLOBAL_STYLES.spacing.small}`,
+    padding: `${theme.customSpacing.small}`,
     width: '49%',
     height: '100%'
   }
-};
+}));

@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
 import AnswerOptions from '../AnswerOptions';
 import AnswerSection from '../AnswerSection';
+import { useStyles } from './AnswerTypes.style';
 
 const TITLE = 'Answer type';
 
-function AnswerTypes({ classes }) {
+function AnswerTypes() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <div className={classes.titleWrapper}>
@@ -19,9 +21,5 @@ function AnswerTypes({ classes }) {
     </div>
   );
 }
-
-AnswerTypes.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default AnswerTypes;

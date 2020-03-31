@@ -1,6 +1,6 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -15,19 +15,19 @@ export const styles = {
   },
   questionLabel: {
     display: 'flex',
-    padding: `0 ${GLOBAL_STYLES.spacing.xxLarge}`
+    padding: `0 ${theme.customSpacing.xxLarge}`
   },
   label: {
     whiteSpace: 'nowrap'
   },
   question: {
-    color: `${GLOBAL_STYLES.color.mainColorGreen}`,
+    color: `${theme.color.mainColorGreen}`,
     height: 'inherit',
-    marginLeft: `${GLOBAL_STYLES.spacing.base}`,
+    marginLeft: `${theme.customSpacing.base}`,
     overflowY: 'auto'
   },
   editIcon: {
     position: 'absolute',
     right: 0
   }
-};
+}));

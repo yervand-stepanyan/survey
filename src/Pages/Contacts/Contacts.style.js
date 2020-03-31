@@ -1,10 +1,8 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
-    // display: 'flex',
-    // height: '90%',
-    marginTop: `${GLOBAL_STYLES.spacing.xxLarge}`,
-    padding: `0 ${GLOBAL_STYLES.spacing.base}`
+    marginTop: `${theme.customSpacing.xxLarge}`,
+    padding: `0 ${theme.customSpacing.base}`
   }
-};
+}));

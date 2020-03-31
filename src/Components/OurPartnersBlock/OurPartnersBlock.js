@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -9,6 +8,7 @@ import picsart from '../../assets/images/partners/picsart.png';
 import sfl from '../../assets/images/partners/sfl.png';
 import teamable from '../../assets/images/partners/teamable.png';
 import workfront from '../../assets/images/partners/workfront_new.png';
+import { useStyles } from './OurPartnersBlock.style';
 
 const PARTNERS_IMAGES = [
   betconstruct,
@@ -21,7 +21,8 @@ const PARTNERS_IMAGES = [
 const SLIDER_TIMER = 4000;
 const TITLE = 'Our Partners';
 
-function OurPartnersBlock({ classes }) {
+function OurPartnersBlock() {
+  const classes = useStyles();
   const [images, setImages] = useState(
     PARTNERS_IMAGES.slice(0, PARTNERS_IMAGES.length - 1)
   );
@@ -76,9 +77,5 @@ function OurPartnersBlock({ classes }) {
     </div>
   );
 }
-
-OurPartnersBlock.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default OurPartnersBlock;

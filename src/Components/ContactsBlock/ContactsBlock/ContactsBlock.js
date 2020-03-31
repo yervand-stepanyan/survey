@@ -1,17 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
 import AddressSection from '../AddressSection';
 import DevelopersSection from '../DevelopersSection/index';
 import MapSection from '../MapSection';
+import { useStyles } from './ContactsBlock.style';
 
 const ADDRESS_SECTION_TITLE = 'Address';
 const DEVELOPERS_SECTION_TITLE = 'Our developers';
 const TITLE = 'Contacts';
 
-function ContactsBlock({ classes }) {
+function ContactsBlock() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <div className={classes.title}>
@@ -37,9 +39,5 @@ function ContactsBlock({ classes }) {
     </div>
   );
 }
-
-ContactsBlock.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default ContactsBlock;

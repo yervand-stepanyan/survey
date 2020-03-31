@@ -7,8 +7,11 @@ import emailIcon from '../../../assets/icons/email-240px.png';
 import githubIcon from '../../../assets/icons/github-240px.png';
 import linkedInIcon from '../../../assets/icons/linkedin-240px.png';
 import phoneIcon from '../../../assets/icons/phone-240px.png';
+import { useStyles } from './DeveloperInfo.style';
 
-function DeveloperInfo({ classes, developer }) {
+function DeveloperInfo({ developer }) {
+  const classes = useStyles();
+
   return (
     <div className={classes.developerInfo} key={developer.email}>
       <div>
@@ -77,7 +80,6 @@ function DeveloperInfo({ classes, developer }) {
 }
 
 DeveloperInfo.propTypes = {
-  classes: PropTypes.object.isRequired,
   developer: PropTypes.object.isRequired
 };
 

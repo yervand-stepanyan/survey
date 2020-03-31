@@ -1,18 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import AnswerInputSection from '../AnswerInputSection';
+import { useStyles } from './AnswerSection.style';
 
-function AnswerSection({ classes }) {
+function AnswerSection() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <AnswerInputSection />
     </div>
   );
 }
-
-AnswerSection.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default AnswerSection;

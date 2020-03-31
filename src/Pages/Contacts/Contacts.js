@@ -1,18 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import ContactsBlock from '../../Components/ContactsBlock/ContactsBlock';
+import { useStyles } from './Contacts.style';
 
-function Contacts({ classes }) {
+function Contacts() {
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <ContactsBlock />
     </div>
   );
 }
-
-Contacts.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Contacts;

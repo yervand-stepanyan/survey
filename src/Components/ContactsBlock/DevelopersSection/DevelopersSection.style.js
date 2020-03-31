@@ -1,9 +1,9 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   developersSection: {
     display: 'flex',
     flexDirection: 'column',
-    padding: `${GLOBAL_STYLES.spacing.small}`
+    padding: `${theme.customSpacing.small}`
   }
-};
+}));

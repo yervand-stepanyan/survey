@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
+import { useStyles } from './AnswerInputSection.style';
 import inputText from '../../../assets/images/inputOptions/input-text.png';
 import inputNumber from '../../../assets/images/inputOptions/input-number.png';
 import inputDate from '../../../assets/images/inputOptions/input-date.png';
@@ -16,7 +16,8 @@ const IMAGES = [
 ];
 const TITLE = 'Choose input field type';
 
-function AnswerInputSection({ classes }) {
+function AnswerInputSection() {
+  const classes = useStyles();
   const [image, setImage] = useState(null);
 
   const handleImageClick = e => {
@@ -65,9 +66,5 @@ function AnswerInputSection({ classes }) {
     </div>
   );
 }
-
-AnswerInputSection.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default AnswerInputSection;

@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-function TakeSurveyBlock({ classes }) {
+import { useStyles } from './TakeSurveyBlock.style';
+
+function TakeSurveyBlock() {
+  const classes = useStyles();
+
   return <div className={classes.container}>TakeSurveyBlock works!!!</div>;
 }
-
-TakeSurveyBlock.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default TakeSurveyBlock;

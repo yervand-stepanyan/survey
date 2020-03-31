@@ -1,6 +1,6 @@
-import GLOBAL_STYLES from '../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   '@global': {
     '*::-webkit-scrollbar': {
       width: '10px'
@@ -10,7 +10,7 @@ export const styles = {
       borderRadius: '10px'
     },
     '*::-webkit-scrollbar-thumb': {
-      background: `${GLOBAL_STYLES.color.mainColorGreen}`,
+      background: `${theme.color.mainColorGreen}`,
       borderRadius: '10px',
       '&:hover': {
         background: '#11703C'
@@ -18,9 +18,9 @@ export const styles = {
     }
   },
   mainContainer: {
-    color: `${GLOBAL_STYLES.typography.fontColor.base}`,
+    color: `${theme.customTypography.fontColor.base}`,
     backgroundColor: 'white',
-    fontFamily: `${GLOBAL_STYLES.typography.fontFamily.base}`,
+    fontFamily: `${theme.customTypography.fontFamily.base}`,
     height: '100vh'
   }
-};
+}));

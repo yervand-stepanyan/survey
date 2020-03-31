@@ -1,10 +1,10 @@
-import GLOBAL_STYLES from '../../../Theme/GlobalStyles';
+import { makeStyles } from '@material-ui/core/styles';
 
-export const styles = {
+export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    padding: `0 ${GLOBAL_STYLES.spacing.small}`
+    padding: `0 ${theme.customSpacing.small}`
   },
   textFieldWrapper: {
     display: 'flex',
@@ -14,7 +14,7 @@ export const styles = {
   titleLabel: {
     display: 'flex',
     alignItems: 'center',
-    paddingRight: `${GLOBAL_STYLES.spacing.small}`
+    paddingRight: `${theme.customSpacing.small}`
   },
   textFieldSection: {
     width: '50%'
@@ -22,13 +22,13 @@ export const styles = {
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${GLOBAL_STYLES.spacing.base}`
+    marginTop: `${theme.customSpacing.base}`
   },
   button: {
-    backgroundColor: `${GLOBAL_STYLES.color.mainColorGreen}`,
+    backgroundColor: `${theme.color.mainColorGreen}`,
     color: 'white',
     '&:hover': {
       backgroundColor: '#11703C'
     }
   }
-};
+}));
