@@ -7,7 +7,7 @@ export const styles = {
     borderRadius: `${GLOBAL_STYLES.borders.borderRadius.base}`,
     boxShadow: `${GLOBAL_STYLES.boxShadow.base}`,
     boxSizing: 'border-box',
-    height: '100%',
+    minHeight: '100%',
     padding: `0 ${GLOBAL_STYLES.spacing.small}`
   },
   blockTitleWrapper: {
