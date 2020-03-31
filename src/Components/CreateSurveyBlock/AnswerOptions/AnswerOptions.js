@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
-import { useStyles } from './AnswerOptions.style';
 import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
 import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.png';
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
+import { useStyles } from './AnswerOptions.style';
 
 const IMAGES = [
   { name: 'input', src: inputImage, tooltip: 'Input field' },

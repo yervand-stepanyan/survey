@@ -4,10 +4,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-import { useStyles } from './AnswerInputSection.style';
 import inputText from '../../../assets/images/inputOptions/input-text.png';
 import inputNumber from '../../../assets/images/inputOptions/input-number.png';
 import inputDate from '../../../assets/images/inputOptions/input-date.png';
+import { useStyles } from './AnswerInputSection.style';
 
 const IMAGES = [
   { name: 'text', src: inputText, tooltip: 'Text' },
