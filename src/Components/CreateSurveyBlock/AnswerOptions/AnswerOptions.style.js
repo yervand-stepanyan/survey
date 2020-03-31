@@ -4,6 +4,7 @@ export const styles = {
   container: {
     display: 'flex',
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
     marginTop: `${GLOBAL_STYLES.spacing.small}`
   },
   imageContainer: {
