@@ -10,7 +10,7 @@ export const styles = {
   imageContainer: {
     border: '10px solid transparent',
     cursor: 'pointer',
-    filter: 'grayscale(100%) opacity(30%)',
+    filter: 'grayscale(100%) opacity(50%)',
     height: '100px',
     width: '200px'
   },
@@ -26,7 +26,7 @@ export const styles = {
     width: 'inherit'
   },
   imageClicked: {
-    filter: 'contrast(200%)',
+    filter: 'contrast(110%)',
     height: 'inherit',
     width: 'inherit'
   }

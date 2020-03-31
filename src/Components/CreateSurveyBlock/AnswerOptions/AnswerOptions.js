@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
+import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
 import inputImage from '../../../assets/images/answerOptions/textfields-720x420.png';
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
@@ -8,6 +10,8 @@ import rangeImage from '../../../assets/images/answerOptions/range-slider-720x42
 const IMAGES = [
   { name: 'input', src: inputImage },
   { name: 'radiobutton', src: radiobuttonImage },
+  { name: 'checkbox', src: checkboxImage },
+  { name: 'dropdown', src: dropdownImage },
   { name: 'range', src: rangeImage }
 ];
 
