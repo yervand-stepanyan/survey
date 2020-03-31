@@ -7,11 +7,16 @@ import QuestionSection from '../QuestionSection';
 import SurveyContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
-import { titleReducer } from '../../../State/reducer';
+import { surveyReducer, titleReducer } from '../../../State/reducer';
 
 const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock({ classes }) {
+  const [surveyState, surveyDispatch] = useReducer(surveyReducer, {
+    title: '',
+    question: ''
+  });
+  const { title, question } = surveyState;
   const [state, dispatch] = useReducer(titleReducer, {
     title: '',
     isTitle: false
@@ -23,10 +28,12 @@ function CreateSurveyBlock({ classes }) {
       <div className={classes.blockTitleWrapper}>
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
-      <SurveyContext.Provider value={{ state, dispatch }}>
+      <SurveyContext.Provider
+        value={{ state, dispatch, surveyState, surveyDispatch }}
+      >
         <div className={classes.createSurveyWrapper}>
-          {!isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
-          {isTitle ? <QuestionSection /> : null}
+          {!title || !isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
+          {question || isTitle ? <QuestionSection /> : null}
         </div>
       </SurveyContext.Provider>
     </div>

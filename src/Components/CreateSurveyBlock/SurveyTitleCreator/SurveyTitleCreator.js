@@ -15,6 +15,7 @@ const TITLE_TEXT = 'Survey title:';
 
 function SurveyTitleCreator({ classes }) {
   const { state, dispatch } = useContext(SurveyContext);
+  const { surveyDispatch } = useContext(SurveyContext);
   const [title, setTitle] = useState(state.title);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
@@ -31,8 +32,10 @@ function SurveyTitleCreator({ classes }) {
   };
 
   const handleSubmit = () => {
-    if (title) dispatch({ type: 'SET_TITLE', payload: removeSpaces(title) });
-    else setIsEmpty(false);
+    if (title) {
+      dispatch({ type: 'SET_TITLE', payload: removeSpaces(title) });
+      surveyDispatch({ type: 'ADD_TITLE', payload: removeSpaces(title) });
+    } else setIsEmpty(false);
   };
 
   const handleSubmitOnEnter = event => {

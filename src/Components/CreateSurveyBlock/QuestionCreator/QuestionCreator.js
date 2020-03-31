@@ -15,6 +15,7 @@ const QUESTION_PLACEHOLDER = '* Question';
 
 function QuestionCreator({ classes }) {
   const { state, dispatch } = useContext(SurveyContext);
+  const { surveyDispatch } = useContext(SurveyContext);
   const [question, setQuestion] = useState(state.question);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
@@ -31,9 +32,10 @@ function QuestionCreator({ classes }) {
   };
 
   const handleSubmit = () => {
-    if (question)
+    if (question) {
       dispatch({ type: 'SET_QUESTION', payload: removeSpaces(question) });
-    else setIsEmpty(false);
+      surveyDispatch({ type: 'ADD_QUESTION', payload: removeSpaces(question) });
+    } else setIsEmpty(false);
   };
 
   const handleSubmitOnEnter = event => {

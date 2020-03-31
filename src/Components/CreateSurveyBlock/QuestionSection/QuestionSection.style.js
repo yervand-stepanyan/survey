@@ -6,5 +6,8 @@ export const styles = {
     flexDirection: 'column',
     marginTop: `${GLOBAL_STYLES.spacing.large}`,
     padding: `${GLOBAL_STYLES.spacing.small}`
+  },
+  answerTypesWrapper: {
+    marginTop: `${GLOBAL_STYLES.spacing.large}`
   }
 };

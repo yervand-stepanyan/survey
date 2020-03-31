@@ -11,10 +11,12 @@ const TITLE_LABEL = 'Survey title:';
 
 function SurveyTitle({ classes }) {
   const { state, dispatch } = useContext(SurveyContext);
+  const { surveyDispatch } = useContext(SurveyContext);
   const { title } = state;
 
   const handleEdit = () => {
     dispatch({ type: 'EDIT_TITLE', payload: title });
+    surveyDispatch({ type: 'ADD_TITLE', payload: title });
   };
 
   return (
