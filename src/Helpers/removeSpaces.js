@@ -1,7 +1,7 @@
 const removeSpaces = text => {
   const firstReplace = text.replace(/\s\s+/g, ' ');
-  const wsRegex = /^\s*|\s*$/g;
-  return firstReplace.replace(wsRegex, '');
+  const regex = /^\s*|\s*$/g;
+  return firstReplace.replace(regex, '');
 };
 
 export { removeSpaces as default };
