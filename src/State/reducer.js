@@ -7,6 +7,8 @@ const SET_QUESTION = 'SET_QUESTION';
 const ADD_TITLE = 'ADD_TITLE';
 const ADD_QUESTION = 'ADD_QUESTION';
 
+const SET_IMAGE_TYPE = 'SET_IMAGE_TYPE';
+
 export function titleReducer(state, action) {
   switch (action.type) {
     case EDIT_TITLE:
@@ -38,4 +40,11 @@ export function surveyReducer(state, action) {
     default:
       return state;
   }
+}
+
+export function answerTypeReducer(state, action) {
+  if (action.type === SET_IMAGE_TYPE) {
+    return { type: action.payload };
+  }
+  return state;
 }

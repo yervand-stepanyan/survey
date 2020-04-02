@@ -13,7 +13,6 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
-
   const [surveyState, surveyDispatch] = useReducer(surveyReducer, {
     title: '',
     question: ''

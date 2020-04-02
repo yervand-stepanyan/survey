@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
@@ -6,6 +6,7 @@ import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
 import ImageContainer from '../ImageContainer';
+import SurveyContext from '../../../State/context';
 import { useStyles } from './AnswerOptions.style';
 
 const IMAGES = [
@@ -38,11 +39,13 @@ const IMAGES = [
 
 function AnswerOptions() {
   const classes = useStyles();
+  const { dispatch } = useContext(SurveyContext);
   const [image, setImage] = useState(null);
 
   const handleClick = e => {
-    if (e.target.alt) setImage(e.target.alt);
-    else setImage(e.target.children[0].alt);
+    const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
+    setImage(img);
+    dispatch({ type: 'SET_IMAGE_TYPE', payload: img });
   };
 
   const handleEnterKey = e => {
