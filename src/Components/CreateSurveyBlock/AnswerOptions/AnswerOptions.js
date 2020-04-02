@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
-import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
-
 import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
 import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.png';
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
+import ImageContainer from '../../ImageContainer';
 import { useStyles } from './AnswerOptions.style';
 
 const IMAGES = [
@@ -22,44 +20,26 @@ function AnswerOptions() {
   const classes = useStyles();
   const [image, setImage] = useState(null);
 
-  const handleImageClick = e => {
+  const handleClick = e => {
     if (e.target.alt) setImage(e.target.alt);
     else setImage(e.target.children[0].alt);
   };
 
   const handleEnterKey = e => {
-    if (e.key === 'Enter') handleImageClick(e);
+    if (e.key === 'Enter') handleClick(e);
   };
 
   return (
     <div className={classes.container}>
       {IMAGES.map(img => (
-        <Tooltip
-          title={img.tooltip}
-          TransitionComponent={Zoom}
-          arrow
+        <ImageContainer
+          handleClick={handleClick}
+          handleEnterKey={handleEnterKey}
+          classes={classes}
+          imageClicked={image}
+          img={img}
           key={img.name}
-        >
-          <div
-            className={
-              image === img.name
-                ? classes.imageContainerClicked
-                : classes.imageContainer
-            }
-            onClick={e => handleImageClick(e)}
-            onKeyDown={e => handleEnterKey(e)}
-            role="button"
-            tabIndex={0}
-          >
-            <img
-              src={img.src}
-              alt={img.name}
-              className={
-                image === img.name ? classes.imageClicked : classes.image
-              }
-            />
-          </div>
-        </Tooltip>
+        />
       ))}
     </div>
   );
