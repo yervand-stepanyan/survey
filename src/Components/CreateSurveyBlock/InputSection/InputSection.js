@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import inputText from '../../../assets/images/inputOptions/input-text.png';
 import inputNumber from '../../../assets/images/inputOptions/input-number.png';
 import inputDate from '../../../assets/images/inputOptions/input-date.png';
-import { useStyles } from './AnswerInputSection.style';
+import { useStyles } from './InputSection.style';
 import ImageContainer from '../ImageContainer';
 
 const IMAGES = [
@@ -15,7 +15,7 @@ const IMAGES = [
 ];
 const TITLE = 'Choose input field type';
 
-function AnswerInputSection() {
+function InputSection() {
   const classes = useStyles();
   const [image, setImage] = useState(null);
 
@@ -28,11 +28,11 @@ function AnswerInputSection() {
     if (e.key === 'Enter') handleClick(e);
   };
   return (
-    <div className={classes.container}>
-      <div className={classes.titleWrapper}>
+    <div className={classes.inputSectionContainer}>
+      <div className={classes.inputSectionTitleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <div className={classes.typeWrapper}>
+      <div className={classes.inputSectionTypeWrapper}>
         {IMAGES.map(img => (
           <ImageContainer
             handleClick={handleClick}
@@ -48,4 +48,4 @@ function AnswerInputSection() {
   );
 }
 
-export default AnswerInputSection;
+export default InputSection;

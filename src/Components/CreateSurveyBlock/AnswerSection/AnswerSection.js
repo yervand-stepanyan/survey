@@ -1,6 +1,7 @@
 import React from 'react';
 
-import AnswerInputSection from '../AnswerInputSection';
+import InputSection from '../InputSection';
+import RadiobuttonSection from '../RadiobuttonSection';
 import { useStyles } from './AnswerSection.style';
 
 function AnswerSection() {
@@ -8,7 +9,8 @@ function AnswerSection() {
 
   return (
     <div className={classes.answerSectionContainer}>
-      <AnswerInputSection />
+      <InputSection />
+      <RadiobuttonSection />
     </div>
   );
 }

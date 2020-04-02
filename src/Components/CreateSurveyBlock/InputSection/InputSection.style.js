@@ -1,13 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  container: {
+  inputSectionContainer: {
     display: 'flex',
     flexDirection: 'column'
   },
-  titleWrapper: {
+  inputSectionTitleWrapper: {
     display: 'flex',
     justifyContent: 'center'
+  },
+  inputSectionTypeWrapper: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    marginTop: `${theme.customSpacing.large}`
   },
   imageContainer: {
     border: '10px solid transparent',
@@ -16,11 +21,7 @@ export const useStyles = makeStyles(theme => ({
     height: '75px',
     width: '150px'
   },
-  typeWrapper: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: `${theme.customSpacing.large}`
-  },
+
   typeImage: {
     display: 'flex',
     flexDirection: 'column',
