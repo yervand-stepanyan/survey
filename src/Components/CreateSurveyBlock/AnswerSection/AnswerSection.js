@@ -7,7 +7,7 @@ function AnswerSection() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.answerSectionContainer}>
       <AnswerInputSection />
     </div>
   );

@@ -1,11 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
-  container: {
+  answerTypesContainer: {
     display: 'flex',
     flexDirection: 'column'
   },
-  titleWrapper: {
+  answerTypesTitleWrapper: {
     display: 'flex',
     justifyContent: 'center'
   }

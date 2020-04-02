@@ -1,10 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  container: {
+  answerOptionsContainer: {
     display: 'flex',
     justifyContent: 'space-around',
-    marginTop: `${theme.customSpacing.small}`
+    marginTop: `${theme.customSpacing.large}`
+  },
+  typeImage: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  text: {
+    color: `${theme.customTypography.fontColor.base}`
+  },
+  textClicked: {
+    color: `${theme.customTypography.fontColor.clicked}`
   },
   imageContainer: {
     border: '10px solid transparent',

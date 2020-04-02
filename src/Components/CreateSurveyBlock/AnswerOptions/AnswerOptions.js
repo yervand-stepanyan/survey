@@ -5,15 +5,35 @@ import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x4
 import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.png';
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
-import ImageContainer from '../../ImageContainer';
+import ImageContainer from '../ImageContainer';
 import { useStyles } from './AnswerOptions.style';
 
 const IMAGES = [
-  { name: 'input', src: inputImage, tooltip: 'Input field' },
-  { name: 'radiobutton', src: radiobuttonImage, tooltip: 'Radiobutton' },
-  { name: 'checkbox', src: checkboxImage, tooltip: 'Checkbox' },
-  { name: 'dropdown', src: dropdownImage, tooltip: 'Dropdown' },
-  { name: 'range', src: rangeImage, tooltip: 'Range' }
+  {
+    name: 'input',
+    src: inputImage,
+    tooltip: 'Input field',
+    text: 'Input field'
+  },
+  {
+    name: 'radiobutton',
+    src: radiobuttonImage,
+    tooltip: 'Radiobutton',
+    text: 'Radiobutton'
+  },
+  {
+    name: 'checkbox',
+    src: checkboxImage,
+    tooltip: 'Checkbox',
+    text: 'Checkbox'
+  },
+  {
+    name: 'dropdown',
+    src: dropdownImage,
+    tooltip: 'Dropdown',
+    text: 'Dropdown list'
+  },
+  { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
 function AnswerOptions() {
@@ -30,7 +50,7 @@ function AnswerOptions() {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.answerOptionsContainer}>
       {IMAGES.map(img => (
         <ImageContainer
           handleClick={handleClick}

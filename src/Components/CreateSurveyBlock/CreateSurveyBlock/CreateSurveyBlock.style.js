@@ -1,26 +1,25 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  container: {
+  createSurveyBlockContainer: {
     display: 'flex',
     flexDirection: 'column',
     borderRadius: `${theme.borders.borderRadius.base}`,
     boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    minHeight: '100%',
-    padding: `0 ${theme.customSpacing.small}`
+    padding: `0 ${theme.customSpacing.small} ${theme.customSpacing.base}`
   },
-  blockTitleWrapper: {
+  createSurveyBlockBlockTitleWrapper: {
     display: 'flex',
     justifyContent: 'center'
   },
-  createSurveyWrapper: {
+  createSurveyBlockCreateSurveyWrapper: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: `${theme.customSpacing.large}`,
     padding: `0 ${theme.customSpacing.small}`
   },
-  titleWrapper: {
+  createSurveyBlockTitleWrapper: {
     height: '114px'
   }
 }));

@@ -7,7 +7,7 @@ function CreateSurvey() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.createSurveyContainer}>
       <CreateSurveyBlock />
     </div>
   );

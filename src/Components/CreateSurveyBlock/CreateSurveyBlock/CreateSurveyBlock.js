@@ -26,15 +26,15 @@ function CreateSurveyBlock() {
   const { isTitle } = state;
 
   return (
-    <div className={classes.container}>
-      <div className={classes.blockTitleWrapper}>
+    <div className={classes.createSurveyBlockContainer}>
+      <div className={classes.createSurveyBlockBlockTitleWrapper}>
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <SurveyContext.Provider
         value={{ state, dispatch, surveyState, surveyDispatch }}
       >
-        <div className={classes.createSurveyWrapper}>
-          <div className={classes.titleWrapper}>
+        <div className={classes.createSurveyBlockCreateSurveyWrapper}>
+          <div className={classes.createSurveyBlockTitleWrapper}>
             {!title || !isTitle ? <SurveyTitleCreator /> : <SurveyTitle />}
           </div>
           {question || isTitle ? <QuestionSection /> : null}

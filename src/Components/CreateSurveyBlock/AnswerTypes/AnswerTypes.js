@@ -12,8 +12,8 @@ function AnswerTypes() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
-      <div className={classes.titleWrapper}>
+    <div className={classes.answerTypesContainer}>
+      <div className={classes.answerTypesTitleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
       <AnswerOptions />

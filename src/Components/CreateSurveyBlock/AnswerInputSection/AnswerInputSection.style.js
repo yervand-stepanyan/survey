@@ -19,7 +19,18 @@ export const useStyles = makeStyles(theme => ({
   typeWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
-    marginTop: `${theme.customSpacing.small}`
+    marginTop: `${theme.customSpacing.large}`
+  },
+  typeImage: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  text: {
+    color: `${theme.customTypography.fontColor.base}`
+  },
+  textClicked: {
+    color: `${theme.customTypography.fontColor.clicked}`
   },
   imageContainerClicked: {
     border: `10px solid ${theme.color.mainColorGreen}`,

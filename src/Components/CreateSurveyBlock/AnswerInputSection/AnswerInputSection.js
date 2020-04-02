@@ -6,12 +6,12 @@ import inputText from '../../../assets/images/inputOptions/input-text.png';
 import inputNumber from '../../../assets/images/inputOptions/input-number.png';
 import inputDate from '../../../assets/images/inputOptions/input-date.png';
 import { useStyles } from './AnswerInputSection.style';
-import ImageContainer from '../../ImageContainer';
+import ImageContainer from '../ImageContainer';
 
 const IMAGES = [
-  { name: 'text', src: inputText, tooltip: 'Text' },
-  { name: 'number', src: inputNumber, tooltip: 'Number' },
-  { name: 'date', src: inputDate, tooltip: 'Date' }
+  { name: 'text', src: inputText, tooltip: 'Text', text: 'Text' },
+  { name: 'number', src: inputNumber, tooltip: 'Number', text: 'Number' },
+  { name: 'date', src: inputDate, tooltip: 'Date', text: 'Date' }
 ];
 const TITLE = 'Choose input field type';
 

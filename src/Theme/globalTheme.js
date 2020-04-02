@@ -34,7 +34,8 @@ const theme = createMuiTheme({
   },
   customTypography: {
     fontColor: {
-      base: mainTextColor
+      base: mainTextColor,
+      clicked: mainColorGreen
     },
     fontFamily: {
       base: 'sans-serif'
