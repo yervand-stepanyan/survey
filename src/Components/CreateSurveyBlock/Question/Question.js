@@ -13,7 +13,6 @@ const QUESTION_LABEL = 'Question:';
 
 function Question() {
   const classes = useStyles();
-
   const { state, dispatch } = useContext(SurveyContext);
   const { question } = state;
 

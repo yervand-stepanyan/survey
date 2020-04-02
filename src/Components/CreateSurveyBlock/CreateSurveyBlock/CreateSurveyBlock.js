@@ -13,11 +13,11 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
-  const [surveyState, surveyDispatch] = useReducer(surveyReducer, {
+  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {
     title: '',
     question: ''
   });
-  const { title, question } = surveyState;
+  const { title, question } = stateSurvey;
   const [state, dispatch] = useReducer(titleReducer, {
     title: '',
     isTitle: false
@@ -30,7 +30,7 @@ function CreateSurveyBlock() {
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <SurveyContext.Provider
-        value={{ state, dispatch, surveyState, surveyDispatch }}
+        value={{ state, dispatch, stateSurvey, dispatchSurvey }}
       >
         <div className={classes.createSurveyBlockCreateSurveyWrapper}>
           <div className={classes.createSurveyBlockTitleWrapper}>

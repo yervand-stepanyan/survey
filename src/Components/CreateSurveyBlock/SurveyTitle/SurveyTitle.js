@@ -14,12 +14,12 @@ const TITLE_LABEL = 'Survey title:';
 function SurveyTitle() {
   const classes = useStyles();
   const { state, dispatch } = useContext(SurveyContext);
-  const { surveyDispatch } = useContext(SurveyContext);
+  const { dispatchSurvey } = useContext(SurveyContext);
   const { title } = state;
 
   const handleEdit = () => {
     dispatch({ type: 'EDIT_TITLE', payload: title });
-    surveyDispatch({ type: 'ADD_TITLE', payload: title });
+    dispatchSurvey({ type: 'ADD_TITLE', payload: title });
   };
 
   return (

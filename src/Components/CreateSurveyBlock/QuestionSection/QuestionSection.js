@@ -14,13 +14,13 @@ function QuestionSection() {
     isQuestion: false
   });
   const { isQuestion } = state;
-  const { surveyState, surveyDispatch } = useContext(SurveyContext);
-  const { question } = surveyState;
+  const { stateSurvey, dispatchSurvey } = useContext(SurveyContext);
+  const { question } = stateSurvey;
 
   return (
     <div className={classes.container}>
       <SurveyContext.Provider
-        value={{ state, dispatch, surveyState, surveyDispatch }}
+        value={{ state, dispatch, stateSurvey, dispatchSurvey }}
       >
         <div className={classes.questionSection}>
           {!isQuestion ? <QuestionCreator /> : <Question />}
