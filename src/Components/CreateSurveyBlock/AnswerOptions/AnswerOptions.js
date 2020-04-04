@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
@@ -6,7 +7,6 @@ import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
 import ImageContainer from '../ImageContainer';
-import SurveyContext from '../../../State/context';
 import { useStyles } from './AnswerOptions.style';
 
 const IMAGES = [
@@ -37,15 +37,16 @@ const IMAGES = [
   { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
-function AnswerOptions() {
+function AnswerOptions({ setType }) {
   const classes = useStyles();
-  const { dispatch } = useContext(SurveyContext);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
 
   const handleClick = e => {
     const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
+
     setImage(img);
-    dispatch({ type: 'SET_IMAGE_TYPE', payload: img });
+
+    setType(img);
   };
 
   const handleEnterKey = e => {
@@ -67,5 +68,9 @@ function AnswerOptions() {
     </div>
   );
 }
+
+AnswerOptions.propTypes = {
+  setType: PropTypes.func.isRequired
+};
 
 export default AnswerOptions;
