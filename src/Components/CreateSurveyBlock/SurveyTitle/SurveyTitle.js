@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,20 +7,15 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-import SurveyContext from '../../../State/context';
 import { useStyles } from './SurveyTitle.style';
 
 const TITLE_LABEL = 'Survey title:';
 
-function SurveyTitle() {
+function SurveyTitle({ title, setIsTitle }) {
   const classes = useStyles();
-  const { state, dispatch } = useContext(SurveyContext);
-  const { dispatchSurvey } = useContext(SurveyContext);
-  const { title } = state;
 
   const handleEdit = () => {
-    dispatch({ type: 'EDIT_TITLE', payload: title });
-    dispatchSurvey({ type: 'ADD_TITLE', payload: title });
+    setIsTitle(false);
   };
 
   return (
@@ -44,5 +40,10 @@ function SurveyTitle() {
     </div>
   );
 }
+
+SurveyTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  setIsTitle: PropTypes.func.isRequired
+};
 
 export default SurveyTitle;

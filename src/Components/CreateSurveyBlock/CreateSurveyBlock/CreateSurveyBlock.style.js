@@ -9,17 +9,17 @@ export const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     padding: `0 ${theme.customSpacing.small} ${theme.customSpacing.base}`
   },
-  createSurveyBlockBlockTitleWrapper: {
+  blockTitleWrapper: {
     display: 'flex',
     justifyContent: 'center'
   },
-  createSurveyBlockCreateSurveyWrapper: {
+  createSurveyWrapper: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: `${theme.customSpacing.large}`,
     padding: `0 ${theme.customSpacing.small}`
   },
-  createSurveyBlockTitleWrapper: {
+  titleWrapper: {
     height: '114px'
   }
 }));

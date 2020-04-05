@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
-import SurveyContext from '../../../State/context';
 import { useStyles } from './QuestionCreator.style';
 
 const BUTTON_LABEL = 'Submit';
@@ -13,11 +13,13 @@ const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
 
-function QuestionCreator() {
+function QuestionCreator({
+  question: questionProps,
+  setQuestion: setQuestionProps,
+  setIsQuestion
+}) {
   const classes = useStyles();
-  const { state, dispatch } = useContext(SurveyContext);
-  const { dispatchSurvey } = useContext(SurveyContext);
-  const [question, setQuestion] = useState(state.question);
+  const [question, setQuestion] = useState(questionProps);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
 
@@ -34,8 +36,8 @@ function QuestionCreator() {
 
   const handleSubmit = () => {
     if (question) {
-      dispatch({ type: 'SET_QUESTION', payload: removeSpaces(question) });
-      dispatchSurvey({ type: 'ADD_QUESTION', payload: removeSpaces(question) });
+      setIsQuestion(true);
+      setQuestionProps(removeSpaces(question));
     } else setIsEmpty(false);
   };
 
@@ -78,5 +80,11 @@ function QuestionCreator() {
     </div>
   );
 }
+
+QuestionCreator.propTypes = {
+  question: PropTypes.string.isRequired,
+  setQuestion: PropTypes.func.isRequired,
+  setIsQuestion: PropTypes.func.isRequired
+};
 
 export default QuestionCreator;

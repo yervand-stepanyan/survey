@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,18 +7,15 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-import SurveyContext from '../../../State/context';
 import { useStyles } from './Question.style';
 
 const QUESTION_LABEL = 'Question:';
 
-function Question() {
+function Question({ question, setIsQuestion }) {
   const classes = useStyles();
-  const { state, dispatch } = useContext(SurveyContext);
-  const { question } = state;
 
   const handleEdit = () => {
-    dispatch({ type: 'EDIT_QUESTION', payload: question });
+    setIsQuestion(false);
   };
 
   return (
@@ -42,5 +40,10 @@ function Question() {
     </div>
   );
 }
+
+Question.propTypes = {
+  question: PropTypes.string.isRequired,
+  setIsQuestion: PropTypes.func.isRequired
+};
 
 export default Question;
