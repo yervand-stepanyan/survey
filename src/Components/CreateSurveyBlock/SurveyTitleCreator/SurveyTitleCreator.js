@@ -33,16 +33,17 @@ function SurveyTitleCreator({
   const handleChange = event => {
     setTitle(event.target.value);
 
-    if (event.target.value) setIsEmpty(true);
+    if (removeSpaces(event.target.value)) setIsEmpty(true);
     else setIsEmpty(false);
   };
 
   const handleSubmit = () => {
-    if (title) {
+    const filteredTitle = removeSpaces(title);
+
+    if (filteredTitle) {
       const activeId = stateSurvey.length
         ? stateSurvey[stateSurvey.length - 1].id
         : uuid();
-      const filteredTitle = removeSpaces(title);
       const surveyData = { id: activeId, title: filteredTitle };
 
       setIsTitle(true);
