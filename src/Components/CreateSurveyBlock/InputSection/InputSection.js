@@ -29,10 +29,10 @@ function InputSection() {
   };
   return (
     <div className={classes.inputSectionContainer}>
-      <div className={classes.inputSectionTitleWrapper}>
+      <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <div className={classes.inputSectionTypeWrapper}>
+      <div className={classes.typeWrapper}>
         {IMAGES.map(img => (
           <ImageContainer
             handleClick={handleClick}

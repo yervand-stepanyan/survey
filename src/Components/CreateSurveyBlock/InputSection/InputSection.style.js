@@ -5,11 +5,11 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  inputSectionTitleWrapper: {
+  titleWrapper: {
     display: 'flex',
     justifyContent: 'center'
   },
-  inputSectionTypeWrapper: {
+  typeWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
     marginTop: `${theme.customSpacing.large}`
