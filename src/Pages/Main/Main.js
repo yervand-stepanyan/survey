@@ -16,10 +16,7 @@ import { useStyles } from './Main.style';
 
 function Main() {
   const classes = useStyles();
-  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {
-    title: '',
-    question: ''
-  });
+  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
 
   return (
     <div className={classes.mainContainer}>

@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -7,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './SurveyTitleCreator.style';
+import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit';
 const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
@@ -22,6 +24,7 @@ function SurveyTitleCreator({
   const [title, setTitle] = useState(titleProps);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
+  const { stateSurvey, dispatchSurvey } = useContext(SurveyContext);
 
   useEffect(() => {
     if (title) inputEl.current.focus();
@@ -36,8 +39,17 @@ function SurveyTitleCreator({
 
   const handleSubmit = () => {
     if (title) {
+      const activeId = stateSurvey.length
+        ? stateSurvey[stateSurvey.length - 1].id
+        : uuid();
+      const filteredTitle = removeSpaces(title);
+      const surveyData = { id: activeId, title: filteredTitle };
+
       setIsTitle(true);
-      setTitleProps(removeSpaces(title));
+
+      setTitleProps(filteredTitle);
+
+      dispatchSurvey({ type: 'ADD_TITLE', payload: surveyData });
     } else setIsEmpty(false);
   };
 
