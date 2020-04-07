@@ -22,7 +22,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around'
   },
   textFieldWrapper: {
-    width: '40%'
+    width: '30%'
   },
   buttonWrapper: {
     display: 'flex',

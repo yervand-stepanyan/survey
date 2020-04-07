@@ -10,44 +10,53 @@ import { useStyles } from './RangeSection.style';
 const BUTTON_LABEL = 'Submit';
 const END_VALUE_LABEL = 'End value';
 const START_VALUE_LABEL = 'Start value';
+const STEP_VALUE_LABEL = 'Step';
 const TITLE = 'Range values';
 
 function RangeSection() {
   const classes = useStyles();
-  const [startVal, setStartVal] = useState('');
-  const [endVal, setEndVal] = useState('');
+  const [startValue, setStartValue] = useState('');
+  const [endValue, setEndValue] = useState('');
+  const [stepValue, setStepValue] = useState('');
   const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isEndEmpty, setIsEndEmpty] = useState(false);
+  const [isStepEmpty, setIsStepEmpty] = useState(false);
   const [isEqual, setIsEqual] = useState(false);
-
-  // console.log({ isEqual });
-  // console.log({ startVal });
-  // console.log({ endVal });
-  // console.log(startVal === endVal);
+  const [isStep, setIsStep] = useState(false);
 
   const handleStartChange = event => {
-    setStartVal(event.target.value);
+    setStartValue(event.target.value);
 
     if (!removeSpaces(event.target.value)) {
       setIsStartEmpty(true);
     } else {
       setIsStartEmpty(false);
 
-      setIsEqual(startVal === endVal);
-      // console.log(startVal === endVal);
+      setIsEqual(event.target.value === endValue);
     }
   };
 
   const handleEndChange = event => {
-    setEndVal(event.target.value);
+    setEndValue(event.target.value);
 
     if (!removeSpaces(event.target.value)) {
       setIsEndEmpty(true);
     } else {
       setIsEndEmpty(false);
 
-      setIsEqual(startVal === endVal);
-      // console.log(startVal === endVal);
+      setIsEqual(startValue === event.target.value);
+    }
+  };
+
+  const handleStepChange = event => {
+    setStepValue(event.target.value);
+
+    if (!removeSpaces(event.target.value)) {
+      setIsStepEmpty(true);
+    } else {
+      setIsStepEmpty(false);
+
+      setIsStep(!(event.target.value <= Math.abs(startValue - endValue) / 2));
     }
   };
 
@@ -70,7 +79,7 @@ function RangeSection() {
               onChange={e => handleStartChange(e)}
               // onKeyDown={handleSubmitOnEnter}
               type="number"
-              value={startVal}
+              value={startValue}
               variant="outlined"
             />
           </div>
@@ -83,7 +92,20 @@ function RangeSection() {
               onChange={e => handleEndChange(e)}
               // onKeyDown={handleSubmitOnEnter}
               type="number"
-              value={endVal}
+              value={endValue}
+              variant="outlined"
+            />
+          </div>
+          <div className={classes.textFieldWrapper}>
+            <TextField
+              error={isStepEmpty || isStep}
+              id="outlined-basic"
+              fullWidth
+              label={STEP_VALUE_LABEL}
+              onChange={e => handleStepChange(e)}
+              // onKeyDown={handleSubmitOnEnter}
+              type="number"
+              value={stepValue}
               variant="outlined"
             />
           </div>
@@ -91,7 +113,7 @@ function RangeSection() {
         <div className={classes.buttonWrapper}>
           <Button
             className={classes.button}
-            disabled={isEqual || !startVal || !endVal}
+            disabled={!startValue || !endValue || !stepValue || isEqual}
             onClick={handleSubmit}
             size="large"
             variant="contained"

@@ -36,6 +36,6 @@ export const useStyles = makeStyles(theme => ({
   },
   chip: {
     margin: `${theme.customSpacing.small}`,
-    maxWidth: '100%'
+    maxWidth: '47%'
   }
 }));

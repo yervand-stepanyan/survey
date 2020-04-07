@@ -96,10 +96,11 @@ function OptionsContainer() {
         <div className={classes.root}>
           {options.map(opt => (
             <Tooltip
+              arrow
+              className={classes.tooltip}
+              key={opt.id}
               title={opt.option}
               TransitionComponent={Zoom}
-              arrow
-              key={opt.id}
             >
               <Chip
                 className={classes.chip}
