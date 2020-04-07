@@ -37,5 +37,12 @@ export const useStyles = makeStyles(theme => ({
   chip: {
     margin: `${theme.customSpacing.small}`,
     maxWidth: '47%'
+  },
+  checkboxWrapper: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  checkboxSection: {
+    width: '60%'
   }
 }));

@@ -15,7 +15,7 @@ function RadiobuttonSection() {
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <OptionsContainer />
+      <OptionsContainer type="addInput" />
     </div>
   );
 }
