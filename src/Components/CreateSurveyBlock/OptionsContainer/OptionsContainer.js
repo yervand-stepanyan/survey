@@ -70,6 +70,18 @@ function OptionsContainer({ type }) {
           setIsTooltip(false);
         }
       } else setIsEmpty(true);
+
+      if (checked) {
+        setOptions(prevState => {
+          const optionId = customOptionId || id;
+          const lastOption = prevState.find(opt => opt.id === optionId);
+          const filteredOptions = prevState.filter(
+            opt => opt.id !== lastOption.id
+          );
+
+          return [...filteredOptions, lastOption];
+        });
+      }
     }
   };
 
