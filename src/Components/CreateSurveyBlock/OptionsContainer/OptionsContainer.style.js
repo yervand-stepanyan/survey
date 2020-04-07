@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   optionsContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: '268px'
   },
   titleWrapper: {
     display: 'flex',

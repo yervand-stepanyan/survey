@@ -14,7 +14,7 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     flexDirection: 'column',
     boxSizing: 'border-box',
-    height: '198px',
+    height: '240px',
     marginTop: `${theme.customSpacing.large}`
   },
   textFieldsSection: {

@@ -12,7 +12,7 @@ export const useStyles = makeStyles(theme => ({
   typeWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
-    height: '198px',
+    height: '240px',
     marginTop: `${theme.customSpacing.large}`
   },
   imageContainer: {
