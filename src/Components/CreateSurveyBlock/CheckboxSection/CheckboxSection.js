@@ -3,15 +3,15 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import OptionsContainer from '../OptionsContainer';
-import { useStyles } from './RadiobuttonSection.style';
+import { useStyles } from './CheckboxSection.style';
 
-const TITLE = 'Radiobutton answer options';
+const TITLE = 'Checkbox answer options';
 
-function RadiobuttonSection() {
+function CheckboxSection() {
   const classes = useStyles();
 
   return (
-    <div className={classes.radiobuttonSectionContainer}>
+    <div className={classes.checkboxSectionContainer}>
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
@@ -20,4 +20,4 @@ function RadiobuttonSection() {
   );
 }
 
-export default RadiobuttonSection;
+export default CheckboxSection;

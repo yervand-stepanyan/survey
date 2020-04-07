@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CheckboxSection from '../CheckboxSection';
 import InputSection from '../InputSection';
 import RadiobuttonSection from '../RadiobuttonSection';
 import { useStyles } from './AnswerSection.style';
@@ -14,6 +15,8 @@ function AnswerSection({ type }) {
         return <InputSection />;
       case 'radiobutton':
         return <RadiobuttonSection />;
+      case 'checkbox':
+        return <CheckboxSection />;
       default:
         return null;
     }
