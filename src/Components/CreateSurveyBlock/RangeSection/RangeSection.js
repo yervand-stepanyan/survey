@@ -56,7 +56,11 @@ function RangeSection() {
     } else {
       setIsStepEmpty(false);
 
-      setIsStep(!(event.target.value <= Math.abs(startValue - endValue) / 2));
+      const isCorrectStep =
+        event.target.value < 1 ||
+        !(event.target.value <= Math.abs(startValue - endValue) / 2);
+
+      setIsStep(isCorrectStep);
     }
   };
 
@@ -113,7 +117,9 @@ function RangeSection() {
         <div className={classes.buttonWrapper}>
           <Button
             className={classes.button}
-            disabled={!startValue || !endValue || !stepValue || isEqual}
+            disabled={
+              !startValue || !endValue || !stepValue || isEqual || isStep
+            }
             onClick={handleSubmit}
             size="large"
             variant="contained"
