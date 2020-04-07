@@ -5,6 +5,7 @@ import CheckboxSection from '../CheckboxSection';
 import DropdownSection from '../DropdownSection';
 import InputSection from '../InputSection';
 import RadiobuttonSection from '../RadiobuttonSection';
+import RangeSection from '../RangeSection';
 import { useStyles } from './AnswerSection.style';
 
 function AnswerSection({ type }) {
@@ -20,6 +21,8 @@ function AnswerSection({ type }) {
         return <CheckboxSection />;
       case 'dropdown':
         return <DropdownSection />;
+      case 'range':
+        return <RangeSection />;
       default:
         return null;
     }

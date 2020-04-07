@@ -83,12 +83,12 @@ function OptionsContainer() {
             error={isEmpty}
             id="outlined-basic"
             inputRef={inputEl}
+            fullWidth
             label={INPUT_LABEL}
             onChange={e => handleChange(e)}
             onKeyDown={handleSubmitOnEnter}
             value={option}
             variant="outlined"
-            fullWidth
           />
         </div>
       </div>
