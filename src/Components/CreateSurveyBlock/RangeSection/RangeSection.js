@@ -24,6 +24,12 @@ function RangeSection() {
   const [isEqual, setIsEqual] = useState(false);
   const [isStep, setIsStep] = useState(false);
 
+  const checkStepCorrect = (start, end, step) => {
+    const isCorrectStep = step < 1 || !(step <= Math.abs(start - end) / 2);
+
+    setIsStep(isCorrectStep);
+  };
+
   const handleStartChange = event => {
     setStartValue(event.target.value);
 
@@ -33,6 +39,8 @@ function RangeSection() {
       setIsStartEmpty(false);
 
       setIsEqual(event.target.value === endValue);
+
+      checkStepCorrect(event.target.value, endValue, stepValue);
     }
   };
 
@@ -45,6 +53,8 @@ function RangeSection() {
       setIsEndEmpty(false);
 
       setIsEqual(startValue === event.target.value);
+
+      checkStepCorrect(startValue, event.target.value, stepValue);
     }
   };
 
@@ -56,11 +66,7 @@ function RangeSection() {
     } else {
       setIsStepEmpty(false);
 
-      const isCorrectStep =
-        event.target.value < 1 ||
-        !(event.target.value <= Math.abs(startValue - endValue) / 2);
-
-      setIsStep(isCorrectStep);
+      checkStepCorrect(startValue, endValue, event.target.value);
     }
   };
 
@@ -76,7 +82,7 @@ function RangeSection() {
           <div className={classes.textFieldWrapper}>
             <TextField
               autoFocus
-              error={isStartEmpty}
+              error={isStartEmpty || isEqual}
               id="outlined-basic"
               fullWidth
               label={START_VALUE_LABEL}
@@ -89,7 +95,7 @@ function RangeSection() {
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
-              error={isEndEmpty}
+              error={isEndEmpty || isEqual}
               id="outlined-basic"
               fullWidth
               label={END_VALUE_LABEL}
