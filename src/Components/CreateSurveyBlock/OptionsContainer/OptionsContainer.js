@@ -14,7 +14,8 @@ const INPUT_LABEL = 'Option';
 function OptionsContainer() {
   const classes = useStyles();
   const inputEl = useRef(null);
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isTyped, setIsTyped] = useState(false);
   const [option, setOption] = useState('');
   const [options, setOptions] = useState([]);
   const [chip, setChip] = useState({});
@@ -22,8 +23,15 @@ function OptionsContainer() {
   const handleChange = event => {
     setOption(event.target.value);
 
-    if (removeSpaces(event.target.value)) setIsEmpty(true);
-    else setIsEmpty(false);
+    if (!removeSpaces(event.target.value)) {
+      setIsEmpty(true);
+
+      setIsTyped(false);
+    } else {
+      setIsEmpty(false);
+
+      setIsTyped(true);
+    }
   };
 
   const handleSubmitOnEnter = event => {
@@ -44,17 +52,19 @@ function OptionsContainer() {
         setOption('');
 
         setChip({});
-      } else setIsEmpty(false);
+
+        setIsTyped(false);
+      } else setIsEmpty(true);
     }
   };
 
   const handleClick = chipToEdit => () => {
-    if (!option) {
+    if (!isTyped) {
       setOption(chipToEdit.option);
 
       setChip(chipToEdit);
 
-      setIsEmpty(true);
+      setIsEmpty(false);
 
       inputEl.current.focus();
     }
@@ -70,7 +80,7 @@ function OptionsContainer() {
         <div className={classes.textFieldWrapper}>
           <TextField
             autoFocus
-            error={!isEmpty}
+            error={isEmpty}
             id="outlined-basic"
             inputRef={inputEl}
             label={INPUT_LABEL}
