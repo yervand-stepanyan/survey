@@ -28,7 +28,7 @@ export const useStyles = makeStyles(theme => ({
     backgroundColor: `${theme.color.mainColorGreen}`,
     color: 'white',
     '&:hover': {
-      backgroundColor: '#11703C'
+      backgroundColor: `${theme.color.buttonHoverColorGreen}`
     }
   }
 }));
