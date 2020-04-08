@@ -1,23 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  surveyTitleCreatorContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: `0 ${theme.customSpacing.small}`
-  },
-  textFieldWrapper: {
+  saveSurveyContainer: {
     display: 'flex',
     justifyContent: 'center',
-    width: '100%'
-  },
-  titleLabel: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingRight: `${theme.customSpacing.small}`
-  },
-  textFieldSection: {
-    width: '50%'
+    marginTop: `${theme.customSpacing.large}`
   },
   buttonWrapper: {
     display: 'flex',

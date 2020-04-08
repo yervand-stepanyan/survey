@@ -3,11 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   addNewQuestionContainer: {
     display: 'flex',
-    marginTop: '28px',
+    marginTop: `${theme.customSpacing.large}`,
     padding: `0 ${theme.customSpacing.xxLarge}`
   },
   buttonWrapper: {
-    marginRight: '14px',
     '&:hover + $textWrapper': {
       color: `${theme.color.mainColorGreen}`
     }
@@ -17,6 +16,7 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     cursor: 'pointer',
     outline: 'none',
+    paddingLeft: `${theme.customSpacing.base}`,
     '&:hover': {
       color: `${theme.color.mainColorGreen}`
     }
