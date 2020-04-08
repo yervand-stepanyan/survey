@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './RangeSection.style';
 
-const BUTTON_LABEL = 'Submit';
+const BUTTON_LABEL = 'Submit & continue';
 const END_VALUE_LABEL = 'End value';
 const START_VALUE_LABEL = 'Start value';
 const STEP_VALUE_LABEL = 'Step';

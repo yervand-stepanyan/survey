@@ -12,7 +12,7 @@ export const useStyles = makeStyles(theme => ({
   typeWrapper: {
     display: 'flex',
     justifyContent: 'space-around',
-    height: '240px',
+    // height: '240px',
     marginTop: `${theme.customSpacing.large}`
   },
   imageContainer: {
@@ -49,5 +49,17 @@ export const useStyles = makeStyles(theme => ({
     filter: 'contrast(110%)',
     height: 'inherit',
     width: 'inherit'
+  },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: `${theme.customSpacing.xLarge}`
+  },
+  button: {
+    backgroundColor: `${theme.color.mainColorGreen}`,
+    color: 'white',
+    '&:hover': {
+      backgroundColor: `${theme.color.buttonHoverColorGreen}`
+    }
   }
 }));

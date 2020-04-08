@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   optionsContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    height: '268px'
+    flexDirection: 'column'
+    // height: '268px'
   },
   titleWrapper: {
     display: 'flex',
@@ -45,5 +45,17 @@ export const useStyles = makeStyles(theme => ({
   },
   checkboxSection: {
     width: '60%'
+  },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: `${theme.customSpacing.base}`
+  },
+  button: {
+    backgroundColor: `${theme.color.mainColorGreen}`,
+    color: 'white',
+    '&:hover': {
+      backgroundColor: `${theme.color.buttonHoverColorGreen}`
+    }
   }
 }));

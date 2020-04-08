@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
+import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -12,6 +13,7 @@ import Zoom from '@material-ui/core/Zoom';
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './OptionsContainer.style';
 
+const BUTTON_LABEL = 'Submit & continue';
 const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
@@ -186,6 +188,17 @@ function OptionsContainer({ type }) {
           </div>
         </div>
       ) : null}
+      <div className={classes.buttonWrapper}>
+        <Button
+          className={classes.button}
+          disabled={options.length < 2}
+          // onClick={handleSubmit}
+          size="large"
+          variant="contained"
+        >
+          {BUTTON_LABEL}
+        </Button>
+      </div>
     </div>
   );
 }
