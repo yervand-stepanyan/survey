@@ -3,6 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const boxShadowColor = '#79d5a3';
 const mainColorDarkBlue = '#282C34';
 const mainColorGreen = '#20BA66';
+const buttonHoverColorGreen = '#11703C';
 const mainTextColor = '#282C34';
 
 const BORDER_RADIUS_VALUE = 10;
@@ -20,6 +21,7 @@ const theme = createMuiTheme({
   },
   color: {
     boxShadowColor,
+    buttonHoverColorGreen,
     mainColorDarkBlue,
     mainColorGreen
   },
