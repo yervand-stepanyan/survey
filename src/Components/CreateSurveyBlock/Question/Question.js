@@ -11,12 +11,10 @@ import { useStyles } from './Question.style';
 
 const QUESTION_LABEL = 'Question:';
 
-function Question({ question, setIsQuestion }) {
+function Question({ question, activeId, onEdit }) {
   const classes = useStyles();
 
-  const handleEdit = () => {
-    setIsQuestion(false);
-  };
+  const handleEdit = () => onEdit(activeId);
 
   return (
     <div className={classes.container}>
@@ -43,7 +41,8 @@ function Question({ question, setIsQuestion }) {
 
 Question.propTypes = {
   question: PropTypes.string.isRequired,
-  setIsQuestion: PropTypes.func.isRequired
+  activeId: PropTypes.string.isRequired,
+  onEdit: PropTypes.func.isRequired
 };
 
 export default Question;

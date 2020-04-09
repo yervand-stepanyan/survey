@@ -59,7 +59,7 @@ function SurveyTitleCreator({
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.surveyTitleCreatorContainer}>
       <div className={classes.textFieldWrapper}>
         <div className={classes.titleLabel}>
           <Typography variant="h5">{TITLE_TEXT}</Typography>

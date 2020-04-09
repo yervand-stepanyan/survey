@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
@@ -7,23 +7,17 @@ import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './QuestionCreator.style';
-import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit';
 const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
 
-function QuestionCreator({
-  question: questionProps,
-  setQuestion: setQuestionProps,
-  setIsQuestion
-}) {
+function QuestionCreator({ question: questionProps, addQuestion }) {
   const classes = useStyles();
   const [question, setQuestion] = useState(questionProps);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
-  const { dispatchSurvey } = useContext(SurveyContext);
 
   useEffect(() => {
     if (question) inputEl.current.focus();
@@ -32,20 +26,15 @@ function QuestionCreator({
   const handleChange = event => {
     setQuestion(event.target.value);
 
-    if (event.target.value) setIsEmpty(true);
+    if (removeSpaces(event.target.value)) setIsEmpty(true);
     else setIsEmpty(false);
   };
 
   const handleSubmit = () => {
-    if (question) {
-      const filteredQuestion = removeSpaces(question);
+    const filteredQuestion = removeSpaces(question);
 
-      setIsQuestion(true);
-
-      setQuestionProps(filteredQuestion);
-
-      dispatchSurvey({ type: 'ADD_QUESTION', payload: filteredQuestion });
-    } else setIsEmpty(false);
+    if (filteredQuestion) addQuestion(filteredQuestion);
+    else setIsEmpty(false);
   };
 
   const handleSubmitOnEnter = event => {
@@ -90,8 +79,9 @@ function QuestionCreator({
 
 QuestionCreator.propTypes = {
   question: PropTypes.string.isRequired,
-  setQuestion: PropTypes.func.isRequired,
-  setIsQuestion: PropTypes.func.isRequired
+  // setQuestion: PropTypes.func.isRequired,
+  // setIsQuestion: PropTypes.func.isRequired,
+  addQuestion: PropTypes.func.isRequired
 };
 
 export default QuestionCreator;

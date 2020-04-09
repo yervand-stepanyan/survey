@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import Typography from '@material-ui/core/Typography';
 
 import QuestionSection from '../QuestionSection';
-import SurveyContext from '../../../State/context';
+import SaveSurvey from '../SaveSurvey';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
 import { useStyles } from './CreateSurveyBlock.style';
@@ -14,8 +14,6 @@ function CreateSurveyBlock() {
   const classes = useStyles();
   const [isTitle, setIsTitle] = useState(false);
   const [title, setTitle] = useState('');
-  const { stateSurvey } = useContext(SurveyContext);
-  const { question } = stateSurvey;
 
   return (
     <div className={classes.createSurveyBlockContainer}>
@@ -34,7 +32,9 @@ function CreateSurveyBlock() {
             />
           )}
         </div>
-        {question || isTitle ? <QuestionSection /> : null}
+        {/* {question || isTitle ? <QuestionSection /> : null} */}
+        <QuestionSection />
+        <SaveSurvey />
       </div>
     </div>
   );
