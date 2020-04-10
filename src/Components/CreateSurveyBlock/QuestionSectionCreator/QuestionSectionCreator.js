@@ -7,12 +7,12 @@ import QuestionCreator from '../QuestionCreator';
 import { useStyles } from './QuestionSectionCreator.style';
 
 function QuestionSectionCreator({
-  isQuestion,
-  question,
-  setIsQuestion,
-  addQuestion,
   activeId,
-  onEdit
+  addQuestion,
+  isQuestion,
+  onEdit,
+  onRemove,
+  question
 }) {
   const classes = useStyles();
 
@@ -21,13 +21,13 @@ function QuestionSectionCreator({
       <div className={classes.questionSection}>
         {isQuestion ? (
           <Question
-            question={question}
-            setIsQuestion={setIsQuestion}
             activeId={activeId}
             onEdit={onEdit}
+            onRemove={onRemove}
+            question={question}
           />
         ) : (
-          <QuestionCreator question={question} addQuestion={addQuestion} />
+          <QuestionCreator addQuestion={addQuestion} question={question} />
         )}
       </div>
       <div className={classes.answerTypesWrapper}>
@@ -38,12 +38,12 @@ function QuestionSectionCreator({
 }
 
 QuestionSectionCreator.propTypes = {
-  isQuestion: PropTypes.bool.isRequired,
-  question: PropTypes.string.isRequired,
-  setIsQuestion: PropTypes.func.isRequired,
-  addQuestion: PropTypes.func.isRequired,
   activeId: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired
+  addQuestion: PropTypes.func.isRequired,
+  isQuestion: PropTypes.bool.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  question: PropTypes.string.isRequired
 };
 
 export default QuestionSectionCreator;

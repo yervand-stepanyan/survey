@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
@@ -9,13 +10,17 @@ import { useStyles } from './AddNewQuestion.style';
 const TEXT_LABEL = 'Add question';
 const TABINDEX = 0;
 
-function AddNewQuestion() {
+function AddNewQuestion({ handleShowAddNew }) {
   const classes = useStyles();
   const enabled = false;
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    handleShowAddNew(false);
+  };
 
-  const handleEnterKey = () => {};
+  const handleEnterKey = () => {
+    handleClick();
+  };
 
   return (
     <div className={classes.addNewQuestionContainer}>
@@ -41,5 +46,9 @@ function AddNewQuestion() {
     </div>
   );
 }
+
+AddNewQuestion.propTypes = {
+  handleShowAddNew: PropTypes.func.isRequired
+};
 
 export default AddNewQuestion;

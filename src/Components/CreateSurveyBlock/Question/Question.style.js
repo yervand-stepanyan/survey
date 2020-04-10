@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  container: {
+  questionContainer: {
     display: 'flex',
     flexDirection: 'column',
     height: 'inherit'
@@ -15,7 +15,7 @@ export const useStyles = makeStyles(theme => ({
   },
   questionLabel: {
     display: 'flex',
-    padding: `0 ${theme.customSpacing.xxLarge}`
+    padding: `0 ${theme.customSpacing.xxxxLarge} 0 ${theme.customSpacing.xxLarge}`
   },
   label: {
     whiteSpace: 'nowrap'
@@ -26,8 +26,13 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: `${theme.customSpacing.base}`,
     overflowY: 'auto'
   },
-  editIcon: {
+  icons: {
+    display: 'flex',
     position: 'absolute',
     right: 0
-  }
+  },
+  editIcon: {
+    marginRight: `${theme.customSpacing.small}`
+  },
+  removeIcon: {}
 }));

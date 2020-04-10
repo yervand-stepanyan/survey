@@ -14,6 +14,16 @@ function CreateSurveyBlock() {
   const classes = useStyles();
   const [isTitle, setIsTitle] = useState(false);
   const [title, setTitle] = useState('');
+  const [isQuestion, setIsQuestion] = useState(false);
+  const [questions, setQuestions] = useState([]);
+
+  const isQuestionSet = bool => {
+    setIsQuestion(bool);
+  };
+
+  const updateQuestionsList = arr => {
+    setQuestions(arr);
+  };
 
   return (
     <div className={classes.createSurveyBlockContainer}>
@@ -32,9 +42,13 @@ function CreateSurveyBlock() {
             />
           )}
         </div>
-        {/* {question || isTitle ? <QuestionSection /> : null} */}
-        <QuestionSection />
-        <SaveSurvey />
+        {isQuestion || isTitle ? (
+          <QuestionSection
+            isQuestionSet={isQuestionSet}
+            updateQuestionsList={updateQuestionsList}
+          />
+        ) : null}
+        {questions.length > 0 ? <SaveSurvey /> : null}
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ const ADD_TITLE = 'ADD_TITLE';
 
 const ADD_QUESTION = 'ADD_QUESTION';
 const EDIT_QUESTION = 'EDIT_QUESTION';
+const REMOVE_QUESTION = 'REMOVE_QUESTION';
+const TOGGLE_EDIT = 'TOGGLE_EDIT';
 
 export function surveyReducer(state, action) {
   switch (action.type) {
@@ -61,14 +63,30 @@ export function questionsReducer(state, action) {
     case ADD_QUESTION:
       return [
         ...state,
-        { id: action.payload.id, question: action.payload.question }
+        {
+          id: action.payload.id,
+          question: action.payload.question,
+          isQuestion: true
+        }
       ];
     case EDIT_QUESTION:
       return state.map(question =>
         question.id === action.payload.id
           ? {
               ...question,
-              question: action.payload.question
+              question: action.payload.question,
+              isQuestion: true
+            }
+          : question
+      );
+    case REMOVE_QUESTION:
+      return state.filter(question => question.id !== action.payload);
+    case TOGGLE_EDIT:
+      return state.map(question =>
+        question.id === action.payload.id
+          ? {
+              ...question,
+              isQuestion: false
             }
           : question
       );

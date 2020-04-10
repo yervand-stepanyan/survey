@@ -13,7 +13,7 @@ const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
 
-function QuestionCreator({ question: questionProps, addQuestion }) {
+function QuestionCreator({ addQuestion, question: questionProps }) {
   const classes = useStyles();
   const [question, setQuestion] = useState(questionProps);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -78,10 +78,8 @@ function QuestionCreator({ question: questionProps, addQuestion }) {
 }
 
 QuestionCreator.propTypes = {
-  question: PropTypes.string.isRequired,
-  // setQuestion: PropTypes.func.isRequired,
-  // setIsQuestion: PropTypes.func.isRequired,
-  addQuestion: PropTypes.func.isRequired
+  addQuestion: PropTypes.func.isRequired,
+  question: PropTypes.string.isRequired
 };
 
 export default QuestionCreator;

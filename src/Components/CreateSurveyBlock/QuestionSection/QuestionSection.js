@@ -1,4 +1,5 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
 import AddNewQuestion from '../AddNewQuestion';
@@ -7,59 +8,103 @@ import QuestionSectionCreator from '../QuestionSectionCreator';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './QuestionSection.style';
 
-function QuestionSection() {
+function QuestionSection({ isQuestionSet, updateQuestionsList }) {
   const classes = useStyles();
-  const [question, setQuestion] = useState('');
-  const [isQuestion, setIsQuestion] = useState(false);
+  const [questionValue] = useState('');
+  const [questionExists] = useState(false);
   const [activeId, setActiveId] = useState('');
   const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
+  const [isShowAddNew, setIsShowAddNew] = useState(false);
+  const [isShowCreator, setIsShowCreator] = useState(true);
 
-  const addQuestion = questionFromCreator => {
-    setQuestion(questionFromCreator);
+  useEffect(() => {
+    isQuestionSet(true);
+  }, [isQuestionSet]);
 
-    setIsQuestion(true);
+  useEffect(() => {
+    updateQuestionsList(stateQuestions);
+  }, [stateQuestions]);
 
-    if (activeId)
+  const handleAddQuestion = questionFromCreator => {
+    if (activeId) {
       dispatchQuestions({
         type: 'EDIT_QUESTION',
         payload: { id: activeId, question: questionFromCreator }
       });
-    else {
+    } else {
       const id = activeId || uuid();
       const questionData = { id, question: questionFromCreator };
 
       dispatchQuestions({ type: 'ADD_QUESTION', payload: questionData });
 
       setActiveId(id);
+
+      setIsShowAddNew(true);
+
+      setIsShowCreator(false);
     }
   };
 
-  const editQuestion = id => {
+  const handleEditQuestion = id => {
     const questionToEdit = stateQuestions.find(
       singleQuestion => singleQuestion.id === id
     );
 
-    setActiveId(questionToEdit.id);
+    dispatchQuestions({
+      type: 'TOGGLE_EDIT',
+      payload: { id: questionToEdit.id }
+    });
 
-    setIsQuestion(false);
+    setActiveId(questionToEdit.id);
+  };
+
+  const handleRemoveQuestion = id => {
+    dispatchQuestions({ type: 'REMOVE_QUESTION', payload: id });
+  };
+
+  const handleShowAddNew = bool => {
+    setIsShowAddNew(bool);
+
+    setIsShowCreator(true);
+
+    setActiveId('');
   };
 
   return (
     <div className={classes.questionSectionContainer}>
       <SurveyContext.Provider value={{ stateQuestions, dispatchQuestions }}>
-        <QuestionSectionCreator
-          activeId={activeId}
-          addQuestion={addQuestion}
-          isQuestion={isQuestion}
-          onEdit={editQuestion}
-          question={question}
-          setIsQuestion={setIsQuestion}
-          setQuestion={setQuestion}
-        />
-        {question ? <AddNewQuestion /> : null}
+        {stateQuestions.map(({ id, question, isQuestion }) => (
+          <QuestionSectionCreator
+            activeId={id}
+            addQuestion={handleAddQuestion}
+            isQuestion={isQuestion}
+            key={id}
+            onEdit={handleEditQuestion}
+            onRemove={handleRemoveQuestion}
+            question={question}
+          />
+        ))}
+        {isShowCreator ? (
+          <QuestionSectionCreator
+            activeId={activeId}
+            addQuestion={handleAddQuestion}
+            isQuestion={questionExists}
+            onEdit={handleEditQuestion}
+            onRemove={handleRemoveQuestion}
+            question={questionValue}
+          />
+        ) : null}
+        {isShowAddNew ? (
+          <AddNewQuestion handleShowAddNew={handleShowAddNew} />
+        ) : null}
       </SurveyContext.Provider>
     </div>
   );
 }
+
+QuestionSection.propTypes = {
+  isQuestionSet: PropTypes.func.isRequired,
+  updateQuestionsList: PropTypes.func.isRequired
+};
 
 export default QuestionSection;
