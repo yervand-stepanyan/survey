@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,23 +7,17 @@ import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './SurveyTitleCreator.style';
-import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit';
 const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
 const TITLE_PLACEHOLDER = '* Title';
 const TITLE_TEXT = 'Survey title:';
 
-function SurveyTitleCreator({
-  title: titleProps,
-  setTitle: setTitleProps,
-  setIsTitle
-}) {
+function SurveyTitleCreator({ addTitle, title: titleProps }) {
   const classes = useStyles();
   const [title, setTitle] = useState(titleProps);
   const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
-  const { stateSurvey, dispatchSurvey } = useContext(SurveyContext);
 
   useEffect(() => {
     if (title) inputEl.current.focus();
@@ -40,18 +33,8 @@ function SurveyTitleCreator({
   const handleSubmit = () => {
     const filteredTitle = removeSpaces(title);
 
-    if (filteredTitle) {
-      const activeId = stateSurvey.length
-        ? stateSurvey[stateSurvey.length - 1].id
-        : uuid();
-      const surveyData = { id: activeId, title: filteredTitle };
-
-      setIsTitle(true);
-
-      setTitleProps(filteredTitle);
-
-      dispatchSurvey({ type: 'ADD_TITLE', payload: surveyData });
-    } else setIsEmpty(false);
+    if (filteredTitle) addTitle(filteredTitle);
+    else setIsEmpty(false);
   };
 
   const handleSubmitOnEnter = event => {
@@ -94,9 +77,8 @@ function SurveyTitleCreator({
 }
 
 SurveyTitleCreator.propTypes = {
-  title: PropTypes.string.isRequired,
-  setTitle: PropTypes.func.isRequired,
-  setIsTitle: PropTypes.func.isRequired
+  addTitle: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default SurveyTitleCreator;

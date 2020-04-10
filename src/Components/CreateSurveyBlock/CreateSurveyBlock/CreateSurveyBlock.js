@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
+import uuid from 'react-uuid';
 
 import Typography from '@material-ui/core/Typography';
 
 import QuestionSection from '../QuestionSection';
+import SurveyContext from '../../../State/context';
+import { surveyReducer } from '../../../State/reducer';
 import SaveSurvey from '../SaveSurvey';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
@@ -12,17 +15,45 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
+  const [activeId, setActiveId] = useState('');
   const [isTitle, setIsTitle] = useState(false);
-  const [title, setTitle] = useState('');
+  const [titleValue, setTitleValue] = useState('');
   const [isQuestion, setIsQuestion] = useState(false);
-  const [questions, setQuestions] = useState([]);
+  const [isSave, setIsSave] = useState(false);
+  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
+  const { questions } = stateSurvey;
+
+  const handleAddSurveyTitle = title => {
+    if (activeId) {
+      dispatchSurvey({ type: 'EDIT_TITLE', payload: title });
+
+      setIsTitle(true);
+
+      setTitleValue(title);
+    } else {
+      const id = activeId || uuid();
+      const surveyData = { id, title };
+
+      dispatchSurvey({ type: 'ADD_TITLE', payload: surveyData });
+
+      setActiveId(id);
+
+      setIsTitle(true);
+
+      setTitleValue(title);
+    }
+  };
+
+  const handleEditTitle = () => {
+    setIsTitle(false);
+  };
 
   const isQuestionSet = bool => {
     setIsQuestion(bool);
   };
 
-  const updateQuestionsList = arr => {
-    setQuestions(arr);
+  const enableSave = bool => {
+    setIsSave(bool);
   };
 
   return (
@@ -31,24 +62,33 @@ function CreateSurveyBlock() {
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <div className={classes.createSurveyWrapper}>
-        <div className={classes.titleWrapper}>
-          {title && isTitle ? (
-            <SurveyTitle title={title} setIsTitle={setIsTitle} />
-          ) : (
-            <SurveyTitleCreator
-              title={title}
-              setTitle={setTitle}
-              setIsTitle={setIsTitle}
+        <SurveyContext.Provider value={{ stateSurvey, dispatchSurvey }}>
+          <div className={classes.titleWrapper}>
+            {titleValue && isTitle ? (
+              <SurveyTitle
+                title={titleValue}
+                setIsTitle={setIsTitle}
+                onEdit={handleEditTitle}
+              />
+            ) : (
+              <SurveyTitleCreator
+                title={titleValue}
+                setTitle={setTitleValue}
+                setIsTitle={setIsTitle}
+                addTitle={handleAddSurveyTitle}
+              />
+            )}
+          </div>
+          {isQuestion || isTitle ? (
+            <QuestionSection
+              enableSave={enableSave}
+              isQuestionSet={isQuestionSet}
             />
-          )}
-        </div>
-        {isQuestion || isTitle ? (
-          <QuestionSection
-            isQuestionSet={isQuestionSet}
-            updateQuestionsList={updateQuestionsList}
-          />
-        ) : null}
-        {questions.length > 0 ? <SaveSurvey /> : null}
+          ) : null}
+          {questions && questions.length ? (
+            <SaveSurvey disabled={!isSave} />
+          ) : null}
+        </SurveyContext.Provider>
       </div>
     </div>
   );

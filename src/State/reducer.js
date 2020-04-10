@@ -1,60 +1,29 @@
-const ADD_TITLE = 'ADD_TITLE';
-// const ADD_QUESTIONS = 'ADD_QUESTIONS';
-
-const ADD_QUESTION = 'ADD_QUESTION';
+const ADD_ANSWERS = 'ADD_ANSWERS';
 const ADD_ANSWER_TYPE = 'ADD_ANSWER_TYPE';
 const ADD_INPUT_TYPE = 'ADD_INPUT_TYPE';
+const ADD_TITLE = 'ADD_TITLE';
+const ADD_QUESTION = 'ADD_QUESTION';
 const EDIT_QUESTION = 'EDIT_QUESTION';
+const EDIT_TITLE = 'EDIT_TITLE';
+const HAS_LAST_INPUT = 'HAS_LAST_INPUT';
 const REMOVE_QUESTION = 'REMOVE_QUESTION';
 const TOGGLE_EDIT = 'TOGGLE_EDIT';
 
 export function surveyReducer(state, action) {
   switch (action.type) {
     case ADD_TITLE:
-      return state.length
-        ? state.map(survey =>
-            survey.id === action.payload.id
-              ? {
-                  ...survey,
-                  title: action.payload.title
-                }
-              : {
-                  ...survey,
-                  id: action.payload.id,
-                  inProgress: true,
-                  title: action.payload.title
-                }
-          )
-        : [
-            {
-              id: action.payload.id,
-              inProgress: true,
-              title: action.payload.title
-            }
-          ];
-    // case ADD_QUESTIONS:
-    //   return [
-    //     ...state,
-    //     {
-    //       ...state.find(survey => survey.id === action.payload.id),
-    //       questions: state.find(survey => survey.id === action.payload.id)
-    //         .questions.length
-    //         ? [
-    //             ...state.find(survey => survey.id === action.payload.id)
-    //               .questions,
-    //             {
-    //               id: action.payload.questionId,
-    //               question: action.payload.question
-    //             }
-    //           ]
-    //         : [
-    //             {
-    //               id: action.payload.questionId,
-    //               question: action.payload.question
-    //             }
-    //           ]
-    //     }
-    //   ];
+      return { ...state, id: action.payload.id, title: action.payload.title };
+    case EDIT_TITLE:
+      return { ...state, title: action.payload };
+    case ADD_QUESTION:
+      return { ...state, questions: action.payload };
+    case REMOVE_QUESTION:
+      return {
+        ...state,
+        questions: state.questions.filter(
+          question => question.id !== action.payload
+        )
+      };
     default:
       return state;
   }
@@ -98,7 +67,9 @@ export function questionsReducer(state, action) {
           ? {
               ...question,
               answerType: action.payload.type,
-              inputType: action.payload.inputType
+              inputType: undefined,
+              answers: undefined,
+              hasLastInput: undefined
             }
           : question
       );
@@ -108,6 +79,24 @@ export function questionsReducer(state, action) {
           ? {
               ...question,
               inputType: action.payload.type
+            }
+          : question
+      );
+    case ADD_ANSWERS:
+      return state.map(question =>
+        question.id === action.payload.id
+          ? {
+              ...question,
+              answers: action.payload.answers
+            }
+          : question
+      );
+    case HAS_LAST_INPUT:
+      return state.map(question =>
+        question.id === action.payload.id
+          ? {
+              ...question,
+              hasLastInput: action.payload.hasLastInput
             }
           : question
       );

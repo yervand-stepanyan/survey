@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 
@@ -6,9 +7,8 @@ import { useStyles } from './SaveSurvey.style';
 
 const BUTTON_LABEL = 'Save';
 
-function SaveSurvey() {
+function SaveSurvey({ disabled }) {
   const classes = useStyles();
-  const enabled = false;
 
   const handleSubmit = () => {};
 
@@ -17,7 +17,7 @@ function SaveSurvey() {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={enabled}
+          disabled={disabled}
           onClick={handleSubmit}
           size="large"
           variant="contained"
@@ -28,5 +28,9 @@ function SaveSurvey() {
     </div>
   );
 }
+
+SaveSurvey.propTypes = {
+  disabled: PropTypes.bool.isRequired
+};
 
 export default SaveSurvey;

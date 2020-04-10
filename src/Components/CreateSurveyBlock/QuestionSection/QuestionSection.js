@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from 'react';
+import React, { useReducer, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
@@ -8,22 +8,19 @@ import QuestionSectionCreator from '../QuestionSectionCreator';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './QuestionSection.style';
 
-function QuestionSection({ isQuestionSet, updateQuestionsList }) {
+function QuestionSection({ enableSave, isQuestionSet }) {
   const classes = useStyles();
   const [activeId, setActiveId] = useState('');
-  const [isShowAddNew, setIsShowAddNew] = useState(false);
-  const [isShowCreator, setIsShowCreator] = useState(true);
+  const [isAddNew, setIsAddNew] = useState(false);
+  const [isCreator, setIsCreator] = useState(true);
   const [questionValue] = useState('');
-  const [questionExists] = useState(false);
+  const [questionExists, setQuestionExists] = useState(false);
   const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
+  const { dispatchSurvey } = useContext(SurveyContext);
 
   useEffect(() => {
     isQuestionSet(true);
   }, [isQuestionSet]);
-
-  useEffect(() => {
-    updateQuestionsList(stateQuestions);
-  }, [stateQuestions]);
 
   const handleAddQuestion = questionFromCreator => {
     if (activeId) {
@@ -39,9 +36,9 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
 
       setActiveId(id);
 
-      setIsShowAddNew(true);
+      setQuestionExists(true);
 
-      setIsShowCreator(false);
+      setIsCreator(false);
     }
   };
 
@@ -60,6 +57,8 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
 
   const handleRemoveQuestion = id => {
     dispatchQuestions({ type: 'REMOVE_QUESTION', payload: id });
+
+    dispatchSurvey({ type: 'REMOVE_QUESTION', payload: id });
   };
 
   const handleAddAnswerType = type => {
@@ -72,16 +71,43 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
   const handleAddInputType = type => {
     dispatchQuestions({
       type: 'ADD_INPUT_TYPE',
-      payload: { id: activeId, type, inputType: '' }
+      payload: {
+        id: activeId,
+        type
+      }
+    });
+
+    enableSave(true);
+  };
+
+  const handleSubmitQuestion = () => {
+    dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
+
+    setIsAddNew(true);
+  };
+
+  const handleAddAnswers = answers => {
+    dispatchQuestions({
+      type: 'ADD_ANSWERS',
+      payload: { id: activeId, answers }
+    });
+  };
+
+  const handleHasLastInput = bool => {
+    dispatchQuestions({
+      type: 'HAS_LAST_INPUT',
+      payload: { id: activeId, hasLastInput: bool }
     });
   };
 
   const handleShowAddNew = bool => {
-    setIsShowAddNew(bool);
+    setIsAddNew(bool);
 
-    setIsShowCreator(true);
+    setIsCreator(true);
 
     setActiveId('');
+
+    enableSave(false);
   };
 
   return (
@@ -91,7 +117,10 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
           stateQuestions,
           dispatchQuestions,
           handleAddAnswerType,
-          handleAddInputType
+          handleAddAnswers,
+          handleAddInputType,
+          handleHasLastInput,
+          handleSubmitQuestion
         }}
       >
         {stateQuestions.map(({ id, question, isQuestion }) => (
@@ -105,7 +134,7 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
             question={question}
           />
         ))}
-        {isShowCreator ? (
+        {isCreator ? (
           <QuestionSectionCreator
             activeId={activeId}
             addQuestion={handleAddQuestion}
@@ -115,7 +144,7 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
             question={questionValue}
           />
         ) : null}
-        {isShowAddNew ? (
+        {isAddNew ? (
           <AddNewQuestion handleShowAddNew={handleShowAddNew} />
         ) : null}
       </SurveyContext.Provider>
@@ -124,8 +153,8 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
 }
 
 QuestionSection.propTypes = {
-  isQuestionSet: PropTypes.func.isRequired,
-  updateQuestionsList: PropTypes.func.isRequired
+  enableSave: PropTypes.func.isRequired,
+  isQuestionSet: PropTypes.func.isRequired
 };
 
 export default QuestionSection;

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
@@ -12,23 +12,32 @@ import Zoom from '@material-ui/core/Zoom';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './OptionsContainer.style';
+import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit & continue';
+const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
 
 function OptionsContainer({ type }) {
   const classes = useStyles();
-  const inputEl = useRef(null);
+  const [checked, setChecked] = useState(false);
+  const [chip, setChip] = useState({});
+  const [customOptionId, setCustomOptionId] = useState('');
+  const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
+  const [isTooltip, setIsTooltip] = useState(false);
   const [option, setOption] = useState('');
   const [options, setOptions] = useState([]);
-  const [chip, setChip] = useState({});
-  const [checked, setChecked] = useState(false);
-  const [isTooltip, setIsTooltip] = useState(false);
-  const [customOptionId, setCustomOptionId] = useState('');
+  const inputEl = useRef(null);
+  const {
+    handleAddAnswers,
+    handleHasLastInput,
+    handleSubmitQuestion
+  } = useContext(SurveyContext);
 
   const handleInputChange = event => {
     setOption(event.target.value);
@@ -71,6 +80,8 @@ function OptionsContainer({ type }) {
 
           setIsTooltip(false);
         }
+
+        if (isSubmitted) setIsChanged(true);
       } else setIsEmpty(true);
 
       if (checked) {
@@ -84,10 +95,12 @@ function OptionsContainer({ type }) {
           return [...filteredOptions, lastOption];
         });
       }
+
+      setIsSubmitted(false);
     }
   };
 
-  const handleClick = chipToEdit => () => {
+  const handleChipClick = chipToEdit => () => {
     if (!isTyped) {
       setOption(chipToEdit.option);
 
@@ -99,13 +112,19 @@ function OptionsContainer({ type }) {
     }
   };
 
-  const handleDelete = chipToDelete => () => {
+  const handleChipDelete = chipToDelete => () => {
     setOptions(() => options.filter(opt => opt.id !== chipToDelete));
 
     if (customOptionId === chipToDelete) {
       setChecked(false);
 
       setCustomOptionId('');
+    }
+
+    if (isSubmitted) {
+      setIsChanged(true);
+
+      setIsSubmitted(false);
     }
   };
 
@@ -116,13 +135,25 @@ function OptionsContainer({ type }) {
       inputEl.current.focus();
 
       setIsTooltip(true);
+
+      handleHasLastInput(true);
     } else {
       setIsTooltip(false);
 
       setOptions(options.filter(opt => opt.id !== customOptionId));
 
       setCustomOptionId('');
+
+      handleHasLastInput(false);
     }
+  };
+
+  const handleSubmit = () => {
+    handleAddAnswers(options);
+
+    handleSubmitQuestion();
+
+    setIsSubmitted(true);
   };
 
   return (
@@ -164,8 +195,8 @@ function OptionsContainer({ type }) {
                 clickable
                 color="primary"
                 label={opt.option}
-                onClick={handleClick(opt)}
-                onDelete={handleDelete(opt.id)}
+                onClick={handleChipClick(opt)}
+                onDelete={handleChipDelete(opt.id)}
               />
             </Tooltip>
           ))}
@@ -191,12 +222,12 @@ function OptionsContainer({ type }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={options.length < 2}
-          // onClick={handleSubmit}
+          disabled={options.length < 2 || isSubmitted}
+          onClick={handleSubmit}
           size="large"
           variant="contained"
         >
-          {BUTTON_LABEL}
+          {isChanged ? BUTTON_ACCEPT_CHANGES_LABEL : BUTTON_LABEL}
         </Button>
       </div>
     </div>

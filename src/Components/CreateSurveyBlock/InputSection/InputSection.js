@@ -11,6 +11,7 @@ import ImageContainer from '../ImageContainer';
 import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit & continue';
+const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 const IMAGES = [
   { name: 'text', src: inputText, tooltip: 'Text', text: 'Text' },
   { name: 'number', src: inputNumber, tooltip: 'Number', text: 'Number' },
@@ -21,19 +22,34 @@ const TITLE = 'Choose input type';
 function InputSection() {
   const classes = useStyles();
   const [image, setImage] = useState('');
-  const { handleAddInputType } = useContext(SurveyContext);
+  const [isChanged, setIsChanged] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { handleAddInputType, handleSubmitQuestion } = useContext(
+    SurveyContext
+  );
 
   const handleClick = e => {
     const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
 
     setImage(img);
 
+    setIsSubmitted(false);
+
     handleAddInputType(img);
+
+    if (isSubmitted) setIsChanged(true);
   };
 
   const handleEnterKey = e => {
     if (e.key === 'Enter') handleClick(e);
   };
+
+  const handleSubmit = () => {
+    handleSubmitQuestion();
+
+    setIsSubmitted(true);
+  };
+
   return (
     <div className={classes.inputSectionContainer}>
       <div className={classes.titleWrapper}>
@@ -54,12 +70,12 @@ function InputSection() {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!image}
-          // onClick={handleSubmit}
+          disabled={!image || isSubmitted}
+          onClick={handleSubmit}
           size="large"
           variant="contained"
         >
-          {BUTTON_LABEL}
+          {isChanged ? BUTTON_ACCEPT_CHANGES_LABEL : BUTTON_LABEL}
         </Button>
       </div>
     </div>

@@ -11,11 +11,11 @@ import { useStyles } from './SurveyTitle.style';
 
 const TITLE_LABEL = 'Survey title:';
 
-function SurveyTitle({ title, setIsTitle }) {
+function SurveyTitle({ onEdit, title }) {
   const classes = useStyles();
 
   const handleEdit = () => {
-    setIsTitle(false);
+    onEdit();
   };
 
   return (
@@ -42,8 +42,8 @@ function SurveyTitle({ title, setIsTitle }) {
 }
 
 SurveyTitle.propTypes = {
-  title: PropTypes.string.isRequired,
-  setIsTitle: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default SurveyTitle;
