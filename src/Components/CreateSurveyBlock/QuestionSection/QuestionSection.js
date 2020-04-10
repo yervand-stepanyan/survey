@@ -10,12 +10,12 @@ import { useStyles } from './QuestionSection.style';
 
 function QuestionSection({ isQuestionSet, updateQuestionsList }) {
   const classes = useStyles();
-  const [questionValue] = useState('');
-  const [questionExists] = useState(false);
   const [activeId, setActiveId] = useState('');
-  const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
   const [isShowAddNew, setIsShowAddNew] = useState(false);
   const [isShowCreator, setIsShowCreator] = useState(true);
+  const [questionValue] = useState('');
+  const [questionExists] = useState(false);
+  const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
 
   useEffect(() => {
     isQuestionSet(true);
@@ -62,6 +62,20 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
     dispatchQuestions({ type: 'REMOVE_QUESTION', payload: id });
   };
 
+  const handleAddAnswerType = type => {
+    dispatchQuestions({
+      type: 'ADD_ANSWER_TYPE',
+      payload: { id: activeId, type }
+    });
+  };
+
+  const handleAddInputType = type => {
+    dispatchQuestions({
+      type: 'ADD_INPUT_TYPE',
+      payload: { id: activeId, type, inputType: '' }
+    });
+  };
+
   const handleShowAddNew = bool => {
     setIsShowAddNew(bool);
 
@@ -72,7 +86,14 @@ function QuestionSection({ isQuestionSet, updateQuestionsList }) {
 
   return (
     <div className={classes.questionSectionContainer}>
-      <SurveyContext.Provider value={{ stateQuestions, dispatchQuestions }}>
+      <SurveyContext.Provider
+        value={{
+          stateQuestions,
+          dispatchQuestions,
+          handleAddAnswerType,
+          handleAddInputType
+        }}
+      >
         {stateQuestions.map(({ id, question, isQuestion }) => (
           <QuestionSectionCreator
             activeId={id}

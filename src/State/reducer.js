@@ -2,6 +2,8 @@ const ADD_TITLE = 'ADD_TITLE';
 // const ADD_QUESTIONS = 'ADD_QUESTIONS';
 
 const ADD_QUESTION = 'ADD_QUESTION';
+const ADD_ANSWER_TYPE = 'ADD_ANSWER_TYPE';
+const ADD_INPUT_TYPE = 'ADD_INPUT_TYPE';
 const EDIT_QUESTION = 'EDIT_QUESTION';
 const REMOVE_QUESTION = 'REMOVE_QUESTION';
 const TOGGLE_EDIT = 'TOGGLE_EDIT';
@@ -87,6 +89,25 @@ export function questionsReducer(state, action) {
           ? {
               ...question,
               isQuestion: false
+            }
+          : question
+      );
+    case ADD_ANSWER_TYPE:
+      return state.map(question =>
+        question.id === action.payload.id
+          ? {
+              ...question,
+              answerType: action.payload.type,
+              inputType: action.payload.inputType
+            }
+          : question
+      );
+    case ADD_INPUT_TYPE:
+      return state.map(question =>
+        question.id === action.payload.id
+          ? {
+              ...question,
+              inputType: action.payload.type
             }
           : question
       );

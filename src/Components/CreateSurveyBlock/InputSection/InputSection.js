@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +8,7 @@ import inputNumber from '../../../assets/images/inputOptions/input-number.png';
 import inputDate from '../../../assets/images/inputOptions/input-date.png';
 import { useStyles } from './InputSection.style';
 import ImageContainer from '../ImageContainer';
+import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit & continue';
 const IMAGES = [
@@ -20,10 +21,14 @@ const TITLE = 'Choose input type';
 function InputSection() {
   const classes = useStyles();
   const [image, setImage] = useState('');
+  const { handleAddInputType } = useContext(SurveyContext);
 
   const handleClick = e => {
-    if (e.target.alt) setImage(e.target.alt);
-    else setImage(e.target.children[0].alt);
+    const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
+
+    setImage(img);
+
+    handleAddInputType(img);
   };
 
   const handleEnterKey = e => {

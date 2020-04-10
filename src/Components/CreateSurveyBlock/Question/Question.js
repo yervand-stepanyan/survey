@@ -34,7 +34,7 @@ function Question({ activeId, onEdit, onRemove, question }) {
         <div className={classes.icons}>
           <div className={classes.editIcon}>
             <Tooltip title="Edit" TransitionComponent={Zoom} arrow>
-              <IconButton onClick={handleEdit}>
+              <IconButton onClick={handleEdit} color="primary">
                 <CreateIcon />
               </IconButton>
             </Tooltip>

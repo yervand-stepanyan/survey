@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
@@ -8,6 +8,7 @@ import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
 import ImageContainer from '../ImageContainer';
 import { useStyles } from './AnswerOptions.style';
+import SurveyContext from '../../../State/context';
 
 const IMAGES = [
   {
@@ -40,6 +41,7 @@ const IMAGES = [
 function AnswerOptions({ setType }) {
   const classes = useStyles();
   const [image, setImage] = useState('');
+  const { handleAddAnswerType } = useContext(SurveyContext);
 
   const handleClick = e => {
     const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
@@ -47,6 +49,8 @@ function AnswerOptions({ setType }) {
     setImage(img);
 
     setType(img);
+
+    handleAddAnswerType(img);
   };
 
   const handleEnterKey = e => {
