@@ -26,7 +26,7 @@ CheckboxSection.propTypes = {
 };
 
 CheckboxSection.defaultProps = {
-  answers: []
+  answers: undefined
 };
 
 export default CheckboxSection;

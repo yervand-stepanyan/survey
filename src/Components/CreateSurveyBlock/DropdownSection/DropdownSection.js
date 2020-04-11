@@ -26,7 +26,7 @@ DropdownSection.propTypes = {
 };
 
 DropdownSection.defaultProps = {
-  answers: []
+  answers: undefined
 };
 
 export default DropdownSection;
