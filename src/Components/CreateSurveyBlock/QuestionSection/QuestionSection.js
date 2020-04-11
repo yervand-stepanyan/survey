@@ -29,6 +29,8 @@ function QuestionSection({ enableSave, isQuestionSet }) {
         type: 'EDIT_QUESTION',
         payload: { id: activeId, question: questionFromCreator }
       });
+
+      // dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
     } else {
       const id = activeId || uuid();
       const questionData = { id, question: questionFromCreator };
