@@ -20,18 +20,18 @@ const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
 
-function OptionsContainer({ type }) {
+function OptionsContainer({ type, answers, hasLastInput }) {
   const classes = useStyles();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(hasLastInput || false);
   const [chip, setChip] = useState({});
   const [customOptionId, setCustomOptionId] = useState('');
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(!!answers || false);
   const [isTyped, setIsTyped] = useState(false);
   const [isTooltip, setIsTooltip] = useState(false);
   const [option, setOption] = useState('');
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState(answers || []);
   const inputEl = useRef(null);
   const {
     handleAddAnswers,
@@ -235,10 +235,14 @@ function OptionsContainer({ type }) {
 }
 
 OptionsContainer.propTypes = {
+  answers: PropTypes.array,
+  hasLastInput: PropTypes.bool,
   type: PropTypes.string
 };
 
 OptionsContainer.defaultProps = {
+  answers: [],
+  hasLastInput: false,
   type: ''
 };
 

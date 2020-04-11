@@ -38,9 +38,9 @@ const IMAGES = [
   { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
-function AnswerOptions({ setType }) {
+function AnswerOptions({ setType, answerType }) {
   const classes = useStyles();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(answerType || '');
   const { handleAddAnswerType } = useContext(SurveyContext);
 
   const handleClick = e => {
@@ -74,7 +74,12 @@ function AnswerOptions({ setType }) {
 }
 
 AnswerOptions.propTypes = {
+  answerType: PropTypes.string,
   setType: PropTypes.func.isRequired
+};
+
+AnswerOptions.defaultProps = {
+  answerType: ''
 };
 
 export default AnswerOptions;

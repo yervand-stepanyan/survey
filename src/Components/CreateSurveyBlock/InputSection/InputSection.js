@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -19,11 +20,11 @@ const IMAGES = [
 ];
 const TITLE = 'Choose input type';
 
-function InputSection() {
+function InputSection({ inputType }) {
   const classes = useStyles();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(inputType || '');
   const [isChanged, setIsChanged] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(!!inputType || false);
   const { handleAddInputType, handleSubmitQuestion } = useContext(
     SurveyContext
   );
@@ -81,5 +82,13 @@ function InputSection() {
     </div>
   );
 }
+
+InputSection.propTypes = {
+  inputType: PropTypes.string
+};
+
+InputSection.defaultProps = {
+  inputType: ''
+};
 
 export default InputSection;

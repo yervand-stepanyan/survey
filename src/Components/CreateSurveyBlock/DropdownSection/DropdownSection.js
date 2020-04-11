@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -7,7 +8,7 @@ import { useStyles } from './DropdownSection.style';
 
 const TITLE = 'List options';
 
-function DropdownSection() {
+function DropdownSection({ answers }) {
   const classes = useStyles();
 
   return (
@@ -15,9 +16,17 @@ function DropdownSection() {
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <OptionsContainer />
+      <OptionsContainer answers={answers} />
     </div>
   );
 }
+
+DropdownSection.propTypes = {
+  answers: PropTypes.array
+};
+
+DropdownSection.defaultProps = {
+  answers: []
+};
 
 export default DropdownSection;

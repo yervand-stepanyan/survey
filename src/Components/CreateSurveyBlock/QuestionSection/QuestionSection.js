@@ -13,10 +13,11 @@ function QuestionSection({ enableSave, isQuestionSet }) {
   const [activeId, setActiveId] = useState('');
   const [isAddNew, setIsAddNew] = useState(false);
   const [isCreator, setIsCreator] = useState(true);
-  const [questionValue] = useState('');
-  const [questionExists, setQuestionExists] = useState(false);
+  const [questionValue, setQuestionValue] = useState('');
+  const [existsQuestion, setExistsQuestion] = useState(false);
   const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
-  const { dispatchSurvey } = useContext(SurveyContext);
+  const { stateSurvey, dispatchSurvey } = useContext(SurveyContext);
+  const { questions } = stateSurvey;
 
   useEffect(() => {
     isQuestionSet(true);
@@ -36,9 +37,9 @@ function QuestionSection({ enableSave, isQuestionSet }) {
 
       setActiveId(id);
 
-      setQuestionExists(true);
+      setExistsQuestion(true);
 
-      setIsCreator(false);
+      setQuestionValue(questionFromCreator);
     }
   };
 
@@ -51,6 +52,8 @@ function QuestionSection({ enableSave, isQuestionSet }) {
       type: 'TOGGLE_EDIT',
       payload: { id: questionToEdit.id }
     });
+
+    dispatchSurvey({ type: 'TOGGLE_EDIT', payload: { id: questionToEdit.id } });
 
     setActiveId(questionToEdit.id);
   };
@@ -83,7 +86,13 @@ function QuestionSection({ enableSave, isQuestionSet }) {
   const handleSubmitQuestion = () => {
     dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
 
+    setIsCreator(false);
+
     setIsAddNew(true);
+
+    setQuestionValue('');
+
+    setExistsQuestion(false);
   };
 
   const handleAddAnswers = answers => {
@@ -97,6 +106,13 @@ function QuestionSection({ enableSave, isQuestionSet }) {
     dispatchQuestions({
       type: 'HAS_LAST_INPUT',
       payload: { id: activeId, hasLastInput: bool }
+    });
+  };
+
+  const handleAddRangeValues = range => {
+    dispatchQuestions({
+      type: 'ADD_RANGE_VALUES',
+      payload: { id: activeId, range }
     });
   };
 
@@ -119,26 +135,49 @@ function QuestionSection({ enableSave, isQuestionSet }) {
           handleAddAnswerType,
           handleAddAnswers,
           handleAddInputType,
+          handleAddRangeValues,
           handleHasLastInput,
           handleSubmitQuestion
         }}
       >
-        {stateQuestions.map(({ id, question, isQuestion }) => (
-          <QuestionSectionCreator
-            activeId={id}
-            addQuestion={handleAddQuestion}
-            isQuestion={isQuestion}
-            key={id}
-            onEdit={handleEditQuestion}
-            onRemove={handleRemoveQuestion}
-            question={question}
-          />
-        ))}
+        {questions && questions.length === stateQuestions.length
+          ? stateQuestions.map(
+              ({
+                id,
+                question,
+                isQuestion,
+                answerType,
+                inputType,
+                answers,
+                hasLastInput,
+                startValue,
+                endValue,
+                stepValue
+              }) => (
+                <QuestionSectionCreator
+                  activeId={id}
+                  addQuestion={handleAddQuestion}
+                  isQuestion={isQuestion}
+                  key={id}
+                  onEdit={handleEditQuestion}
+                  onRemove={handleRemoveQuestion}
+                  question={question}
+                  answerType={answerType}
+                  inputType={inputType}
+                  answers={answers}
+                  hasLastInput={hasLastInput}
+                  startValue={startValue}
+                  endValue={endValue}
+                  stepValue={stepValue}
+                />
+              )
+            )
+          : null}
         {isCreator ? (
           <QuestionSectionCreator
             activeId={activeId}
             addQuestion={handleAddQuestion}
-            isQuestion={questionExists}
+            isQuestion={existsQuestion}
             onEdit={handleEditQuestion}
             onRemove={handleRemoveQuestion}
             question={questionValue}

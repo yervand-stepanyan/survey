@@ -1,8 +1,9 @@
 const ADD_ANSWERS = 'ADD_ANSWERS';
 const ADD_ANSWER_TYPE = 'ADD_ANSWER_TYPE';
 const ADD_INPUT_TYPE = 'ADD_INPUT_TYPE';
-const ADD_TITLE = 'ADD_TITLE';
 const ADD_QUESTION = 'ADD_QUESTION';
+const ADD_RANGE_VALUES = 'ADD_RANGE_VALUES';
+const ADD_TITLE = 'ADD_TITLE';
 const EDIT_QUESTION = 'EDIT_QUESTION';
 const EDIT_TITLE = 'EDIT_TITLE';
 const HAS_LAST_INPUT = 'HAS_LAST_INPUT';
@@ -22,6 +23,18 @@ export function surveyReducer(state, action) {
         ...state,
         questions: state.questions.filter(
           question => question.id !== action.payload
+        )
+      };
+    case TOGGLE_EDIT:
+      return {
+        ...state,
+        questions: state.questions.map(question =>
+          question.id === action.payload.id
+            ? {
+                ...question,
+                isQuestion: false
+              }
+            : question
         )
       };
     default:
@@ -69,7 +82,10 @@ export function questionsReducer(state, action) {
               answerType: action.payload.type,
               inputType: undefined,
               answers: undefined,
-              hasLastInput: undefined
+              hasLastInput: undefined,
+              startValue: undefined,
+              endValue: undefined,
+              stepValue: undefined
             }
           : question
       );
@@ -97,6 +113,17 @@ export function questionsReducer(state, action) {
           ? {
               ...question,
               hasLastInput: action.payload.hasLastInput
+            }
+          : question
+      );
+    case ADD_RANGE_VALUES:
+      return state.map(question =>
+        question.id === action.payload.id
+          ? {
+              ...question,
+              startValue: action.payload.range.startValue,
+              endValue: action.payload.range.endValue,
+              stepValue: action.payload.range.stepValue
             }
           : question
       );

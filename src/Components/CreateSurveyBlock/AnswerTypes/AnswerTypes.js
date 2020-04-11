@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -8,7 +9,15 @@ import { useStyles } from './AnswerTypes.style';
 
 const TITLE = 'Answer type';
 
-function AnswerTypes() {
+function AnswerTypes({
+  answerType,
+  inputType,
+  answers,
+  hasLastInput,
+  startValue,
+  endValue,
+  stepValue
+}) {
   const classes = useStyles();
   const [type, setType] = useState('');
 
@@ -17,10 +26,39 @@ function AnswerTypes() {
       <div className={classes.answerTypesTitleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <AnswerOptions setType={setType} />
-      <AnswerSection type={type} />
+      <AnswerOptions setType={setType} answerType={answerType} />
+      <AnswerSection
+        type={type}
+        answerType={answerType}
+        inputType={inputType}
+        answers={answers}
+        hasLastInput={hasLastInput}
+        startValue={startValue}
+        endValue={endValue}
+        stepValue={stepValue}
+      />
     </div>
   );
 }
+
+AnswerTypes.propTypes = {
+  answerType: PropTypes.string,
+  inputType: PropTypes.string,
+  answers: PropTypes.array,
+  hasLastInput: PropTypes.bool,
+  startValue: PropTypes.string,
+  endValue: PropTypes.string,
+  stepValue: PropTypes.string
+};
+
+AnswerTypes.defaultProps = {
+  answerType: '',
+  inputType: '',
+  answers: [],
+  hasLastInput: false,
+  startValue: '',
+  endValue: '',
+  stepValue: ''
+};
 
 export default AnswerTypes;

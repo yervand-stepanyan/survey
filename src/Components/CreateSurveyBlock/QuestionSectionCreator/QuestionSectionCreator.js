@@ -12,7 +12,14 @@ function QuestionSectionCreator({
   isQuestion,
   onEdit,
   onRemove,
-  question
+  question,
+  answerType,
+  inputType,
+  answers,
+  hasLastInput,
+  startValue,
+  endValue,
+  stepValue
 }) {
   const classes = useStyles();
 
@@ -31,7 +38,17 @@ function QuestionSectionCreator({
         )}
       </div>
       <div className={classes.answerTypesWrapper}>
-        {question ? <AnswerTypes /> : null}
+        {question ? (
+          <AnswerTypes
+            answerType={answerType}
+            inputType={inputType}
+            answers={answers}
+            hasLastInput={hasLastInput}
+            startValue={startValue}
+            endValue={endValue}
+            stepValue={stepValue}
+          />
+        ) : null}
       </div>
     </div>
   );
@@ -43,7 +60,24 @@ QuestionSectionCreator.propTypes = {
   isQuestion: PropTypes.bool.isRequired,
   onEdit: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired
+  question: PropTypes.string.isRequired,
+  answerType: PropTypes.string,
+  inputType: PropTypes.string,
+  answers: PropTypes.array,
+  hasLastInput: PropTypes.bool,
+  startValue: PropTypes.string,
+  endValue: PropTypes.string,
+  stepValue: PropTypes.string
+};
+
+QuestionSectionCreator.defaultProps = {
+  answerType: '',
+  inputType: '',
+  answers: [],
+  hasLastInput: false,
+  startValue: '',
+  endValue: '',
+  stepValue: ''
 };
 
 export default QuestionSectionCreator;

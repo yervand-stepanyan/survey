@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -7,7 +8,7 @@ import { useStyles } from './RadiobuttonSection.style';
 
 const TITLE = 'Radiobutton answer options';
 
-function RadiobuttonSection() {
+function RadiobuttonSection({ answers, hasLastInput }) {
   const classes = useStyles();
 
   return (
@@ -15,9 +16,23 @@ function RadiobuttonSection() {
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <OptionsContainer type="addInput" />
+      <OptionsContainer
+        type="addInput"
+        answers={answers}
+        hasLastInput={hasLastInput}
+      />
     </div>
   );
 }
+
+RadiobuttonSection.propTypes = {
+  answers: PropTypes.array,
+  hasLastInput: PropTypes.bool
+};
+
+RadiobuttonSection.defaultProps = {
+  answers: [],
+  hasLastInput: false
+};
 
 export default RadiobuttonSection;

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -6,28 +7,45 @@ import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../Helpers/removeSpaces';
 import { useStyles } from './RangeSection.style';
+import SurveyContext from '../../../State/context';
 
 const BUTTON_LABEL = 'Submit & continue';
+const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 const END_VALUE_LABEL = 'End value';
 const START_VALUE_LABEL = 'Start value';
 const STEP_VALUE_LABEL = 'Step';
 const TITLE = 'Range values';
 
-function RangeSection() {
+function RangeSection({
+  startValue: startValueProps,
+  endValue: endValueProps,
+  stepValue: stepValueProps
+}) {
   const classes = useStyles();
-  const [startValue, setStartValue] = useState('');
-  const [endValue, setEndValue] = useState('');
-  const [stepValue, setStepValue] = useState('');
+  const [startValue, setStartValue] = useState(startValueProps || '');
+  const [endValue, setEndValue] = useState(endValueProps || '');
+  const [stepValue, setStepValue] = useState(stepValueProps || '');
+  const [isChanged, setIsChanged] = useState(false);
   const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isEndEmpty, setIsEndEmpty] = useState(false);
-  const [isStepEmpty, setIsStepEmpty] = useState(false);
   const [isEqual, setIsEqual] = useState(false);
+  const [isStepEmpty, setIsStepEmpty] = useState(false);
   const [isStep, setIsStep] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(
+    (!!startValueProps && !!endValueProps && !!stepValueProps) || false
+  );
+  const { handleAddRangeValues, handleSubmitQuestion } = useContext(
+    SurveyContext
+  );
 
   const checkStepCorrect = (start, end, step) => {
     const isCorrectStep = step < 1 || !(step <= Math.abs(start - end) / 2);
 
     setIsStep(isCorrectStep);
+
+    if (isSubmitted) setIsChanged(true);
+
+    setIsSubmitted(false);
   };
 
   const handleStartChange = event => {
@@ -70,7 +88,13 @@ function RangeSection() {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    handleAddRangeValues({ startValue, endValue, stepValue });
+
+    handleSubmitQuestion();
+
+    setIsSubmitted(true);
+  };
 
   return (
     <div className={classes.rangeSectionContainer}>
@@ -124,18 +148,35 @@ function RangeSection() {
           <Button
             className={classes.button}
             disabled={
-              !startValue || !endValue || !stepValue || isEqual || isStep
+              !startValue ||
+              !endValue ||
+              !stepValue ||
+              isEqual ||
+              isStep ||
+              isSubmitted
             }
             onClick={handleSubmit}
             size="large"
             variant="contained"
           >
-            {BUTTON_LABEL}
+            {isChanged ? BUTTON_ACCEPT_CHANGES_LABEL : BUTTON_LABEL}
           </Button>
         </div>
       </div>
     </div>
   );
 }
+
+RangeSection.propTypes = {
+  startValue: PropTypes.string,
+  endValue: PropTypes.string,
+  stepValue: PropTypes.string
+};
+
+RangeSection.defaultProps = {
+  startValue: '',
+  endValue: '',
+  stepValue: ''
+};
 
 export default RangeSection;
