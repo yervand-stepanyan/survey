@@ -53,7 +53,9 @@ function QuestionSection({ enableSave, isQuestionSet }) {
       payload: { id: questionToEdit.id }
     });
 
-    dispatchSurvey({ type: 'TOGGLE_EDIT', payload: { id: questionToEdit.id } });
+    // dispatchSurvey({ type: 'TOGGLE_EDIT', payload: { id: questionToEdit.id } });
+
+    setExistsQuestion(false);
 
     setActiveId(questionToEdit.id);
   };
@@ -142,18 +144,21 @@ function QuestionSection({ enableSave, isQuestionSet }) {
       >
         {questions && questions.length === stateQuestions.length
           ? stateQuestions.map(
-              ({
-                id,
-                question,
-                isQuestion,
-                answerType,
-                inputType,
-                answers,
-                hasLastInput,
-                startValue,
-                endValue,
-                stepValue
-              }) => (
+              (
+                {
+                  id,
+                  question,
+                  isQuestion,
+                  answerType,
+                  inputType,
+                  answers,
+                  hasLastInput,
+                  startValue,
+                  endValue,
+                  stepValue
+                },
+                index
+              ) => (
                 <QuestionSectionCreator
                   activeId={id}
                   addQuestion={handleAddQuestion}
@@ -169,6 +174,7 @@ function QuestionSection({ enableSave, isQuestionSet }) {
                   startValue={startValue}
                   endValue={endValue}
                   stepValue={stepValue}
+                  index={index}
                 />
               )
             )

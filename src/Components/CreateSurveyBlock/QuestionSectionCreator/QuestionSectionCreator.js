@@ -19,7 +19,8 @@ function QuestionSectionCreator({
   hasLastInput,
   startValue,
   endValue,
-  stepValue
+  stepValue,
+  index
 }) {
   const classes = useStyles();
 
@@ -32,6 +33,7 @@ function QuestionSectionCreator({
             onEdit={onEdit}
             onRemove={onRemove}
             question={question}
+            index={index}
           />
         ) : (
           <QuestionCreator addQuestion={addQuestion} question={question} />
@@ -67,7 +69,8 @@ QuestionSectionCreator.propTypes = {
   hasLastInput: PropTypes.bool,
   startValue: PropTypes.string,
   endValue: PropTypes.string,
-  stepValue: PropTypes.string
+  stepValue: PropTypes.string,
+  index: PropTypes.number
 };
 
 QuestionSectionCreator.defaultProps = {
@@ -77,7 +80,8 @@ QuestionSectionCreator.defaultProps = {
   hasLastInput: false,
   startValue: '',
   endValue: '',
-  stepValue: ''
+  stepValue: '',
+  index: 0
 };
 
 export default QuestionSectionCreator;

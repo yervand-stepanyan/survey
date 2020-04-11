@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import CreateIcon from '@material-ui/icons/Create';
@@ -9,15 +9,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-import SurveyContext from '../../../State/context';
 import { useStyles } from './Question.style';
 
 const QUESTION_LABEL = 'Question';
 
-function Question({ activeId, onEdit, onRemove, question }) {
+function Question({ activeId, onEdit, onRemove, question, index }) {
   const classes = useStyles();
-  const { stateQuestions } = useContext(SurveyContext);
-  const label = `${QUESTION_LABEL} ${stateQuestions.length}:`;
+  const label = `${QUESTION_LABEL} ${index + 1}:`;
 
   const handleEdit = () => onEdit(activeId);
 
@@ -59,7 +57,12 @@ Question.propTypes = {
   activeId: PropTypes.string.isRequired,
   onEdit: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired
+  question: PropTypes.string.isRequired,
+  index: PropTypes.number
+};
+
+Question.defaultProps = {
+  index: 0
 };
 
 export default Question;
