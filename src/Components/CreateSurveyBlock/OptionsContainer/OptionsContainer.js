@@ -241,7 +241,7 @@ OptionsContainer.propTypes = {
 };
 
 OptionsContainer.defaultProps = {
-  answers: [],
+  answers: undefined,
   hasLastInput: false,
   type: ''
 };

@@ -54,7 +54,7 @@ AnswerTypes.propTypes = {
 AnswerTypes.defaultProps = {
   answerType: '',
   inputType: '',
-  answers: [],
+  answers: undefined,
   hasLastInput: false,
   startValue: '',
   endValue: '',

@@ -31,7 +31,7 @@ RadiobuttonSection.propTypes = {
 };
 
 RadiobuttonSection.defaultProps = {
-  answers: [],
+  answers: undefined,
   hasLastInput: false
 };
 

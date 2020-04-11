@@ -66,7 +66,7 @@ AnswerSection.propTypes = {
 AnswerSection.defaultProps = {
   answerType: '',
   inputType: '',
-  answers: [],
+  answers: undefined,
   hasLastInput: false,
   startValue: '',
   endValue: '',

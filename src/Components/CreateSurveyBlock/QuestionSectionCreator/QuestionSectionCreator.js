@@ -76,7 +76,7 @@ QuestionSectionCreator.propTypes = {
 QuestionSectionCreator.defaultProps = {
   answerType: '',
   inputType: '',
-  answers: [],
+  answers: undefined,
   hasLastInput: false,
   startValue: '',
   endValue: '',
