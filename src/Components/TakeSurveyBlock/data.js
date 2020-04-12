@@ -42,5 +42,29 @@ export const data = [
     startValue: '0',
     endValue: '100',
     stepValue: '10'
+  },
+  {
+    id: '687484115',
+    question: 'question N3',
+    answerType: 'checkbox',
+    inputType: undefined,
+    answers: [
+      {
+        id: '6874641ef647',
+        option: 'yes'
+      },
+      {
+        id: '68746876ef15477',
+        option: 'nono'
+      },
+      {
+        id: '71245fe67',
+        option: 'ohowefwef'
+      }
+    ],
+    hasLastInput: false,
+    startValue: '0',
+    endValue: '100',
+    stepValue: '10'
   }
 ];

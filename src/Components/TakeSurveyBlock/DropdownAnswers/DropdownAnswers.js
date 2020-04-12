@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useStyles } from './RadiobuttonAnswers.style';
+import { useStyles } from './DropdownAnswers.style';
 
-function RadiobuttonAnswers({ answers, questionId }) {
+function DropdownAnswers({ answers, questionId }) {
   const classes = useStyles();
 
   return (
@@ -22,9 +22,9 @@ function RadiobuttonAnswers({ answers, questionId }) {
   );
 }
 
-RadiobuttonAnswers.propTypes = {
+DropdownAnswers.propTypes = {
   answers: PropTypes.array.isRequired,
   questionId: PropTypes.string.isRequired
 };
 
-export default RadiobuttonAnswers;
+export default DropdownAnswers;

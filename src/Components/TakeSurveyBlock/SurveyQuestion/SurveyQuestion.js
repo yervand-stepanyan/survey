@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Card, CardHeader, CardContent } from '@material-ui/core';
 // components
 import RadiobuttonAnswers from '../RadiobuttonAnswers';
+import CheckboxAnswers from '../CheckboxAnswers';
 
 import { useStyles } from './SurveyQuestion.style';
 
@@ -23,6 +24,14 @@ function SurveyQuestion({
       case 'radiobutton':
         return (
           <RadiobuttonAnswers
+            answers={answers}
+            answerType={answerType}
+            questionId={id}
+          />
+        );
+      case 'checkbox':
+        return (
+          <CheckboxAnswers
             answers={answers}
             answerType={answerType}
             questionId={id}
