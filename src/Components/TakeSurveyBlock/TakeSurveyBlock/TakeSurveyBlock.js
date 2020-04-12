@@ -1,5 +1,5 @@
 import React from 'react';
-import SurveyQuestion from '../SurveyQuestion';
+import SurveyQuestions from '../SurveyQuestions';
 
 import { data } from '../data';
 
@@ -11,7 +11,7 @@ function TakeSurveyBlock() {
   return (
     <div className={classes.container}>
       {' '}
-      <SurveyQuestion questions={data} />
+      <SurveyQuestions questions={data} />
     </div>
   );
 }

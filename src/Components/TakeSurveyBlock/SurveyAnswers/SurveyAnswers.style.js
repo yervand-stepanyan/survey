@@ -4,9 +4,6 @@ export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    padding: `${theme.customSpacing.small}`
-  },
-  root: {
-    maxWidth: 345
+    flexDirection: 'column'
   }
 }));
