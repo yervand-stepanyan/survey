@@ -11,7 +11,7 @@ export const data = [
       },
       {
         id: '687465477',
-        option: 'yes'
+        option: 'no'
       }
     ],
     hasLastInput: true,

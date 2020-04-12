@@ -5,13 +5,20 @@ import SurveyAnswer from '../SurveyAnswer';
 
 import { useStyles } from './RadiobuttonAnswers.style';
 
-function RadiobuttonAnswers({ answers, answerType }) {
+function RadiobuttonAnswers({ answers, questionId }) {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       {answers.map(({ id, option }) => {
-        return <SurveyAnswer key={id} id={id} option={option} />;
+        return (
+          <div key={id}>
+            <label htmlFor={id}>
+              <input type="radio" id={id} name={questionId} />
+              <span>{option}</span>
+            </label>
+          </div>
+        );
       })}
     </div>
   );
@@ -19,7 +26,7 @@ function RadiobuttonAnswers({ answers, answerType }) {
 
 RadiobuttonAnswers.propTypes = {
   answers: PropTypes.array.isRequired,
-  answerType: PropTypes.string.isRequired
+  questionId: PropTypes.string.isRequired
 };
 
 export default RadiobuttonAnswers;

@@ -8,6 +8,7 @@ import RadiobuttonAnswers from '../RadiobuttonAnswers';
 import { useStyles } from './SurveyQuestion.style';
 
 function SurveyQuestion({
+  id,
   question,
   answerType,
   inputType,
@@ -20,7 +21,13 @@ function SurveyQuestion({
   const pickAnswersType = answerType => {
     switch (answerType) {
       case 'radiobutton':
-        return <RadiobuttonAnswers answers={answers} answerType={answerType} />;
+        return (
+          <RadiobuttonAnswers
+            answers={answers}
+            answerType={answerType}
+            questionId={id}
+          />
+        );
       default:
         return 'no Answer type coosen';
     }
@@ -40,6 +47,7 @@ function SurveyQuestion({
 }
 
 SurveyQuestion.propTypes = {
+  id: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   answerType: PropTypes.string.isRequired,
   inputType: PropTypes.string.isRequired,
