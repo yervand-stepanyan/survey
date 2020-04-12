@@ -145,8 +145,8 @@ function QuestionSection({ isQuestionSet }) {
           disableSave
         }}
       >
-        {questions && questions.length === stateQuestions.length
-          ? stateQuestions.map(
+        {questions
+          ? questions.map(
               (
                 {
                   id,
@@ -190,6 +190,7 @@ function QuestionSection({ isQuestionSet }) {
             onEdit={handleEditQuestion}
             onRemove={handleRemoveQuestion}
             question={questionValue}
+            index={questions ? questions.length : 0}
           />
         ) : null}
         {isAddNew ? (
