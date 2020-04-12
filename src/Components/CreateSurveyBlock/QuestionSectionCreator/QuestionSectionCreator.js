@@ -70,7 +70,7 @@ QuestionSectionCreator.propTypes = {
   startValue: PropTypes.string,
   endValue: PropTypes.string,
   stepValue: PropTypes.string,
-  index: PropTypes.number
+  index: PropTypes.number.isRequired
 };
 
 QuestionSectionCreator.defaultProps = {
@@ -80,8 +80,7 @@ QuestionSectionCreator.defaultProps = {
   hasLastInput: false,
   startValue: '',
   endValue: '',
-  stepValue: '',
-  index: 0
+  stepValue: ''
 };
 
 export default QuestionSectionCreator;

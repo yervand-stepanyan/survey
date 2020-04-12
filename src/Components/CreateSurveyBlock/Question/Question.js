@@ -58,11 +58,7 @@ Question.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
   question: PropTypes.string.isRequired,
-  index: PropTypes.number
-};
-
-Question.defaultProps = {
-  index: 0
+  index: PropTypes.number.isRequired
 };
 
 export default Question;
