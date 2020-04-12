@@ -17,9 +17,9 @@ function CreateSurveyBlock() {
   const classes = useStyles();
   const [activeId, setActiveId] = useState('');
   const [isTitle, setIsTitle] = useState(false);
-  const [titleValue, setTitleValue] = useState('');
   const [isQuestion, setIsQuestion] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [titleValue, setTitleValue] = useState('');
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
   const { questions } = stateSurvey;
 
@@ -82,10 +82,7 @@ function CreateSurveyBlock() {
             )}
           </div>
           {isQuestion || isTitle ? (
-            <QuestionSection
-              // disableSave={disableSave}
-              isQuestionSet={isQuestionSet}
-            />
+            <QuestionSection isQuestionSet={isQuestionSet} />
           ) : null}
           {questions && questions.length ? (
             <SaveSurvey disabled={isDisabled} />
