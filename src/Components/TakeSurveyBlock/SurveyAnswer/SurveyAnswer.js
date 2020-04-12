@@ -8,7 +8,6 @@ function SurveyAnswer({ id, option }) {
 
   return (
     <div className={classes.container}>
-      <div>{id}</div>
       <div>{option}</div>
     </div>
   );

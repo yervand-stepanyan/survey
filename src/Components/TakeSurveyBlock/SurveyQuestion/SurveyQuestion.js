@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // material ui
-import { Card } from '@material-ui/core';
+import { Card, CardHeader, CardContent } from '@material-ui/core';
 // components
-import SurveyAnswers from '../SurveyAnswers';
+import RadiobuttonAnswers from '../RadiobuttonAnswers';
 
 import { useStyles } from './SurveyQuestion.style';
 
@@ -17,21 +17,29 @@ function SurveyQuestion({
   endValue,
   stepValue
 }) {
+  const pickAnswersType = answerType => {
+    switch (answerType) {
+      case 'radiobutton':
+        return <RadiobuttonAnswers answers={answers} answerType={answerType} />;
+      default:
+        return 'no Answer type coosen';
+    }
+  };
+
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
       <Card>
-        <div>{question}</div>
+        <CardHeader title={question} subheader="something" />
 
-        <SurveyAnswers answers={answers} answerType={answerType} />
+        <CardContent>{pickAnswersType(answerType)}</CardContent>
       </Card>
     </div>
   );
 }
 
 SurveyQuestion.propTypes = {
-  id: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   answerType: PropTypes.string.isRequired,
   inputType: PropTypes.string.isRequired,

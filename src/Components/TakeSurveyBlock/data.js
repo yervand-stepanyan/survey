@@ -6,11 +6,11 @@ export const data = [
     inputType: undefined,
     answers: [
       {
-        id: 6874647,
+        id: '6874647',
         option: 'yes'
       },
       {
-        id: 687465477,
+        id: '687465477',
         option: 'yes'
       }
     ],
@@ -26,15 +26,15 @@ export const data = [
     inputType: undefined,
     answers: [
       {
-        id: 6874641647,
+        id: '6874641647',
         option: 'yes'
       },
       {
-        id: 6874687615477,
+        id: '6874687615477',
         option: 'no'
       },
       {
-        id: 7124567,
+        id: '7124567',
         option: 'oho'
       }
     ],
