@@ -25,7 +25,7 @@ function InputSection({ inputType }) {
   const [image, setImage] = useState(inputType || '');
   const [isChanged, setIsChanged] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(!!inputType || false);
-  const { handleAddInputType, handleSubmitQuestion } = useContext(
+  const { handleAddInputType, handleSubmitQuestion, disableSave } = useContext(
     SurveyContext
   );
 
@@ -38,6 +38,8 @@ function InputSection({ inputType }) {
 
     handleAddInputType(img);
 
+    disableSave(true);
+
     if (isSubmitted) setIsChanged(true);
   };
 
@@ -47,6 +49,8 @@ function InputSection({ inputType }) {
 
   const handleSubmit = () => {
     handleSubmitQuestion();
+
+    disableSave(false);
 
     setIsSubmitted(true);
   };

@@ -8,7 +8,7 @@ import QuestionSectionCreator from '../QuestionSectionCreator';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './QuestionSection.style';
 
-function QuestionSection({ enableSave, isQuestionSet }) {
+function QuestionSection({ isQuestionSet }) {
   const classes = useStyles();
   const [activeId, setActiveId] = useState('');
   const [isAddNew, setIsAddNew] = useState(false);
@@ -16,8 +16,12 @@ function QuestionSection({ enableSave, isQuestionSet }) {
   const [questionValue, setQuestionValue] = useState('');
   const [existsQuestion, setExistsQuestion] = useState(false);
   const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
-  const { stateSurvey, dispatchSurvey } = useContext(SurveyContext);
+  const { stateSurvey, dispatchSurvey, disableSave } = useContext(
+    SurveyContext
+  );
   const { questions } = stateSurvey;
+
+  // console.log(stateQuestions);
 
   useEffect(() => {
     isQuestionSet(true);
@@ -83,20 +87,6 @@ function QuestionSection({ enableSave, isQuestionSet }) {
         type
       }
     });
-
-    enableSave(true);
-  };
-
-  const handleSubmitQuestion = () => {
-    dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
-
-    setIsCreator(false);
-
-    setIsAddNew(true);
-
-    setQuestionValue('');
-
-    setExistsQuestion(false);
   };
 
   const handleAddAnswers = answers => {
@@ -120,14 +110,24 @@ function QuestionSection({ enableSave, isQuestionSet }) {
     });
   };
 
+  const handleSubmitQuestion = () => {
+    dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
+
+    setIsCreator(false);
+
+    setIsAddNew(true);
+
+    setQuestionValue('');
+
+    setExistsQuestion(false);
+  };
+
   const handleShowAddNew = bool => {
     setIsAddNew(bool);
 
     setIsCreator(true);
 
     setActiveId('');
-
-    enableSave(false);
   };
 
   return (
@@ -141,7 +141,8 @@ function QuestionSection({ enableSave, isQuestionSet }) {
           handleAddInputType,
           handleAddRangeValues,
           handleHasLastInput,
-          handleSubmitQuestion
+          handleSubmitQuestion,
+          disableSave
         }}
       >
         {questions && questions.length === stateQuestions.length
@@ -200,7 +201,6 @@ function QuestionSection({ enableSave, isQuestionSet }) {
 }
 
 QuestionSection.propTypes = {
-  enableSave: PropTypes.func.isRequired,
   isQuestionSet: PropTypes.func.isRequired
 };
 

@@ -19,7 +19,7 @@ function CreateSurveyBlock() {
   const [isTitle, setIsTitle] = useState(false);
   const [titleValue, setTitleValue] = useState('');
   const [isQuestion, setIsQuestion] = useState(false);
-  const [isSave, setIsSave] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
   const { questions } = stateSurvey;
 
@@ -52,8 +52,8 @@ function CreateSurveyBlock() {
     setIsQuestion(bool);
   };
 
-  const enableSave = bool => {
-    setIsSave(bool);
+  const disableSave = bool => {
+    setIsDisabled(bool);
   };
 
   return (
@@ -62,7 +62,9 @@ function CreateSurveyBlock() {
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <div className={classes.createSurveyWrapper}>
-        <SurveyContext.Provider value={{ stateSurvey, dispatchSurvey }}>
+        <SurveyContext.Provider
+          value={{ stateSurvey, dispatchSurvey, disableSave }}
+        >
           <div className={classes.titleWrapper}>
             {titleValue && isTitle ? (
               <SurveyTitle
@@ -81,12 +83,12 @@ function CreateSurveyBlock() {
           </div>
           {isQuestion || isTitle ? (
             <QuestionSection
-              enableSave={enableSave}
+              // disableSave={disableSave}
               isQuestionSet={isQuestionSet}
             />
           ) : null}
           {questions && questions.length ? (
-            <SaveSurvey disabled={!isSave} />
+            <SaveSurvey disabled={isDisabled} />
           ) : null}
         </SurveyContext.Provider>
       </div>

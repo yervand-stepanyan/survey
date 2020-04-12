@@ -36,7 +36,8 @@ function OptionsContainer({ type, answers, hasLastInput }) {
   const {
     handleAddAnswers,
     handleHasLastInput,
-    handleSubmitQuestion
+    handleSubmitQuestion,
+    disableSave
   } = useContext(SurveyContext);
 
   const handleInputChange = event => {
@@ -82,6 +83,8 @@ function OptionsContainer({ type, answers, hasLastInput }) {
         }
 
         if (isSubmitted) setIsChanged(true);
+
+        disableSave(true);
       } else setIsEmpty(true);
 
       if (checked) {
@@ -126,10 +129,14 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 
       setIsSubmitted(false);
     }
+
+    disableSave(true);
   };
 
   const handleCheckboxChange = event => {
     setChecked(event.target.checked);
+
+    setOption('');
 
     if (event.target.checked) {
       inputEl.current.focus();
@@ -137,6 +144,9 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       setIsTooltip(true);
 
       handleHasLastInput(true);
+
+      if (isSubmitted) disableSave(true);
+      // else disableSave(false);
     } else {
       setIsTooltip(false);
 
@@ -145,6 +155,15 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       setCustomOptionId('');
 
       handleHasLastInput(false);
+
+      // if (isSubmitted) {
+      //   disableSave(false);
+      //
+      //   setIsChanged(true);
+      //
+      //   setIsSubmitted(false);
+      // }
+      // else disableSave(false);
     }
   };
 
@@ -152,6 +171,8 @@ function OptionsContainer({ type, answers, hasLastInput }) {
     handleAddAnswers(options);
 
     handleSubmitQuestion();
+
+    disableSave(false);
 
     setIsSubmitted(true);
   };
