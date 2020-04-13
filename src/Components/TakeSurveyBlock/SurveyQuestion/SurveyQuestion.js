@@ -5,6 +5,9 @@ import { Card, CardHeader, CardContent } from '@material-ui/core';
 // components
 import RadiobuttonAnswers from '../RadiobuttonAnswers';
 import CheckboxAnswers from '../CheckboxAnswers';
+import DropdownAnswers from '../DropdownAnswers';
+import InputAnswers from '../InputAnswers';
+import RangeAnswers from '../RangeAnswers';
 
 import { useStyles } from './SurveyQuestion.style';
 
@@ -37,8 +40,36 @@ function SurveyQuestion({
             questionId={id}
           />
         );
+      case 'dropdown':
+        return (
+          <DropdownAnswers
+            answers={answers}
+            answerType={answerType}
+            questionId={id}
+          />
+        );
+      case 'range':
+        return (
+          <RangeAnswers
+            answers={answers}
+            answerType={answerType}
+            questionId={id}
+            startValue={Number(startValue)}
+            endValue={Number(endValue)}
+            stepValue={Number(stepValue)}
+          />
+        );
+      case 'input':
+        return (
+          <InputAnswers
+            answers={answers}
+            answerType={answerType}
+            questionId={id}
+            inputType={inputType}
+          />
+        );
       default:
-        return 'no Answer type coosen';
+        return 'No Answer type chosen';
     }
   };
 
@@ -46,8 +77,8 @@ function SurveyQuestion({
 
   return (
     <div className={classes.container}>
-      <Card>
-        <CardHeader title={question} subheader="something" />
+      <Card className={classes.card}>
+        <CardHeader title={question} />
 
         <CardContent>{pickAnswersType(answerType)}</CardContent>
       </Card>

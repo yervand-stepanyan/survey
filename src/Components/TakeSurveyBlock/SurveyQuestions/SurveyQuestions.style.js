@@ -4,11 +4,7 @@ export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    flexDirection: 'column'
-    // borderRadius: `${theme.borders.borderRadius.base}`,
-    // boxShadow: `${theme.boxShadow.base}`,
-    // boxSizing: 'border-box',
-    // height: '100%',
-    // padding: `${theme.customSpacing.small}`
+    flexDirection: 'column',
+    minWidth: '300px'
   }
 }));

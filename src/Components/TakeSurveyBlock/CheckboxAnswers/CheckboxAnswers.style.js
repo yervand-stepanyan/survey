@@ -8,7 +8,7 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   colorGreen: {
-    '& span': {
+    '& .Mui-checked': {
       color: green[500]
     }
   }

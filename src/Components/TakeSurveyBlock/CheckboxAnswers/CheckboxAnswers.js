@@ -20,20 +20,18 @@ function CheckboxAnswers({ answers, questionId }) {
     return filteredAnswers;
   };
 
-  console.log(filteredAnswers);
-
   return (
     <div className={classes.container}>
       {filteredAnswers.map(({ id, option, complited }) => {
         return (
           <div key={id}>
             <FormControlLabel
+              className={classes.colorGreen}
               control={
                 <Checkbox
                   checked={complited}
                   onChange={() => handleChange(id)}
                   name={questionId}
-                  className={classes.colorGreen}
                 />
               }
               label={option}

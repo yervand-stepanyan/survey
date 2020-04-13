@@ -4,9 +4,11 @@ export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    padding: `${theme.customSpacing.small}`
+    width: '100%',
+    marginBottom: `${theme.customSpacing.base}`
   },
-  root: {
-    maxWidth: 345
+  card: {
+    width: '100%',
+    padding: `${theme.customSpacing.small}`
   }
 }));
