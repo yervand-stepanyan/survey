@@ -8,18 +8,30 @@ import { useStyles } from './CheckboxAnswers.style';
 function CheckboxAnswers({ answers, questionId }) {
   const classes = useStyles();
 
-  const [checked, setChecked] = useState(false);
+  let filteredAnswers = answers;
+
+  const handleChange = id => {
+    filteredAnswers = answers.map(item => {
+      if (item.id === id) {
+        item.complited = true;
+      }
+      return item;
+    });
+    return filteredAnswers;
+  };
+
+  console.log(filteredAnswers);
 
   return (
     <div className={classes.container}>
-      {answers.map(({ id, option }) => {
+      {filteredAnswers.map(({ id, option, complited }) => {
         return (
           <div key={id}>
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={checked}
-                  onChange={() => setChecked(!checked)}
+                  checked={complited}
+                  onChange={() => handleChange(id)}
                   name={questionId}
                   className={classes.colorGreen}
                 />
