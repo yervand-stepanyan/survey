@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // material ui
 import 'date-fns';
@@ -13,13 +13,18 @@ import { useStyles } from './InputAnswers.style';
 
 function InputAnswers({ questionId, inputType }) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = React.useState(
+  const [selectedDate, setSelectedDate] = useState(
     new Date('2020-04-13T21:11:54')
   );
+  const [textValue, setTextValue] = useState('');
 
   const handleDateChange = date => {
     setSelectedDate(date);
   };
+  const handleTextChange = e => {
+    setTextValue(e.target.value);
+  };
+
   if (inputType === 'date') {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -51,7 +56,16 @@ function InputAnswers({ questionId, inputType }) {
     );
   }
   if (inputType === 'text') {
-    return <div>text</div>;
+    return (
+      <TextField
+        required
+        id="outlined-required"
+        label="Required"
+        variant="outlined"
+        value={textValue}
+        onChange={handleTextChange}
+      />
+    );
   }
   return (
     <div className={classes.container}>

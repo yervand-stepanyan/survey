@@ -13,16 +13,17 @@ function Surveys({ surveys }) {
   const [tempSurveys, setTempsurveys] = useState(surveys);
 
   const handleChangeSurveyStatus = id => {
-    let tempSurveys = surveys.map(item => {
+    const newTempSurveys = surveys.map(item => {
       if (item.surveyId === id) {
         item.open = !item.open;
       }
       return item;
     });
 
-    setTempsurveys(tempSurveys);
+    setTempsurveys(newTempSurveys);
   };
-  console.log(tempSurveys);
+
+  const isSomeSurveyOpen = tempSurveys.some(survey => survey.open === true);
 
   return (
     <div>
@@ -49,6 +50,7 @@ function Surveys({ surveys }) {
                     className={classes.button}
                     endIcon={<AssignmentIcon />}
                     onClick={() => handleChangeSurveyStatus(survey.surveyId)}
+                    disabled={isSomeSurveyOpen}
                   >
                     Take
                   </Button>

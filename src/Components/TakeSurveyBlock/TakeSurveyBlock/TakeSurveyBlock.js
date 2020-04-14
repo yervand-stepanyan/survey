@@ -1,7 +1,7 @@
 import React from 'react';
-import SurveyQuestions from '../SurveyQuestions';
+import Surveys from '../Surveys';
 
-import { data } from '../data';
+import { newData } from '../newData';
 
 import { useStyles } from './TakeSurveyBlock.style';
 
@@ -11,7 +11,7 @@ function TakeSurveyBlock() {
   return (
     <div className={classes.container}>
       {' '}
-      <SurveyQuestions questions={data} />
+      <Surveys surveys={newData} />
     </div>
   );
 }

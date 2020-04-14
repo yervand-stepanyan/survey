@@ -13,8 +13,6 @@ function RadiobuttonAnswers({ answers, questionId }) {
     setValue(event.target.value);
   };
 
-  console.log(value, questionId);
-
   return (
     <div className={classes.container}>
       <RadioGroup
@@ -26,6 +24,7 @@ function RadiobuttonAnswers({ answers, questionId }) {
         {answers.map(({ id, option }) => {
           return (
             <FormControlLabel
+              key={id}
               className={classes.formControlLabel}
               value={id}
               control={<Radio />}

@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// material ui
+import { Button } from '@material-ui/core';
+// components
 import SurveyQuestion from '../SurveyQuestion';
-
 import { useStyles } from './SurveyQuestions.style';
 
 function SurveyQuestions({ questions }) {
   const classes = useStyles();
+
+  const SUBMIT_TEXT = 'submit';
 
   return (
     <div className={classes.container}>
@@ -37,6 +41,9 @@ function SurveyQuestions({ questions }) {
           );
         }
       )}
+      <Button variant="contained" color="primary">
+        {SUBMIT_TEXT}
+      </Button>
     </div>
   );
 }
