@@ -8,12 +8,12 @@ import Contacts from '../Contacts';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
+import SingleSurveyAnswers from '../../Components/SingleSurveyAnswers';
 import ROUTES from '../../Routes/Routes';
 import SurveyContext from '../../State/context';
 import { surveyReducer } from '../../State/reducer';
 import TakeSurvey from '../TakeSurvey';
 import { useStyles } from './Main.style';
-import SingleSurveyAnswers from '../../Components/SingleSurveyAnswers/SingleSurveyAnswers';
 
 function Main() {
   const classes = useStyles();
