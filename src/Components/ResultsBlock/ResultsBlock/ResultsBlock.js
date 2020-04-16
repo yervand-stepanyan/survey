@@ -9,6 +9,15 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
+
 import { useStyles } from './ResultsBlock.style';
 
 const SURVEYS = [
@@ -150,37 +159,40 @@ function ResultsBlock() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
-      <Grid container spacing={3}>
+    <Route>
+      <div className={classes.container}>
+        <Grid container spacing={3}>
 
-        { SURVEYS.map((survey, index) => (
-          <Grid item lg={2} md={3} sm={4} xs={12}>
-            <Card className={classes.root} key={survey.id} sm={12}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Survey
-                    {` ${index + 1} `}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    {survey.title}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions className={classes.cardButton}>
-                <Button size="small" color="primary">
-                  <DateRangeIcon />
-                  {survey.date}
-                </Button>
-                <Button size="small" color="primary">
-                  See answers
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </div>
+          { SURVEYS.map((survey, index) => (
+            <Grid item lg={2} md={3} sm={4} xs={12}>
+              <Card className={classes.root} key={survey.id} sm={12}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Survey
+                      {` ${index + 1} `}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {survey.title}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions className={classes.cardButton}>
+                  <Button size="small" color="primary">
+                    <DateRangeIcon />
+                    {survey.date}
+                  </Button>
+                  <Button size="small" color="primary">
+                    <Link to="/results/:survey.id">See answers</Link>
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+            
+          ))}
+        </Grid>
+      </div>
+    </Route>
   )
 }
 
