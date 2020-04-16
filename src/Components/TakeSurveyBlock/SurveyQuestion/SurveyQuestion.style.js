@@ -5,7 +5,10 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-    marginBottom: `${theme.customSpacing.base}`
+    marginBottom: `${theme.customSpacing.base}`,
+    '& .MuiCard-root': {
+      backgroundColor: '#e6e6e6'
+    }
   },
   card: {
     width: '100%',

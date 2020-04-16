@@ -17,18 +17,27 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: `${theme.customSpacing.xLarge}`
   },
   surveyCard: {
-    width: '100px',
+    width: '150px',
     marginLeft: '10px',
     '& .MuiCardHeader-root': {
       padding: '5px'
+    },
+    '& .MuiCardMedia-root': {
+      backgroundSize: 'contain'
     }
   },
   avatar: {
     backgroundColor: green[400]
   },
-  cardActions: {
+  CardActionArea: {
     margin: '0',
     padding: '0'
+  },
+  media: {
+    height: '30px'
+  },
+  surveyNameWrapper: {
+    paddingBottom: '8px'
   },
   button: {
     width: '100%'

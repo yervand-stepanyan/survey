@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // material ui
-import { Card, CardHeader, CardActions, Button } from '@material-ui/core';
+import {
+  Card,
+  CardActions,
+  Button,
+  CardMedia,
+  CardContent,
+  Typography
+} from '@material-ui/core';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import SurveyQuestions from '../SurveyQuestions';
+import logo from '../../../assets/images/logo/logo.png';
 
 import { useStyles } from './Surveys.style';
 
@@ -31,8 +39,18 @@ function Surveys({ surveys }) {
         {tempSurveys.map(survey => {
           return (
             <Card className={classes.surveyCard}>
-              <CardHeader title={survey.surveyName} />
-              <CardActions disableSpacing className={classes.cardActions}>
+              <CardMedia
+                className={classes.media}
+                image={logo}
+                title="Contemplative Reptile"
+              />
+              <CardContent className={classes.surveyNameWrapper}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {survey.surveyName}
+                </Typography>
+              </CardContent>
+
+              <CardActions>
                 {survey.open ? (
                   <Button
                     variant="contained"
