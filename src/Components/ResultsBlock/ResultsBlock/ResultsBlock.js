@@ -166,13 +166,13 @@ function ResultsBlock() {
           { SURVEYS.map((survey, index) => (
             <Grid item lg={2} md={3} sm={4} xs={12}>
               <Card className={classes.root} key={survey.id} sm={12}>
-                <CardActionArea>
+                <CardActionArea className={classes.cardHeader}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                       Survey
                       {` ${index + 1} `}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.cardTitle}>
                       {survey.title}
                     </Typography>
                   </CardContent>
@@ -183,7 +183,7 @@ function ResultsBlock() {
                     {survey.date}
                   </Button>
                   <Button size="small" color="primary">
-                    <Link to="/results/:survey.id">See answers</Link>
+                    <Link to={`/results/${survey.id}`} className={classes.seeAnswersButton}>See answers</Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -191,7 +191,7 @@ function ResultsBlock() {
             
           ))}
         </Grid>
-      </div>
+      </div>        
     </Route>
   )
 }

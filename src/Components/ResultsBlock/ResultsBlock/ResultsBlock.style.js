@@ -22,6 +22,21 @@ export const useStyles = makeStyles(theme => ({
   cardButton: {
     position: 'absolute',
     bottom:0,
-    borderTop: `0.5px solid ${theme.color.mainColorDarkBlue}`
+    borderTop: `0.5px solid ${theme.color.mainColorDarkBlue}`,
+  },
+  seeAnswersButton: {
+    textDecoration: 'none',
+    color: '#3f51b5'
+  },
+  cardHeader: {
+    '&:hover': {
+      background: theme.color.mainColorGreen,
+      // color: 'white'
+    },
+  },
+  cardTitle: {
+    '&:hover': {
+      // color: 'white'
+    }
   }
 }));
