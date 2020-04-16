@@ -4,14 +4,24 @@ export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: `${theme.borders.borderRadius.base}`,
-    boxShadow: `${theme.boxShadow.base}`,
+    width: '100%', 
+    // borderRadius: `${theme.borders.borderRadius.base}`,
+    // boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    height: '100%',
+    // height: '100%',
     padding: `${theme.customSpacing.small}`
   },
   root: {
     maxWidth: 345,
-    height: 'auto',
+    position: 'relative',
+    // minWidth: 300,
+    height:"auto",
+    minHeight:230,
+    alignItems: "flex-end"
+  },
+  cardButton: {
+    position: 'absolute',
+    bottom:0,
+    borderTop: `0.5px solid ${theme.color.mainColorDarkBlue}`
   }
 }));
