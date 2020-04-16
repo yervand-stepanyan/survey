@@ -26,8 +26,11 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const handleChange = event => {
     setTitle(event.target.value);
 
-    if (removeSpaces(event.target.value)) setIsEmpty(true);
-    else setIsEmpty(false);
+    if (removeSpaces(event.target.value)) {
+      setIsEmpty(true);
+    } else {
+      setIsEmpty(false);
+    }
   };
 
   const handleSubmit = () => {
@@ -64,7 +67,7 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!title}
+          disabled={!title || !isEmpty}
           onClick={handleSubmit}
           size="large"
           variant="contained"

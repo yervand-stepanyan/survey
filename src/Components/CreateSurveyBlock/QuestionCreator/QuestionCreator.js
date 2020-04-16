@@ -19,9 +19,9 @@ function QuestionCreator({
   question: questionProps
 }) {
   const classes = useStyles();
-  const inputEl = useRef(null);
   const [isEmpty, setIsEmpty] = useState(true);
   const [question, setQuestion] = useState(questionProps);
+  const inputEl = useRef(null);
 
   useEffect(() => {
     if (question) inputEl.current.focus();
@@ -30,8 +30,11 @@ function QuestionCreator({
   const handleChange = event => {
     setQuestion(event.target.value);
 
-    if (removeSpaces(event.target.value)) setIsEmpty(true);
-    else setIsEmpty(false);
+    if (removeSpaces(event.target.value)) {
+      setIsEmpty(true);
+    } else {
+      setIsEmpty(false);
+    }
   };
 
   const handleSubmit = () => {
@@ -72,7 +75,7 @@ function QuestionCreator({
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!question}
+          disabled={!question || !isEmpty}
           onClick={handleSubmit}
           size="large"
           variant="contained"
