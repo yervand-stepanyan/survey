@@ -22,7 +22,7 @@ export const useStyles = makeStyles(theme => ({
   cardButton: {
     position: 'absolute',
     bottom:0,
-    borderTop: `0.5px solid ${theme.color.mainColorDarkBlue}`,
+    borderTop: `0.5px solid lightgrey`,
   },
   seeAnswersButton: {
     textDecoration: 'none',

@@ -183,7 +183,7 @@ function ResultsBlock() {
                     {survey.date}
                   </Button>
                   <Button size="small" color="primary">
-                    <Link to={`/results/${survey.id}`} className={classes.seeAnswersButton}>See answers</Link>
+                    <Link to={`results/${survey.id}`} className={classes.seeAnswersButton}>See answers</Link>
                   </Button>
                 </CardActions>
               </Card>

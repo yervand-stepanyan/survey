@@ -13,6 +13,7 @@ import SurveyContext from '../../State/context';
 import { surveyReducer } from '../../State/reducer';
 import TakeSurvey from '../TakeSurvey';
 import { useStyles } from './Main.style';
+import SingleSurveyAnswers from '../../Components/SingleSurveyAnswers/SingleSurveyAnswers';
 
 function Main() {
   const classes = useStyles();
@@ -33,8 +34,11 @@ function Main() {
             <Route path={ROUTES.survey}>
               <TakeSurvey />
             </Route>
-            <Route path={ROUTES.results}>
+            <Route exact path={ROUTES.results}>
               <Results />
+            </Route>
+            <Route exact path={`${ROUTES.results}/:surveyId`}>
+              <SingleSurveyAnswers />
             </Route>
             <Route path={ROUTES.about}>
               <About />
