@@ -9,5 +9,9 @@ export const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     height: '100%',
     padding: `${theme.customSpacing.small}`
+  },
+  root: {
+    maxWidth: 345,
+    height: 'auto',
   }
 }));
