@@ -10,9 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
-import { useStyles } from './OptionsContainer.style';
+import removeSpaces from '../../../helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './OptionsContainer.style';
 
 const BUTTON_LABEL = 'Submit & continue';
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
@@ -28,16 +28,16 @@ function OptionsContainer({ type, answers, hasLastInput }) {
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(!!answers || false);
-  const [isTyped, setIsTyped] = useState(false);
   const [isTooltip, setIsTooltip] = useState(false);
+  const [isTyped, setIsTyped] = useState(false);
   const [option, setOption] = useState('');
   const [options, setOptions] = useState(answers || []);
   const inputEl = useRef(null);
   const {
     handleAddAnswers,
     handleHasLastInput,
-    handleSubmitQuestion,
-    disableSave
+    handleSubmitQuestion
+    // disableSave
   } = useContext(SurveyContext);
 
   const handleInputChange = event => {
@@ -82,10 +82,14 @@ function OptionsContainer({ type, answers, hasLastInput }) {
           setIsTooltip(false);
         }
 
-        if (isSubmitted) setIsChanged(true);
+        if (isSubmitted) {
+          setIsChanged(true);
+        }
 
-        disableSave(true);
-      } else setIsEmpty(true);
+        // disableSave(true);
+      } else {
+        setIsEmpty(true);
+      }
 
       if (checked) {
         setOptions(prevState => {
@@ -130,7 +134,7 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       setIsSubmitted(false);
     }
 
-    disableSave(true);
+    // disableSave(true);
   };
 
   const handleCheckboxChange = event => {
@@ -145,7 +149,9 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 
       handleHasLastInput(true);
 
-      if (isSubmitted) disableSave(true);
+      if (isSubmitted) {
+        // disableSave(true);
+      }
       // else disableSave(false);
     } else {
       setIsTooltip(false);
@@ -154,7 +160,10 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 
       setCustomOptionId('');
 
-      handleHasLastInput(false);
+      handleHasLastInput(
+        false,
+        options.filter(opt => opt.id !== customOptionId)
+      );
 
       // if (isSubmitted) {
       //   disableSave(false);
@@ -170,9 +179,9 @@ function OptionsContainer({ type, answers, hasLastInput }) {
   const handleSubmit = () => {
     handleAddAnswers(options);
 
-    handleSubmitQuestion();
+    handleSubmitQuestion({ type: 'answers', answers: options });
 
-    disableSave(false);
+    // disableSave(false);
 
     setIsSubmitted(true);
   };
@@ -190,9 +199,9 @@ function OptionsContainer({ type, answers, hasLastInput }) {
             <TextField
               autoFocus
               error={isEmpty}
+              fullWidth
               id="outlined-basic"
               inputRef={inputEl}
-              fullWidth
               label={INPUT_LABEL}
               onChange={e => handleInputChange(e)}
               onKeyDown={handleSubmitOnEnter}

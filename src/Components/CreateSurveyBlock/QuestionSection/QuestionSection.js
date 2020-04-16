@@ -1,131 +1,264 @@
-import React, { useReducer, useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
 import AddNewQuestion from '../AddNewQuestion';
-import { questionsReducer } from '../../../State/reducer';
 import QuestionSectionCreator from '../QuestionSectionCreator';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './QuestionSection.style';
 
-function QuestionSection({ isQuestionSet }) {
+function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   const classes = useStyles();
   const [activeId, setActiveId] = useState('');
-  const [isAddNew, setIsAddNew] = useState(false);
-  const [isCreator, setIsCreator] = useState(true);
+  const [isQuestionEdit, setIsQuestionEdit] = useState(true);
+  const [isQuestionCreator, setIsQuestionCreator] = useState(true);
+  const [questionObject, setQuestionObject] = useState({});
   const [questionValue, setQuestionValue] = useState('');
-  const [existsQuestion, setExistsQuestion] = useState(false);
-  const [stateQuestions, dispatchQuestions] = useReducer(questionsReducer, []);
-  const { stateSurvey, dispatchSurvey, disableSave } = useContext(
-    SurveyContext
-  );
-  const { questions } = stateSurvey;
-
-  // console.log(stateQuestions);
+  const [showAddNew, setShowAddNew] = useState(false);
+  const { disableSave } = useContext(SurveyContext);
 
   useEffect(() => {
-    isQuestionSet(true);
-  }, [isQuestionSet]);
+    handleIsQuestion();
+  }, []);
 
-  const handleAddQuestion = questionFromCreator => {
-    if (activeId) {
-      dispatchQuestions({
-        type: 'EDIT_QUESTION',
-        payload: { id: activeId, question: questionFromCreator }
+  const handleAddQuestion = (id, questionVal) => {
+    if (id) {
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === activeId
+            ? { ...question, question: questionVal, isQuestion: false }
+            : question
+        )
+      );
+
+      disableSave(false);
+    } else {
+      const questionId = activeId || uuid();
+
+      setQuestionObject({
+        ...questionObject,
+        id: questionId,
+        question: questionVal,
+        isQuestion: false
       });
 
-      // dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
-    } else {
-      const id = activeId || uuid();
-      const questionData = { id, question: questionFromCreator };
+      setActiveId(questionId);
 
-      dispatchQuestions({ type: 'ADD_QUESTION', payload: questionData });
+      setQuestionValue(questionVal);
 
-      setActiveId(id);
+      setIsQuestionEdit(false);
 
-      setExistsQuestion(true);
-
-      setQuestionValue(questionFromCreator);
+      disableSave(true);
     }
   };
 
   const handleEditQuestion = id => {
-    const questionToEdit = stateQuestions.find(
-      singleQuestion => singleQuestion.id === id
-    );
+    if (id) {
+      const questionToEdit = questions.find(
+        singleQuestion => singleQuestion.id === id
+      );
 
-    dispatchQuestions({
-      type: 'TOGGLE_EDIT',
-      payload: { id: questionToEdit.id }
-    });
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === questionToEdit.id
+            ? { ...question, isQuestion: true }
+            : question
+        )
+      );
 
-    // dispatchSurvey({ type: 'TOGGLE_EDIT', payload: { id: questionToEdit.id } });
+      setActiveId(questionToEdit.id);
+    }
 
-    setExistsQuestion(false);
+    setIsQuestionEdit(true);
 
-    setActiveId(questionToEdit.id);
+    disableSave(true);
   };
 
   const handleRemoveQuestion = id => {
-    dispatchQuestions({ type: 'REMOVE_QUESTION', payload: id });
+    if (id) {
+      handleSetQuestions(questions.filter(question => question.id !== id));
+    } else {
+      setQuestionValue('');
 
-    dispatchSurvey({ type: 'REMOVE_QUESTION', payload: id });
+      setActiveId('');
+
+      setIsQuestionEdit(true);
+
+      setIsQuestionCreator(false);
+
+      setShowAddNew(true);
+    }
+
+    disableSave(false);
   };
 
   const handleAddAnswerType = type => {
-    dispatchQuestions({
-      type: 'ADD_ANSWER_TYPE',
-      payload: { id: activeId, type }
+    handleSetQuestions(
+      questions.map(question =>
+        question.id === activeId
+          ? {
+              ...question,
+              answerType: type,
+              inputType: undefined,
+              answers: undefined,
+              hasLastInput: undefined,
+              startValue: undefined,
+              endValue: undefined,
+              stepValue: undefined
+            }
+          : question
+      )
+    );
+
+    setQuestionObject({
+      ...questionObject,
+      answerType: type,
+      inputType: undefined,
+      answers: undefined,
+      hasLastInput: undefined,
+      startValue: undefined,
+      endValue: undefined,
+      stepValue: undefined
     });
   };
 
-  const handleAddInputType = type => {
-    dispatchQuestions({
-      type: 'ADD_INPUT_TYPE',
-      payload: {
-        id: activeId,
-        type
-      }
-    });
+  const handleAddInputType = (id, type) => {
+    // handleSetQuestions(
+    //   questions.map(question =>
+    //     question.id === activeId
+    //       ? {
+    //           ...question,
+    //           inputType: type
+    //         }
+    //       : question
+    //   )
+    // );
+    if (id) {
+      const currentQuestion = questions.find(question => question.id === id);
+
+      setQuestionObject({ ...currentQuestion, inputType: type });
+    } else {
+      setQuestionObject({ ...questionObject, inputType: type });
+    }
   };
 
   const handleAddAnswers = answers => {
-    dispatchQuestions({
-      type: 'ADD_ANSWERS',
-      payload: { id: activeId, answers }
-    });
+    handleSetQuestions(
+      questions.map(question =>
+        question.id === activeId
+          ? {
+              ...question,
+              answers
+            }
+          : question
+      )
+    );
+
+    setQuestionObject({ ...questionObject, answers });
   };
 
-  const handleHasLastInput = bool => {
-    dispatchQuestions({
-      type: 'HAS_LAST_INPUT',
-      payload: { id: activeId, hasLastInput: bool }
-    });
+  const handleHasLastInput = (bool, answers) => {
+    if (answers) {
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === activeId
+            ? {
+                ...question,
+                answers,
+                hasLastInput: bool
+              }
+            : question
+        )
+      );
+
+      setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
+    } else {
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === activeId
+            ? {
+                ...question,
+                hasLastInput: bool
+              }
+            : question
+        )
+      );
+
+      setQuestionObject({ ...questionObject, hasLastInput: bool });
+    }
   };
 
   const handleAddRangeValues = range => {
-    dispatchQuestions({
-      type: 'ADD_RANGE_VALUES',
-      payload: { id: activeId, range }
+    handleSetQuestions(
+      questions.map(question =>
+        question.id === activeId
+          ? {
+              ...question,
+              startValue: range.startValue,
+              endValue: range.endValue,
+              stepValue: range.stepValue
+            }
+          : question
+      )
+    );
+
+    setQuestionObject({
+      ...questionObject,
+      startValue: range.startValue,
+      endValue: range.endValue,
+      stepValue: range.stepValue
     });
   };
 
-  const handleSubmitQuestion = () => {
-    dispatchSurvey({ type: 'ADD_QUESTION', payload: stateQuestions });
+  const handleSubmitQuestion = params => {
+    if (params && params.type === 'answers') {
+      handleSetQuestions([
+        ...questions,
+        { ...questionObject, answers: params.answers }
+      ]);
+    } else if (params && params.type === 'range') {
+      handleSetQuestions([
+        ...questions,
+        {
+          ...questionObject,
+          startValue: params.range.startValue,
+          endValue: params.range.endValue,
+          stepValue: params.range.stepValue
+        }
+      ]);
+    } else {
+      handleSetQuestions(
+        questions &&
+          questions.some(question => question.id === questionObject.id)
+          ? questions.map(question =>
+              question.id === questionObject.id
+                ? {
+                    ...question,
+                    inputType: questionObject.inputType
+                  }
+                : question
+            )
+          : [...questions, questionObject]
+      );
+    }
 
-    setIsCreator(false);
+    setIsQuestionCreator(false);
 
-    setIsAddNew(true);
+    setShowAddNew(true);
 
     setQuestionValue('');
 
-    setExistsQuestion(false);
+    setIsQuestionEdit(true);
+
+    setQuestionObject({});
   };
 
-  const handleShowAddNew = bool => {
-    setIsAddNew(bool);
+  const handleShowAddNew = () => {
+    disableSave(true);
 
-    setIsCreator(true);
+    setShowAddNew(false);
+
+    setIsQuestionCreator(true);
 
     setActiveId('');
   };
@@ -134,66 +267,63 @@ function QuestionSection({ isQuestionSet }) {
     <div className={classes.questionSectionContainer}>
       <SurveyContext.Provider
         value={{
-          stateQuestions,
-          dispatchQuestions,
-          handleAddAnswerType,
+          disableSave,
           handleAddAnswers,
+          handleAddAnswerType,
           handleAddInputType,
           handleAddRangeValues,
           handleHasLastInput,
-          handleSubmitQuestion,
-          disableSave
+          handleSubmitQuestion
         }}
       >
-        {questions
+        {questions.length
           ? questions.map(
               (
                 {
-                  id,
-                  question,
-                  isQuestion,
-                  answerType,
-                  inputType,
                   answers,
-                  hasLastInput,
-                  startValue,
+                  answerType,
                   endValue,
+                  hasLastInput,
+                  id,
+                  inputType,
+                  isQuestion,
+                  question,
+                  startValue,
                   stepValue
                 },
                 index
               ) => (
                 <QuestionSectionCreator
                   activeId={id}
-                  addQuestion={handleAddQuestion}
-                  isQuestion={isQuestion}
-                  key={id}
-                  onEdit={handleEditQuestion}
-                  onRemove={handleRemoveQuestion}
-                  question={question}
-                  answerType={answerType}
-                  inputType={inputType}
                   answers={answers}
-                  hasLastInput={hasLastInput}
-                  startValue={startValue}
+                  answerType={answerType}
                   endValue={endValue}
-                  stepValue={stepValue}
+                  handleAddQuestion={handleAddQuestion}
+                  handleEditQuestion={handleEditQuestion}
+                  handleRemoveQuestion={handleRemoveQuestion}
+                  hasLastInput={hasLastInput}
                   index={index}
+                  inputType={inputType}
+                  isQuestionEdit={isQuestion}
+                  key={id}
+                  question={question}
+                  startValue={startValue}
+                  stepValue={stepValue}
                 />
               )
             )
           : null}
-        {isCreator ? (
+        {isQuestionCreator ? (
           <QuestionSectionCreator
-            activeId={activeId}
-            addQuestion={handleAddQuestion}
-            isQuestion={existsQuestion}
-            onEdit={handleEditQuestion}
-            onRemove={handleRemoveQuestion}
-            question={questionValue}
+            handleAddQuestion={handleAddQuestion}
+            handleEditQuestion={handleEditQuestion}
+            handleRemoveQuestion={handleRemoveQuestion}
             index={questions ? questions.length : 0}
+            isQuestionEdit={isQuestionEdit}
+            question={questionValue}
           />
         ) : null}
-        {isAddNew ? (
+        {showAddNew ? (
           <AddNewQuestion handleShowAddNew={handleShowAddNew} />
         ) : null}
       </SurveyContext.Provider>
@@ -202,7 +332,9 @@ function QuestionSection({ isQuestionSet }) {
 }
 
 QuestionSection.propTypes = {
-  isQuestionSet: PropTypes.func.isRequired
+  handleIsQuestion: PropTypes.func.isRequired,
+  handleSetQuestions: PropTypes.func.isRequired,
+  questions: PropTypes.array.isRequired
 };
 
 export default QuestionSection;

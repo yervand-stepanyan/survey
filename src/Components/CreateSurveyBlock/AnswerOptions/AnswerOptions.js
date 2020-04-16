@@ -38,7 +38,7 @@ const IMAGES = [
   { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
-function AnswerOptions({ setType, answerType }) {
+function AnswerOptions({ answerType, setType }) {
   const classes = useStyles();
   const [image, setImage] = useState(answerType || '');
   const { handleAddAnswerType } = useContext(SurveyContext);
@@ -61,9 +61,9 @@ function AnswerOptions({ setType, answerType }) {
     <div className={classes.answerOptionsContainer}>
       {IMAGES.map(img => (
         <ImageContainer
+          classes={classes}
           handleClick={handleClick}
           handleEnterKey={handleEnterKey}
-          classes={classes}
           imageClicked={image}
           img={img}
           key={img.name}

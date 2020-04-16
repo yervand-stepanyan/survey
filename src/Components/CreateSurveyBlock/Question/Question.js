@@ -13,13 +13,23 @@ import { useStyles } from './Question.style';
 
 const QUESTION_LABEL = 'Question';
 
-function Question({ activeId, onEdit, onRemove, question, index }) {
+function Question({
+  activeId,
+  index,
+  handleEditQuestion,
+  handleRemoveQuestion,
+  question
+}) {
   const classes = useStyles();
   const label = `${QUESTION_LABEL} ${index + 1}:`;
 
-  const handleEdit = () => onEdit(activeId);
+  const handleEdit = () => {
+    handleEditQuestion(activeId);
+  };
 
-  const handleRemove = () => onRemove(activeId);
+  const handleRemove = () => {
+    handleRemoveQuestion(activeId);
+  };
 
   return (
     <div className={classes.questionContainer}>
@@ -35,14 +45,14 @@ function Question({ activeId, onEdit, onRemove, question, index }) {
         <div className={classes.icons}>
           <div className={classes.editIcon}>
             <Tooltip title="Edit" TransitionComponent={Zoom} arrow>
-              <IconButton onClick={handleEdit} color="primary">
+              <IconButton color="primary" onClick={handleEdit}>
                 <CreateIcon />
               </IconButton>
             </Tooltip>
           </div>
           <div className={classes.removeIcon}>
-            <Tooltip title="Remove" TransitionComponent={Zoom} arrow>
-              <Fab onClick={handleRemove} color="secondary" size="medium">
+            <Tooltip arrow title="Remove" TransitionComponent={Zoom}>
+              <Fab color="secondary" onClick={handleRemove} size="medium">
                 <DeleteIcon />
               </Fab>
             </Tooltip>
@@ -55,10 +65,14 @@ function Question({ activeId, onEdit, onRemove, question, index }) {
 
 Question.propTypes = {
   activeId: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired
+  handleEditQuestion: PropTypes.func.isRequired,
+  handleRemoveQuestion: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  question: PropTypes.string.isRequired
+};
+
+Question.defaultProps = {
+  // activeId: ''
 };
 
 export default Question;

@@ -15,7 +15,7 @@ function AddNewQuestion({ handleShowAddNew }) {
   const enabled = false;
 
   const handleClick = () => {
-    handleShowAddNew(false);
+    handleShowAddNew();
   };
 
   const handleEnterKey = () => {

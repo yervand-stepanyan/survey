@@ -1,12 +1,12 @@
-import React, { useReducer, useState } from 'react';
-import uuid from 'react-uuid';
-
+import React, { useState } from 'react';
+// import uuid from 'react-uuid';
+// useReducer,
 import Typography from '@material-ui/core/Typography';
 
 import QuestionSection from '../QuestionSection';
-import SurveyContext from '../../../State/context';
-import { surveyReducer } from '../../../State/reducer';
 import SaveSurvey from '../SaveSurvey';
+import SurveyContext from '../../../State/context';
+// import { surveyReducer } from '../../../State/reducer';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
 import { useStyles } from './CreateSurveyBlock.style';
@@ -15,45 +15,66 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
-  const [activeId, setActiveId] = useState('');
-  const [isTitle, setIsTitle] = useState(false);
+  // const [activeId, setActiveId] = useState('');
+  // const [isTitle, setIsTitle] = useState(false);
+  // const [isQuestion, setIsQuestion] = useState(false);
+  // const [isDisabled, setIsDisabled] = useState(true);
+  // const [titleValue, setTitleValue] = useState('');
+  // const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
+  // const { questions } = stateSurvey;
+
+  const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isQuestion, setIsQuestion] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [titleValue, setTitleValue] = useState('');
-  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
-  const { questions } = stateSurvey;
+  const [isTitleEdit, setIsTitleEdit] = useState(true);
+  const [questions, setQuestions] = useState([]);
+  // const [surveys, setSurvey] = useState([]);
+  const [title, setTitle] = useState('');
 
-  const handleAddSurveyTitle = title => {
-    if (activeId) {
-      dispatchSurvey({ type: 'EDIT_TITLE', payload: title });
+  const handleAddTitle = titleValue => {
+    setTitle(titleValue);
 
-      setIsTitle(true);
+    setIsTitleEdit(false);
 
-      setTitleValue(title);
-    } else {
-      const id = activeId || uuid();
-      const surveyData = { id, title };
-
-      dispatchSurvey({ type: 'ADD_TITLE', payload: surveyData });
-
-      setActiveId(id);
-
-      setIsTitle(true);
-
-      setTitleValue(title);
-    }
+    setIsSaveDisabled(false);
   };
 
   const handleEditTitle = () => {
-    setIsTitle(false);
+    setIsTitleEdit(true);
+
+    setIsSaveDisabled(true);
   };
 
-  const isQuestionSet = bool => {
-    setIsQuestion(bool);
+  const handleIsQuestion = () => {
+    setIsQuestion(true);
   };
+
+  const handleSetQuestions = questionsArray => {
+    setQuestions(questionsArray);
+  };
+
+  // const handleAddSurveyTitle = title => {
+  //   if (activeId) {
+  //     dispatchSurvey({ type: 'EDIT_TITLE', payload: title });
+  //
+  //     setIsTitle(true);
+  //
+  //     setTitleValue(title);
+  //   } else {
+  //     const id = activeId || uuid();
+  //     const surveyData = { id, title };
+  //
+  //     dispatchSurvey({ type: 'ADD_TITLE', payload: surveyData });
+  //
+  //     setActiveId(id);
+  //
+  //     setIsTitle(true);
+  //
+  //     setTitleValue(title);
+  //   }
+  // };
 
   const disableSave = bool => {
-    setIsDisabled(bool);
+    setIsSaveDisabled(bool);
   };
 
   return (
@@ -62,30 +83,26 @@ function CreateSurveyBlock() {
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <div className={classes.createSurveyWrapper}>
-        <SurveyContext.Provider
-          value={{ stateSurvey, dispatchSurvey, disableSave }}
-        >
+        <SurveyContext.Provider value={{ disableSave }}>
           <div className={classes.titleWrapper}>
-            {titleValue && isTitle ? (
-              <SurveyTitle
-                title={titleValue}
-                setIsTitle={setIsTitle}
-                onEdit={handleEditTitle}
+            {isTitleEdit ? (
+              <SurveyTitleCreator
+                handleAddTitle={handleAddTitle}
+                title={title}
               />
             ) : (
-              <SurveyTitleCreator
-                title={titleValue}
-                setTitle={setTitleValue}
-                setIsTitle={setIsTitle}
-                addTitle={handleAddSurveyTitle}
-              />
+              <SurveyTitle handleEditTitle={handleEditTitle} title={title} />
             )}
           </div>
-          {isQuestion || isTitle ? (
-            <QuestionSection isQuestionSet={isQuestionSet} />
+          {isQuestion || !isTitleEdit ? (
+            <QuestionSection
+              handleIsQuestion={handleIsQuestion}
+              handleSetQuestions={handleSetQuestions}
+              questions={questions}
+            />
           ) : null}
           {questions && questions.length ? (
-            <SaveSurvey disabled={isDisabled} />
+            <SaveSurvey disabled={isSaveDisabled} />
           ) : null}
         </SurveyContext.Provider>
       </div>

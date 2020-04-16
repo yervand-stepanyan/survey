@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
+import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './QuestionCreator.style';
 
 const BUTTON_LABEL = 'Submit';
@@ -13,11 +13,15 @@ const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
 
-function QuestionCreator({ addQuestion, question: questionProps }) {
+function QuestionCreator({
+  activeId,
+  handleAddQuestion,
+  question: questionProps
+}) {
   const classes = useStyles();
-  const [question, setQuestion] = useState(questionProps);
-  const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [question, setQuestion] = useState(questionProps);
 
   useEffect(() => {
     if (question) inputEl.current.focus();
@@ -33,8 +37,11 @@ function QuestionCreator({ addQuestion, question: questionProps }) {
   const handleSubmit = () => {
     const filteredQuestion = removeSpaces(question);
 
-    if (filteredQuestion) addQuestion(filteredQuestion);
-    else setIsEmpty(false);
+    if (filteredQuestion) {
+      handleAddQuestion(activeId, filteredQuestion);
+    } else {
+      setIsEmpty(false);
+    }
   };
 
   const handleSubmitOnEnter = event => {
@@ -50,13 +57,13 @@ function QuestionCreator({ addQuestion, question: questionProps }) {
         <div className={classes.textFieldSection}>
           <TextField
             autoFocus
-            id="outlined-basic"
-            fullWidth
-            label={isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
             error={!isEmpty}
+            fullWidth
+            id="outlined-basic"
+            inputRef={inputEl}
+            label={isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
             onChange={e => handleChange(e)}
             onKeyDown={handleSubmitOnEnter}
-            inputRef={inputEl}
             variant="outlined"
             value={question}
           />
@@ -78,8 +85,13 @@ function QuestionCreator({ addQuestion, question: questionProps }) {
 }
 
 QuestionCreator.propTypes = {
-  addQuestion: PropTypes.func.isRequired,
+  activeId: PropTypes.string.isRequired,
+  handleAddQuestion: PropTypes.func.isRequired,
   question: PropTypes.string.isRequired
+};
+
+QuestionCreator.defaultProps = {
+  // activeId: ''
 };
 
 export default QuestionCreator;

@@ -9,21 +9,22 @@ import RangeSection from '../RangeSection';
 import { useStyles } from './AnswerSection.style';
 
 function AnswerSection({
-  type,
-  answerType,
-  inputType,
+  activeId,
   answers,
-  hasLastInput,
-  startValue,
+  answerType,
   endValue,
-  stepValue
+  hasLastInput,
+  inputType,
+  startValue,
+  stepValue,
+  type
 }) {
   const classes = useStyles();
 
   const showType = typeToShow => {
     switch (typeToShow) {
       case 'input':
-        return <InputSection inputType={inputType} />;
+        return <InputSection activeId={activeId} inputType={inputType} />;
       case 'radiobutton':
         return (
           <RadiobuttonSection answers={answers} hasLastInput={hasLastInput} />
@@ -53,6 +54,7 @@ function AnswerSection({
 }
 
 AnswerSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answerType: PropTypes.string,
   inputType: PropTypes.string,
   answers: PropTypes.array,

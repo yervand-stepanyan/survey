@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
+import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './RangeSection.style';
 import SurveyContext from '../../../State/context';
 
@@ -89,9 +89,10 @@ function RangeSection({
   };
 
   const handleSubmit = () => {
-    handleAddRangeValues({ startValue, endValue, stepValue });
+    const range = { startValue, endValue, stepValue };
+    handleAddRangeValues(range);
 
-    handleSubmitQuestion();
+    handleSubmitQuestion({ type: 'range', range });
 
     setIsSubmitted(true);
   };
@@ -168,14 +169,14 @@ function RangeSection({
 }
 
 RangeSection.propTypes = {
-  startValue: PropTypes.string,
   endValue: PropTypes.string,
+  startValue: PropTypes.string,
   stepValue: PropTypes.string
 };
 
 RangeSection.defaultProps = {
-  startValue: '',
   endValue: '',
+  startValue: '',
   stepValue: ''
 };
 

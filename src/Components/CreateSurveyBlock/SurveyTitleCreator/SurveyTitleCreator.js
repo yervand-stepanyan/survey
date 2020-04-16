@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
+import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './SurveyTitleCreator.style';
 
 const BUTTON_LABEL = 'Submit';
@@ -13,10 +13,10 @@ const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
 const TITLE_PLACEHOLDER = '* Title';
 const TITLE_TEXT = 'Survey title:';
 
-function SurveyTitleCreator({ addTitle, title: titleProps }) {
+function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const classes = useStyles();
-  const [title, setTitle] = useState(titleProps);
   const [isEmpty, setIsEmpty] = useState(true);
+  const [title, setTitle] = useState(titleProps);
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function SurveyTitleCreator({ addTitle, title: titleProps }) {
   const handleSubmit = () => {
     const filteredTitle = removeSpaces(title);
 
-    if (filteredTitle) addTitle(filteredTitle);
+    if (filteredTitle) handleAddTitle(filteredTitle);
     else setIsEmpty(false);
   };
 
@@ -49,13 +49,13 @@ function SurveyTitleCreator({ addTitle, title: titleProps }) {
         </div>
         <div className={classes.textFieldSection}>
           <TextField
-            id="outlined-basic"
-            fullWidth
-            label={isEmpty ? TITLE_PLACEHOLDER : TITLE_ERROR_PLACEHOLDER}
             error={!isEmpty}
+            fullWidth
+            id="outlined-basic"
+            inputRef={inputEl}
+            label={isEmpty ? TITLE_PLACEHOLDER : TITLE_ERROR_PLACEHOLDER}
             onChange={e => handleChange(e)}
             onKeyDown={handleSubmitOnEnter}
-            inputRef={inputEl}
             variant="outlined"
             value={title}
           />
@@ -77,7 +77,7 @@ function SurveyTitleCreator({ addTitle, title: titleProps }) {
 }
 
 SurveyTitleCreator.propTypes = {
-  addTitle: PropTypes.func.isRequired,
+  handleAddTitle: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired
 };
 

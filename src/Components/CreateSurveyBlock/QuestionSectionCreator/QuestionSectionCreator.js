@@ -8,46 +8,51 @@ import { useStyles } from './QuestionSectionCreator.style';
 
 function QuestionSectionCreator({
   activeId,
-  addQuestion,
-  isQuestion,
-  onEdit,
-  onRemove,
-  question,
-  answerType,
-  inputType,
   answers,
-  hasLastInput,
-  startValue,
+  answerType,
   endValue,
-  stepValue,
-  index
+  handleAddQuestion,
+  handleEditQuestion,
+  handleRemoveQuestion,
+  hasLastInput,
+  index,
+  inputType,
+  isQuestionEdit,
+  question,
+  startValue,
+  stepValue
 }) {
   const classes = useStyles();
 
   return (
     <div className={classes.questionSectionCreatorContainer}>
       <div className={classes.questionSection}>
-        {isQuestion ? (
-          <Question
+        {isQuestionEdit ? (
+          <QuestionCreator
             activeId={activeId}
-            onEdit={onEdit}
-            onRemove={onRemove}
+            handleAddQuestion={handleAddQuestion}
             question={question}
-            index={index}
           />
         ) : (
-          <QuestionCreator addQuestion={addQuestion} question={question} />
+          <Question
+            activeId={activeId}
+            handleEditQuestion={handleEditQuestion}
+            handleRemoveQuestion={handleRemoveQuestion}
+            index={index}
+            question={question}
+          />
         )}
       </div>
       <div className={classes.answerTypesWrapper}>
         {question ? (
           <AnswerTypes
-            answerType={answerType}
-            inputType={inputType}
+            activeId={activeId}
             answers={answers}
-            hasLastInput={hasLastInput}
-            startValue={startValue}
+            answerType={answerType}
             endValue={endValue}
+            hasLastInput={hasLastInput}
+            inputType={inputType}
+            startValue={startValue}
             stepValue={stepValue}
           />
         ) : null}
@@ -57,29 +62,30 @@ function QuestionSectionCreator({
 }
 
 QuestionSectionCreator.propTypes = {
-  activeId: PropTypes.string.isRequired,
-  addQuestion: PropTypes.func.isRequired,
-  isQuestion: PropTypes.bool.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired,
-  answerType: PropTypes.string,
-  inputType: PropTypes.string,
+  activeId: PropTypes.string,
   answers: PropTypes.array,
-  hasLastInput: PropTypes.bool,
-  startValue: PropTypes.string,
+  answerType: PropTypes.string,
   endValue: PropTypes.string,
-  stepValue: PropTypes.string,
-  index: PropTypes.number.isRequired
+  handleAddQuestion: PropTypes.func.isRequired,
+  handleEditQuestion: PropTypes.func.isRequired,
+  handleRemoveQuestion: PropTypes.func.isRequired,
+  hasLastInput: PropTypes.bool,
+  index: PropTypes.number.isRequired,
+  inputType: PropTypes.string,
+  isQuestionEdit: PropTypes.bool.isRequired,
+  question: PropTypes.string.isRequired,
+  startValue: PropTypes.string,
+  stepValue: PropTypes.string
 };
 
 QuestionSectionCreator.defaultProps = {
-  answerType: '',
-  inputType: '',
+  activeId: '',
   answers: undefined,
-  hasLastInput: false,
-  startValue: '',
+  answerType: '',
   endValue: '',
+  hasLastInput: false,
+  inputType: '',
+  startValue: '',
   stepValue: ''
 };
 
