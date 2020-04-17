@@ -147,56 +147,29 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   };
 
   const handleHasLastInput = (id, bool, answers) => {
-    // console.log(id);
-    // console.log(bool);
-    // console.log(answers);
     if (id) {
       // console.log('if id');
+
       const currentQuestion = questions.find(question => question.id === id);
 
       if (answers) {
-        // console.log('if answers');
+        // console.log('answers if');
+
         setQuestionObject({ ...currentQuestion, answers, hasLastInput: bool });
       } else {
-        // console.log('else');
+        // console.log('answers else');
+
         setQuestionObject({ ...currentQuestion, hasLastInput: bool });
       }
-    } else if (answers) {
-      setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
     } else {
-      setQuestionObject({ ...questionObject, hasLastInput: bool });
+      // console.log('else');
+
+      if (answers) {
+        setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
+      } else {
+        setQuestionObject({ ...questionObject, hasLastInput: bool });
+      }
     }
-
-    // if (answers) {
-
-    //   handleSetQuestions(
-    //     questions.map(question =>
-    //       question.id === activeId
-    //         ? {
-    //             ...question,
-    //             answers,
-    //             hasLastInput: bool
-    //           }
-    //         : question
-    //     )
-    //   );
-
-    //   setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
-    // } else {
-
-    //   handleSetQuestions(
-    //     questions.map(question =>
-    //       question.id === activeId
-    //         ? {
-    //             ...question,
-    //             hasLastInput: bool
-    //           }
-    //         : question
-    //     )
-    //   );
-
-    //   setQuestionObject({ ...questionObject, hasLastInput: bool });
-    // }
   };
 
   const handleAddRangeValues = range => {
@@ -223,18 +196,6 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
 
   const handleSubmitQuestion = params => {
     if (params && params.type === 'answers') {
-      // handleSetQuestions([
-      //   ...questions,
-      //   { ...questionObject, answers: params.answers }
-      // ]);
-
-      // console.log(
-      //   questions &&
-      //     questions.some(question => question.id === questionObject.id)
-      // );
-      // console.log(questionObject);
-      // console.log(params.answers);
-
       handleSetQuestions(
         questions &&
           questions.some(question => question.id === questionObject.id)

@@ -96,7 +96,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
           setIsTooltip(false);
         }
 
-        if (isSubmitted) {
+        if (activeId && isSubmitted) {
           setIsChanged(true);
         }
 
@@ -120,8 +120,6 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
       }
 
       setIsSubmitted(false);
-
-      // handleHasLastInput(activeId, checked);
     }
   };
 
@@ -206,7 +204,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
           }
 
           setIsTyped(false);
-        } else if (removedAnswer) {
+        } else if (removedAnswer || isChanged) {
           setIsChanged(true);
 
           setIsSubmitted(false);
