@@ -20,11 +20,13 @@ const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
 
-function OptionsContainer({ type, answers, hasLastInput }) {
+function OptionsContainer({ activeId, answers, hasLastInput, type }) {
   const classes = useStyles();
   const [checked, setChecked] = useState(hasLastInput || false);
   const [chip, setChip] = useState({});
-  const [customOptionId, setCustomOptionId] = useState('');
+  const [customOptionId, setCustomOptionId] = useState(
+    hasLastInput ? answers[answers.length - 1].id : ''
+  );
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(!!answers || false);
@@ -34,10 +36,10 @@ function OptionsContainer({ type, answers, hasLastInput }) {
   const [options, setOptions] = useState(answers || []);
   const inputEl = useRef(null);
   const {
+    disableSave,
     handleAddAnswers,
     handleHasLastInput,
     handleSubmitQuestion
-    // disableSave
   } = useContext(SurveyContext);
 
   const handleInputChange = event => {
@@ -70,6 +72,18 @@ function OptionsContainer({ type, answers, hasLastInput }) {
             : [...options, { id, option: filteredOption }]
         );
 
+        handleAddAnswers(
+          activeId,
+          chip.id
+            ? options.map(opt =>
+                opt.id === chip.id
+                  ? { id: chip.id, option: filteredOption }
+                  : opt
+              )
+            : [...options, { id, option: filteredOption }],
+          checked
+        );
+
         setOption('');
 
         setChip({});
@@ -86,7 +100,7 @@ function OptionsContainer({ type, answers, hasLastInput }) {
           setIsChanged(true);
         }
 
-        // disableSave(true);
+        disableSave(true);
       } else {
         setIsEmpty(true);
       }
@@ -99,11 +113,15 @@ function OptionsContainer({ type, answers, hasLastInput }) {
             opt => opt.id !== lastOption.id
           );
 
+          handleAddAnswers(activeId, [...filteredOptions, lastOption], checked);
+
           return [...filteredOptions, lastOption];
         });
       }
 
       setIsSubmitted(false);
+
+      // handleHasLastInput(activeId, checked);
     }
   };
 
@@ -116,11 +134,19 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       setIsEmpty(false);
 
       inputEl.current.focus();
+
+      disableSave(true);
     }
   };
 
   const handleChipDelete = chipToDelete => () => {
     setOptions(() => options.filter(opt => opt.id !== chipToDelete));
+
+    handleAddAnswers(
+      activeId,
+      options.filter(opt => opt.id !== chipToDelete),
+      false
+    );
 
     if (customOptionId === chipToDelete) {
       setChecked(false);
@@ -134,7 +160,7 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       setIsSubmitted(false);
     }
 
-    // disableSave(true);
+    disableSave(true);
   };
 
   const handleCheckboxChange = event => {
@@ -147,43 +173,60 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 
       setIsTooltip(true);
 
-      handleHasLastInput(true);
+      handleHasLastInput(activeId, true);
 
       if (isSubmitted) {
-        // disableSave(true);
+        disableSave(true);
+      } else {
+        setIsSubmitted(true);
       }
-      // else disableSave(false);
     } else {
+      const removedAnswer = options.find(opt => opt.id === customOptionId);
+
       setIsTooltip(false);
 
       setOptions(options.filter(opt => opt.id !== customOptionId));
 
-      setCustomOptionId('');
-
       handleHasLastInput(
+        activeId,
         false,
         options.filter(opt => opt.id !== customOptionId)
       );
 
-      // if (isSubmitted) {
-      //   disableSave(false);
-      //
-      //   setIsChanged(true);
-      //
-      //   setIsSubmitted(false);
-      // }
-      // else disableSave(false);
+      setCustomOptionId('');
+
+      if (isSubmitted) {
+        if (isTyped) {
+          if (isChanged) {
+            setIsChanged(true);
+
+            setIsSubmitted(false);
+          } else {
+            disableSave(false);
+          }
+
+          setIsTyped(false);
+        } else if (removedAnswer) {
+          setIsChanged(true);
+
+          setIsSubmitted(false);
+
+          disableSave(true);
+        } else {
+          disableSave(false);
+        }
+      }
     }
   };
 
   const handleSubmit = () => {
-    handleAddAnswers(options);
-
     handleSubmitQuestion({ type: 'answers', answers: options });
 
-    // disableSave(false);
+    disableSave(false);
 
     setIsSubmitted(true);
+
+    setIsChanged(false);
   };
 
   return (
@@ -265,6 +308,7 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 }
 
 OptionsContainer.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answers: PropTypes.array,
   hasLastInput: PropTypes.bool,
   type: PropTypes.string

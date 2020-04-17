@@ -19,7 +19,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
 
   useEffect(() => {
     handleIsQuestion();
-  }, []);
+  });
 
   const handleAddQuestion = (id, questionVal) => {
     if (id) {
@@ -92,47 +92,41 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     disableSave(false);
   };
 
-  const handleAddAnswerType = type => {
-    handleSetQuestions(
-      questions.map(question =>
-        question.id === activeId
-          ? {
-              ...question,
-              answerType: type,
-              inputType: undefined,
-              answers: undefined,
-              hasLastInput: undefined,
-              startValue: undefined,
-              endValue: undefined,
-              stepValue: undefined
-            }
-          : question
-      )
-    );
+  const handleAddAnswerType = (id, type) => {
+    if (id) {
+      const currentQuestion = questions.find(question => question.id === id);
 
-    setQuestionObject({
-      ...questionObject,
-      answerType: type,
-      inputType: undefined,
-      answers: undefined,
-      hasLastInput: undefined,
-      startValue: undefined,
-      endValue: undefined,
-      stepValue: undefined
-    });
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === currentQuestion.id
+            ? {
+                ...currentQuestion,
+                answerType: type,
+                inputType: undefined,
+                answers: undefined,
+                hasLastInput: undefined,
+                startValue: undefined,
+                endValue: undefined,
+                stepValue: undefined
+              }
+            : question
+        )
+      );
+    } else {
+      setQuestionObject({
+        ...questionObject,
+        answerType: type,
+        inputType: undefined,
+        answers: undefined,
+        hasLastInput: undefined,
+        startValue: undefined,
+        endValue: undefined,
+        stepValue: undefined
+      });
+    }
   };
 
   const handleAddInputType = (id, type) => {
-    // handleSetQuestions(
-    //   questions.map(question =>
-    //     question.id === activeId
-    //       ? {
-    //           ...question,
-    //           inputType: type
-    //         }
-    //       : question
-    //   )
-    // );
     if (id) {
       const currentQuestion = questions.find(question => question.id === id);
 
@@ -142,50 +136,67 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     }
   };
 
-  const handleAddAnswers = answers => {
-    handleSetQuestions(
-      questions.map(question =>
-        question.id === activeId
-          ? {
-              ...question,
-              answers
-            }
-          : question
-      )
-    );
+  const handleAddAnswers = (id, answers, checked) => {
+    if (id) {
+      const currentQuestion = questions.find(question => question.id === id);
 
-    setQuestionObject({ ...questionObject, answers });
+      setQuestionObject({ ...currentQuestion, answers, hasLastInput: checked });
+    } else {
+      setQuestionObject({ ...questionObject, answers, hasLastInput: checked });
+    }
   };
 
-  const handleHasLastInput = (bool, answers) => {
-    if (answers) {
-      handleSetQuestions(
-        questions.map(question =>
-          question.id === activeId
-            ? {
-                ...question,
-                answers,
-                hasLastInput: bool
-              }
-            : question
-        )
-      );
+  const handleHasLastInput = (id, bool, answers) => {
+    // console.log(id);
+    // console.log(bool);
+    // console.log(answers);
+    if (id) {
+      // console.log('if id');
+      const currentQuestion = questions.find(question => question.id === id);
 
+      if (answers) {
+        // console.log('if answers');
+        setQuestionObject({ ...currentQuestion, answers, hasLastInput: bool });
+      } else {
+        // console.log('else');
+        setQuestionObject({ ...currentQuestion, hasLastInput: bool });
+      }
+    } else if (answers) {
       setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
     } else {
-      handleSetQuestions(
-        questions.map(question =>
-          question.id === activeId
-            ? {
-                ...question,
-                hasLastInput: bool
-              }
-            : question
-        )
-      );
-
       setQuestionObject({ ...questionObject, hasLastInput: bool });
     }
+
+    // if (answers) {
+
+    //   handleSetQuestions(
+    //     questions.map(question =>
+    //       question.id === activeId
+    //         ? {
+    //             ...question,
+    //             answers,
+    //             hasLastInput: bool
+    //           }
+    //         : question
+    //     )
+    //   );
+
+    //   setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
+    // } else {
+
+    //   handleSetQuestions(
+    //     questions.map(question =>
+    //       question.id === activeId
+    //         ? {
+    //             ...question,
+    //             hasLastInput: bool
+    //           }
+    //         : question
+    //     )
+    //   );
+
+    //   setQuestionObject({ ...questionObject, hasLastInput: bool });
+    // }
   };
 
   const handleAddRangeValues = range => {
@@ -212,10 +223,31 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
 
   const handleSubmitQuestion = params => {
     if (params && params.type === 'answers') {
-      handleSetQuestions([
-        ...questions,
-        { ...questionObject, answers: params.answers }
-      ]);
+      // handleSetQuestions([
+      //   ...questions,
+      //   { ...questionObject, answers: params.answers }
+      // ]);
+
+      // console.log(
+      //   questions &&
+      //     questions.some(question => question.id === questionObject.id)
+      // );
+      // console.log(questionObject);
+      // console.log(params.answers);
+
+      handleSetQuestions(
+        questions &&
+          questions.some(question => question.id === questionObject.id)
+          ? questions.map(question =>
+              question.id === questionObject.id
+                ? {
+                    ...questionObject,
+                    answers: params.answers
+                  }
+                : question
+            )
+          : [...questions, { ...questionObject, answers: params.answers }]
+      );
     } else if (params && params.type === 'range') {
       handleSetQuestions([
         ...questions,

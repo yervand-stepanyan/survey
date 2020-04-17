@@ -38,10 +38,10 @@ const IMAGES = [
   { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
-function AnswerOptions({ answerType, setType }) {
+function AnswerOptions({ activeId, answerType, setType }) {
   const classes = useStyles();
   const [image, setImage] = useState(answerType || '');
-  const { handleAddAnswerType } = useContext(SurveyContext);
+  const { disableSave, handleAddAnswerType } = useContext(SurveyContext);
 
   const handleClick = e => {
     const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
@@ -50,7 +50,9 @@ function AnswerOptions({ answerType, setType }) {
 
     setType(img);
 
-    handleAddAnswerType(img);
+    handleAddAnswerType(activeId, img);
+
+    disableSave(true);
   };
 
   const handleEnterKey = e => {
@@ -74,6 +76,7 @@ function AnswerOptions({ answerType, setType }) {
 }
 
 AnswerOptions.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answerType: PropTypes.string,
   setType: PropTypes.func.isRequired
 };

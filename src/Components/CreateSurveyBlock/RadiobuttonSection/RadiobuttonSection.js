@@ -8,7 +8,7 @@ import { useStyles } from './RadiobuttonSection.style';
 
 const TITLE = 'Radiobutton answer options';
 
-function RadiobuttonSection({ answers, hasLastInput }) {
+function RadiobuttonSection({ activeId, answers, hasLastInput }) {
   const classes = useStyles();
 
   return (
@@ -17,15 +17,17 @@ function RadiobuttonSection({ answers, hasLastInput }) {
         <Typography variant="h5">{TITLE}</Typography>
       </div>
       <OptionsContainer
-        type="addInput"
+        activeId={activeId}
         answers={answers}
         hasLastInput={hasLastInput}
+        type="addInput"
       />
     </div>
   );
 }
 
 RadiobuttonSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answers: PropTypes.array,
   hasLastInput: PropTypes.bool
 };

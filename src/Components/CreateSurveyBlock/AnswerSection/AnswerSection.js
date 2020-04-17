@@ -27,7 +27,11 @@ function AnswerSection({
         return <InputSection activeId={activeId} inputType={inputType} />;
       case 'radiobutton':
         return (
-          <RadiobuttonSection answers={answers} hasLastInput={hasLastInput} />
+          <RadiobuttonSection
+            activeId={activeId}
+            answers={answers}
+            hasLastInput={hasLastInput}
+          />
         );
       case 'checkbox':
         return <CheckboxSection answers={answers} />;
@@ -48,7 +52,7 @@ function AnswerSection({
 
   return (
     <div className={classes.answerSectionContainer}>
-      {showType(answerType || type)}
+      {showType(type || answerType)}
     </div>
   );
 }

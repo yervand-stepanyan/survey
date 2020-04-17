@@ -15,9 +15,9 @@ const QUESTION_LABEL = 'Question';
 
 function Question({
   activeId,
-  index,
   handleEditQuestion,
   handleRemoveQuestion,
+  index,
   question
 }) {
   const classes = useStyles();
@@ -69,10 +69,6 @@ Question.propTypes = {
   handleRemoveQuestion: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired
-};
-
-Question.defaultProps = {
-  // activeId: ''
 };
 
 export default Question;

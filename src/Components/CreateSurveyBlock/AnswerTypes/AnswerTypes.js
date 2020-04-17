@@ -27,7 +27,11 @@ function AnswerTypes({
       <div className={classes.answerTypesTitleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <AnswerOptions answerType={answerType} setType={setType} />
+      <AnswerOptions
+        activeId={activeId}
+        answerType={answerType}
+        setType={setType}
+      />
       <AnswerSection
         activeId={activeId}
         answers={answers}

@@ -93,8 +93,4 @@ QuestionCreator.propTypes = {
   question: PropTypes.string.isRequired
 };
 
-QuestionCreator.defaultProps = {
-  // activeId: ''
-};
-
 export default QuestionCreator;
