@@ -34,9 +34,9 @@ function AnswerSection({
           />
         );
       case 'checkbox':
-        return <CheckboxSection answers={answers} />;
+        return <CheckboxSection activeId={activeId} answers={answers} />;
       case 'dropdown':
-        return <DropdownSection answers={answers} />;
+        return <DropdownSection activeId={activeId} answers={answers} />;
       case 'range':
         return (
           <RangeSection

@@ -17,6 +17,9 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   const [showAddNew, setShowAddNew] = useState(false);
   const { disableSave } = useContext(SurveyContext);
 
+  console.log(questionObject);
+  console.log(questions);
+
   useEffect(() => {
     handleIsQuestion();
   });
@@ -148,27 +151,17 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
 
   const handleHasLastInput = (id, bool, answers) => {
     if (id) {
-      // console.log('if id');
-
       const currentQuestion = questions.find(question => question.id === id);
 
       if (answers) {
-        // console.log('answers if');
-
         setQuestionObject({ ...currentQuestion, answers, hasLastInput: bool });
       } else {
-        // console.log('answers else');
-
         setQuestionObject({ ...currentQuestion, hasLastInput: bool });
       }
+    } else if (answers) {
+      setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
     } else {
-      // console.log('else');
-
-      if (answers) {
-        setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
-      } else {
-        setQuestionObject({ ...questionObject, hasLastInput: bool });
-      }
+      setQuestionObject({ ...questionObject, hasLastInput: bool });
     }
   };
 
