@@ -8,15 +8,18 @@ import Typography from '@material-ui/core/Typography';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './QuestionCreator.style';
 
-const BUTTON_LABEL = 'Submit';
+const CANCEL_BUTTON_LABEL = 'Cancel';
 const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
+const SUBMIT_BUTTON_LABEL = 'Submit';
 
 function QuestionCreator({
   activeId,
   handleAddQuestion,
-  question: questionProps
+  handleCancelQuestion,
+  question: questionProps,
+  questionsLength
 }) {
   const classes = useStyles();
   const [isEmpty, setIsEmpty] = useState(true);
@@ -51,6 +54,10 @@ function QuestionCreator({
     if (event.key === 'Enter') if (isEmpty) handleSubmit();
   };
 
+  const handleCancel = () => {
+    handleCancelQuestion();
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.textFieldWrapper}>
@@ -80,8 +87,19 @@ function QuestionCreator({
           size="large"
           variant="contained"
         >
-          {BUTTON_LABEL}
+          {SUBMIT_BUTTON_LABEL}
         </Button>
+        {questionsLength ? (
+          <Button
+            className={classes.cancelButton}
+            color="secondary"
+            onClick={handleCancel}
+            size="large"
+            variant="contained"
+          >
+            {CANCEL_BUTTON_LABEL}
+          </Button>
+        ) : null}
       </div>
     </div>
   );
@@ -90,7 +108,13 @@ function QuestionCreator({
 QuestionCreator.propTypes = {
   activeId: PropTypes.string.isRequired,
   handleAddQuestion: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired
+  handleCancelQuestion: PropTypes.func,
+  question: PropTypes.string.isRequired,
+  questionsLength: PropTypes.number.isRequired
+};
+
+QuestionCreator.defaultProps = {
+  handleCancelQuestion: undefined
 };
 
 export default QuestionCreator;

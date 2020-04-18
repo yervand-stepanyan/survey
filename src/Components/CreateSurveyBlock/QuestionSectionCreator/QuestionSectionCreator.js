@@ -12,6 +12,7 @@ function QuestionSectionCreator({
   answerType,
   endValue,
   handleAddQuestion,
+  handleCancelQuestion,
   handleEditQuestion,
   handleRemoveQuestion,
   hasLastInput,
@@ -19,6 +20,7 @@ function QuestionSectionCreator({
   inputType,
   isQuestionEdit,
   question,
+  questionsLength,
   startValue,
   stepValue
 }) {
@@ -31,7 +33,9 @@ function QuestionSectionCreator({
           <QuestionCreator
             activeId={activeId}
             handleAddQuestion={handleAddQuestion}
+            handleCancelQuestion={handleCancelQuestion}
             question={question}
+            questionsLength={questionsLength}
           />
         ) : (
           <Question
@@ -67,6 +71,7 @@ QuestionSectionCreator.propTypes = {
   answerType: PropTypes.string,
   endValue: PropTypes.string,
   handleAddQuestion: PropTypes.func.isRequired,
+  handleCancelQuestion: PropTypes.func,
   handleEditQuestion: PropTypes.func.isRequired,
   handleRemoveQuestion: PropTypes.func.isRequired,
   hasLastInput: PropTypes.bool,
@@ -74,6 +79,7 @@ QuestionSectionCreator.propTypes = {
   inputType: PropTypes.string,
   isQuestionEdit: PropTypes.bool.isRequired,
   question: PropTypes.string.isRequired,
+  questionsLength: PropTypes.number,
   startValue: PropTypes.string,
   stepValue: PropTypes.string
 };
@@ -83,8 +89,10 @@ QuestionSectionCreator.defaultProps = {
   answers: undefined,
   answerType: '',
   endValue: '',
+  handleCancelQuestion: undefined,
   hasLastInput: false,
   inputType: '',
+  questionsLength: 0,
   startValue: '',
   stepValue: ''
 };

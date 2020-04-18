@@ -52,6 +52,14 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     }
   };
 
+  const handleCancelQuestion = () => {
+    disableSave(false);
+
+    setShowAddNew(true);
+
+    setIsQuestionCreator(false);
+  };
+
   const handleEditQuestion = id => {
     if (id) {
       const questionToEdit = questions.find(
@@ -299,11 +307,13 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         {isQuestionCreator ? (
           <QuestionSectionCreator
             handleAddQuestion={handleAddQuestion}
+            handleCancelQuestion={handleCancelQuestion}
             handleEditQuestion={handleEditQuestion}
             handleRemoveQuestion={handleRemoveQuestion}
             index={questions ? questions.length : 0}
             isQuestionEdit={isQuestionEdit}
             question={questionValue}
+            questionsLength={questions ? questions.length : 0}
           />
         ) : null}
         {showAddNew ? (
