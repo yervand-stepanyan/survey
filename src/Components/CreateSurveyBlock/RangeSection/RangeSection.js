@@ -43,7 +43,9 @@ function RangeSection({
 
     setIsStep(isCorrectStep);
 
-    if (isSubmitted) setIsChanged(true);
+    if (isSubmitted) {
+      setIsChanged(true);
+    }
 
     setIsSubmitted(false);
   };
@@ -58,7 +60,9 @@ function RangeSection({
 
       setIsEqual(event.target.value === endValue);
 
-      checkStepCorrect(event.target.value, endValue, stepValue);
+      if (endValue && stepValue) {
+        checkStepCorrect(event.target.value, endValue, stepValue);
+      }
     }
   };
 
@@ -72,7 +76,9 @@ function RangeSection({
 
       setIsEqual(startValue === event.target.value);
 
-      checkStepCorrect(startValue, event.target.value, stepValue);
+      if (startValue && stepValue) {
+        checkStepCorrect(startValue, event.target.value, stepValue);
+      }
     }
   };
 
@@ -84,7 +90,9 @@ function RangeSection({
     } else {
       setIsStepEmpty(false);
 
-      checkStepCorrect(startValue, endValue, event.target.value);
+      if (startValue && endValue) {
+        checkStepCorrect(startValue, endValue, event.target.value);
+      }
     }
   };
 
