@@ -17,9 +17,6 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   const [showAddNew, setShowAddNew] = useState(false);
   const { disableSave } = useContext(SurveyContext);
 
-  console.log(questionObject);
-  console.log(questions);
-
   useEffect(() => {
     handleIsQuestion();
   });
