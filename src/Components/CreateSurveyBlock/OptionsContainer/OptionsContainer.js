@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
@@ -41,6 +41,12 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
     handleHasLastInput,
     handleSubmitQuestion
   } = useContext(SurveyContext);
+
+  useEffect(() => {
+    if (!activeId) {
+      inputEl.current.focus();
+    }
+  });
 
   const handleInputChange = event => {
     setOption(event.target.value);
@@ -238,7 +244,6 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
             TransitionComponent={Zoom}
           >
             <TextField
-              autoFocus
               error={isEmpty}
               fullWidth
               id="outlined-basic"
