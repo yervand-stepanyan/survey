@@ -23,18 +23,18 @@ function RangeSection({
   stepValue: stepValueProps
 }) {
   const classes = useStyles();
-  const [startValue, setStartValue] = useState(startValueProps || '');
   const [endValue, setEndValue] = useState(endValueProps || '');
-  const [stepValue, setStepValue] = useState(stepValueProps || '');
   const [isChanged, setIsChanged] = useState(false);
-  const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isEndEmpty, setIsEndEmpty] = useState(false);
   const [isEqual, setIsEqual] = useState(false);
+  const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isStepEmpty, setIsStepEmpty] = useState(false);
-  const [isStep, setIsStep] = useState(false);
+  const [isStepValid, setIsStepValid] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(
     (!!startValueProps && !!endValueProps && !!stepValueProps) || false
   );
+  const [startValue, setStartValue] = useState(startValueProps || '');
+  const [stepValue, setStepValue] = useState(stepValueProps || '');
   const inputEl = useRef(null);
   const { handleAddRangeValues, handleSubmitQuestion } = useContext(
     SurveyContext
@@ -46,13 +46,13 @@ function RangeSection({
     }
   }, [activeId]);
 
-  const checkStepCorrect = (start, end, step) => {
+  const checkStepIsValid = (start, end, step) => {
     const isStepInvalid =
       step < 0 ||
       !(step <= Math.abs(start - end) / 2) ||
       !Number.isInteger(Math.abs(start - end) / step);
 
-    setIsStep(isStepInvalid);
+    setIsStepValid(!isStepInvalid);
 
     if (isSubmitted) {
       setIsChanged(true);
@@ -72,7 +72,7 @@ function RangeSection({
       setIsEqual(event.target.value === endValue);
 
       if (endValue && stepValue) {
-        checkStepCorrect(event.target.value, endValue, stepValue);
+        checkStepIsValid(event.target.value, endValue, stepValue);
       }
     }
   };
@@ -88,7 +88,7 @@ function RangeSection({
       setIsEqual(startValue === event.target.value);
 
       if (startValue && stepValue) {
-        checkStepCorrect(startValue, event.target.value, stepValue);
+        checkStepIsValid(startValue, event.target.value, stepValue);
       }
     }
   };
@@ -102,7 +102,7 @@ function RangeSection({
       setIsStepEmpty(false);
 
       if (startValue && endValue) {
-        checkStepCorrect(startValue, endValue, event.target.value);
+        checkStepIsValid(startValue, endValue, event.target.value);
       }
     }
   };
@@ -152,7 +152,7 @@ function RangeSection({
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
-              error={isStepEmpty || isStep}
+              error={isStepEmpty || !isStepValid}
               fullWidth
               id="outlined-basic"
               label={STEP_VALUE_LABEL}
@@ -172,7 +172,7 @@ function RangeSection({
               !endValue ||
               !stepValue ||
               isEqual ||
-              isStep ||
+              !isStepValid ||
               isSubmitted
             }
             onClick={handleSubmit}
