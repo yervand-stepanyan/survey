@@ -46,7 +46,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
     if (!activeId) {
       inputEl.current.focus();
     }
-  });
+  }, [activeId]);
 
   const handleInputChange = event => {
     setOption(event.target.value);

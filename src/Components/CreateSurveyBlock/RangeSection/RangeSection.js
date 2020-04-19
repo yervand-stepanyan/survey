@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
@@ -6,19 +6,20 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import removeSpaces from '../../../helpers/removeSpaces';
-import { useStyles } from './RangeSection.style';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './RangeSection.style';
 
-const BUTTON_LABEL = 'Submit & continue';
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
+const BUTTON_LABEL = 'Submit & continue';
 const END_VALUE_LABEL = 'End value';
 const START_VALUE_LABEL = 'Start value';
 const STEP_VALUE_LABEL = 'Step';
 const TITLE = 'Range values';
 
 function RangeSection({
-  startValue: startValueProps,
+  activeId,
   endValue: endValueProps,
+  startValue: startValueProps,
   stepValue: stepValueProps
 }) {
   const classes = useStyles();
@@ -34,9 +35,16 @@ function RangeSection({
   const [isSubmitted, setIsSubmitted] = useState(
     (!!startValueProps && !!endValueProps && !!stepValueProps) || false
   );
+  const inputEl = useRef(null);
   const { handleAddRangeValues, handleSubmitQuestion } = useContext(
     SurveyContext
   );
+
+  useEffect(() => {
+    if (!activeId) {
+      inputEl.current.focus();
+    }
+  }, [activeId]);
 
   const checkStepCorrect = (start, end, step) => {
     const isStepInvalid =
@@ -117,10 +125,10 @@ function RangeSection({
         <div className={classes.textFieldsSection}>
           <div className={classes.textFieldWrapper}>
             <TextField
-              autoFocus
               error={isStartEmpty || isEqual}
-              id="outlined-basic"
               fullWidth
+              id="outlined-basic"
+              inputRef={inputEl}
               label={START_VALUE_LABEL}
               onChange={e => handleStartChange(e)}
               // onKeyDown={handleSubmitOnEnter}
@@ -132,8 +140,8 @@ function RangeSection({
           <div className={classes.textFieldWrapper}>
             <TextField
               error={isEndEmpty || isEqual}
-              id="outlined-basic"
               fullWidth
+              id="outlined-basic"
               label={END_VALUE_LABEL}
               onChange={e => handleEndChange(e)}
               // onKeyDown={handleSubmitOnEnter}
@@ -145,8 +153,8 @@ function RangeSection({
           <div className={classes.textFieldWrapper}>
             <TextField
               error={isStepEmpty || isStep}
-              id="outlined-basic"
               fullWidth
+              id="outlined-basic"
               label={STEP_VALUE_LABEL}
               onChange={e => handleStepChange(e)}
               // onKeyDown={handleSubmitOnEnter}
@@ -180,6 +188,7 @@ function RangeSection({
 }
 
 RangeSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   endValue: PropTypes.string,
   startValue: PropTypes.string,
   stepValue: PropTypes.string

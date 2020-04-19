@@ -40,8 +40,9 @@ function AnswerSection({
       case 'range':
         return (
           <RangeSection
-            startValue={startValue}
+            activeId={activeId}
             endValue={endValue}
+            startValue={startValue}
             stepValue={stepValue}
           />
         );
