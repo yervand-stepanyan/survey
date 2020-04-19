@@ -40,9 +40,9 @@ function RangeSection({
 
   const checkStepCorrect = (start, end, step) => {
     const isStepInvalid =
-      step < 1 ||
+      step < 0 ||
       !(step <= Math.abs(start - end) / 2) ||
-      Math.abs(start - end) % step !== 0;
+      !Number.isInteger(Math.abs(start - end) / step);
 
     setIsStep(isStepInvalid);
 
