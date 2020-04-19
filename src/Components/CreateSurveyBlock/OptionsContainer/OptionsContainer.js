@@ -55,10 +55,14 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
       setIsEmpty(true);
 
       setIsTyped(false);
+
+      disableSave(false);
     } else {
       setIsEmpty(false);
 
       setIsTyped(true);
+
+      disableSave(true);
     }
   };
 
