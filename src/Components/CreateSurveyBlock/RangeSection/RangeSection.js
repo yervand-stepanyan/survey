@@ -36,9 +36,11 @@ function RangeSection({
   const [startValue, setStartValue] = useState(startValueProps || '');
   const [stepValue, setStepValue] = useState(stepValueProps || '');
   const inputEl = useRef(null);
-  const { handleAddRangeValues, handleSubmitQuestion } = useContext(
-    SurveyContext
-  );
+  const {
+    disableSave,
+    handleAddRangeValues,
+    handleSubmitQuestion
+  } = useContext(SurveyContext);
 
   useEffect(() => {
     if (!activeId) {
@@ -57,6 +59,8 @@ function RangeSection({
     if (isSubmitted) {
       setIsChanged(true);
     }
+
+    disableSave(true);
 
     setIsSubmitted(false);
   };
@@ -112,6 +116,8 @@ function RangeSection({
     handleAddRangeValues(range);
 
     handleSubmitQuestion({ type: 'range', range });
+
+    disableSave(false);
 
     setIsSubmitted(true);
   };
