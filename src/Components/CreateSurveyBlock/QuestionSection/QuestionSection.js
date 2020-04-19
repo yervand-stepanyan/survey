@@ -170,68 +170,34 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     }
   };
 
-  const handleAddRangeValues = range => {
-    handleSetQuestions(
-      questions.map(question =>
-        question.id === activeId
-          ? {
-              ...question,
-              startValue: range.startValue,
-              endValue: range.endValue,
-              stepValue: range.stepValue
-            }
-          : question
-      )
-    );
+  const handleAddRangeValues = (id, range) => {
+    if (id) {
+      const currentQuestion = questions.find(question => question.id === id);
 
-    setQuestionObject({
-      ...questionObject,
-      startValue: range.startValue,
-      endValue: range.endValue,
-      stepValue: range.stepValue
-    });
+      setQuestionObject({
+        ...currentQuestion,
+        startValue: range.startValue,
+        endValue: range.endValue,
+        stepValue: range.stepValue
+      });
+    } else {
+      setQuestionObject({
+        ...questionObject,
+        startValue: range.startValue,
+        endValue: range.endValue,
+        stepValue: range.stepValue
+      });
+    }
   };
 
-  const handleSubmitQuestion = params => {
-    if (params && params.type === 'answers') {
-      handleSetQuestions(
-        questions &&
-          questions.some(question => question.id === questionObject.id)
-          ? questions.map(question =>
-              question.id === questionObject.id
-                ? {
-                    ...questionObject,
-                    answers: params.answers
-                  }
-                : question
-            )
-          : [...questions, { ...questionObject, answers: params.answers }]
-      );
-    } else if (params && params.type === 'range') {
-      handleSetQuestions([
-        ...questions,
-        {
-          ...questionObject,
-          startValue: params.range.startValue,
-          endValue: params.range.endValue,
-          stepValue: params.range.stepValue
-        }
-      ]);
-    } else {
-      handleSetQuestions(
-        questions &&
-          questions.some(question => question.id === questionObject.id)
-          ? questions.map(question =>
-              question.id === questionObject.id
-                ? {
-                    ...question,
-                    inputType: questionObject.inputType
-                  }
-                : question
-            )
-          : [...questions, questionObject]
-      );
-    }
+  const handleSubmitQuestion = () => {
+    handleSetQuestions(
+      questions && questions.some(question => question.id === questionObject.id)
+        ? questions.map(question =>
+            question.id === questionObject.id ? questionObject : question
+          )
+        : [...questions, questionObject]
+    );
 
     setIsQuestionCreator(false);
 

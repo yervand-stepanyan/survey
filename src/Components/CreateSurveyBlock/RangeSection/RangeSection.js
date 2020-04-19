@@ -78,6 +78,12 @@ function RangeSection({
       if (endValue && stepValue) {
         checkStepIsValid(event.target.value, endValue, stepValue);
       }
+
+      handleAddRangeValues(activeId, {
+        startValue: event.target.value,
+        endValue,
+        stepValue
+      });
     }
   };
 
@@ -94,6 +100,12 @@ function RangeSection({
       if (startValue && stepValue) {
         checkStepIsValid(startValue, event.target.value, stepValue);
       }
+
+      handleAddRangeValues(activeId, {
+        startValue,
+        endValue: event.target.value,
+        stepValue
+      });
     }
   };
 
@@ -108,18 +120,29 @@ function RangeSection({
       if (startValue && endValue) {
         checkStepIsValid(startValue, endValue, event.target.value);
       }
+
+      handleAddRangeValues(activeId, {
+        startValue,
+        endValue,
+        stepValue: event.target.value
+      });
     }
   };
 
   const handleSubmit = () => {
-    const range = { startValue, endValue, stepValue };
-    handleAddRangeValues(range);
-
-    handleSubmitQuestion({ type: 'range', range });
+    handleSubmitQuestion();
 
     disableSave(false);
 
     setIsSubmitted(true);
+  };
+
+  const handleSubmitOnEnter = event => {
+    if (event.key === 'Enter') {
+      if (startValue && endValue && stepValue && !isEqual && isStepValid) {
+        handleSubmit();
+      }
+    }
   };
 
   return (
@@ -137,7 +160,7 @@ function RangeSection({
               inputRef={inputEl}
               label={START_VALUE_LABEL}
               onChange={e => handleStartChange(e)}
-              // onKeyDown={handleSubmitOnEnter}
+              onKeyDown={handleSubmitOnEnter}
               type="number"
               value={startValue}
               variant="outlined"
@@ -150,7 +173,7 @@ function RangeSection({
               id="outlined-basic"
               label={END_VALUE_LABEL}
               onChange={e => handleEndChange(e)}
-              // onKeyDown={handleSubmitOnEnter}
+              onKeyDown={handleSubmitOnEnter}
               type="number"
               value={endValue}
               variant="outlined"
@@ -163,7 +186,7 @@ function RangeSection({
               id="outlined-basic"
               label={STEP_VALUE_LABEL}
               onChange={e => handleStepChange(e)}
-              // onKeyDown={handleSubmitOnEnter}
+              onKeyDown={handleSubmitOnEnter}
               type="number"
               value={stepValue}
               variant="outlined"

@@ -43,10 +43,10 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
   } = useContext(SurveyContext);
 
   useEffect(() => {
-    if (!activeId) {
+    if (!isSubmitted) {
       inputEl.current.focus();
     }
-  }, [activeId]);
+  });
 
   const handleInputChange = event => {
     setOption(event.target.value);
@@ -228,7 +228,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
   };
 
   const handleSubmit = () => {
-    handleSubmitQuestion({ type: 'answers', answers: options });
+    handleSubmitQuestion();
 
     disableSave(false);
 
