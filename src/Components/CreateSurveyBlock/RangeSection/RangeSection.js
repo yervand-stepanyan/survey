@@ -48,7 +48,11 @@ function RangeSection({
     }
   }, [activeId]);
 
-  const checkStepIsValid = (start, end, step) => {
+  const checkStepIsValid = ({
+    startValue: start,
+    endValue: end,
+    stepValue: step
+  }) => {
     const isStepInvalid =
       step < 0 ||
       !(step <= Math.abs(start - end) / 2) ||
@@ -65,68 +69,83 @@ function RangeSection({
     setIsSubmitted(false);
   };
 
-  const handleStartChange = event => {
-    setStartValue(event.target.value);
+  const handleChange = (
+    event,
+    setValue,
+    setIsEmpty,
+    firstValue,
+    secondValue,
+    targetKey,
+    firstKey,
+    secondKey
+  ) => {
+    setValue(event.target.value);
 
     if (!removeSpaces(event.target.value)) {
-      setIsStartEmpty(true);
+      setIsEmpty(true);
     } else {
-      setIsStartEmpty(false);
+      setIsEmpty(false);
 
-      setIsEqual(event.target.value === endValue);
+      if (
+        (targetKey === 'startValue' && firstKey === 'endValue') ||
+        (targetKey === 'endValue' && firstKey === 'startValue')
+      ) {
+        setIsEqual(firstValue === event.target.value);
+      }
 
-      if (endValue && stepValue) {
-        checkStepIsValid(event.target.value, endValue, stepValue);
+      if (firstValue && secondValue) {
+        checkStepIsValid({
+          [targetKey]: event.target.value,
+          [firstKey]: firstValue,
+          [secondKey]: secondValue
+        });
       }
 
       handleAddRangeValues(activeId, {
-        startValue: event.target.value,
-        endValue,
-        stepValue
+        [targetKey]: event.target.value,
+        [firstKey]: firstValue,
+        [secondKey]: secondValue
       });
     }
+  };
+
+  const handleStartChange = event => {
+    handleChange(
+      event,
+      setStartValue,
+      setIsStartEmpty,
+      endValue,
+      stepValue,
+      'startValue',
+      'endValue',
+      'stepValue'
+    );
   };
 
   const handleEndChange = event => {
-    setEndValue(event.target.value);
-
-    if (!removeSpaces(event.target.value)) {
-      setIsEndEmpty(true);
-    } else {
-      setIsEndEmpty(false);
-
-      setIsEqual(startValue === event.target.value);
-
-      if (startValue && stepValue) {
-        checkStepIsValid(startValue, event.target.value, stepValue);
-      }
-
-      handleAddRangeValues(activeId, {
-        startValue,
-        endValue: event.target.value,
-        stepValue
-      });
-    }
+    handleChange(
+      event,
+      setEndValue,
+      setIsEndEmpty,
+      startValue,
+      stepValue,
+      'endValue',
+      'startValue',
+      'stepValue'
+    );
   };
 
   const handleStepChange = event => {
-    setStepValue(event.target.value);
-
-    if (!removeSpaces(event.target.value)) {
-      setIsStepEmpty(true);
-    } else {
-      setIsStepEmpty(false);
-
-      if (startValue && endValue) {
-        checkStepIsValid(startValue, endValue, event.target.value);
-      }
-
-      handleAddRangeValues(activeId, {
-        startValue,
-        endValue,
-        stepValue: event.target.value
-      });
-    }
+    handleChange(
+      event,
+      setStepValue,
+      setIsStepEmpty,
+      startValue,
+      endValue,
+      'stepValue',
+      'startValue',
+      'endValue'
+    );
   };
 
   const handleSubmit = () => {
