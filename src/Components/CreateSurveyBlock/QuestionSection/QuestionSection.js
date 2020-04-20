@@ -26,7 +26,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
       handleSetQuestions(
         questions.map(question =>
           question.id === activeId
-            ? { ...question, question: questionVal, isQuestion: false }
+            ? { ...question, title: questionVal, isQuestion: false }
             : question
         )
       );
@@ -38,7 +38,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
       setQuestionObject({
         ...questionObject,
         id: questionId,
-        question: questionVal,
+        title: questionVal,
         isQuestion: false
       });
 
@@ -112,7 +112,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
                 answerType: type,
                 inputType: undefined,
                 answers: undefined,
-                hasLastInput: undefined,
+                hasLastInput: false,
                 startValue: undefined,
                 endValue: undefined,
                 stepValue: undefined
@@ -126,7 +126,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         answerType: type,
         inputType: undefined,
         answers: undefined,
-        hasLastInput: undefined,
+        hasLastInput: false,
         startValue: undefined,
         endValue: undefined,
         stepValue: undefined
@@ -246,9 +246,9 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
                   id,
                   inputType,
                   isQuestion,
-                  question,
                   startValue,
-                  stepValue
+                  stepValue,
+                  title
                 },
                 index
               ) => (
@@ -265,7 +265,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
                   inputType={inputType}
                   isQuestionEdit={isQuestion}
                   key={id}
-                  question={question}
+                  question={title}
                   startValue={startValue}
                   stepValue={stepValue}
                 />
