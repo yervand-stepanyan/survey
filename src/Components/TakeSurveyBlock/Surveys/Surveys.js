@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Switch, Route, Link } from 'react-router-dom';
 // material ui
 import {
   Card,
@@ -10,12 +11,12 @@ import {
   Typography
 } from '@material-ui/core';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import SurveyQuestions from '../SurveyQuestions';
+import Survey from '../Survey';
 import logo from '../../../assets/images/logo/logo.png';
 
 import { useStyles } from './Surveys.style';
 
-function Surveys({ surveys }) {
+function Surveys({ surveys }, props) {
   const classes = useStyles();
 
   const [tempSurveys, setTempsurveys] = useState(surveys);
@@ -32,66 +33,66 @@ function Surveys({ surveys }) {
   };
 
   const isSomeSurveyOpen = tempSurveys.some(survey => survey.open === true);
+  const openSurvey = tempSurveys.find(survey => survey.open === true);
 
   return (
     <div>
-      <div className={classes.surveysWrapper}>
-        {tempSurveys.map(survey => {
-          return (
-            <Card className={classes.surveyCard} key={survey.surveyId}>
-              <CardMedia
-                className={classes.media}
-                image={logo}
-                title="Contemplative Reptile"
-              />
-              <CardContent className={classes.surveyNameWrapper}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {survey.surveyName}
-                </Typography>
-              </CardContent>
+      <Switch>
+        <Route path="/survey" exact>
+          <div className={classes.surveysWrapper}>
+            {tempSurveys.map(survey => {
+              return (
+                <Card className={classes.surveyCard} key={survey.surveyId}>
+                  <CardMedia
+                    className={classes.media}
+                    image={logo}
+                    title="Contemplative Reptile"
+                  />
+                  <CardContent className={classes.surveyNameWrapper}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {survey.surveyName}
+                    </Typography>
+                  </CardContent>
 
-              <CardActions>
-                {survey.open ? (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    endIcon={<AssignmentIcon />}
-                    onClick={() => handleChangeSurveyStatus(survey.surveyId)}
-                  >
-                    Close
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    endIcon={<AssignmentIcon />}
-                    onClick={() => handleChangeSurveyStatus(survey.surveyId)}
-                    disabled={isSomeSurveyOpen}
-                  >
-                    Take
-                  </Button>
-                )}
-              </CardActions>
-            </Card>
-          );
-        })}
-      </div>
-
-      <div className={classes.container}>
-        {surveys.map(survey => {
-          if (survey.open) {
-            return (
-              <SurveyQuestions
-                key={survey.surveyId}
-                questions={survey.questions}
-              />
-            );
-          }
-          return null;
-        })}
-      </div>
+                  <CardActions>
+                    {survey.open ? (
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        endIcon={<AssignmentIcon />}
+                        onClick={() =>
+                          handleChangeSurveyStatus(survey.surveyId)
+                        }
+                      >
+                        Close
+                      </Button>
+                    ) : (
+                      <Link to="/survey/open">
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          className={classes.button}
+                          endIcon={<AssignmentIcon />}
+                          onClick={() =>
+                            handleChangeSurveyStatus(survey.surveyId)
+                          }
+                          disabled={isSomeSurveyOpen}
+                        >
+                          Take
+                        </Button>
+                      </Link>
+                    )}
+                  </CardActions>
+                </Card>
+              );
+            })}
+          </div>
+        </Route>
+        <Route path="/survey/open" exact>
+          <Survey survey={openSurvey} />
+        </Route>
+      </Switch>
     </div>
   );
 }
