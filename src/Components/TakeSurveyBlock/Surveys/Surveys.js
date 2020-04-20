@@ -16,7 +16,7 @@ import logo from '../../../assets/images/logo/logo.png';
 
 import { useStyles } from './Surveys.style';
 
-function Surveys({ surveys }, props) {
+function Surveys({ surveys }) {
   const classes = useStyles();
 
   const [tempSurveys, setTempsurveys] = useState(surveys);
@@ -34,6 +34,7 @@ function Surveys({ surveys }, props) {
 
   const isSomeSurveyOpen = tempSurveys.some(survey => survey.open === true);
   const openSurvey = tempSurveys.find(survey => survey.open === true);
+  console.log(openSurvey);
 
   return (
     <div>
@@ -68,7 +69,7 @@ function Surveys({ surveys }, props) {
                         Close
                       </Button>
                     ) : (
-                      <Link to="/survey/open">
+                      <Link to={`/survey/${survey.surveyId}`}>
                         <Button
                           variant="contained"
                           color="primary"
@@ -89,9 +90,11 @@ function Surveys({ surveys }, props) {
             })}
           </div>
         </Route>
-        <Route path="/survey/open" exact>
-          <Survey survey={openSurvey} />
-        </Route>
+        {openSurvey ? (
+          <Route path={`/survey/${openSurvey.surveyId}`} exact>
+            <Survey survey={openSurvey} />
+          </Route>
+        ) : null}
       </Switch>
     </div>
   );
