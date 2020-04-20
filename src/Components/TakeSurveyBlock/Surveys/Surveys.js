@@ -38,7 +38,7 @@ function Surveys({ surveys }) {
       <div className={classes.surveysWrapper}>
         {tempSurveys.map(survey => {
           return (
-            <Card className={classes.surveyCard}>
+            <Card className={classes.surveyCard} key={survey.surveyId}>
               <CardMedia
                 className={classes.media}
                 image={logo}

@@ -28,7 +28,7 @@ export const newData = [
             option: '115'
           }
         ],
-        hasLastInput: true,
+        hasLastInput: false,
         startValue: '0',
         endValue: '50',
         stepValue: '10'
@@ -56,7 +56,7 @@ export const newData = [
             option: 'true == 1'
           }
         ],
-        hasLastInput: false,
+        hasLastInput: true,
         startValue: '0',
         endValue: '100',
         stepValue: '10'
@@ -140,7 +140,7 @@ export const newData = [
         hasLastInput: false,
         startValue: '0',
         endValue: '100',
-        stepValue: '10'
+        stepValue: '12.5'
       },
       {
         id: '6',

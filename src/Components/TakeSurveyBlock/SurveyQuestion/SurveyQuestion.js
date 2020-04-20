@@ -30,6 +30,7 @@ function SurveyQuestion({
             answers={answers}
             answerType={answerType}
             questionId={id}
+            hasLastInput={hasLastInput}
           />
         );
       case 'checkbox':
@@ -90,7 +91,7 @@ SurveyQuestion.propTypes = {
   id: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
   answerType: PropTypes.string.isRequired,
-  inputType: PropTypes.string.isRequired,
+  inputType: PropTypes.string,
   answers: PropTypes.array.isRequired,
   hasLastInput: PropTypes.bool,
   startValue: PropTypes.string,
