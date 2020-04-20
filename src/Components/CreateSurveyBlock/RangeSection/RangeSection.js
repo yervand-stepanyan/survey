@@ -151,8 +151,6 @@ function RangeSection({
   const handleSubmit = () => {
     handleSubmitQuestion();
 
-    disableSave(false);
-
     setIsSubmitted(true);
   };
 
