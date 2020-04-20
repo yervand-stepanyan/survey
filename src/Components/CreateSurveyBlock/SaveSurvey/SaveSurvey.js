@@ -7,10 +7,8 @@ import { useStyles } from './SaveSurvey.style';
 
 const BUTTON_LABEL = 'Save';
 
-function SaveSurvey({ disabled }) {
+function SaveSurvey({ disabled, handleSave }) {
   const classes = useStyles();
-
-  const handleSubmit = () => {};
 
   return (
     <div className={classes.saveSurveyContainer}>
@@ -18,7 +16,7 @@ function SaveSurvey({ disabled }) {
         <Button
           className={classes.button}
           disabled={disabled}
-          onClick={handleSubmit}
+          onClick={handleSave}
           size="large"
           variant="contained"
         >
@@ -30,7 +28,8 @@ function SaveSurvey({ disabled }) {
 }
 
 SaveSurvey.propTypes = {
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool.isRequired,
+  handleSave: PropTypes.func.isRequired
 };
 
 export default SaveSurvey;

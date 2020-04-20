@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-// import uuid from 'react-uuid';
-// useReducer,
+import React, { useContext, useState } from 'react';
+import uuid from 'react-uuid';
+
 import Typography from '@material-ui/core/Typography';
 
 import QuestionSection from '../QuestionSection';
 import SaveSurvey from '../SaveSurvey';
 import SurveyContext from '../../../State/context';
-// import { surveyReducer } from '../../../State/reducer';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
 import { useStyles } from './CreateSurveyBlock.style';
@@ -15,20 +14,12 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
-  // const [activeId, setActiveId] = useState('');
-  // const [isTitle, setIsTitle] = useState(false);
-  // const [isQuestion, setIsQuestion] = useState(false);
-  // const [isDisabled, setIsDisabled] = useState(true);
-  // const [titleValue, setTitleValue] = useState('');
-  // const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
-  // const { questions } = stateSurvey;
-
   const [isQuestion, setIsQuestion] = useState(false);
   const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isTitleEdit, setIsTitleEdit] = useState(true);
   const [questions, setQuestions] = useState([]);
-  // const [surveys, setSurvey] = useState([]);
   const [title, setTitle] = useState('');
+  const { dispatchSurvey } = useContext(SurveyContext);
 
   const handleAddTitle = titleValue => {
     setTitle(titleValue);
@@ -52,29 +43,16 @@ function CreateSurveyBlock() {
     setQuestions(questionsArray);
   };
 
-  // const handleAddSurveyTitle = title => {
-  //   if (activeId) {
-  //     dispatchSurvey({ type: 'EDIT_TITLE', payload: title });
-  //
-  //     setIsTitle(true);
-  //
-  //     setTitleValue(title);
-  //   } else {
-  //     const id = activeId || uuid();
-  //     const surveyData = { id, title };
-  //
-  //     dispatchSurvey({ type: 'ADD_TITLE', payload: surveyData });
-  //
-  //     setActiveId(id);
-  //
-  //     setIsTitle(true);
-  //
-  //     setTitleValue(title);
-  //   }
-  // };
-
   const disableSave = bool => {
     setIsSaveDisabled(bool);
+  };
+
+  const handleSave = () => {
+    const date = new Date();
+
+    const surveyData = { id: uuid(), createDate: date, title, questions };
+
+    dispatchSurvey({ type: 'ADD_SURVEY', payload: surveyData });
   };
 
   return (
@@ -102,7 +80,7 @@ function CreateSurveyBlock() {
             />
           ) : null}
           {questions && questions.length ? (
-            <SaveSurvey disabled={isSaveDisabled} />
+            <SaveSurvey disabled={isSaveDisabled} handleSave={handleSave} />
           ) : null}
         </SurveyContext.Provider>
       </div>
