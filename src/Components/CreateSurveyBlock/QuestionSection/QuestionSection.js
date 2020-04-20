@@ -199,6 +199,8 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         : [...questions, questionObject]
     );
 
+    disableSave(false);
+
     setIsQuestionCreator(false);
 
     setShowAddNew(true);

@@ -54,8 +54,6 @@ function InputSection({ activeId, inputType }) {
   const handleSubmit = () => {
     handleSubmitQuestion();
 
-    disableSave(false);
-
     setIsSubmitted(true);
   };
 

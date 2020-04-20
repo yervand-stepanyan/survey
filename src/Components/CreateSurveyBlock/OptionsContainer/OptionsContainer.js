@@ -230,8 +230,6 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
   const handleSubmit = () => {
     handleSubmitQuestion();
 
-    disableSave(false);
-
     setIsSubmitted(true);
 
     setIsChanged(false);

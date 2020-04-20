@@ -23,8 +23,8 @@ function CreateSurveyBlock() {
   // const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, {});
   // const { questions } = stateSurvey;
 
-  const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isQuestion, setIsQuestion] = useState(false);
+  const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isTitleEdit, setIsTitleEdit] = useState(true);
   const [questions, setQuestions] = useState([]);
   // const [surveys, setSurvey] = useState([]);
