@@ -2,9 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
   container: {
+    // backgroundColor: 'black',
+  },
+  resultsContainer: {
     display: 'flex',
     justifyContent: 'center',
-    width: '100%', 
+    width: 1024, 
+    margin: 'auto',
     // borderRadius: `${theme.borders.borderRadius.base}`,
     // boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
@@ -12,16 +16,12 @@ export const useStyles = makeStyles(theme => ({
     padding: `${theme.customSpacing.small}`
   },
   root: {
-    maxWidth: 345,
+    // maxWidth: 345,
     position: 'relative',
-    // minWidth: 300,
     height:"auto",
-    minHeight:230,
     alignItems: "flex-end"
   },
   cardButton: {
-    position: 'absolute',
-    bottom:0,
     borderTop: `0.5px solid lightgrey`,
   },
   seeAnswersButton: {
@@ -29,6 +29,7 @@ export const useStyles = makeStyles(theme => ({
     color: '#3f51b5'
   },
   cardHeader: {
+    minHeight: 165,
     '&:hover': {
       background: theme.color.mainColorGreen,
       // color: 'white'

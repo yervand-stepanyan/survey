@@ -6,8 +6,8 @@ import { SURVEYS } from '../SurveyResultsData';
 
 function SingleSurveyAnswers () {
     const { surveyId } = useParams();
-    const [exactSurvey] = SURVEYS.filter(result => result.id === +surveyId);
-    console.log(exactSurvey);
+
+    const [result] = SURVEYS.filter(res => res.id === +surveyId);
 
 
     // const { index } = match.params;
