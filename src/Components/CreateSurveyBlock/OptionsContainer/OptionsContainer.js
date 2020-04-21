@@ -53,6 +53,10 @@ function OptionsContainer({
     }
   });
 
+  useEffect(() => {
+    handleAddAnswers(activeId, answers, checked);
+  }, [answers]);
+
   const handleInputChange = event => {
     setTitle(event.target.value);
 
@@ -85,16 +89,6 @@ function OptionsContainer({
             : [...answers, { id, title: filteredTitle }]
         );
 
-        handleAddAnswers(
-          activeId,
-          chip.id
-            ? answers.map(opt =>
-                opt.id === chip.id ? { id: chip.id, title: filteredTitle } : opt
-              )
-            : [...answers, { id, title: filteredTitle }],
-          checked
-        );
-
         setTitle('');
 
         setChip({});
@@ -123,8 +117,6 @@ function OptionsContainer({
           const filteredAnswers = prevState.filter(
             opt => opt.id !== lastAnswer.id
           );
-
-          handleAddAnswers(activeId, [...filteredAnswers, lastAnswer], checked);
 
           return [...filteredAnswers, lastAnswer];
         });
