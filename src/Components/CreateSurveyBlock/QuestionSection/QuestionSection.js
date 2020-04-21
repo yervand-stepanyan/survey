@@ -77,9 +77,9 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
       setQuestionObject({ ...questionObject, isQuestion: true });
 
       setActiveId(questionToEdit.id);
+    } else {
+      setIsQuestionEdit(true);
     }
-
-    setIsQuestionEdit(true);
 
     disableSave(true);
   };
