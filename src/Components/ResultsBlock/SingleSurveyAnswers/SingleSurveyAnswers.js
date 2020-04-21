@@ -1,16 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useParams} from "react-router";
+
+import { SURVEYS } from '../SurveyResultsData';
+
 
 function SingleSurveyAnswers () {
     const { surveyId } = useParams();
+    const [exactSurvey] = SURVEYS.filter(result => result.id === +surveyId);
+    console.log(exactSurvey);
+
 
     // const { index } = match.params;
-    return <div>{surveyId}</div>
+return <div>{surveyId}</div>
 }
 
-SingleSurveyAnswers.propTypes = {
-    surveyId: PropTypes.number.isRequired,
-}
 
 export default SingleSurveyAnswers;

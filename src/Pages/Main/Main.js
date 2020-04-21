@@ -8,7 +8,7 @@ import Contacts from '../Contacts';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
-import SingleSurveyAnswers from '../../Components/SingleSurveyAnswers';
+import SingleSurveyAnswers from '../../Components/ResultsBlock/SingleSurveyAnswers';
 import ROUTES from '../../Routes/Routes';
 import SurveyContext from '../../State/context';
 import { surveyReducer } from '../../State/reducer';
