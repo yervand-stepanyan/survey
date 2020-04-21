@@ -8,6 +8,14 @@ import RadiobuttonSection from '../RadiobuttonSection';
 import RangeSection from '../RangeSection';
 import { useStyles } from './AnswerSection.style';
 
+const TYPES = {
+  checkbox: 'CHECKBOX',
+  dropdown: 'DROPDOWN',
+  input: 'INPUT',
+  radiobutton: 'RADIOBUTTON',
+  range: 'RANGE'
+};
+
 function AnswerSection({
   activeId,
   answers,
@@ -23,9 +31,9 @@ function AnswerSection({
 
   const showType = typeToShow => {
     switch (typeToShow) {
-      case 'input':
+      case TYPES.input:
         return <InputSection activeId={activeId} inputType={inputType} />;
-      case 'radiobutton':
+      case TYPES.radiobutton:
         return (
           <RadiobuttonSection
             activeId={activeId}
@@ -33,11 +41,11 @@ function AnswerSection({
             hasLastInput={hasLastInput}
           />
         );
-      case 'checkbox':
+      case TYPES.checkbox:
         return <CheckboxSection activeId={activeId} answers={answers} />;
-      case 'dropdown':
+      case TYPES.dropdown:
         return <DropdownSection activeId={activeId} answers={answers} />;
-      case 'range':
+      case TYPES.range:
         return (
           <RangeSection
             activeId={activeId}

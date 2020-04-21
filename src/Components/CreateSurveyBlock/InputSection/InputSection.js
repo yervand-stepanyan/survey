@@ -13,10 +13,10 @@ import { useStyles } from './InputSection.style';
 
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 const BUTTON_LABEL = 'Submit & continue';
-const IMAGES = [
-  { name: 'text', src: inputText, tooltip: 'Text', text: 'Text' },
-  { name: 'number', src: inputNumber, tooltip: 'Number', text: 'Number' },
-  { name: 'date', src: inputDate, tooltip: 'Date', text: 'Date' }
+const TYPES = [
+  { name: 'TEXT', src: inputText, tooltip: 'Text', text: 'Text' },
+  { name: 'NUMBER', src: inputNumber, tooltip: 'Number', text: 'Number' },
+  { name: 'DATE', src: inputDate, tooltip: 'Date', text: 'Date' }
 ];
 const TITLE = 'Choose input type';
 
@@ -63,7 +63,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
         <Typography variant="h5">{TITLE}</Typography>
       </div>
       <div className={classes.typeWrapper}>
-        {IMAGES.map(img => (
+        {TYPES.map(img => (
           <ImageContainer
             classes={classes}
             handleClick={handleClick}

@@ -1,56 +1,56 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
+import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
 import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.png';
 import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
 import ImageContainer from '../ImageContainer';
-import { useStyles } from './AnswerOptions.style';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './AnswerOptions.style';
 
-const IMAGES = [
+const TYPES = [
   {
-    name: 'input',
+    name: 'INPUT',
     src: inputImage,
     tooltip: 'Input field',
     text: 'Input field'
   },
   {
-    name: 'radiobutton',
+    name: 'RADIOBUTTON',
     src: radiobuttonImage,
     tooltip: 'Radiobutton',
     text: 'Radiobutton'
   },
   {
-    name: 'checkbox',
+    name: 'CHECKBOX',
     src: checkboxImage,
     tooltip: 'Checkbox',
     text: 'Checkbox'
   },
   {
-    name: 'dropdown',
+    name: 'DROPDOWN',
     src: dropdownImage,
     tooltip: 'Dropdown',
     text: 'Dropdown list'
   },
-  { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
+  { name: 'RANGE', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
-function AnswerOptions({ activeId, answerType, setType }) {
+function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
   const classes = useStyles();
-  const [image, setImage] = useState(answerType || '');
+  const [answerType, setAnswerType] = useState(answerTypeProps || '');
   const { disableSave, handleAddAnswerType } = useContext(SurveyContext);
 
   const handleClick = e => {
-    const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
+    const type = e.target.alt ? e.target.alt : e.target.children[0].alt;
 
-    setImage(img);
+    setAnswerType(type);
 
-    setType(img);
+    setType(type);
 
-    handleAddAnswerType(activeId, img);
+    handleAddAnswerType(activeId, type);
 
     disableSave(true);
   };
@@ -61,12 +61,12 @@ function AnswerOptions({ activeId, answerType, setType }) {
 
   return (
     <div className={classes.answerOptionsContainer}>
-      {IMAGES.map(img => (
+      {TYPES.map(img => (
         <ImageContainer
           classes={classes}
           handleClick={handleClick}
           handleEnterKey={handleEnterKey}
-          imageClicked={image}
+          imageClicked={answerType}
           img={img}
           key={img.name}
         />
