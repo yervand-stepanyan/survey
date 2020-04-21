@@ -31,6 +31,13 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         )
       );
 
+      setQuestionObject({
+        ...questionObject,
+        id,
+        title: questionVal,
+        isQuestion: false
+      });
+
       disableSave(false);
     } else {
       const questionId = activeId || uuid();
