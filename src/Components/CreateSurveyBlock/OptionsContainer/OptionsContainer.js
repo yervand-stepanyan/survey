@@ -20,20 +20,25 @@ const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
 
-function OptionsContainer({ activeId, answers, hasLastInput, type }) {
+function OptionsContainer({
+  activeId,
+  answers: answersProps,
+  hasLastInput,
+  type
+}) {
   const classes = useStyles();
+  const [answers, setAnswers] = useState(answersProps || []);
   const [checked, setChecked] = useState(hasLastInput || false);
   const [chip, setChip] = useState({});
-  const [customOptionId, setCustomOptionId] = useState(
-    hasLastInput ? answers[answers.length - 1].id : ''
+  const [customAnswerId, setCustomAnswerId] = useState(
+    hasLastInput ? answersProps[answersProps.length - 1].id : ''
   );
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(!!answers || false);
+  const [isSubmitted, setIsSubmitted] = useState(!!answersProps || false);
   const [isTooltip, setIsTooltip] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
-  const [option, setOption] = useState('');
-  const [options, setOptions] = useState(answers || []);
+  const [title, setTitle] = useState('');
   const inputEl = useRef(null);
   const {
     disableSave,
@@ -49,7 +54,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
   });
 
   const handleInputChange = event => {
-    setOption(event.target.value);
+    setTitle(event.target.value);
 
     if (!removeSpaces(event.target.value)) {
       setIsEmpty(true);
@@ -68,40 +73,36 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
 
   const handleSubmitOnEnter = event => {
     if (event.key === 'Enter') {
-      const filteredOption = removeSpaces(option);
+      const filteredTitle = removeSpaces(title);
       const id = uuid();
 
-      if (filteredOption) {
-        setOptions(
+      if (filteredTitle) {
+        setAnswers(
           chip.id
-            ? options.map(opt =>
-                opt.id === chip.id
-                  ? { id: chip.id, option: filteredOption }
-                  : opt
+            ? answers.map(opt =>
+                opt.id === chip.id ? { id: chip.id, title: filteredTitle } : opt
               )
-            : [...options, { id, option: filteredOption }]
+            : [...answers, { id, title: filteredTitle }]
         );
 
         handleAddAnswers(
           activeId,
           chip.id
-            ? options.map(opt =>
-                opt.id === chip.id
-                  ? { id: chip.id, option: filteredOption }
-                  : opt
+            ? answers.map(opt =>
+                opt.id === chip.id ? { id: chip.id, title: filteredTitle } : opt
               )
-            : [...options, { id, option: filteredOption }],
+            : [...answers, { id, title: filteredTitle }],
           checked
         );
 
-        setOption('');
+        setTitle('');
 
         setChip({});
 
         setIsTyped(false);
 
-        if (checked && !customOptionId) {
-          setCustomOptionId(id);
+        if (checked && !customAnswerId) {
+          setCustomAnswerId(id);
 
           setIsTooltip(false);
         }
@@ -116,16 +117,16 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
       }
 
       if (checked) {
-        setOptions(prevState => {
-          const optionId = customOptionId || id;
-          const lastOption = prevState.find(opt => opt.id === optionId);
-          const filteredOptions = prevState.filter(
-            opt => opt.id !== lastOption.id
+        setAnswers(prevState => {
+          const answerId = customAnswerId || id;
+          const lastAnswer = prevState.find(opt => opt.id === answerId);
+          const filteredAnswers = prevState.filter(
+            opt => opt.id !== lastAnswer.id
           );
 
-          handleAddAnswers(activeId, [...filteredOptions, lastOption], checked);
+          handleAddAnswers(activeId, [...filteredAnswers, lastAnswer], checked);
 
-          return [...filteredOptions, lastOption];
+          return [...filteredAnswers, lastAnswer];
         });
       }
 
@@ -135,7 +136,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
 
   const handleChipClick = chipToEdit => () => {
     if (!isTyped) {
-      setOption(chipToEdit.option);
+      setTitle(chipToEdit.title);
 
       setChip(chipToEdit);
 
@@ -147,19 +148,19 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
     }
   };
 
-  const handleChipDelete = chipToDelete => () => {
-    setOptions(() => options.filter(opt => opt.id !== chipToDelete));
+  const handleChipDelete = id => () => {
+    setAnswers(() => answers.filter(opt => opt.id !== id));
 
     handleAddAnswers(
       activeId,
-      options.filter(opt => opt.id !== chipToDelete),
+      answers.filter(opt => opt.id !== id),
       false
     );
 
-    if (customOptionId === chipToDelete) {
+    if (customAnswerId === id) {
       setChecked(false);
 
-      setCustomOptionId('');
+      setCustomAnswerId('');
     }
 
     if (isSubmitted) {
@@ -174,7 +175,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
   const handleCheckboxChange = event => {
     setChecked(event.target.checked);
 
-    setOption('');
+    setTitle('');
 
     if (event.target.checked) {
       inputEl.current.focus();
@@ -189,19 +190,19 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
         setIsSubmitted(true);
       }
     } else {
-      const removedAnswer = options.find(opt => opt.id === customOptionId);
+      const removedAnswer = answers.find(opt => opt.id === customAnswerId);
 
       setIsTooltip(false);
 
-      setOptions(options.filter(opt => opt.id !== customOptionId));
+      setAnswers(answers.filter(opt => opt.id !== customAnswerId));
 
       handleHasLastInput(
         activeId,
         false,
-        options.filter(opt => opt.id !== customOptionId)
+        answers.filter(opt => opt.id !== customAnswerId)
       );
 
-      setCustomOptionId('');
+      setCustomAnswerId('');
 
       if (isSubmitted) {
         if (isTyped) {
@@ -253,7 +254,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
               label={INPUT_LABEL}
               onChange={e => handleInputChange(e)}
               onKeyDown={handleSubmitOnEnter}
-              value={option}
+              value={title}
               variant="outlined"
             />
           </Tooltip>
@@ -261,18 +262,18 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
       </div>
       <div className={classes.chipsWrapper}>
         <div className={classes.root}>
-          {options.map(opt => (
+          {answers.map(opt => (
             <Tooltip
               arrow
               key={opt.id}
-              title={opt.option}
+              title={opt.title}
               TransitionComponent={Zoom}
             >
               <Chip
                 className={classes.chip}
                 clickable
                 color="primary"
-                label={opt.option}
+                label={opt.title}
                 onClick={handleChipClick(opt)}
                 onDelete={handleChipDelete(opt.id)}
               />
@@ -300,7 +301,7 @@ function OptionsContainer({ activeId, answers, hasLastInput, type }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={options.length < 2 || isSubmitted}
+          disabled={answers.length < 2 || isSubmitted}
           onClick={handleSubmit}
           size="large"
           variant="contained"

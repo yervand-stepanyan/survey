@@ -53,6 +53,8 @@ function CreateSurveyBlock() {
     const surveyData = { id: uuid(), createDate: date, title, questions };
 
     dispatchSurvey({ type: 'ADD_SURVEY', payload: surveyData });
+
+    setIsSaveDisabled(true);
   };
 
   return (
