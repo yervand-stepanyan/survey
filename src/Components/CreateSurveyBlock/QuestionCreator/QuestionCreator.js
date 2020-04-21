@@ -22,7 +22,7 @@ function QuestionCreator({
   questionsLength
 }) {
   const classes = useStyles();
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [isEmpty, setIsEmpty] = useState(false);
   const [question, setQuestion] = useState(questionProps);
   const inputEl = useRef(null);
 
@@ -34,9 +34,9 @@ function QuestionCreator({
     setQuestion(event.target.value);
 
     if (removeSpaces(event.target.value)) {
-      setIsEmpty(true);
-    } else {
       setIsEmpty(false);
+    } else {
+      setIsEmpty(true);
     }
   };
 
@@ -46,12 +46,16 @@ function QuestionCreator({
     if (filteredQuestion) {
       handleAddQuestion(activeId, filteredQuestion);
     } else {
-      setIsEmpty(false);
+      setIsEmpty(true);
     }
   };
 
   const handleSubmitOnEnter = event => {
-    if (event.key === 'Enter') if (isEmpty) handleSubmit();
+    if (event.key === 'Enter') {
+      if (!isEmpty) {
+        handleSubmit();
+      }
+    }
   };
 
   const handleCancel = () => {
@@ -67,11 +71,11 @@ function QuestionCreator({
         <div className={classes.textFieldSection}>
           <TextField
             autoFocus
-            error={!isEmpty}
+            error={isEmpty}
             fullWidth
             id="outlined-basic"
             inputRef={inputEl}
-            label={isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
+            label={!isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
             onChange={e => handleChange(e)}
             onKeyDown={handleSubmitOnEnter}
             variant="outlined"
@@ -82,7 +86,7 @@ function QuestionCreator({
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!question || !isEmpty}
+          disabled={!question || isEmpty}
           onClick={handleSubmit}
           size="large"
           variant="contained"
