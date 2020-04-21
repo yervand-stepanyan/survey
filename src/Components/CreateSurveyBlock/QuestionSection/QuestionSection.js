@@ -214,7 +214,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     setQuestionObject({});
   };
 
-  const handleShowAddNew = () => {
+  const handleAddNewQuestion = () => {
     disableSave(true);
 
     setShowAddNew(false);
@@ -287,7 +287,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
           />
         ) : null}
         {showAddNew ? (
-          <AddNewQuestion handleShowAddNew={handleShowAddNew} />
+          <AddNewQuestion handleAddNewQuestion={handleAddNewQuestion} />
         ) : null}
       </SurveyContext.Provider>
     </div>
