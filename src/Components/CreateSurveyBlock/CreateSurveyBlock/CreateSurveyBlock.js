@@ -14,7 +14,7 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
-  const [isQuestion, setIsQuestion] = useState(false);
+  const [isQuestionEdit, setIsQuestionEdit] = useState(false);
   const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isTitleEdit, setIsTitleEdit] = useState(true);
   const [questions, setQuestions] = useState([]);
@@ -36,7 +36,7 @@ function CreateSurveyBlock() {
   };
 
   const handleIsQuestion = () => {
-    setIsQuestion(true);
+    setIsQuestionEdit(true);
   };
 
   const handleSetQuestions = questionsArray => {
@@ -49,8 +49,14 @@ function CreateSurveyBlock() {
 
   const handleSave = () => {
     const date = new Date();
+    const questionsToSave = questions.map(({ isQuestion, ...item }) => item);
 
-    const surveyData = { id: uuid(), createDate: date, title, questions };
+    const surveyData = {
+      id: uuid(),
+      createDate: date,
+      title,
+      questions: questionsToSave
+    };
 
     dispatchSurvey({ type: 'ADD_SURVEY', payload: surveyData });
 
@@ -74,7 +80,7 @@ function CreateSurveyBlock() {
               <SurveyTitle handleEditTitle={handleEditTitle} title={title} />
             )}
           </div>
-          {isQuestion || !isTitleEdit ? (
+          {isQuestionEdit || !isTitleEdit ? (
             <QuestionSection
               handleIsQuestion={handleIsQuestion}
               handleSetQuestions={handleSetQuestions}
