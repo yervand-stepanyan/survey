@@ -83,6 +83,8 @@ function RangeSection({
 
     if (!removeSpaces(event.target.value)) {
       setIsEmpty(true);
+
+      disableSave(true);
     } else {
       setIsEmpty(false);
 

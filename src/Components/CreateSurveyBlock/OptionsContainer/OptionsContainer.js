@@ -48,7 +48,7 @@ function OptionsContainer({
   } = useContext(SurveyContext);
 
   useEffect(() => {
-    if (!isSubmitted) {
+    if (!activeId) {
       inputEl.current.focus();
     }
   });

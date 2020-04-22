@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
+import _ from 'lodash';
 
 import AddNewQuestion from '../AddNewQuestion';
 import QuestionSectionCreator from '../QuestionSectionCreator';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './QuestionSection.style';
 
-function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
+function QuestionSection({
+  handleIsQuestionOpen,
+  handleSetQuestions,
+  questions
+}) {
   const classes = useStyles();
   const [activeId, setActiveId] = useState('');
   const [isQuestionEdit, setIsQuestionEdit] = useState(true);
@@ -22,7 +27,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   } = useContext(SurveyContext);
 
   useEffect(() => {
-    handleIsQuestion();
+    handleIsQuestionOpen();
   });
 
   const handleAddQuestion = (id, questionVal) => {
@@ -122,12 +127,13 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
           question.id === currentQuestion.id
             ? {
                 ...currentQuestion,
-                answerType: type,
-                inputType: undefined,
                 answers: undefined,
-                hasLastInput: false,
-                startValue: undefined,
+                answerType: type,
                 endValue: undefined,
+                hasLastInput: false,
+                inputType: undefined,
+                isAnswerSubmitted: false,
+                startValue: undefined,
                 stepValue: undefined
               }
             : question
@@ -153,14 +159,13 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     if (id) {
       const currentQuestion = questions.find(question => question.id === id);
 
-      // setQuestionObject({ ...currentQuestion, inputType: type });
-
       handleSetQuestions(
         questions.map(question =>
           question.id === currentQuestion.id
             ? {
                 ...currentQuestion,
-                inputType: type
+                inputType: type,
+                isAnswerSubmitted: false
               }
             : question
         )
@@ -176,12 +181,23 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     if (id) {
       const currentQuestion = questions.find(question => question.id === id);
 
-      setQuestionObject({ ...currentQuestion, answers, hasLastInput: checked });
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === currentQuestion.id
+            ? {
+                ...currentQuestion,
+                answers,
+                hasLastInput: checked,
+                isAnswerSubmitted: _.isEqual(question.answers, answers)
+              }
+            : question
+        )
+      );
+
+      handleIsAnswerSubmitted(_.isEqual(currentQuestion.answers, answers));
     } else {
       setQuestionObject({ ...questionObject, answers, hasLastInput: checked });
     }
-
-    // handleIsAnswerSubmitted(false);
   };
 
   const handleHasLastInput = (id, bool, answers) => {
@@ -189,9 +205,30 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
       const currentQuestion = questions.find(question => question.id === id);
 
       if (answers) {
-        setQuestionObject({ ...currentQuestion, answers, hasLastInput: bool });
+        handleSetQuestions(
+          questions.map(question =>
+            question.id === currentQuestion.id
+              ? {
+                  ...currentQuestion,
+                  answers,
+                  hasLastInput: bool,
+                  isAnswerSubmitted: false
+                }
+              : question
+          )
+        );
       } else {
-        setQuestionObject({ ...currentQuestion, hasLastInput: bool });
+        handleSetQuestions(
+          questions.map(question =>
+            question.id === currentQuestion.id
+              ? {
+                  ...currentQuestion,
+                  hasLastInput: bool,
+                  isAnswerSubmitted: false
+                }
+              : question
+          )
+        );
       }
     } else if (answers) {
       setQuestionObject({ ...questionObject, answers, hasLastInput: bool });
@@ -225,14 +262,24 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   };
 
   const handleSubmitQuestion = id => {
-    if (!id) {
+    if (id) {
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === id
+            ? { ...question, isAnswerSubmitted: true }
+            : question
+        )
+      );
+    } else {
       handleSetQuestions(
         questions &&
           questions.some(question => question.id === questionObject.id)
           ? questions.map(question =>
-              question.id === questionObject.id ? questionObject : question
+              question.id === questionObject.id
+                ? { ...questionObject, isAnswerSubmitted: true }
+                : question
             )
-          : [...questions, questionObject]
+          : [...questions, { ...questionObject, isAnswerSubmitted: true }]
       );
     }
 
@@ -332,7 +379,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
 }
 
 QuestionSection.propTypes = {
-  handleIsQuestion: PropTypes.func.isRequired,
+  handleIsQuestionOpen: PropTypes.func.isRequired,
   handleSetQuestions: PropTypes.func.isRequired,
   questions: PropTypes.array.isRequired
 };

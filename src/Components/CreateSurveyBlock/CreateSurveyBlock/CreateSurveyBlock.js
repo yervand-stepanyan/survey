@@ -14,8 +14,9 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
+  const [allQuestionsSubmitted, setAllQuestionsSubmitted] = useState(false);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
-  const [isQuestionEdit, setIsQuestionEdit] = useState(false);
+  const [isQuestionOpen, setIsQuestionOpen] = useState(false);
   const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
   const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isTitleEdit, setIsTitleEdit] = useState(true);
@@ -37,8 +38,8 @@ function CreateSurveyBlock() {
     setIsSaveDisabled(true);
   };
 
-  const handleIsQuestion = () => {
-    setIsQuestionEdit(true);
+  const handleIsQuestionOpen = () => {
+    setIsQuestionOpen(true);
   };
 
   const handleIsQuestionSubmitted = bool => {
@@ -51,6 +52,10 @@ function CreateSurveyBlock() {
 
   const handleSetQuestions = questionsArray => {
     setQuestions(questionsArray);
+
+    setAllQuestionsSubmitted(
+      questionsArray.every(question => question.isAnswerSubmitted)
+    );
   };
 
   const disableSave = bool => {
@@ -96,9 +101,9 @@ function CreateSurveyBlock() {
               <SurveyTitle handleEditTitle={handleEditTitle} title={title} />
             )}
           </div>
-          {isQuestionEdit || !isTitleEdit ? (
+          {isQuestionOpen || !isTitleEdit ? (
             <QuestionSection
-              handleIsQuestion={handleIsQuestion}
+              handleIsQuestionOpen={handleIsQuestionOpen}
               handleSetQuestions={handleSetQuestions}
               questions={questions}
             />
@@ -107,6 +112,7 @@ function CreateSurveyBlock() {
             <SaveSurvey
               disabled={
                 isTitleEdit ||
+                !allQuestionsSubmitted ||
                 !isQuestionSubmitted ||
                 !isAnswerSubmitted ||
                 isSaveDisabled
