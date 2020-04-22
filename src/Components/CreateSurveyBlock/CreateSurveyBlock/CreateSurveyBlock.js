@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
 import Typography from '@material-ui/core/Typography';
 
 import QuestionSection from '../QuestionSection';
+import ROUTES from '../../../Routes/Routes';
 import SaveSurvey from '../SaveSurvey';
 import SurveyContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
@@ -12,7 +14,7 @@ import { useStyles } from './CreateSurveyBlock.style';
 
 const BLOCK_TITLE = 'Create survey';
 
-function CreateSurveyBlock() {
+function CreateSurveyBlock({ history }) {
   const classes = useStyles();
   const [allQuestionsSubmitted, setAllQuestionsSubmitted] = useState(false);
   const [isAnswerSubmit, setIsAnswerSubmit] = useState(false);
@@ -20,9 +22,17 @@ function CreateSurveyBlock() {
   const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
   const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isTitleEdit, setIsTitleEdit] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState('');
   const { dispatchSurvey } = useContext(SurveyContext);
+  const timer = React.useRef();
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+    };
+  }, []);
 
   const handleAddTitle = titleValue => {
     setTitle(titleValue);
@@ -77,6 +87,15 @@ function CreateSurveyBlock() {
 
     dispatchSurvey({ type: 'ADD_SURVEY', payload: surveyData });
 
+    if (!loading) {
+      setLoading(true);
+      timer.current = setTimeout(() => {
+        setLoading(false);
+
+        history.push(ROUTES.home);
+      }, 2000);
+    }
+
     setIsSaveDisabled(true);
   };
 
@@ -120,6 +139,7 @@ function CreateSurveyBlock() {
                 isSaveDisabled
               }
               handleSave={handleSave}
+              loading={loading}
             />
           ) : null}
         </SurveyContext.Provider>
@@ -127,5 +147,9 @@ function CreateSurveyBlock() {
     </div>
   );
 }
+
+CreateSurveyBlock.propTypes = {
+  history: PropTypes.object.isRequired
+};
 
 export default CreateSurveyBlock;
