@@ -132,7 +132,7 @@ function QuestionSection({
                 endValue: undefined,
                 hasLastInput: false,
                 inputType: undefined,
-                isAnswerSubmitted: false,
+                isAnswerSubmit: false,
                 startValue: undefined,
                 stepValue: undefined
               }
@@ -165,7 +165,7 @@ function QuestionSection({
             ? {
                 ...currentQuestion,
                 inputType: type,
-                isAnswerSubmitted: false
+                isAnswerSubmit: false
               }
             : question
         )
@@ -188,7 +188,7 @@ function QuestionSection({
                 ...currentQuestion,
                 answers,
                 hasLastInput: checked,
-                isAnswerSubmitted: _.isEqual(question.answers, answers)
+                isAnswerSubmit: _.isEqual(question.answers, answers)
               }
             : question
         )
@@ -212,7 +212,7 @@ function QuestionSection({
                   ...currentQuestion,
                   answers,
                   hasLastInput: bool,
-                  isAnswerSubmitted: false
+                  isAnswerSubmit: false
                 }
               : question
           )
@@ -224,7 +224,7 @@ function QuestionSection({
               ? {
                   ...currentQuestion,
                   hasLastInput: bool,
-                  isAnswerSubmitted: false
+                  isAnswerSubmit: false
                 }
               : question
           )
@@ -265,9 +265,7 @@ function QuestionSection({
     if (id) {
       handleSetQuestions(
         questions.map(question =>
-          question.id === id
-            ? { ...question, isAnswerSubmitted: true }
-            : question
+          question.id === id ? { ...question, isAnswerSubmit: true } : question
         )
       );
     } else {
@@ -276,10 +274,10 @@ function QuestionSection({
           questions.some(question => question.id === questionObject.id)
           ? questions.map(question =>
               question.id === questionObject.id
-                ? { ...questionObject, isAnswerSubmitted: true }
+                ? { ...questionObject, isAnswerSubmit: true }
                 : question
             )
-          : [...questions, { ...questionObject, isAnswerSubmitted: true }]
+          : [...questions, { ...questionObject, isAnswerSubmit: true }]
       );
     }
 

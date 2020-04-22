@@ -15,7 +15,7 @@ const BLOCK_TITLE = 'Create survey';
 function CreateSurveyBlock() {
   const classes = useStyles();
   const [allQuestionsSubmitted, setAllQuestionsSubmitted] = useState(false);
-  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
+  const [isAnswerSubmit, setIsAnswerSubmit] = useState(false);
   const [isQuestionOpen, setIsQuestionOpen] = useState(false);
   const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
   const [isSaveDisabled, setIsSaveDisabled] = useState(true);
@@ -47,14 +47,14 @@ function CreateSurveyBlock() {
   };
 
   const handleIsAnswerSubmitted = bool => {
-    setIsAnswerSubmitted(bool);
+    setIsAnswerSubmit(bool);
   };
 
   const handleSetQuestions = questionsArray => {
     setQuestions(questionsArray);
 
     setAllQuestionsSubmitted(
-      questionsArray.every(question => question.isAnswerSubmitted)
+      questionsArray.every(question => question.isAnswerSubmit)
     );
   };
 
@@ -64,7 +64,9 @@ function CreateSurveyBlock() {
 
   const handleSave = () => {
     const date = new Date();
-    const questionsToSave = questions.map(({ isQuestion, ...item }) => item);
+    const questionsToSave = questions.map(
+      ({ isQuestion, isAnswerSubmitted, ...item }) => item
+    );
 
     const surveyData = {
       id: uuid(),
@@ -114,7 +116,7 @@ function CreateSurveyBlock() {
                 isTitleEdit ||
                 !allQuestionsSubmitted ||
                 !isQuestionSubmitted ||
-                !isAnswerSubmitted ||
+                !isAnswerSubmit ||
                 isSaveDisabled
               }
               handleSave={handleSave}
