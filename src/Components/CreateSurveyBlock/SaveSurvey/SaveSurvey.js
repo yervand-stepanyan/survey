@@ -24,7 +24,11 @@ function SaveSurvey({ disabled, handleSave, loading }) {
           {BUTTON_LABEL}
         </Button>
         {loading && (
-          <CircularProgress size={24} className={classes.buttonProgress} />
+          <CircularProgress
+            size={24}
+            thickness={8}
+            className={classes.buttonProgress}
+          />
         )}
       </div>
     </div>

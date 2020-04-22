@@ -20,7 +20,7 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   buttonProgress: {
-    color: `${theme.color.mainColorGreen}`,
+    color: `${theme.color.buttonHoverColorGreen}`,
     position: 'absolute',
     top: '50%',
     left: '50%',
