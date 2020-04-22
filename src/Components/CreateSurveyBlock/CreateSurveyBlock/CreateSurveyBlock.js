@@ -25,7 +25,9 @@ function CreateSurveyBlock({ history }) {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState('');
-  const { dispatchSurvey } = useContext(SurveyContext);
+  const { dispatchSurvey, handleOpenSnackbar, handleShowSuccess } = useContext(
+    SurveyContext
+  );
   const timer = React.useRef();
 
   useEffect(() => {
@@ -95,6 +97,14 @@ function CreateSurveyBlock({ history }) {
         history.push(ROUTES.home);
       }, 2000);
     }
+
+    if (!loading) {
+      handleShowSuccess(true);
+    } else {
+      handleShowSuccess(false);
+    }
+
+    handleOpenSnackbar();
 
     setIsSaveDisabled(true);
   };
