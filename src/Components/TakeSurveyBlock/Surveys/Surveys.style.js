@@ -41,5 +41,27 @@ export const useStyles = makeStyles(theme => ({
   },
   button: {
     width: '100%'
+  },
+
+  table: {
+    '& tr': {
+      borderBottom: '1px solid rgba(224, 224, 224, 1)',
+      padding: '5px'
+    },
+    '& td ': {
+      border: 'none'
+    },
+    '& th': {
+      border: 'none'
+    },
+    '& .MuiTableRow-root': {
+      backgroundColor: '#e6e6e6'
+    }
+  },
+  takeAndResultsCellsContainer: {
+    margin: '0',
+    padding: '0',
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 }));
