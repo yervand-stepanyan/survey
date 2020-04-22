@@ -20,7 +20,9 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const inputEl = useRef(null);
 
   useEffect(() => {
-    if (title) inputEl.current.focus();
+    if (title) {
+      inputEl.current.focus();
+    }
   }, [title]);
 
   const handleChange = event => {
@@ -36,12 +38,19 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const handleSubmit = () => {
     const filteredTitle = removeSpaces(title);
 
-    if (filteredTitle) handleAddTitle(filteredTitle);
-    else setIsEmpty(false);
+    if (filteredTitle) {
+      handleAddTitle(filteredTitle);
+    } else {
+      setIsEmpty(false);
+    }
   };
 
   const handleSubmitOnEnter = event => {
-    if (event.key === 'Enter') if (isEmpty) handleSubmit();
+    if (event.key === 'Enter') {
+      if (isEmpty) {
+        handleSubmit();
+      }
+    }
   };
 
   return (

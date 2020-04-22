@@ -27,7 +27,9 @@ function QuestionCreator({
   const inputEl = useRef(null);
 
   useEffect(() => {
-    if (question) inputEl.current.focus();
+    if (question) {
+      inputEl.current.focus();
+    }
   }, [question]);
 
   const handleChange = event => {
@@ -93,7 +95,7 @@ function QuestionCreator({
         >
           {SUBMIT_BUTTON_LABEL}
         </Button>
-        {questionsLength ? (
+        {questionsLength && !questionProps ? (
           <Button
             className={classes.cancelButton}
             color="secondary"
