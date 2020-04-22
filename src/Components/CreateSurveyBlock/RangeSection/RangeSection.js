@@ -149,7 +149,7 @@ function RangeSection({
   };
 
   const handleSubmit = () => {
-    handleSubmitQuestion();
+    handleSubmitQuestion(activeId);
 
     setIsSubmitted(true);
   };

@@ -14,7 +14,9 @@ const BLOCK_TITLE = 'Create survey';
 
 function CreateSurveyBlock() {
   const classes = useStyles();
+  const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false);
   const [isQuestionEdit, setIsQuestionEdit] = useState(false);
+  const [isQuestionSubmitted, setIsQuestionSubmitted] = useState(false);
   const [isSaveDisabled, setIsSaveDisabled] = useState(true);
   const [isTitleEdit, setIsTitleEdit] = useState(true);
   const [questions, setQuestions] = useState([]);
@@ -37,6 +39,14 @@ function CreateSurveyBlock() {
 
   const handleIsQuestion = () => {
     setIsQuestionEdit(true);
+  };
+
+  const handleIsQuestionSubmitted = bool => {
+    setIsQuestionSubmitted(bool);
+  };
+
+  const handleIsAnswerSubmitted = bool => {
+    setIsAnswerSubmitted(bool);
   };
 
   const handleSetQuestions = questionsArray => {
@@ -69,7 +79,13 @@ function CreateSurveyBlock() {
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <div className={classes.createSurveyWrapper}>
-        <SurveyContext.Provider value={{ disableSave }}>
+        <SurveyContext.Provider
+          value={{
+            disableSave,
+            handleIsAnswerSubmitted,
+            handleIsQuestionSubmitted
+          }}
+        >
           <div className={classes.titleWrapper}>
             {isTitleEdit ? (
               <SurveyTitleCreator
@@ -88,7 +104,15 @@ function CreateSurveyBlock() {
             />
           ) : null}
           {questions && questions.length ? (
-            <SaveSurvey disabled={isSaveDisabled} handleSave={handleSave} />
+            <SaveSurvey
+              disabled={
+                isTitleEdit ||
+                !isQuestionSubmitted ||
+                !isAnswerSubmitted ||
+                isSaveDisabled
+              }
+              handleSave={handleSave}
+            />
           ) : null}
         </SurveyContext.Provider>
       </div>

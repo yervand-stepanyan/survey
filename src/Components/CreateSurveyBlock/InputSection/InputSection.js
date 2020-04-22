@@ -52,7 +52,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   };
 
   const handleSubmit = () => {
-    handleSubmitQuestion();
+    handleSubmitQuestion(activeId);
 
     setIsSubmitted(true);
   };

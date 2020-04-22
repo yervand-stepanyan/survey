@@ -15,7 +15,11 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
   const [questionObject, setQuestionObject] = useState({});
   const [questionValue, setQuestionValue] = useState('');
   const [showAddNew, setShowAddNew] = useState(false);
-  const { disableSave } = useContext(SurveyContext);
+  const {
+    disableSave,
+    handleIsAnswerSubmitted,
+    handleIsQuestionSubmitted
+  } = useContext(SurveyContext);
 
   useEffect(() => {
     handleIsQuestion();
@@ -25,7 +29,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     if (id) {
       handleSetQuestions(
         questions.map(question =>
-          question.id === activeId
+          question.id === id
             ? { ...question, title: questionVal, isQuestion: false }
             : question
         )
@@ -38,7 +42,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         isQuestion: false
       });
 
-      disableSave(false);
+      handleIsQuestionSubmitted(true);
     } else {
       const questionId = activeId || uuid();
 
@@ -55,7 +59,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
 
       setIsQuestionEdit(false);
 
-      disableSave(true);
+      handleIsQuestionSubmitted(true);
     }
   };
 
@@ -88,7 +92,7 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
       setIsQuestionEdit(true);
     }
 
-    disableSave(true);
+    handleIsQuestionSubmitted(false);
   };
 
   const handleRemoveQuestion = id => {
@@ -141,16 +145,31 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         stepValue: undefined
       });
     }
+
+    handleIsAnswerSubmitted(false);
   };
 
   const handleAddInputType = (id, type) => {
     if (id) {
       const currentQuestion = questions.find(question => question.id === id);
 
-      setQuestionObject({ ...currentQuestion, inputType: type });
+      // setQuestionObject({ ...currentQuestion, inputType: type });
+
+      handleSetQuestions(
+        questions.map(question =>
+          question.id === currentQuestion.id
+            ? {
+                ...currentQuestion,
+                inputType: type
+              }
+            : question
+        )
+      );
     } else {
       setQuestionObject({ ...questionObject, inputType: type });
     }
+
+    handleIsAnswerSubmitted(false);
   };
 
   const handleAddAnswers = (id, answers, checked) => {
@@ -161,6 +180,8 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     } else {
       setQuestionObject({ ...questionObject, answers, hasLastInput: checked });
     }
+
+    // handleIsAnswerSubmitted(false);
   };
 
   const handleHasLastInput = (id, bool, answers) => {
@@ -177,6 +198,8 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
     } else {
       setQuestionObject({ ...questionObject, hasLastInput: bool });
     }
+
+    handleIsAnswerSubmitted(false);
   };
 
   const handleAddRangeValues = (id, range) => {
@@ -197,18 +220,25 @@ function QuestionSection({ handleIsQuestion, handleSetQuestions, questions }) {
         stepValue: range.stepValue
       });
     }
+
+    handleIsAnswerSubmitted(false);
   };
 
-  const handleSubmitQuestion = () => {
-    handleSetQuestions(
-      questions && questions.some(question => question.id === questionObject.id)
-        ? questions.map(question =>
-            question.id === questionObject.id ? questionObject : question
-          )
-        : [...questions, questionObject]
-    );
+  const handleSubmitQuestion = id => {
+    if (!id) {
+      handleSetQuestions(
+        questions &&
+          questions.some(question => question.id === questionObject.id)
+          ? questions.map(question =>
+              question.id === questionObject.id ? questionObject : question
+            )
+          : [...questions, questionObject]
+      );
+    }
 
     disableSave(false);
+
+    handleIsAnswerSubmitted(true);
 
     setIsQuestionCreator(false);
 

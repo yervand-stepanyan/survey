@@ -221,7 +221,7 @@ function OptionsContainer({
   };
 
   const handleSubmit = () => {
-    handleSubmitQuestion();
+    handleSubmitQuestion(activeId);
 
     setIsSubmitted(true);
 
