@@ -1,9 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import MuiAlert from '@material-ui/lab/Alert';
-import Snackbar from '@material-ui/core/Snackbar';
-
 import About from '../About';
 import Contacts from '../Contacts';
 import CreateSurvey from '../CreateSurvey';
@@ -12,14 +9,11 @@ import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
+import SnackbarComponent from '../../Components/SnackbarComponent';
 import SurveyContext from '../../State/context';
 import { surveyReducer } from '../../State/reducer';
 import TakeSurvey from '../TakeSurvey';
 import { useStyles } from './Main.style';
-
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
 
 function Main() {
   const classes = useStyles();
@@ -78,15 +72,11 @@ function Main() {
           <Footer />
         </Router>
       </SurveyContext.Provider>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        {showSuccess ? (
-          <Alert onClose={handleClose} severity="success">
-            Survey saved!
-          </Alert>
-        ) : (
-          <Alert severity="error">Something went wrong. Try again!</Alert>
-        )}
-      </Snackbar>
+      <SnackbarComponent
+        onClose={handleClose}
+        open={open}
+        showSuccess={showSuccess}
+      />
     </div>
   );
 }
