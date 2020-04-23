@@ -9,10 +9,9 @@ import { SURVEYS } from '../SurveyResultsData'
 function SingleSurveyAnswers () {
   const { surveyId } = useParams();
 
-  const results = getSurveyResults(surveyId);
+  const result = getSurveyResults(surveyId);
 
-  
-  // const { index } = match.params;
+  console.log(result);
   return <div>{surveyId}</div>
 }
 
