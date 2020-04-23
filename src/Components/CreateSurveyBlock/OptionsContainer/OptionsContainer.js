@@ -31,7 +31,7 @@ function OptionsContainer({
   const [checked, setChecked] = useState(hasLastInput || false);
   const [chip, setChip] = useState({});
   const [customAnswerId, setCustomAnswerId] = useState(
-    hasLastInput ? answersProps[answersProps.length - 1].id : ''
+    answersProps && hasLastInput ? answersProps[answersProps.length - 1].id : ''
   );
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
