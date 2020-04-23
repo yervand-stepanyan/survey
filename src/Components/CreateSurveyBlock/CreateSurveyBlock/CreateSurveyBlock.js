@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-import { addSurvey } from '../../../FetchAPI/fetchData';
+import { doPost } from '../../../FetchAPI/fetchData';
 import QuestionSection from '../QuestionSection';
 import ROUTES from '../../../Routes/Routes';
 import SaveSurvey from '../SaveSurvey';
@@ -79,9 +79,9 @@ function CreateSurveyBlock({ history }) {
     try {
       setLoading(true);
 
-      const parsedResponse = await addSurvey(surveyData);
+      const response = await doPost('surveys', surveyData);
 
-      dispatchSurvey({ type: 'ADD_SURVEY', payload: parsedResponse });
+      dispatchSurvey({ type: 'ADD_SURVEY', payload: response });
 
       handleShowSuccess(true);
 
