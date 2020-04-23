@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'react-uuid';
 
 import Typography from '@material-ui/core/Typography';
 
+import { addSurvey } from '../../../FetchAPI/fetchData';
 import QuestionSection from '../QuestionSection';
 import ROUTES from '../../../Routes/Routes';
 import SaveSurvey from '../SaveSurvey';
@@ -28,13 +28,6 @@ function CreateSurveyBlock({ history }) {
   const { dispatchSurvey, handleOpenSnackbar, handleShowSuccess } = useContext(
     SurveyContext
   );
-  const timer = React.useRef();
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
 
   const handleAddTitle = titleValue => {
     setTitle(titleValue);
@@ -74,39 +67,32 @@ function CreateSurveyBlock({ history }) {
     setIsSaveDisabled(bool);
   };
 
-  const handleSave = () => {
-    const date = new Date();
+  const handleSave = async () => {
     const questionsToSave = questions.map(
       ({ isQuestion, isAnswerSubmitted, ...item }) => item
     );
-
     const surveyData = {
-      id: uuid(),
-      createDate: date,
       title,
       questions: questionsToSave
     };
 
-    dispatchSurvey({ type: 'ADD_SURVEY', payload: surveyData });
-
-    if (!loading) {
+    try {
       setLoading(true);
-      timer.current = setTimeout(() => {
-        setLoading(false);
 
-        history.push(ROUTES.home);
-      }, 2000);
-    }
+      const parsedResponse = await addSurvey(surveyData);
 
-    if (!loading) {
+      dispatchSurvey({ type: 'ADD_SURVEY', payload: parsedResponse });
+
       handleShowSuccess(true);
-    } else {
+
+      history.push(ROUTES.home);
+    } catch (e) {
+      setLoading(false);
+
       handleShowSuccess(false);
+    } finally {
+      handleOpenSnackbar();
     }
-
-    handleOpenSnackbar();
-
-    setIsSaveDisabled(true);
   };
 
   return (
