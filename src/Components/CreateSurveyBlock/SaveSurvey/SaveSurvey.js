@@ -16,7 +16,7 @@ function SaveSurvey({ disabled, handleSave, loading }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={loading && disabled}
+          disabled={loading || disabled}
           onClick={handleSave}
           size="large"
           variant="contained"
