@@ -9,6 +9,7 @@ import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
+import ScrollToTop from '../../Components/ScrollToTop';
 import SnackbarComponent from '../../Components/SnackbarComponent';
 import SurveyContext from '../../State/context';
 import { surveyReducer } from '../../State/reducer';
@@ -48,28 +49,30 @@ function Main() {
         }}
       >
         <Router>
-          <Header />
-          <Switch>
-            <Route exact path={ROUTES.home}>
-              <Home />
-            </Route>
-            <Route path={ROUTES.create}>
-              <CreateSurvey />
-            </Route>
-            <Route path={ROUTES.survey}>
-              <TakeSurvey />
-            </Route>
-            <Route path={ROUTES.results}>
-              <Results />
-            </Route>
-            <Route path={ROUTES.about}>
-              <About />
-            </Route>
-            <Route path={ROUTES.contacts}>
-              <Contacts />
-            </Route>
-          </Switch>
-          <Footer />
+          <ScrollToTop>
+            <Header />
+            <Switch>
+              <Route exact path={ROUTES.home}>
+                <Home />
+              </Route>
+              <Route path={ROUTES.create}>
+                <CreateSurvey />
+              </Route>
+              <Route path={ROUTES.survey}>
+                <TakeSurvey />
+              </Route>
+              <Route path={ROUTES.results}>
+                <Results />
+              </Route>
+              <Route path={ROUTES.about}>
+                <About />
+              </Route>
+              <Route path={ROUTES.contacts}>
+                <Contacts />
+              </Route>
+            </Switch>
+            <Footer />
+          </ScrollToTop>
         </Router>
       </SurveyContext.Provider>
       <SnackbarComponent
