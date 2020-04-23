@@ -12,30 +12,30 @@ import SurveyContext from '../../../State/context';
 
 const IMAGES = [
   {
-    name: 'input',
+    name: 'INPUT',
     src: inputImage,
     tooltip: 'Input field',
     text: 'Input field'
   },
   {
-    name: 'radiobutton',
+    name: 'RADIOBUTTON',
     src: radiobuttonImage,
     tooltip: 'Radiobutton',
     text: 'Radiobutton'
   },
   {
-    name: 'checkbox',
+    name: 'CHECKBOX',
     src: checkboxImage,
     tooltip: 'Checkbox',
     text: 'Checkbox'
   },
   {
-    name: 'dropdown',
+    name: 'DROPDOWN',
     src: dropdownImage,
     tooltip: 'Dropdown',
     text: 'Dropdown list'
   },
-  { name: 'range', src: rangeImage, tooltip: 'Range', text: 'Range' }
+  { name: 'RANGE', src: rangeImage, tooltip: 'Range', text: 'Range' }
 ];
 
 function AnswerOptions({ setType, answerType }) {

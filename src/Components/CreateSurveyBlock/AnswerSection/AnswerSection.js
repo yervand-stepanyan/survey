@@ -22,17 +22,17 @@ function AnswerSection({
 
   const showType = typeToShow => {
     switch (typeToShow) {
-      case 'input':
+      case 'INPUT':
         return <InputSection inputType={inputType} />;
-      case 'radiobutton':
+      case 'RADIOBUTTON':
         return (
           <RadiobuttonSection answers={answers} hasLastInput={hasLastInput} />
         );
-      case 'checkbox':
+      case 'CHECKBOX':
         return <CheckboxSection answers={answers} />;
-      case 'dropdown':
+      case 'DROPDOWN':
         return <DropdownSection answers={answers} />;
-      case 'range':
+      case 'RANGE':
         return (
           <RangeSection
             startValue={startValue}
