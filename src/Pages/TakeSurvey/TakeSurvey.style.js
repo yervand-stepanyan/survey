@@ -7,5 +7,8 @@ export const useStyles = makeStyles(theme => ({
     height: 'auto',
     marginTop: `${theme.customSpacing.xxLarge}`,
     padding: `0 ${theme.customSpacing.base}`
+  },
+  table: {
+    minWidth: '650'
   }
 }));

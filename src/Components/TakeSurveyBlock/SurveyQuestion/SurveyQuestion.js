@@ -24,7 +24,7 @@ function SurveyQuestion({
 }) {
   const pickAnswersType = answerType => {
     switch (answerType) {
-      case 'radiobutton':
+      case 'RADIOBUTTON':
         return (
           <RadiobuttonAnswers
             answers={answers}
@@ -33,7 +33,7 @@ function SurveyQuestion({
             hasLastInput={hasLastInput}
           />
         );
-      case 'checkbox':
+      case 'CHECKBOX':
         return (
           <CheckboxAnswers
             answers={answers}
@@ -41,7 +41,7 @@ function SurveyQuestion({
             questionId={id}
           />
         );
-      case 'dropdown':
+      case 'DROPDOWN':
         return (
           <DropdownAnswers
             answers={answers}
@@ -49,7 +49,7 @@ function SurveyQuestion({
             questionId={id}
           />
         );
-      case 'range':
+      case 'RANGE':
         return (
           <RangeAnswers
             answers={answers}
@@ -60,7 +60,7 @@ function SurveyQuestion({
             stepValue={Number(stepValue)}
           />
         );
-      case 'input':
+      case 'INPUT':
         return (
           <InputAnswers
             answers={answers}

@@ -25,10 +25,10 @@ function DropdownAnswers({ answers, questionId }) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {answers.map(({ id, option }) => {
+          {answers.map(({ id, title }) => {
             return (
               <MenuItem key={id} value={id}>
-                {option}
+                {title}
               </MenuItem>
             );
           })}

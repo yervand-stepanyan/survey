@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
+import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './OptionsContainer.style';
 import SurveyContext from '../../../State/context';
 

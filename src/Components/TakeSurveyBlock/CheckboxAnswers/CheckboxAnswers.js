@@ -22,7 +22,7 @@ function CheckboxAnswers({ answers, questionId }) {
 
   return (
     <div className={classes.container}>
-      {filteredAnswers.map(({ id, option, complited }) => {
+      {filteredAnswers.map(({ id, title, complited }) => {
         return (
           <div key={id}>
             <FormControlLabel
@@ -34,7 +34,7 @@ function CheckboxAnswers({ answers, questionId }) {
                   name={questionId}
                 />
               }
-              label={option}
+              label={title}
             />
           </div>
         );

@@ -6,8 +6,8 @@ export const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     display: 'flex',
     justifyContent: 'center',
-    margin: 'auto',
+    margin: `${theme.customSpacing.xxLarge} auto`,
     maxWidth: '90vw',
-    width: '640px'
+    width: '900px'
   }
 }));

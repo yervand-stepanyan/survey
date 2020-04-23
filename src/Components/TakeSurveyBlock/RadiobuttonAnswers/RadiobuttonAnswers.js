@@ -32,14 +32,14 @@ function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
         value={value}
         onChange={handleChange}
       >
-        {answers.map(({ id, option }) => {
+        {answers.map(({ id, title }) => {
           return (
             <FormControlLabel
               key={id}
               className={classes.formControlLabel}
               value={id}
               control={<Radio />}
-              label={option}
+              label={title}
             />
           );
         })}

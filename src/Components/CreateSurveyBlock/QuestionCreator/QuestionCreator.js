@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
+import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './QuestionCreator.style';
 
 const BUTTON_LABEL = 'Submit';
