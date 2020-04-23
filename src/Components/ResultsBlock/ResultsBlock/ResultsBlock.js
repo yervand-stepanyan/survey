@@ -14,7 +14,7 @@ import {
   Link,
 } from "react-router-dom";
 
-import { SURVEYS } from '../SurveyResultsData'
+import { SURVEY } from '../SurveyResultsData'
 import { useStyles } from './ResultsBlock.style';
 
 function ResultsBlock() {
@@ -27,7 +27,7 @@ function ResultsBlock() {
         <div className={classes.resultsContainer}>
           <Grid container spacing={3}>
 
-            { SURVEYS.map((survey, index) => (
+            { SURVEY.map((survey, index) => (
               <Grid item lg={6} md={3} sm={4} xs={12}>
                 <Card className={classes.root} key={survey.id} sm={12}>
                   <CardActionArea className={classes.cardHeader}>
@@ -42,12 +42,12 @@ function ResultsBlock() {
                     </CardContent>
                   </CardActionArea>
                   <CardActions className={classes.cardButton}>
-                    <Button size="small" color="primary">
+                    <Button size="small" className={classes.dateButton}>
                       <DateRangeIcon />
                       {survey.date}
                     </Button>
-                    <Button size="small" color="primary">
-                      <Link to={`results/${survey.id}`} className={classes.seeAnswersButton}>See answers</Link>
+                    <Button size="small" variant='outlined' className={classes.seeAnswersButton}>
+                      <Link to={`results/${survey.surveyId}`}>See answers</Link>
                     </Button>
                   </CardActions>
                 </Card>
@@ -62,3 +62,7 @@ function ResultsBlock() {
 }
 
 export default ResultsBlock;
+
+
+
+

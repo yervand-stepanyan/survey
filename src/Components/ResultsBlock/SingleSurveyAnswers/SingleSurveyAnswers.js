@@ -1,17 +1,22 @@
 import React from 'react';
 import { useParams} from "react-router";
 
-import { SURVEYS } from '../SurveyResultsData';
+import getSurveyResults from '../getSurveyResults';
+
+import { SURVEY } from '../SurveyResultsData';
 
 
 function SingleSurveyAnswers () {
-    const { surveyId } = useParams();
+  const { surveyId } = useParams();
 
-    const [result] = SURVEYS.filter(res => res.id === +surveyId);
+  const results = getSurveyResults();
 
-
-    // const { index } = match.params;
-return <div>{surveyId}</div>
+  console.log(results)
+  
+  
+  
+  // const { index } = match.params;
+  return <div>{surveyId}</div>
 }
 
 
