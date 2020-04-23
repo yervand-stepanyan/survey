@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// material ui
+
 import { FormControl, Select, MenuItem } from '@material-ui/core';
+
 import { useStyles } from './DropdownAnswers.style';
 
-function DropdownAnswers({ answers, questionId }) {
+function DropdownAnswers({ answers }) {
   const classes = useStyles();
 
   const [answer, setAnswer] = useState('');

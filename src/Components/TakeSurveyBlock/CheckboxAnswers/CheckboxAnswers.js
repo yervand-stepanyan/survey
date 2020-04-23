@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-// material ui
+
 import { FormControlLabel, Checkbox } from '@material-ui/core';
 
 import { useStyles } from './CheckboxAnswers.style';

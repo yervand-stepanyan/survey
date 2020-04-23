@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// material ui
+
 import { Typography, Slider } from '@material-ui/core';
 
 import { useStyles } from './RangeAnswers.style';

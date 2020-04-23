@@ -1,30 +1,43 @@
-import React, { useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from '../About';
 import CreateSurvey from '../CreateSurvey';
-import Footer from '../../Components/Footer';
 import Contacts from '../Contacts';
+import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
-//
-import Survey from '../../Components/TakeSurveyBlock/Survey';
 import ROUTES from '../../Routes/Routes';
 import SurveyContext from '../../State/context';
+import TakeSurvey from '../TakeSurvey/TakeSurvey';
 import { surveyReducer } from '../../State/reducer';
-import TakeSurvey from '../TakeSurvey';
 import { useStyles } from './Main.style';
-// MY LOCAL DATA
-import { newData } from '../../Components/TakeSurveyBlock/newData';
 
 function Main() {
   const classes = useStyles();
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
 
+  const [data, setData] = useState([]);
+
+  async function fetchMyAPI() {
+    const response = await fetch(
+      'https://surveys-app-api.herokuapp.com/api/surveys'
+    );
+    const parsedResponse = await response.json();
+
+    setData(parsedResponse);
+  }
+
+  useEffect(() => {
+    fetchMyAPI();
+  }, []);
+
   return (
     <div className={classes.mainContainer}>
-      <SurveyContext.Provider value={{ stateSurvey, dispatchSurvey }}>
+      <SurveyContext.Provider
+        value={{ stateSurvey, dispatchSurvey, surveys: data }}
+      >
         <Router>
           <Header />
           <Switch>
@@ -35,7 +48,7 @@ function Main() {
               <CreateSurvey />
             </Route>
             <Route path={`${ROUTES.survey}/:id`}>
-              <Survey surveys={newData} />
+              <TakeSurvey />
             </Route>
             <Route path={ROUTES.results}>
               <Results />

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// material ui
+
 import 'date-fns';
-import { TextField } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
+import { TextField } from '@material-ui/core';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
@@ -25,7 +25,7 @@ function InputAnswers({ questionId, inputType }) {
     setTextValue(e.target.value);
   };
 
-  if (inputType === 'date') {
+  if (inputType === 'DATE') {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
@@ -42,7 +42,7 @@ function InputAnswers({ questionId, inputType }) {
       </MuiPickersUtilsProvider>
     );
   }
-  if (inputType === 'number') {
+  if (inputType === 'NUMBER') {
     return (
       <TextField
         id="outlined-number"
@@ -55,7 +55,7 @@ function InputAnswers({ questionId, inputType }) {
       />
     );
   }
-  if (inputType === 'text') {
+  if (inputType === 'TEXT') {
     return (
       <TextField
         required
@@ -67,14 +67,7 @@ function InputAnswers({ questionId, inputType }) {
       />
     );
   }
-  return (
-    <div className={classes.container}>
-      <label htmlFor={questionId}>
-        Start date:
-        <input type="text" id={questionId} name={questionId} />
-      </label>
-    </div>
-  );
+  return <div className={classes.container}>Something went wrong!</div>;
 }
 
 InputAnswers.propTypes = {

@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-import TakeSurveyBlock from '../../Components/TakeSurveyBlock/TakeSurveyBlock';
+import SurveyQuestions from '../../Components/TakeSurveyBlock/SurveyQuestions';
+import SurveyContext from '../../State/context';
 import { useStyles } from './TakeSurvey.style';
 
-function TakeSurvey() {
+function TakeSurvey({ match }) {
   const classes = useStyles();
+  const { surveys } = useContext(SurveyContext);
+  const { id } = match.params;
+  console.log(match);
+
+  const chosenSurvey = surveys.find(item => {
+    return item._id === id;
+  });
 
   return (
     <div className={classes.container}>
-      <TakeSurveyBlock />
+      <SurveyQuestions questions={chosenSurvey.questions} />
     </div>
   );
 }
 
-export default TakeSurvey;
+TakeSurvey.propTypes = {
+  match: PropTypes.object.isRequired
+};
+
+export default withRouter(TakeSurvey);

@@ -1,67 +1,37 @@
 import { makeStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
+// import green from '@material-ui/core/colors/green';
 
 export const useStyles = makeStyles(theme => ({
-  container: {
+  surveysContainer: {
     borderRadius: `${theme.borders.borderRadius.base}`,
     boxSizing: 'border-box',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     margin: 'auto',
     maxWidth: '90vw',
     width: '640px'
   },
-  surveysWrapper: {
+  singleSurveyContainer: {
     display: 'flex',
-    justifyContent: 'left',
-    marginBottom: `${theme.customSpacing.xLarge}`
-  },
-  surveyCard: {
-    width: '150px',
-    marginLeft: '10px',
-    '& .MuiCardHeader-root': {
-      padding: '5px'
-    },
-    '& .MuiCardMedia-root': {
-      backgroundSize: 'contain'
-    }
-  },
-  avatar: {
-    backgroundColor: green[400]
-  },
-  CardActionArea: {
-    margin: '0',
-    padding: '0'
-  },
-  media: {
-    height: '30px'
-  },
-  surveyNameWrapper: {
-    paddingBottom: '8px'
-  },
-  button: {
-    width: '100%'
-  },
-
-  table: {
-    '& tr': {
-      borderBottom: '1px solid rgba(224, 224, 224, 1)',
-      padding: '5px'
-    },
-    '& td ': {
-      border: 'none'
-    },
-    '& th': {
-      border: 'none'
-    },
-    '& .MuiTableRow-root': {
-      backgroundColor: '#e6e6e6'
-    }
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#e6e6e6',
+    marginBottom: `${theme.customSpacing.small}`,
+    padding: `${theme.customSpacing.base} ${theme.customSpacing.xLarge}`,
+    boxShadow: '0 8px 6px -6px black'
   },
   takeAndResultsCellsContainer: {
-    margin: '0',
-    padding: '0',
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonContainer: {
+    marginRight: `${theme.customSpacing.small}`
+  },
+  link: {
+    textDecoration: 'none'
   }
 }));

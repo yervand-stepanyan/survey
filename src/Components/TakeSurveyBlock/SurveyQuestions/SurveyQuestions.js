@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// material ui
+
 import { Button } from '@material-ui/core';
-// components
+
 import SurveyQuestion from '../SurveyQuestion';
 import { useStyles } from './SurveyQuestions.style';
 
@@ -16,19 +16,19 @@ function SurveyQuestions({ questions }) {
       {questions.map(
         ({
           id,
-          question,
+          title,
           answerType,
           inputType,
           answers,
           hasLastInput,
-          startValue,
-          endValue,
-          stepValue
+          startValue = '0',
+          endValue = '100',
+          stepValue = '10'
         }) => {
           return (
             <SurveyQuestion
               id={id}
-              question={question}
+              title={title}
               answerType={answerType}
               inputType={inputType}
               answers={answers}

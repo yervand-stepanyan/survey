@@ -14,9 +14,9 @@ import SurveyContext from '../../../State/context';
 const BUTTON_LABEL = 'Submit & continue';
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 const IMAGES = [
-  { name: 'text', src: inputText, tooltip: 'Text', text: 'Text' },
-  { name: 'number', src: inputNumber, tooltip: 'Number', text: 'Number' },
-  { name: 'date', src: inputDate, tooltip: 'Date', text: 'Date' }
+  { name: 'TEXT', src: inputText, tooltip: 'Text', text: 'Text' },
+  { name: 'NUMBER', src: inputNumber, tooltip: 'Number', text: 'Number' },
+  { name: 'DATE', src: inputDate, tooltip: 'Date', text: 'Date' }
 ];
 const TITLE = 'Choose input type';
 
