@@ -8,23 +8,30 @@ import { useStyles } from './RangeAnswers.style';
 function RangeAnswers({ questionId, startValue, endValue, stepValue }) {
   const classes = useStyles();
 
+  const marks = [
+    {
+      value: startValue,
+      label: startValue
+    },
+    {
+      value: endValue,
+      label: endValue
+    }
+  ];
+
   function valuetext(value) {
     return `${value}`;
   }
 
   return (
     <div className={classes.container}>
-      <Typography id="discrete-slider" gutterBottom>
-        On a scale from
-        {startValue}-{endValue}
-      </Typography>
       <Slider
         defaultValue={startValue}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
         step={stepValue}
-        marks
+        marks={marks}
         min={startValue}
         max={endValue}
       />
