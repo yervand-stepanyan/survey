@@ -16,12 +16,12 @@ function Surveys() {
   return (
     <div className={classes.surveysContainer}>
       {surveys.map(survey => (
-        <div key={survey._id} className={classes.singleSurveyContainer}>
+        <div key={survey.id} className={classes.singleSurveyContainer}>
           <div>{survey.title}</div>
           <div className={classes.takeAndResultsCellsContainer}>
             <div className={classes.buttonContainer}>
               <Link
-                to={`${ROUTES.survey}/${survey._id}`}
+                to={`${ROUTES.survey}/${survey.id}`}
                 className={classes.link}
               >
                 <Button variant="contained" color="primary">
@@ -31,7 +31,7 @@ function Surveys() {
             </div>
             <div className={classes.buttonContainer}>
               <Link
-                to={`${ROUTES.results}/${survey._id}`}
+                to={`${ROUTES.results}/${survey.id}`}
                 className={classes.link}
               >
                 <Button variant="contained" color="primary">

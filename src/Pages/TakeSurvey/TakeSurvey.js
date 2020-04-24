@@ -13,7 +13,7 @@ function TakeSurvey({ match }) {
   console.log(match);
 
   const chosenSurvey = surveys.find(item => {
-    return item._id === id;
+    return item.id === id;
   });
 
   return (
