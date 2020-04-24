@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Typography, Slider } from '@material-ui/core';
+import { Slider } from '@material-ui/core';
 
 import { useStyles } from './RangeAnswers.style';
 
-function RangeAnswers({ questionId, startValue, endValue, stepValue }) {
+function RangeAnswers({ startValue, endValue, stepValue }) {
   const classes = useStyles();
 
   const marks = [
@@ -40,7 +40,6 @@ function RangeAnswers({ questionId, startValue, endValue, stepValue }) {
 }
 
 RangeAnswers.propTypes = {
-  questionId: PropTypes.string.isRequired,
   startValue: PropTypes.number.isRequired,
   endValue: PropTypes.number.isRequired,
   stepValue: PropTypes.number.isRequired

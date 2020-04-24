@@ -10,7 +10,7 @@ import {
 
 import { useStyles } from './RadiobuttonAnswers.style';
 
-function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
+function RadiobuttonAnswers({ answers, hasLastInput }) {
   const [value, setValue] = useState('');
   const [textValue, setTextValue] = useState('');
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -63,7 +63,6 @@ function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
 
 RadiobuttonAnswers.propTypes = {
   answers: PropTypes.array.isRequired,
-  questionId: PropTypes.string.isRequired,
   hasLastInput: PropTypes.bool.isRequired
 };
 

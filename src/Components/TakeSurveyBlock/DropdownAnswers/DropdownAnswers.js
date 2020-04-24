@@ -40,8 +40,7 @@ function DropdownAnswers({ answers }) {
 }
 
 DropdownAnswers.propTypes = {
-  answers: PropTypes.array.isRequired,
-  questionId: PropTypes.string.isRequired
+  answers: PropTypes.array.isRequired
 };
 
 export default DropdownAnswers;

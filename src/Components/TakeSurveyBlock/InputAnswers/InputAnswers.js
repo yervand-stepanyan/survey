@@ -11,7 +11,7 @@ import {
 
 import { useStyles } from './InputAnswers.style';
 
-function InputAnswers({ questionId, inputType }) {
+function InputAnswers({ inputType }) {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(
     new Date('2020-04-13T21:11:54')
@@ -71,7 +71,6 @@ function InputAnswers({ questionId, inputType }) {
 }
 
 InputAnswers.propTypes = {
-  questionId: PropTypes.string.isRequired,
   inputType: PropTypes.string.isRequired
 };
 
