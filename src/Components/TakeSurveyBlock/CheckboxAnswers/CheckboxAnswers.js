@@ -13,7 +13,8 @@ function CheckboxAnswers({ answers, questionId }) {
   const handleChange = id => {
     filteredAnswers = answers.map(item => {
       if (item.id === id) {
-        item.complited = true;
+        const newItem = { ...item };
+        newItem.complited = true;
       }
       return item;
     });
