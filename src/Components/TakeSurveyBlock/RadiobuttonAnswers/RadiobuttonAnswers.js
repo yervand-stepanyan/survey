@@ -29,9 +29,6 @@ function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
     setTextValue(e.target.value);
   };
 
-  console.log('value --', value);
-  console.log('textValue --', textValue);
-
   return (
     <div className={classes.container}>
       <RadioGroup

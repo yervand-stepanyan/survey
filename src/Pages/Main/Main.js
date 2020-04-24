@@ -33,8 +33,6 @@ function Main() {
     fetchMyAPI();
   }, []);
 
-  console.log(data);
-
   return (
     <div className={classes.mainContainer}>
       <SurveyContext.Provider

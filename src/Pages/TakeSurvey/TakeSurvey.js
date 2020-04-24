@@ -10,7 +10,6 @@ function TakeSurvey({ match }) {
   const classes = useStyles();
   const { surveys } = useContext(SurveyContext);
   const { id } = match.params;
-  console.log(match);
 
   const chosenSurvey = surveys.find(item => {
     return item.id === id;
