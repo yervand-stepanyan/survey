@@ -15,7 +15,8 @@ function RangeAnswers({ questionId, startValue, endValue, stepValue }) {
   return (
     <div className={classes.container}>
       <Typography id="discrete-slider" gutterBottom>
-        Answer
+        On a scale from
+        {startValue} - {endValue}
       </Typography>
       <Slider
         defaultValue={startValue}

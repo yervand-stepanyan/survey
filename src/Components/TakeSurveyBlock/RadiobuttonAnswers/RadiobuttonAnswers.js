@@ -13,9 +13,16 @@ import { useStyles } from './RadiobuttonAnswers.style';
 function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
   const [value, setValue] = useState('');
   const [textValue, setTextValue] = useState('');
+  const [isInputVisible, setIsInputVisible] = useState(false);
   const classes = useStyles();
 
   const handleChange = event => {
+    if (hasLastInput) {
+      const lastAnswer = answers[answers.length - 1];
+      const isLastInputChosen = lastAnswer.id === event.target.value;
+      setIsInputVisible(isLastInputChosen);
+    }
+
     setValue(event.target.value);
   };
   const handleTextChange = e => {
@@ -23,6 +30,7 @@ function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
   };
 
   console.log('value --', value);
+  console.log('textValue --', textValue);
 
   return (
     <div className={classes.container}>
@@ -43,19 +51,12 @@ function RadiobuttonAnswers({ answers, questionId, hasLastInput }) {
             />
           );
         })}
-        {hasLastInput ? (
-          <FormControlLabel
-            className={classes.formControlLabel}
+        {isInputVisible ? (
+          <TextField
+            id="outlined-required"
+            variant="outlined"
             value={textValue}
-            control={<Radio />}
-            label={
-              <TextField
-                id="outlined-required"
-                variant="outlined"
-                value={textValue}
-                onChange={handleTextChange}
-              />
-            }
+            onChange={handleTextChange}
           />
         ) : null}
       </RadioGroup>
