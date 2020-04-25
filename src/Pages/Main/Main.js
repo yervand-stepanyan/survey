@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import About from '../About';
@@ -12,8 +12,8 @@ import ROUTES from '../../Routes/Routes';
 import ScrollToTop from '../../Components/ScrollToTop';
 import SnackbarComponent from '../../Components/SnackbarComponent';
 import SurveyContext from '../../State/context';
+import TakeSurvey from '../TakeSurvey/TakeSurvey';
 import { surveyReducer } from '../../State/reducer';
-import TakeSurvey from '../TakeSurvey';
 import { useStyles } from './Main.style';
 
 function Main() {
@@ -21,6 +21,21 @@ function Main() {
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(true);
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
+
+  const [data, setData] = useState([]);
+
+  async function fetchMyAPI() {
+    const response = await fetch(
+      'https://surveys-app-api.herokuapp.com/api/surveys'
+    );
+    const parsedResponse = await response.json();
+
+    setData(parsedResponse);
+  }
+
+  useEffect(() => {
+    fetchMyAPI();
+  }, []);
 
   const handleOpenSnackbar = () => {
     setOpen(true);
@@ -45,7 +60,8 @@ function Main() {
           stateSurvey,
           dispatchSurvey,
           handleOpenSnackbar,
-          handleShowSuccess
+          handleShowSuccess,
+          surveys: data
         }}
       >
         <Router>
@@ -58,7 +74,7 @@ function Main() {
               <Route path={ROUTES.create}>
                 <CreateSurvey />
               </Route>
-              <Route path={ROUTES.survey}>
+              <Route path={`${ROUTES.survey}/:id`}>
                 <TakeSurvey />
               </Route>
               <Route path={ROUTES.results}>
