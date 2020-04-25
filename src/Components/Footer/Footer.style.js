@@ -6,6 +6,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: `${theme.customSpacing.xxxLarge}`,
+    minWidth: '280px',
     padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`
   },
   logoAndMenuWrapper: {
@@ -13,12 +14,13 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around'
   },
   logoSection: {
+    '@media (max-width:360px)': {
+      width: '55%'
+    },
     alignSelf: 'center'
   },
   logo: {
-    '@media (max-width:550px)': {
-      width: '100%'
-    }
+    width: '100%'
   },
   menuSection: {
     display: 'flex',
