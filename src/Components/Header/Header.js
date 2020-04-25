@@ -9,12 +9,8 @@ import logo from '../../assets/images/logo/logo.png';
 import ROUTES from '../../Routes/Routes';
 import { useStyles } from './Header.style';
 
-const LOGIN_BUTTON_TEXT = 'Log in';
 const MENU_ITEMS = [
   { name: 'Create Survey', route: ROUTES.create },
-  { name: 'Take Survey', route: ROUTES.survey },
-  { name: 'Results', route: ROUTES.results },
-  { name: 'About', route: ROUTES.about },
   { name: 'Contacts', route: ROUTES.contacts }
 ];
 
@@ -34,11 +30,6 @@ function Header() {
             </Link>
           ))}
         </nav>
-        <Link to={ROUTES.auth} className={classes.menuItemLogin}>
-          <Button variant="outlined" className={classes.logInButton}>
-            {LOGIN_BUTTON_TEXT}
-          </Button>
-        </Link>
       </Toolbar>
     </AppBar>
   );
