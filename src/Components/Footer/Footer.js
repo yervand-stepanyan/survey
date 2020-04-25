@@ -8,9 +8,6 @@ import { useStyles } from './Footer.style';
 const COPY_INFO = 'Copyright © 2020 Survey';
 const MENU_ITEMS = [
   { name: 'Create Survey', route: ROUTES.create },
-  { name: 'Take Survey', route: ROUTES.survey },
-  { name: 'Results', route: ROUTES.results },
-  { name: 'About', route: ROUTES.about },
   { name: 'Contacts', route: ROUTES.contacts }
 ];
 const WEBSITE_CREATOR = 'Website by SED Team';
@@ -23,7 +20,7 @@ function Footer() {
       <div className={classes.logoAndMenuWrapper}>
         <div className={classes.logoSection}>
           <Link to={ROUTES.home}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" className={classes.logo} />
           </Link>
         </div>
         <div className={classes.menuSection}>
