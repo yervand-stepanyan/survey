@@ -15,6 +15,7 @@ const RESULTS_BUTTON_LABEL = 'Results';
 const TAKE_SURVEY_BUTTON_LABEL = 'Take survey';
 
 function SurveyComponent({
+  buttonToLoad,
   handleButtonClick,
   handleRemoveSurvey,
   id,
@@ -32,18 +33,18 @@ function SurveyComponent({
           <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
             <Button
               color="primary"
-              disabled={loadingButton}
+              disabled={buttonToLoad === id && loadingButton}
               onClick={() => handleButtonClick()}
               variant="contained"
             >
               {TAKE_SURVEY_BUTTON_LABEL}
             </Button>
           </Link>
-          {loadingButton && (
+          {buttonToLoad === id && loadingButton && (
             <CircularProgress
+              className={classes.buttonProgress}
               size={24}
               thickness={8}
-              className={classes.buttonProgress}
             />
           )}
         </div>
@@ -51,7 +52,7 @@ function SurveyComponent({
           <Link className={classes.link} to={`${ROUTES.results}/${id}`}>
             <Button
               color="primary"
-              disabled={loadingButton}
+              disabled={buttonToLoad === id && loadingButton}
               onClick={() => handleButtonClick()}
               variant="contained"
             >
@@ -59,28 +60,28 @@ function SurveyComponent({
               {RESULTS_BUTTON_LABEL}
             </Button>
           </Link>
-          {loadingButton && (
+          {buttonToLoad === id && loadingButton && (
             <CircularProgress
+              className={classes.buttonProgress}
               size={24}
               thickness={8}
-              className={classes.buttonProgress}
             />
           )}
         </div>
         <div className={classes.buttonContainer}>
           <Button
             color="secondary"
-            disabled={loadingRemove}
+            disabled={buttonToLoad === id && loadingRemove}
             onClick={() => handleRemoveSurvey(id)}
             variant="contained"
           >
             <DeleteIcon />
           </Button>
-          {loadingRemove && (
+          {buttonToLoad === id && loadingRemove && (
             <CircularProgress
+              className={classes.buttonRemoveProgress}
               size={24}
               thickness={8}
-              className={classes.buttonRemoveProgress}
             />
           )}
         </div>
@@ -90,6 +91,7 @@ function SurveyComponent({
 }
 
 SurveyComponent.propTypes = {
+  buttonToLoad: PropTypes.string.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
   handleRemoveSurvey: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,

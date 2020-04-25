@@ -12,6 +12,7 @@ function Surveys() {
   const classes = useStyles();
   const [loadingRemove, setLoadingRemove] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
+  const [buttonToLoad, setButtonToLoad] = useState('');
   const {
     stateSurvey,
     dispatchSurvey,
@@ -19,12 +20,16 @@ function Surveys() {
     handleShowSnackbar
   } = useContext(SurveyContext);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = id => {
     setLoadingButton(true);
+
+    setButtonToLoad(id);
   };
 
   const handleRemoveSurvey = async id => {
     try {
+      setButtonToLoad(id);
+
       setLoadingRemove(true);
 
       await doDelete('surveys', id);
@@ -49,6 +54,7 @@ function Surveys() {
     <div className={classes.surveysContainer}>
       {stateSurvey.map(({ id, title }) => (
         <SurveyComponent
+          buttonToLoad={buttonToLoad}
           handleButtonClick={handleButtonClick}
           handleRemoveSurvey={handleRemoveSurvey}
           id={id}

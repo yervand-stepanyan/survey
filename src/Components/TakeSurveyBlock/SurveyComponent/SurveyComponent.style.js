@@ -9,7 +9,8 @@ export const useStyles = makeStyles(theme => ({
     backgroundColor: '#e6e6e6',
     marginBottom: `${theme.customSpacing.small}`,
     padding: `${theme.customSpacing.base} ${theme.customSpacing.xLarge}`,
-    boxShadow: '0 8px 6px -6px black'
+    boxShadow: '0 8px 6px -6px black',
+    borderRadius: `${theme.borders.borderRadius.base}`
   },
   takeAndResultsCellsContainer: {
     display: 'flex',
