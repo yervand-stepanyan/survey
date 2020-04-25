@@ -12,7 +12,7 @@ function SnackbarComponent({ onClose, open, showSuccess }) {
   return (
     <Snackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      autoHideDuration={3000}
+      autoHideDuration={2000}
       onClose={onClose}
       open={open}
     >
