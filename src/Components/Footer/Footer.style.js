@@ -15,6 +15,11 @@ export const useStyles = makeStyles(theme => ({
   logoSection: {
     alignSelf: 'center'
   },
+  logo: {
+    '@media (max-width:550px)': {
+      width: '100%'
+    }
+  },
   menuSection: {
     display: 'flex',
     flexDirection: 'column',
@@ -24,6 +29,9 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: `${theme.customSpacing.base}`
   },
   menuItem: {
+    '@media (max-width:400px)': {
+      fontSize: '13px'
+    },
     border: '1px solid transparent',
     color: 'white',
     padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`,
@@ -39,11 +47,24 @@ export const useStyles = makeStyles(theme => ({
     marginTop: `${theme.customSpacing.xxLarge}`
   },
   infoSection: {
+    '@media (max-width: 550px)': {
+      flexDirection: 'column-reverse',
+      alignItems: 'center',
+      fontSize: '14px'
+    },
+    '@media (max-width: 400px)': {
+      flexDirection: 'column-reverse',
+      alignItems: 'center',
+      fontSize: '12px'
+    },
     display: 'flex',
     justifyContent: 'center',
     position: 'relative'
   },
   websiteCreator: {
+    '@media (max-width: 550px)': {
+      position: 'relative'
+    },
     position: 'absolute',
     right: 0
   }
