@@ -13,6 +13,8 @@ import SurveyTitleCreator from '../SurveyTitleCreator';
 import { useStyles } from './CreateSurveyBlock.style';
 
 const BLOCK_TITLE = 'Create survey';
+const SNACKBAR_MESSAGE_ERROR = 'Something went wrong. Try again!';
+const SNACKBAR_MESSAGE_SUCCESS = 'Survey saved!';
 
 function CreateSurveyBlock({ history }) {
   const classes = useStyles();
@@ -25,7 +27,7 @@ function CreateSurveyBlock({ history }) {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState('');
-  const { dispatchSurvey, handleOpenSnackbar, handleShowSuccess } = useContext(
+  const { dispatchSurvey, handleOpenSnackbar, handleShowSnackbar } = useContext(
     SurveyContext
   );
 
@@ -83,13 +85,13 @@ function CreateSurveyBlock({ history }) {
 
       dispatchSurvey({ type: 'ADD_SURVEY', payload: response });
 
-      handleShowSuccess(true);
+      handleShowSnackbar(true, SNACKBAR_MESSAGE_SUCCESS);
 
       history.push(ROUTES.home);
     } catch (e) {
       setLoading(false);
 
-      handleShowSuccess(false);
+      handleShowSnackbar(false, SNACKBAR_MESSAGE_ERROR);
     } finally {
       handleOpenSnackbar();
     }
