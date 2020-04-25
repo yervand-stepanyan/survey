@@ -41,11 +41,7 @@ function Surveys() {
               </Link>
             </div>
             <div className={classes.buttonContainer}>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-              >
+              <Button color="secondary" variant="contained">
                 <DeleteIcon />
               </Button>
             </div>
@@ -57,43 +53,3 @@ function Surveys() {
 }
 
 export default Surveys;
-
-// {/* <div className={classes.surveysContainer}>
-// {surveys.map(row => (
-//   <div key={row.surveyId} className={classes.singleSurveyContainer}>
-//     <div>{row.surveyName}</div>
-//     <div className={classes.takeAndResultsCellsContainer}>
-//       <div className={classes.buttonContainer}>
-//         <Link
-//           to={`${ROUTES.survey}/${row.surveyId}`}
-//           className={classes.link}
-//         >
-//           <Button variant="contained" color="primary">
-//             Take Survey
-//           </Button>
-//         </Link>
-//       </div>
-//       <div className={classes.buttonContainer}>
-//         <Link
-//           to={`${ROUTES.results}/${row.surveyId}`}
-//           className={classes.link}
-//         >
-//           <Button variant="contained" color="primary">
-//             <PollIcon />
-//             Results
-//           </Button>
-//         </Link>
-//       </div>
-//       <div className={classes.buttonContainer}>
-//         <Button
-//           variant="contained"
-//           color="secondary"
-//           className={classes.button}
-//         >
-//           <DeleteIcon />
-//         </Button>
-//       </div>
-//     </div>
-//   </div>
-// ))}
-// </div> */}
