@@ -14,7 +14,7 @@ import ScrollToTop from '../../Components/ScrollToTop';
 import SnackbarComponent from '../../Components/SnackbarComponent';
 import SurveyContext from '../../State/context';
 import TakeSurvey from '../TakeSurvey/TakeSurvey';
-import { surveyReducer } from '../../State/reducer';
+import { surveyAnswerReducer, surveyReducer } from '../../State/reducer';
 import { useStyles } from './Main.style';
 
 function Main() {
@@ -22,6 +22,7 @@ function Main() {
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(true);
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
+  const [dispatchSurveyAnswer] = useReducer(surveyAnswerReducer, []);
 
   useEffect(() => {
     doGet('surveys')
@@ -30,6 +31,12 @@ function Main() {
 
         dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedArray });
       })
+      .catch();
+
+    doGet('survey-answers')
+      .then(res =>
+        dispatchSurveyAnswer({ type: 'ADD_SURVEY_ANSWERS', payload: res })
+      )
       .catch();
   }, []);
 
