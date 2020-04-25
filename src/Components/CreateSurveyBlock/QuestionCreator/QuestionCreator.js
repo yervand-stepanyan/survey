@@ -5,40 +5,63 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
+import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './QuestionCreator.style';
 
-const BUTTON_LABEL = 'Submit';
+const CANCEL_BUTTON_LABEL = 'Cancel';
 const QUESTION_ERROR_PLACEHOLDER = '* Invalid Question';
 const QUESTION_LABEL = 'Question:';
 const QUESTION_PLACEHOLDER = '* Question';
+const SUBMIT_BUTTON_LABEL = 'Submit';
 
-function QuestionCreator({ addQuestion, question: questionProps }) {
+function QuestionCreator({
+  activeId,
+  handleAddQuestion,
+  handleCancelQuestion,
+  question: questionProps,
+  questionsLength
+}) {
   const classes = useStyles();
+  const [isEmpty, setIsEmpty] = useState(false);
   const [question, setQuestion] = useState(questionProps);
-  const [isEmpty, setIsEmpty] = useState(true);
   const inputEl = useRef(null);
 
   useEffect(() => {
-    if (question) inputEl.current.focus();
+    if (question) {
+      inputEl.current.focus();
+    }
   }, [question]);
 
   const handleChange = event => {
     setQuestion(event.target.value);
 
-    if (removeSpaces(event.target.value)) setIsEmpty(true);
-    else setIsEmpty(false);
+    if (removeSpaces(event.target.value)) {
+      setIsEmpty(false);
+    } else {
+      setIsEmpty(true);
+    }
   };
 
   const handleSubmit = () => {
     const filteredQuestion = removeSpaces(question);
 
-    if (filteredQuestion) addQuestion(filteredQuestion);
-    else setIsEmpty(false);
+    if (filteredQuestion) {
+      handleAddQuestion(activeId, filteredQuestion);
+    } else {
+      setIsEmpty(true);
+    }
   };
 
   const handleSubmitOnEnter = event => {
-    if (event.key === 'Enter') if (isEmpty) handleSubmit();
+    if (event.key === 'Enter') {
+      if (!isEmpty) {
+        handleSubmit();
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    handleCancelQuestion();
   };
 
   return (
@@ -50,13 +73,13 @@ function QuestionCreator({ addQuestion, question: questionProps }) {
         <div className={classes.textFieldSection}>
           <TextField
             autoFocus
-            id="outlined-basic"
+            error={isEmpty}
             fullWidth
-            label={isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
-            error={!isEmpty}
+            id="outlined-basic"
+            inputRef={inputEl}
+            label={!isEmpty ? QUESTION_PLACEHOLDER : QUESTION_ERROR_PLACEHOLDER}
             onChange={e => handleChange(e)}
             onKeyDown={handleSubmitOnEnter}
-            inputRef={inputEl}
             variant="outlined"
             value={question}
           />
@@ -65,21 +88,39 @@ function QuestionCreator({ addQuestion, question: questionProps }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!question}
+          disabled={!question || isEmpty}
           onClick={handleSubmit}
           size="large"
           variant="contained"
         >
-          {BUTTON_LABEL}
+          {SUBMIT_BUTTON_LABEL}
         </Button>
+        {questionsLength && !questionProps ? (
+          <Button
+            className={classes.cancelButton}
+            color="secondary"
+            onClick={handleCancel}
+            size="large"
+            variant="contained"
+          >
+            {CANCEL_BUTTON_LABEL}
+          </Button>
+        ) : null}
       </div>
     </div>
   );
 }
 
 QuestionCreator.propTypes = {
-  addQuestion: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired
+  activeId: PropTypes.string.isRequired,
+  handleAddQuestion: PropTypes.func.isRequired,
+  handleCancelQuestion: PropTypes.func,
+  question: PropTypes.string.isRequired,
+  questionsLength: PropTypes.number.isRequired
+};
+
+QuestionCreator.defaultProps = {
+  handleCancelQuestion: undefined
 };
 
 export default QuestionCreator;

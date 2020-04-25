@@ -10,12 +10,13 @@ import { useStyles } from './AnswerTypes.style';
 const TITLE = 'Answer type';
 
 function AnswerTypes({
-  answerType,
-  inputType,
+  activeId,
   answers,
-  hasLastInput,
-  startValue,
+  answerType,
   endValue,
+  hasLastInput,
+  inputType,
+  startValue,
   stepValue
 }) {
   const classes = useStyles();
@@ -26,38 +27,44 @@ function AnswerTypes({
       <div className={classes.answerTypesTitleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <AnswerOptions setType={setType} answerType={answerType} />
-      <AnswerSection
-        type={type}
+      <AnswerOptions
+        activeId={activeId}
         answerType={answerType}
-        inputType={inputType}
+        setType={setType}
+      />
+      <AnswerSection
+        activeId={activeId}
         answers={answers}
-        hasLastInput={hasLastInput}
-        startValue={startValue}
+        answerType={answerType}
         endValue={endValue}
+        hasLastInput={hasLastInput}
+        inputType={inputType}
+        startValue={startValue}
         stepValue={stepValue}
+        type={type}
       />
     </div>
   );
 }
 
 AnswerTypes.propTypes = {
-  answerType: PropTypes.string,
-  inputType: PropTypes.string,
+  activeId: PropTypes.string.isRequired,
   answers: PropTypes.array,
-  hasLastInput: PropTypes.bool,
-  startValue: PropTypes.string,
+  answerType: PropTypes.string,
   endValue: PropTypes.string,
+  hasLastInput: PropTypes.bool,
+  inputType: PropTypes.string,
+  startValue: PropTypes.string,
   stepValue: PropTypes.string
 };
 
 AnswerTypes.defaultProps = {
+  answers: undefined,
   answerType: '',
-  inputType: '',
-  answers: [],
-  hasLastInput: false,
-  startValue: '',
   endValue: '',
+  hasLastInput: false,
+  inputType: '',
+  startValue: '',
   stepValue: ''
 };
 

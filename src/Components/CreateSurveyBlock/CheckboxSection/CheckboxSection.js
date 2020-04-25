@@ -8,7 +8,7 @@ import { useStyles } from './CheckboxSection.style';
 
 const TITLE = 'Checkbox answer options';
 
-function CheckboxSection({ answers }) {
+function CheckboxSection({ activeId, answers }) {
   const classes = useStyles();
 
   return (
@@ -16,17 +16,18 @@ function CheckboxSection({ answers }) {
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <OptionsContainer answers={answers} />
+      <OptionsContainer activeId={activeId} answers={answers} />
     </div>
   );
 }
 
 CheckboxSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answers: PropTypes.array
 };
 
 CheckboxSection.defaultProps = {
-  answers: []
+  answers: undefined
 };
 
 export default CheckboxSection;

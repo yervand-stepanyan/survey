@@ -9,7 +9,8 @@ export const useStyles = makeStyles(theme => ({
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${theme.customSpacing.base}`
+    marginTop: `${theme.customSpacing.base}`,
+    position: 'relative'
   },
   button: {
     backgroundColor: `${theme.color.mainColorGreen}`,
@@ -17,5 +18,13 @@ export const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: `${theme.color.buttonHoverColorGreen}`
     }
+  },
+  buttonProgress: {
+    color: `${theme.color.buttonHoverColorGreen}`,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12
   }
 }));

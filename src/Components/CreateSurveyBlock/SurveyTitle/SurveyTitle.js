@@ -11,11 +11,11 @@ import { useStyles } from './SurveyTitle.style';
 
 const TITLE_LABEL = 'Survey title:';
 
-function SurveyTitle({ onEdit, title }) {
+function SurveyTitle({ handleEditTitle, title }) {
   const classes = useStyles();
 
   const handleEdit = () => {
-    onEdit();
+    handleEditTitle();
   };
 
   return (
@@ -30,8 +30,8 @@ function SurveyTitle({ onEdit, title }) {
           </div>
         </div>
         <div className={classes.editIcon}>
-          <Tooltip title="Edit" TransitionComponent={Zoom} arrow>
-            <IconButton onClick={handleEdit} color="primary">
+          <Tooltip arrow title="Edit" TransitionComponent={Zoom}>
+            <IconButton color="primary" onClick={handleEdit}>
               <CreateIcon />
             </IconButton>
           </Tooltip>
@@ -42,7 +42,7 @@ function SurveyTitle({ onEdit, title }) {
 }
 
 SurveyTitle.propTypes = {
-  onEdit: PropTypes.func.isRequired,
+  handleEditTitle: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired
 };
 

@@ -10,12 +10,12 @@ import { useStyles } from './AddNewQuestion.style';
 const TEXT_LABEL = 'Add question';
 const TABINDEX = 0;
 
-function AddNewQuestion({ handleShowAddNew }) {
+function AddNewQuestion({ handleAddNewQuestion }) {
   const classes = useStyles();
   const enabled = false;
 
   const handleClick = () => {
-    handleShowAddNew(false);
+    handleAddNewQuestion();
   };
 
   const handleEnterKey = () => {
@@ -48,7 +48,7 @@ function AddNewQuestion({ handleShowAddNew }) {
 }
 
 AddNewQuestion.propTypes = {
-  handleShowAddNew: PropTypes.func.isRequired
+  handleAddNewQuestion: PropTypes.func.isRequired
 };
 
 export default AddNewQuestion;

@@ -8,7 +8,7 @@ import { useStyles } from './DropdownSection.style';
 
 const TITLE = 'List options';
 
-function DropdownSection({ answers }) {
+function DropdownSection({ activeId, answers }) {
   const classes = useStyles();
 
   return (
@@ -16,17 +16,18 @@ function DropdownSection({ answers }) {
       <div className={classes.titleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
-      <OptionsContainer answers={answers} />
+      <OptionsContainer activeId={activeId} answers={answers} />
     </div>
   );
 }
 
 DropdownSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answers: PropTypes.array
 };
 
 DropdownSection.defaultProps = {
-  answers: []
+  answers: undefined
 };
 
 export default DropdownSection;

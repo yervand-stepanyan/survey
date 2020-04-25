@@ -30,5 +30,8 @@ export const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: `${theme.color.buttonHoverColorGreen}`
     }
+  },
+  cancelButton: {
+    marginLeft: `${theme.customSpacing.base}`
   }
 }));

@@ -8,46 +8,55 @@ import { useStyles } from './QuestionSectionCreator.style';
 
 function QuestionSectionCreator({
   activeId,
-  addQuestion,
-  isQuestion,
-  onEdit,
-  onRemove,
-  question,
-  answerType,
-  inputType,
   answers,
-  hasLastInput,
-  startValue,
+  answerType,
   endValue,
-  stepValue,
-  index
+  handleAddQuestion,
+  handleCancelQuestion,
+  handleEditQuestion,
+  handleRemoveQuestion,
+  hasLastInput,
+  index,
+  inputType,
+  isQuestionEdit,
+  question,
+  questionsLength,
+  startValue,
+  stepValue
 }) {
   const classes = useStyles();
 
   return (
     <div className={classes.questionSectionCreatorContainer}>
       <div className={classes.questionSection}>
-        {isQuestion ? (
-          <Question
+        {isQuestionEdit ? (
+          <QuestionCreator
             activeId={activeId}
-            onEdit={onEdit}
-            onRemove={onRemove}
+            handleAddQuestion={handleAddQuestion}
+            handleCancelQuestion={handleCancelQuestion}
             question={question}
-            index={index}
+            questionsLength={questionsLength}
           />
         ) : (
-          <QuestionCreator addQuestion={addQuestion} question={question} />
+          <Question
+            activeId={activeId}
+            handleEditQuestion={handleEditQuestion}
+            handleRemoveQuestion={handleRemoveQuestion}
+            index={index}
+            question={question}
+          />
         )}
       </div>
       <div className={classes.answerTypesWrapper}>
         {question ? (
           <AnswerTypes
-            answerType={answerType}
-            inputType={inputType}
+            activeId={activeId}
             answers={answers}
-            hasLastInput={hasLastInput}
-            startValue={startValue}
+            answerType={answerType}
             endValue={endValue}
+            hasLastInput={hasLastInput}
+            inputType={inputType}
+            startValue={startValue}
             stepValue={stepValue}
           />
         ) : null}
@@ -57,31 +66,35 @@ function QuestionSectionCreator({
 }
 
 QuestionSectionCreator.propTypes = {
-  activeId: PropTypes.string.isRequired,
-  addQuestion: PropTypes.func.isRequired,
-  isQuestion: PropTypes.bool.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-  question: PropTypes.string.isRequired,
-  answerType: PropTypes.string,
-  inputType: PropTypes.string,
+  activeId: PropTypes.string,
   answers: PropTypes.array,
-  hasLastInput: PropTypes.bool,
-  startValue: PropTypes.string,
+  answerType: PropTypes.string,
   endValue: PropTypes.string,
-  stepValue: PropTypes.string,
-  index: PropTypes.number
+  handleAddQuestion: PropTypes.func.isRequired,
+  handleCancelQuestion: PropTypes.func,
+  handleEditQuestion: PropTypes.func.isRequired,
+  handleRemoveQuestion: PropTypes.func.isRequired,
+  hasLastInput: PropTypes.bool,
+  index: PropTypes.number.isRequired,
+  inputType: PropTypes.string,
+  isQuestionEdit: PropTypes.bool.isRequired,
+  question: PropTypes.string.isRequired,
+  questionsLength: PropTypes.number,
+  startValue: PropTypes.string,
+  stepValue: PropTypes.string
 };
 
 QuestionSectionCreator.defaultProps = {
+  activeId: '',
+  answers: undefined,
   answerType: '',
-  inputType: '',
-  answers: [],
-  hasLastInput: false,
-  startValue: '',
   endValue: '',
-  stepValue: '',
-  index: 0
+  handleCancelQuestion: undefined,
+  hasLastInput: false,
+  inputType: '',
+  questionsLength: 0,
+  startValue: '',
+  stepValue: ''
 };
 
 export default QuestionSectionCreator;

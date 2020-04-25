@@ -1,99 +1,167 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
-import { useStyles } from './RangeSection.style';
+import removeSpaces from '../../../helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './RangeSection.style';
 
-const BUTTON_LABEL = 'Submit & continue';
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
+const BUTTON_LABEL = 'Submit & continue';
 const END_VALUE_LABEL = 'End value';
 const START_VALUE_LABEL = 'Start value';
 const STEP_VALUE_LABEL = 'Step';
 const TITLE = 'Range values';
 
 function RangeSection({
-  startValue: startValueProps,
+  activeId,
   endValue: endValueProps,
+  startValue: startValueProps,
   stepValue: stepValueProps
 }) {
   const classes = useStyles();
-  const [startValue, setStartValue] = useState(startValueProps || '');
   const [endValue, setEndValue] = useState(endValueProps || '');
-  const [stepValue, setStepValue] = useState(stepValueProps || '');
   const [isChanged, setIsChanged] = useState(false);
-  const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isEndEmpty, setIsEndEmpty] = useState(false);
   const [isEqual, setIsEqual] = useState(false);
+  const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isStepEmpty, setIsStepEmpty] = useState(false);
-  const [isStep, setIsStep] = useState(false);
+  const [isStepValid, setIsStepValid] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(
     (!!startValueProps && !!endValueProps && !!stepValueProps) || false
   );
-  const { handleAddRangeValues, handleSubmitQuestion } = useContext(
-    SurveyContext
-  );
+  const [startValue, setStartValue] = useState(startValueProps || '');
+  const [stepValue, setStepValue] = useState(stepValueProps || '');
+  const inputEl = useRef(null);
+  const {
+    disableSave,
+    handleAddRangeValues,
+    handleSubmitQuestion
+  } = useContext(SurveyContext);
 
-  const checkStepCorrect = (start, end, step) => {
-    const isCorrectStep = step < 1 || !(step <= Math.abs(start - end) / 2);
+  useEffect(() => {
+    if (!activeId) {
+      inputEl.current.focus();
+    }
+  }, [activeId]);
 
-    setIsStep(isCorrectStep);
+  const checkStepIsValid = ({
+    startValue: start,
+    endValue: end,
+    stepValue: step
+  }) => {
+    const isStepInvalid =
+      step < 0 ||
+      !(step <= Math.abs(start - end) / 2) ||
+      !Number.isInteger(Math.abs(start - end) / step);
 
-    if (isSubmitted) setIsChanged(true);
+    setIsStepValid(!isStepInvalid);
+
+    if (isSubmitted) {
+      setIsChanged(true);
+    }
+
+    disableSave(true);
 
     setIsSubmitted(false);
   };
 
-  const handleStartChange = event => {
-    setStartValue(event.target.value);
+  const handleChange = (
+    event,
+    setValue,
+    setIsEmpty,
+    firstValue,
+    secondValue,
+    targetKey,
+    firstKey,
+    secondKey
+  ) => {
+    setValue(event.target.value);
 
     if (!removeSpaces(event.target.value)) {
-      setIsStartEmpty(true);
+      setIsEmpty(true);
+
+      disableSave(true);
     } else {
-      setIsStartEmpty(false);
+      setIsEmpty(false);
 
-      setIsEqual(event.target.value === endValue);
+      if (
+        (targetKey === 'startValue' && firstKey === 'endValue') ||
+        (targetKey === 'endValue' && firstKey === 'startValue')
+      ) {
+        setIsEqual(firstValue === event.target.value);
+      }
 
-      checkStepCorrect(event.target.value, endValue, stepValue);
+      if (firstValue && secondValue) {
+        checkStepIsValid({
+          [targetKey]: event.target.value,
+          [firstKey]: firstValue,
+          [secondKey]: secondValue
+        });
+      }
+
+      handleAddRangeValues(activeId, {
+        [targetKey]: event.target.value,
+        [firstKey]: firstValue,
+        [secondKey]: secondValue
+      });
     }
+  };
+
+  const handleStartChange = event => {
+    handleChange(
+      event,
+      setStartValue,
+      setIsStartEmpty,
+      endValue,
+      stepValue,
+      'startValue',
+      'endValue',
+      'stepValue'
+    );
   };
 
   const handleEndChange = event => {
-    setEndValue(event.target.value);
-
-    if (!removeSpaces(event.target.value)) {
-      setIsEndEmpty(true);
-    } else {
-      setIsEndEmpty(false);
-
-      setIsEqual(startValue === event.target.value);
-
-      checkStepCorrect(startValue, event.target.value, stepValue);
-    }
+    handleChange(
+      event,
+      setEndValue,
+      setIsEndEmpty,
+      startValue,
+      stepValue,
+      'endValue',
+      'startValue',
+      'stepValue'
+    );
   };
 
   const handleStepChange = event => {
-    setStepValue(event.target.value);
-
-    if (!removeSpaces(event.target.value)) {
-      setIsStepEmpty(true);
-    } else {
-      setIsStepEmpty(false);
-
-      checkStepCorrect(startValue, endValue, event.target.value);
-    }
+    handleChange(
+      event,
+      setStepValue,
+      setIsStepEmpty,
+      startValue,
+      endValue,
+      'stepValue',
+      'startValue',
+      'endValue'
+    );
   };
 
   const handleSubmit = () => {
-    handleAddRangeValues({ startValue, endValue, stepValue });
-
-    handleSubmitQuestion();
+    handleSubmitQuestion(activeId);
 
     setIsSubmitted(true);
+  };
+
+  const handleSubmitOnEnter = event => {
+    if (event.key === 'Enter') {
+      if (startValue && endValue && stepValue && !isEqual && isStepValid) {
+        handleSubmit();
+      }
+    }
   };
 
   return (
@@ -105,13 +173,13 @@ function RangeSection({
         <div className={classes.textFieldsSection}>
           <div className={classes.textFieldWrapper}>
             <TextField
-              autoFocus
               error={isStartEmpty || isEqual}
-              id="outlined-basic"
               fullWidth
+              id="outlined-basic"
+              inputRef={inputEl}
               label={START_VALUE_LABEL}
               onChange={e => handleStartChange(e)}
-              // onKeyDown={handleSubmitOnEnter}
+              onKeyDown={handleSubmitOnEnter}
               type="number"
               value={startValue}
               variant="outlined"
@@ -120,11 +188,11 @@ function RangeSection({
           <div className={classes.textFieldWrapper}>
             <TextField
               error={isEndEmpty || isEqual}
-              id="outlined-basic"
               fullWidth
+              id="outlined-basic"
               label={END_VALUE_LABEL}
               onChange={e => handleEndChange(e)}
-              // onKeyDown={handleSubmitOnEnter}
+              onKeyDown={handleSubmitOnEnter}
               type="number"
               value={endValue}
               variant="outlined"
@@ -132,12 +200,12 @@ function RangeSection({
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
-              error={isStepEmpty || isStep}
-              id="outlined-basic"
+              error={isStepEmpty || !isStepValid}
               fullWidth
+              id="outlined-basic"
               label={STEP_VALUE_LABEL}
               onChange={e => handleStepChange(e)}
-              // onKeyDown={handleSubmitOnEnter}
+              onKeyDown={handleSubmitOnEnter}
               type="number"
               value={stepValue}
               variant="outlined"
@@ -152,7 +220,7 @@ function RangeSection({
               !endValue ||
               !stepValue ||
               isEqual ||
-              isStep ||
+              !isStepValid ||
               isSubmitted
             }
             onClick={handleSubmit}
@@ -168,14 +236,15 @@ function RangeSection({
 }
 
 RangeSection.propTypes = {
-  startValue: PropTypes.string,
+  activeId: PropTypes.string.isRequired,
   endValue: PropTypes.string,
+  startValue: PropTypes.string,
   stepValue: PropTypes.string
 };
 
 RangeSection.defaultProps = {
-  startValue: '',
   endValue: '',
+  startValue: '',
   stepValue: ''
 };
 

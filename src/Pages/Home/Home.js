@@ -1,8 +1,6 @@
 import React from 'react';
 
-import AdPanel from '../../Components/AdPanel';
-import HomeBlock from '../../Components/HomeBlock';
-import OurPartnersBlock from '../../Components/OurPartnersBlock';
+import Surveys from '../../Components/TakeSurveyBlock/Surveys';
 import { useStyles } from './Home.style';
 
 function Home() {
@@ -10,11 +8,7 @@ function Home() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.homeAndAdsWrapper}>
-        <HomeBlock />
-        <AdPanel />
-      </div>
-      <OurPartnersBlock />
+      <Surveys />
     </div>
   );
 }

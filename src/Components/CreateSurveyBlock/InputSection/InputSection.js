@@ -4,49 +4,55 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import inputText from '../../../assets/images/inputOptions/input-text.png';
-import inputNumber from '../../../assets/images/inputOptions/input-number.png';
 import inputDate from '../../../assets/images/inputOptions/input-date.png';
-import { useStyles } from './InputSection.style';
+import inputNumber from '../../../assets/images/inputOptions/input-number.png';
+import inputText from '../../../assets/images/inputOptions/input-text.png';
 import ImageContainer from '../ImageContainer';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './InputSection.style';
 
-const BUTTON_LABEL = 'Submit & continue';
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
-const IMAGES = [
-  { name: 'text', src: inputText, tooltip: 'Text', text: 'Text' },
-  { name: 'number', src: inputNumber, tooltip: 'Number', text: 'Number' },
-  { name: 'date', src: inputDate, tooltip: 'Date', text: 'Date' }
+const BUTTON_LABEL = 'Submit & continue';
+const TYPES = [
+  { name: 'TEXT', src: inputText, tooltip: 'Text', text: 'Text' },
+  { name: 'NUMBER', src: inputNumber, tooltip: 'Number', text: 'Number' },
+  { name: 'DATE', src: inputDate, tooltip: 'Date', text: 'Date' }
 ];
 const TITLE = 'Choose input type';
 
-function InputSection({ inputType }) {
+function InputSection({ activeId, inputType: inputTypeProps }) {
   const classes = useStyles();
-  const [image, setImage] = useState(inputType || '');
+  const [inputType, setInputType] = useState(inputTypeProps || '');
   const [isChanged, setIsChanged] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(!!inputType || false);
-  const { handleAddInputType, handleSubmitQuestion } = useContext(
+  const [isSubmitted, setIsSubmitted] = useState(!!inputTypeProps || false);
+  const { disableSave, handleAddInputType, handleSubmitQuestion } = useContext(
     SurveyContext
   );
 
   const handleClick = e => {
-    const img = e.target.alt ? e.target.alt : e.target.children[0].alt;
+    const type = e.target.alt ? e.target.alt : e.target.children[0].alt;
 
-    setImage(img);
+    setInputType(type);
 
     setIsSubmitted(false);
 
-    handleAddInputType(img);
+    handleAddInputType(activeId, type);
 
-    if (isSubmitted) setIsChanged(true);
+    disableSave(true);
+
+    if (isSubmitted) {
+      setIsChanged(true);
+    }
   };
 
   const handleEnterKey = e => {
-    if (e.key === 'Enter') handleClick(e);
+    if (e.key === 'Enter') {
+      handleClick(e);
+    }
   };
 
   const handleSubmit = () => {
-    handleSubmitQuestion();
+    handleSubmitQuestion(activeId);
 
     setIsSubmitted(true);
   };
@@ -57,12 +63,12 @@ function InputSection({ inputType }) {
         <Typography variant="h5">{TITLE}</Typography>
       </div>
       <div className={classes.typeWrapper}>
-        {IMAGES.map(img => (
+        {TYPES.map(img => (
           <ImageContainer
+            classes={classes}
             handleClick={handleClick}
             handleEnterKey={handleEnterKey}
-            classes={classes}
-            imageClicked={image}
+            imageClicked={inputType}
             img={img}
             key={img.name}
           />
@@ -71,7 +77,7 @@ function InputSection({ inputType }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!image || isSubmitted}
+          disabled={!inputType || isSubmitted}
           onClick={handleSubmit}
           size="large"
           variant="contained"
@@ -84,6 +90,7 @@ function InputSection({ inputType }) {
 }
 
 InputSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   inputType: PropTypes.string
 };
 

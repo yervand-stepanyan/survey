@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
@@ -10,9 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
-import removeSpaces from '../../../Helpers/removeSpaces';
-import { useStyles } from './OptionsContainer.style';
+import removeSpaces from '../../../helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
+import { useStyles } from './OptionsContainer.style';
 
 const BUTTON_LABEL = 'Submit & continue';
 const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
@@ -20,79 +20,105 @@ const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
 
-function OptionsContainer({ type, answers, hasLastInput }) {
+function OptionsContainer({
+  activeId,
+  answers: answersProps,
+  hasLastInput,
+  type
+}) {
   const classes = useStyles();
+  const [answers, setAnswers] = useState(answersProps || []);
   const [checked, setChecked] = useState(hasLastInput || false);
   const [chip, setChip] = useState({});
-  const [customOptionId, setCustomOptionId] = useState('');
+  const [customAnswerId, setCustomAnswerId] = useState(
+    answersProps && hasLastInput ? answersProps[answersProps.length - 1].id : ''
+  );
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(!!answers || false);
-  const [isTyped, setIsTyped] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(!!answersProps || false);
   const [isTooltip, setIsTooltip] = useState(false);
-  const [option, setOption] = useState('');
-  const [options, setOptions] = useState(answers || []);
+  const [isTyped, setIsTyped] = useState(false);
+  const [title, setTitle] = useState('');
   const inputEl = useRef(null);
   const {
+    disableSave,
     handleAddAnswers,
     handleHasLastInput,
     handleSubmitQuestion
   } = useContext(SurveyContext);
 
+  useEffect(() => {
+    if (!activeId) {
+      inputEl.current.focus();
+    }
+  });
+
+  useEffect(() => {
+    handleAddAnswers(activeId, answers, checked);
+  }, [answers]);
+
   const handleInputChange = event => {
-    setOption(event.target.value);
+    setTitle(event.target.value);
 
     if (!removeSpaces(event.target.value)) {
       setIsEmpty(true);
 
       setIsTyped(false);
+
+      disableSave(false);
     } else {
       setIsEmpty(false);
 
       setIsTyped(true);
+
+      disableSave(true);
     }
   };
 
   const handleSubmitOnEnter = event => {
     if (event.key === 'Enter') {
-      const filteredOption = removeSpaces(option);
+      const filteredTitle = removeSpaces(title);
       const id = uuid();
 
-      if (filteredOption) {
-        setOptions(
+      if (filteredTitle) {
+        setAnswers(
           chip.id
-            ? options.map(opt =>
-                opt.id === chip.id
-                  ? { id: chip.id, option: filteredOption }
-                  : opt
+            ? answers.map(opt =>
+                opt.id === chip.id ? { id: chip.id, title: filteredTitle } : opt
               )
-            : [...options, { id, option: filteredOption }]
+            : [...answers, { id, title: filteredTitle }]
         );
 
-        setOption('');
+        setTitle('');
 
         setChip({});
 
         setIsTyped(false);
 
-        if (checked && !customOptionId) {
-          setCustomOptionId(id);
+        if (checked && !customAnswerId) {
+          setCustomAnswerId(id);
 
           setIsTooltip(false);
         }
 
-        if (isSubmitted) setIsChanged(true);
-      } else setIsEmpty(true);
+        if (activeId && isSubmitted) {
+          setIsChanged(true);
+        }
+
+        disableSave(true);
+      } else {
+        setIsEmpty(true);
+      }
 
       if (checked) {
-        setOptions(prevState => {
-          const optionId = customOptionId || id;
-          const lastOption = prevState.find(opt => opt.id === optionId);
-          const filteredOptions = prevState.filter(
-            opt => opt.id !== lastOption.id
+        setAnswers(prevState => {
+          const answerId = customAnswerId || id;
+          const lastAnswer = prevState.find(opt => opt.id === answerId);
+          const filteredAnswers = prevState.filter(
+            opt => opt.id !== lastAnswer.id
           );
 
-          return [...filteredOptions, lastOption];
+          return [...filteredAnswers, lastAnswer];
         });
       }
 
@@ -102,23 +128,31 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 
   const handleChipClick = chipToEdit => () => {
     if (!isTyped) {
-      setOption(chipToEdit.option);
+      setTitle(chipToEdit.title);
 
       setChip(chipToEdit);
 
       setIsEmpty(false);
 
       inputEl.current.focus();
+
+      disableSave(true);
     }
   };
 
-  const handleChipDelete = chipToDelete => () => {
-    setOptions(() => options.filter(opt => opt.id !== chipToDelete));
+  const handleChipDelete = id => () => {
+    setAnswers(() => answers.filter(opt => opt.id !== id));
 
-    if (customOptionId === chipToDelete) {
+    handleAddAnswers(
+      activeId,
+      answers.filter(opt => opt.id !== id),
+      false
+    );
+
+    if (customAnswerId === id) {
       setChecked(false);
 
-      setCustomOptionId('');
+      setCustomAnswerId('');
     }
 
     if (isSubmitted) {
@@ -126,34 +160,72 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 
       setIsSubmitted(false);
     }
+
+    disableSave(true);
   };
 
   const handleCheckboxChange = event => {
     setChecked(event.target.checked);
+
+    setTitle('');
 
     if (event.target.checked) {
       inputEl.current.focus();
 
       setIsTooltip(true);
 
-      handleHasLastInput(true);
+      handleHasLastInput(activeId, true);
+
+      if (isSubmitted) {
+        disableSave(true);
+      } else {
+        setIsSubmitted(true);
+      }
     } else {
+      const removedAnswer = answers.find(opt => opt.id === customAnswerId);
+
       setIsTooltip(false);
 
-      setOptions(options.filter(opt => opt.id !== customOptionId));
+      setAnswers(answers.filter(opt => opt.id !== customAnswerId));
 
-      setCustomOptionId('');
+      handleHasLastInput(
+        activeId,
+        false,
+        answers.filter(opt => opt.id !== customAnswerId)
+      );
 
-      handleHasLastInput(false);
+      setCustomAnswerId('');
+
+      if (isSubmitted) {
+        if (isTyped) {
+          if (isChanged) {
+            setIsChanged(true);
+
+            setIsSubmitted(false);
+          } else {
+            disableSave(false);
+          }
+
+          setIsTyped(false);
+        } else if (removedAnswer || isChanged) {
+          setIsChanged(true);
+
+          setIsSubmitted(false);
+
+          disableSave(true);
+        } else {
+          disableSave(false);
+        }
+      }
     }
   };
 
   const handleSubmit = () => {
-    handleAddAnswers(options);
-
-    handleSubmitQuestion();
+    handleSubmitQuestion(activeId);
 
     setIsSubmitted(true);
+
+    setIsChanged(false);
   };
 
   return (
@@ -167,15 +239,14 @@ function OptionsContainer({ type, answers, hasLastInput }) {
             TransitionComponent={Zoom}
           >
             <TextField
-              autoFocus
               error={isEmpty}
+              fullWidth
               id="outlined-basic"
               inputRef={inputEl}
-              fullWidth
               label={INPUT_LABEL}
               onChange={e => handleInputChange(e)}
               onKeyDown={handleSubmitOnEnter}
-              value={option}
+              value={title}
               variant="outlined"
             />
           </Tooltip>
@@ -183,18 +254,18 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       </div>
       <div className={classes.chipsWrapper}>
         <div className={classes.root}>
-          {options.map(opt => (
+          {answers.map(opt => (
             <Tooltip
               arrow
               key={opt.id}
-              title={opt.option}
+              title={opt.title}
               TransitionComponent={Zoom}
             >
               <Chip
                 className={classes.chip}
                 clickable
                 color="primary"
-                label={opt.option}
+                label={opt.title}
                 onClick={handleChipClick(opt)}
                 onDelete={handleChipDelete(opt.id)}
               />
@@ -222,7 +293,7 @@ function OptionsContainer({ type, answers, hasLastInput }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={options.length < 2 || isSubmitted}
+          disabled={answers.length < 2 || isSubmitted}
           onClick={handleSubmit}
           size="large"
           variant="contained"
@@ -235,13 +306,14 @@ function OptionsContainer({ type, answers, hasLastInput }) {
 }
 
 OptionsContainer.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answers: PropTypes.array,
   hasLastInput: PropTypes.bool,
   type: PropTypes.string
 };
 
 OptionsContainer.defaultProps = {
-  answers: [],
+  answers: undefined,
   hasLastInput: false,
   type: ''
 };

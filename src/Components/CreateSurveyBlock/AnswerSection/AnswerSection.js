@@ -8,35 +8,49 @@ import RadiobuttonSection from '../RadiobuttonSection';
 import RangeSection from '../RangeSection';
 import { useStyles } from './AnswerSection.style';
 
+const TYPES = {
+  checkbox: 'CHECKBOX',
+  dropdown: 'DROPDOWN',
+  input: 'INPUT',
+  radiobutton: 'RADIOBUTTON',
+  range: 'RANGE'
+};
+
 function AnswerSection({
-  type,
-  answerType,
-  inputType,
+  activeId,
   answers,
-  hasLastInput,
-  startValue,
+  answerType,
   endValue,
-  stepValue
+  hasLastInput,
+  inputType,
+  startValue,
+  stepValue,
+  type
 }) {
   const classes = useStyles();
 
   const showType = typeToShow => {
     switch (typeToShow) {
-      case 'input':
-        return <InputSection inputType={inputType} />;
-      case 'radiobutton':
+      case TYPES.input:
+        return <InputSection activeId={activeId} inputType={inputType} />;
+      case TYPES.radiobutton:
         return (
-          <RadiobuttonSection answers={answers} hasLastInput={hasLastInput} />
+          <RadiobuttonSection
+            activeId={activeId}
+            answers={answers}
+            hasLastInput={hasLastInput}
+          />
         );
-      case 'checkbox':
-        return <CheckboxSection answers={answers} />;
-      case 'dropdown':
-        return <DropdownSection answers={answers} />;
-      case 'range':
+      case TYPES.checkbox:
+        return <CheckboxSection activeId={activeId} answers={answers} />;
+      case TYPES.dropdown:
+        return <DropdownSection activeId={activeId} answers={answers} />;
+      case TYPES.range:
         return (
           <RangeSection
-            startValue={startValue}
+            activeId={activeId}
             endValue={endValue}
+            startValue={startValue}
             stepValue={stepValue}
           />
         );
@@ -47,12 +61,13 @@ function AnswerSection({
 
   return (
     <div className={classes.answerSectionContainer}>
-      {showType(answerType || type)}
+      {showType(type || answerType)}
     </div>
   );
 }
 
 AnswerSection.propTypes = {
+  activeId: PropTypes.string.isRequired,
   answerType: PropTypes.string,
   inputType: PropTypes.string,
   answers: PropTypes.array,
@@ -66,7 +81,7 @@ AnswerSection.propTypes = {
 AnswerSection.defaultProps = {
   answerType: '',
   inputType: '',
-  answers: [],
+  answers: undefined,
   hasLastInput: false,
   startValue: '',
   endValue: '',
