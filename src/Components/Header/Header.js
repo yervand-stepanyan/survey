@@ -18,11 +18,11 @@ function Header() {
     <AppBar position="static" className={classes.container}>
       <Toolbar>
         <Link to={ROUTES.home}>
-          <img src={logo} alt="logo" />
+          <img src={logo} className={classes.logo} alt="logo" />
         </Link>
         <nav className={classes.menu}>
           <Link to={ROUTES.create} className={classes.menuItem}>
-            <Button variant="contained" className={classes.logInButton}>
+            <Button variant="contained" className={classes.menuItemButton}>
               {MENU_ITEM_CREATE_TEXT}
             </Button>
           </Link>
