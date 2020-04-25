@@ -7,7 +7,7 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.homeContainer}>
       <Surveys />
     </div>
   );

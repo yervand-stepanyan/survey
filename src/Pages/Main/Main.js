@@ -21,31 +21,49 @@ function Main() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(true);
+  const [snackbarText, setSnackbarText] = useState('');
+  const [loadingData, setLoadingData] = useState(true);
+  const [isConnectionError, setIsConnectionError] = useState(false);
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
-  const [dispatchSurveyAnswer] = useReducer(surveyAnswerReducer, []);
+  const [stateSurveyAnswer, dispatchSurveyAnswer] = useReducer(
+    surveyAnswerReducer,
+    []
+  );
+
+  const getData = async () => {
+    try {
+      setLoadingData(true);
+
+      const surveys = await doGet('surveys');
+      const surveyAnswers = await doGet('survey-answers');
+      const reversedSurveys = await surveys.slice().reverse();
+
+      dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedSurveys });
+      dispatchSurveyAnswer({
+        type: 'ADD_SURVEY_ANSWERS',
+        payload: surveyAnswers
+      });
+    } catch (e) {
+      setLoadingData(false);
+
+      setIsConnectionError(true);
+    } finally {
+      setLoadingData(false);
+    }
+  };
 
   useEffect(() => {
-    doGet('surveys')
-      .then(res => {
-        const reversedArray = res.slice().reverse();
-
-        dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedArray });
-      })
-      .catch();
-
-    doGet('survey-answers')
-      .then(res =>
-        dispatchSurveyAnswer({ type: 'ADD_SURVEY_ANSWERS', payload: res })
-      )
-      .catch();
+    getData();
   }, []);
 
   const handleOpenSnackbar = () => {
     setOpen(true);
   };
 
-  const handleShowSuccess = bool => {
+  const handleShowSnackbar = (bool, text) => {
     setShowSuccess(bool);
+
+    setSnackbarText(text);
   };
 
   const handleClose = (event, reason) => {
@@ -61,9 +79,13 @@ function Main() {
       <SurveyContext.Provider
         value={{
           stateSurvey,
+          stateSurveyAnswer,
           dispatchSurvey,
+          dispatchSurveyAnswer,
           handleOpenSnackbar,
-          handleShowSuccess
+          handleShowSnackbar,
+          isConnectionError,
+          loadingData
         }}
       >
         <Router>
@@ -97,9 +119,28 @@ function Main() {
         onClose={handleClose}
         open={open}
         showSuccess={showSuccess}
+        snackbarText={snackbarText}
       />
     </div>
   );
 }
 
 export default Main;
+
+// doGet('surveys')
+//   .then(res => {
+//     const reversedArray = res.slice().reverse();
+//
+//     dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedArray });
+//
+//     setLoadingData(false);
+//   })
+//   .catch(() => setLoadingData(false));
+//
+// doGet('survey-answers')
+//   .then(res => {
+//     dispatchSurveyAnswer({ type: 'ADD_SURVEY_ANSWERS', payload: res });
+//
+//     setLoadingData(false);
+//   })
+//   .catch(() => setLoadingData(false));

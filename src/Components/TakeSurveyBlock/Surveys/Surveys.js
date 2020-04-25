@@ -1,12 +1,19 @@
 import React, { useContext, useState } from 'react';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
+
 import { doDelete } from '../../../FetchAPI/fetchData';
 import SurveyComponent from '../SurveyComponent';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './Surveys.style';
 
+const CONNECTION_ERROR_TEXT_BIG = 'Connection error!';
+const CONNECTION_ERROR_TEXT_SMALL = 'Try again later!';
 const SNACKBAR_MESSAGE_ERROR = 'Something went wrong. Try again!';
 const SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
+const NO_SURVEY_TEXT_BIG = 'No surveys yet!';
+const NO_SURVEY_TEXT_SMALL = 'Create the first survey!';
 
 function Surveys() {
   const classes = useStyles();
@@ -17,7 +24,9 @@ function Surveys() {
     stateSurvey,
     dispatchSurvey,
     handleOpenSnackbar,
-    handleShowSnackbar
+    handleShowSnackbar,
+    isConnectionError,
+    loadingData
   } = useContext(SurveyContext);
 
   const handleButtonClick = id => {
@@ -52,18 +61,43 @@ function Surveys() {
 
   return (
     <div className={classes.surveysContainer}>
-      {stateSurvey.map(({ id, title }) => (
-        <SurveyComponent
-          buttonToLoad={buttonToLoad}
-          handleButtonClick={handleButtonClick}
-          handleRemoveSurvey={handleRemoveSurvey}
-          id={id}
-          key={id}
-          loadingButton={loadingButton}
-          loadingRemove={loadingRemove}
-          title={title}
-        />
-      ))}
+      {!loadingData && !stateSurvey.length ? (
+        <div>
+          {isConnectionError ? (
+            <div className={classes.noSurveysContainer}>
+              <Typography variant="h3" color="secondary">
+                {CONNECTION_ERROR_TEXT_BIG}
+              </Typography>
+              <Typography variant="h4" color="primary">
+                {CONNECTION_ERROR_TEXT_SMALL}
+              </Typography>
+            </div>
+          ) : (
+            <div className={classes.noSurveysContainer}>
+              <Typography variant="h3" color="secondary">
+                {NO_SURVEY_TEXT_BIG}
+              </Typography>
+              <Typography variant="h4" color="primary">
+                {NO_SURVEY_TEXT_SMALL}
+              </Typography>
+            </div>
+          )}
+        </div>
+      ) : (
+        stateSurvey.map(({ id, title }) => (
+          <SurveyComponent
+            buttonToLoad={buttonToLoad}
+            handleButtonClick={handleButtonClick}
+            handleRemoveSurvey={handleRemoveSurvey}
+            id={id}
+            key={id}
+            loadingButton={loadingButton}
+            loadingRemove={loadingRemove}
+            title={title}
+          />
+        ))
+      )}
+      {loadingData && <CircularProgress size={60} thickness={4} />}
     </div>
   );
 }
