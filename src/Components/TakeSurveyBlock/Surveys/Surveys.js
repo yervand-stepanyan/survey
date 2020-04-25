@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PollIcon from '@material-ui/icons/Poll';
 
@@ -11,11 +11,11 @@ import { useStyles } from './Surveys.style';
 
 function Surveys() {
   const classes = useStyles();
-  const { surveys } = useContext(SurveyContext);
+  const { stateSurvey } = useContext(SurveyContext);
 
   return (
     <div className={classes.surveysContainer}>
-      {surveys.map(survey => (
+      {stateSurvey.map(survey => (
         <div key={survey.id} className={classes.singleSurveyContainer}>
           <div>{survey.title}</div>
           <div className={classes.takeAndResultsCellsContainer}>
