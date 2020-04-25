@@ -8,12 +8,10 @@ import { useStyles } from './TakeSurvey.style';
 
 function TakeSurvey({ match }) {
   const classes = useStyles();
-  const { surveys } = useContext(SurveyContext);
+  const { stateSurvey } = useContext(SurveyContext);
   const { id } = match.params;
 
-  const chosenSurvey = surveys.find(item => {
-    return item.id === id;
-  });
+  const chosenSurvey = stateSurvey.find(item => item.id === id);
 
   return (
     <div className={classes.container}>
