@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import About from '../About';
 import Contacts from '../Contacts';
 import CreateSurvey from '../CreateSurvey';
+import { doGet } from '../../FetchAPI/fetchData';
 import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
@@ -22,19 +23,14 @@ function Main() {
   const [showSuccess, setShowSuccess] = useState(true);
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
 
-  const [data, setData] = useState([]);
-
-  async function fetchMyAPI() {
-    const response = await fetch(
-      'https://surveys-app-api.herokuapp.com/api/surveys'
-    );
-    const parsedResponse = await response.json();
-
-    setData(parsedResponse);
-  }
-
   useEffect(() => {
-    fetchMyAPI();
+    doGet('surveys')
+      .then(res => {
+        const reversedArray = res.slice().reverse();
+
+        dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedArray });
+      })
+      .catch();
   }, []);
 
   const handleOpenSnackbar = () => {
@@ -60,8 +56,7 @@ function Main() {
           stateSurvey,
           dispatchSurvey,
           handleOpenSnackbar,
-          handleShowSuccess,
-          surveys: data
+          handleShowSuccess
         }}
       >
         <Router>
