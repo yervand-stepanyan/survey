@@ -12,7 +12,7 @@ async function request({ url, method, body, id }) {
       };
 
   const response = await fetch(
-    `${process.env.REACT_APP_API_ROOT}/api/${url}/${id || ''}`,
+    `${process.env.REACT_APP_API_ROOT}/api/${url}${id ? `/${id}` : ''}`,
     fetchData
   );
 
