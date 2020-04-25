@@ -2,7 +2,7 @@ import { SURVEYS } from './SurveyResultsData'
 
 function getSurveyResults (id) {
 
-  const SURVEY_ANSWERS = SURVEYS.filter(survey => survey.surveyId === +id )
+  const SURVEY_ANSWERS = SURVEYS.filter(survey => +survey.surveyId === +id )
 
   const results = {};
 
@@ -75,9 +75,9 @@ function getSurveyResults (id) {
       }
     })
   ))
-  
-  
-  console.log(results)
+   
+  return results;
 }
+
 
 export default getSurveyResults;
