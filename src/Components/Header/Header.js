@@ -9,10 +9,7 @@ import logo from '../../assets/images/logo/logo.png';
 import ROUTES from '../../Routes/Routes';
 import { useStyles } from './Header.style';
 
-const MENU_ITEMS = [
-  { name: 'Create Survey', route: ROUTES.create },
-  { name: 'Contacts', route: ROUTES.contacts }
-];
+const MENU_ITEM_CREATE_TEXT = 'create survey';
 
 function Header() {
   const classes = useStyles();
@@ -24,11 +21,11 @@ function Header() {
           <img src={logo} alt="logo" />
         </Link>
         <nav className={classes.menu}>
-          {MENU_ITEMS.map(item => (
-            <Link to={item.route} className={classes.menuItem} key={item.name}>
-              {item.name}
-            </Link>
-          ))}
+          <Link to={ROUTES.create} className={classes.menuItem}>
+            <Button variant="contained" className={classes.logInButton}>
+              {MENU_ITEM_CREATE_TEXT}
+            </Button>
+          </Link>
         </nav>
       </Toolbar>
     </AppBar>
