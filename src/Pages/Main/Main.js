@@ -8,7 +8,7 @@ import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
-import SingleSurveyAnswers from '../../Components/ResultsBlock/SingleSurveyAnswers';
+// import SingleSurveyAnswers from '../../Components/ResultsBlock/SingleSurveyAnswers';
 import ROUTES from '../../Routes/Routes';
 import ScrollToTop from '../../Components/ScrollToTop';
 import SnackbarComponent from '../../Components/SnackbarComponent';
@@ -81,9 +81,6 @@ function Main() {
               <Route path={ROUTES.results}>
                 <Results />
               </Route>
-              {/* <Route exact path={`${ROUTES.results}/:surveyId`}>
-                <Results />
-              </Route> */}
               <Route path={ROUTES.about}>
                 <About />
               </Route>

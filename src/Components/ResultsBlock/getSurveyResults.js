@@ -14,7 +14,8 @@ function getSurveyResults (id) {
         results[question.id] = {
           title: question.title,
           type: question.answerType,
-          answers: [],
+          answers: {},
+          textAnswers: []
         } 
       }
     
@@ -76,7 +77,7 @@ function getSurveyResults (id) {
         }
 
         results[question.id].count += 1;
-        results[question.id].answers.push(question.answers.customAnswer);
+        results[question.id].textAnswers.push(question.answers.customAnswer);
       
       }
     })
