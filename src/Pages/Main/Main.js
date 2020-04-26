@@ -81,9 +81,9 @@ function Main() {
               <Route path={ROUTES.results}>
                 <Results />
               </Route>
-              <Route exact path={`${ROUTES.results}/:surveyId`}>
-                <SingleSurveyAnswers />
-              </Route>
+              {/* <Route exact path={`${ROUTES.results}/:surveyId`}>
+                <Results />
+              </Route> */}
               <Route path={ROUTES.about}>
                 <About />
               </Route>

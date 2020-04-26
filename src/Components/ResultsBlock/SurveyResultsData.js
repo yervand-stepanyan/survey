@@ -27,8 +27,8 @@ export const SURVEYS = [
         title: 'question 1',
         answerType: 'dropdown',
         answers: {
-          customAnswer: 'my answer',
-          markedAnswers: []
+          customAnswer: '',
+          markedAnswers: ['my answer']
         }
       },
       {
@@ -360,7 +360,7 @@ export const SURVEYS = [
         answerType: 'radiobutton',
         answers: {
           customAnswer: '',
-          markedAnswers: ['answer 1', 'answer 5']
+          markedAnswers: ['answer 1']
         }
       }
     ]
@@ -515,8 +515,8 @@ export const SURVEYS = [
         title: 'question 1',
         answerType: 'dropdown',
         answers: {
-          customAnswer: 'my answer',
-          markedAnswers: []
+          customAnswer: '',
+          markedAnswers: ['my answer']
         }
       },
       {
@@ -759,8 +759,8 @@ export const SURVEYS = [
         title: 'question 1',
         answerType: 'dropdown',
         answers: {
-          customAnswer: 'my answer',
-          markedAnswers: []
+          customAnswer: '',
+          markedAnswers: ['my answer']
         }
       },
       {
