@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 import SurveyQuestion from '../SurveyQuestion';
 import { useStyles } from './SurveyQuestions.style';
 
 const SUBMIT_TEXT = 'Submit';
 
-function SurveyQuestions({ questions }) {
+function SurveyQuestions({ questions, title: surveyTitle }) {
   const classes = useStyles();
 
   return (
     <div className={classes.surveyQuestionsContainer}>
+      <div className={classes.titleContainer}>
+        <Typography variant="h3">{surveyTitle}</Typography>
+      </div>
       {questions.map(
         ({
           answers,
@@ -49,7 +53,8 @@ function SurveyQuestions({ questions }) {
 }
 
 SurveyQuestions.propTypes = {
-  questions: PropTypes.array.isRequired
+  questions: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default SurveyQuestions;
