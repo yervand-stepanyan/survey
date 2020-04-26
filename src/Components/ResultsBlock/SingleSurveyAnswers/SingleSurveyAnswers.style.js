@@ -1,1 +1,7 @@
-export { default } from './SingleSurveyAnswers';
+import { makeStyles } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles(theme => ({
+  container: {
+   
+  }
+}));

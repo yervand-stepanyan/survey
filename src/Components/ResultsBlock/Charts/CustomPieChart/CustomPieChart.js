@@ -7,13 +7,14 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import {
-  PieChart, Scatter, Pie, Sector, Cell, Tooltip
-} from 'recharts';
 import uuid from 'react-uuid'
+
+import { useStyles } from './CustomPieChart.style';
+
+
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
@@ -33,35 +34,8 @@ const renderCustomizedLabel = ({
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  content: {
-    flex: '1 0 auto',
-  },
-  cover: {
-    width: 151,
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-  playIcon: {
-    height: 38,
-    width: 38,
-  },
-}));
-
 function CustomPieChart ( {data, title}) {
   const classes = useStyles();
-  const theme = useTheme();
   
   return (
     <Card className={classes.root}>
@@ -69,26 +43,27 @@ function CustomPieChart ( {data, title}) {
       <div className={classes.details}>
 
         <CardContent className={classes.content}>
-          <List component="nav" aria-label="main mailbox folders">
-            <Typography variant="subtitle1" color="textSecondary">
-              {title}
-            </Typography>
-            {data.map((val, id) => (
-              COLORS.map((color, index) => (
-                index === id &&
-                  <ListItem button>
-                    <ListItemIcon>
-                      <Brightness1RoundedIcon style={{fill: color}} />
-                    </ListItemIcon>
+          <div className={classes.chartList}>
+            <List component="nav" aria-label="main mailbox folders">
+              <Typography variant="subtitle1" color="textSecondary">
+                {title}
+              </Typography>
+              {data.map((val, id) => (
+                COLORS.map((color, index) => (
+                  index === id &&
+                    <ListItem button>
+                      <ListItemIcon>
+                        <Brightness1RoundedIcon style={{fill: color}} />
+                      </ListItemIcon>
 
-                    <ListItemText primary={`${val.name} - ${val.value} people`} />
-                  </ListItem>
-              ))
+                      <ListItemText primary={`${val.name} - ${val.value} people`} />
+                    </ListItem>
+                ))
+                
+              ))}
               
-            ))}
-            
-          </List>
-
+            </List>
+          </div>
           <PieChart 
             width={400} 
             height={250} 
