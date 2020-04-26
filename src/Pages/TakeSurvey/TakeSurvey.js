@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import SurveyQuestions from '../../Components/TakeSurveyBlock/SurveyQuestions';
 import SurveyContext from '../../State/context';
 import { useStyles } from './TakeSurvey.style';
 
-function TakeSurvey({ match }) {
+function TakeSurvey() {
   const classes = useStyles();
   const { stateSurvey } = useContext(SurveyContext);
-  const { id } = match.params;
+  const { id } = useParams();
 
   const chosenSurvey = stateSurvey.find(item => item.id === id);
 
@@ -20,8 +19,4 @@ function TakeSurvey({ match }) {
   );
 }
 
-TakeSurvey.propTypes = {
-  match: PropTypes.object.isRequired
-};
-
-export default withRouter(TakeSurvey);
+export default TakeSurvey;

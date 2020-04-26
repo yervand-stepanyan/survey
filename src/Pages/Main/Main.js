@@ -101,7 +101,7 @@ function Main() {
               <Route path={`${ROUTES.survey}/:id`}>
                 <TakeSurvey />
               </Route>
-              <Route path={ROUTES.results}>
+              <Route path={`${ROUTES.results}/:id`}>
                 <Results />
               </Route>
               <Route path={ROUTES.about}>
