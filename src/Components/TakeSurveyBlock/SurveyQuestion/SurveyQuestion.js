@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Card, CardHeader, CardContent } from '@material-ui/core';
 
-import RadiobuttonAnswers from '../RadiobuttonAnswers';
+import { ANSWER_TYPES } from '../../../Globals/variables';
 import CheckboxAnswers from '../CheckboxAnswers';
 import DropdownAnswers from '../DropdownAnswers';
 import InputAnswers from '../InputAnswers';
+import RadiobuttonAnswers from '../RadiobuttonAnswers';
 import RangeAnswers from '../RangeAnswers';
 import { useStyles } from './SurveyQuestion.style';
 
@@ -21,18 +22,20 @@ function SurveyQuestion({
   endValue,
   stepValue
 }) {
+  const classes = useStyles();
+
   const pickAnswersType = () => {
     switch (answerType) {
-      case 'RADIOBUTTON':
+      case ANSWER_TYPES.radiobutton:
         return (
           <RadiobuttonAnswers
             answers={answers}
             answerType={answerType}
-            questionId={id}
             hasLastInput={hasLastInput}
+            questionId={id}
           />
         );
-      case 'CHECKBOX':
+      case ANSWER_TYPES.checkbox:
         return (
           <CheckboxAnswers
             answers={answers}
@@ -40,7 +43,7 @@ function SurveyQuestion({
             questionId={id}
           />
         );
-      case 'DROPDOWN':
+      case ANSWER_TYPES.dropdown:
         return (
           <DropdownAnswers
             answers={answers}
@@ -48,38 +51,34 @@ function SurveyQuestion({
             questionId={id}
           />
         );
-      case 'RANGE':
+      case ANSWER_TYPES.range:
         return (
           <RangeAnswers
             answers={answers}
             answerType={answerType}
+            endValue={Number(endValue)}
             questionId={id}
             startValue={Number(startValue)}
-            endValue={Number(endValue)}
             stepValue={Number(stepValue)}
           />
         );
-      case 'INPUT':
+      case ANSWER_TYPES.input:
         return (
           <InputAnswers
             answers={answers}
             answerType={answerType}
-            questionId={id}
             inputType={inputType}
+            questionId={id}
           />
         );
       default:
         return 'No Answer type chosen';
     }
   };
-
-  const classes = useStyles();
-
   return (
     <div className={classes.container}>
       <Card className={classes.card}>
         <CardHeader title={title} />
-
         <CardContent>{pickAnswersType()}</CardContent>
       </Card>
     </div>

@@ -10,12 +10,14 @@ import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 
+import {
+  ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
+  ANSWER_SECTION_BUTTON_LABEL
+} from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './OptionsContainer.style';
 
-const BUTTON_LABEL = 'Submit & continue';
-const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 const CHECKBOX_LABEL = 'Add an input field as the last option';
 const INPUT_LABEL = 'Option';
 const INPUT_TOOLTIP_LABEL = 'Input custom option name';
@@ -298,7 +300,9 @@ function OptionsContainer({
           size="large"
           variant="contained"
         >
-          {isChanged ? BUTTON_ACCEPT_CHANGES_LABEL : BUTTON_LABEL}
+          {isChanged
+            ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
+            : ANSWER_SECTION_BUTTON_LABEL}
         </Button>
       </div>
     </div>

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { FormControl, Select, MenuItem } from '@material-ui/core';
+import { FormControl, MenuItem, Select } from '@material-ui/core';
 
 import { useStyles } from './DropdownAnswers.style';
 
 function DropdownAnswers({ answers }) {
   const classes = useStyles();
-
   const [answer, setAnswer] = useState('');
 
   const handleChange = event => {

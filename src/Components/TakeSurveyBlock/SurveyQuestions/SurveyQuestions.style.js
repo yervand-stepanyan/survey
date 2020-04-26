@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
-  container: {
+  surveyQuestionsContainer: {
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',

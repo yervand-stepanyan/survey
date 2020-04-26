@@ -5,9 +5,9 @@ import { Slider } from '@material-ui/core';
 
 import { useStyles } from './RangeAnswers.style';
 
-function RangeAnswers({ startValue, endValue, stepValue }) {
+function RangeAnswers({ endValue, startValue, stepValue }) {
   const classes = useStyles();
-
+  const defaultValue = Math.abs(startValue - endValue) / 2;
   const marks = [
     {
       value: startValue,
@@ -19,21 +19,21 @@ function RangeAnswers({ startValue, endValue, stepValue }) {
     }
   ];
 
-  function valuetext(value) {
+  const valuetext = value => {
     return `${value}`;
-  }
+  };
 
   return (
     <div className={classes.container}>
       <Slider
-        defaultValue={startValue}
-        getAriaValueText={valuetext}
         aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={stepValue}
+        defaultValue={defaultValue}
+        getAriaValueText={valuetext}
         marks={marks}
-        min={startValue}
         max={endValue}
+        min={startValue}
+        step={stepValue}
+        valueLabelDisplay="auto"
       />
     </div>
   );

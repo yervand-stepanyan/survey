@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FormControlLabel, Checkbox } from '@material-ui/core';
+import { Checkbox, FormControlLabel } from '@material-ui/core';
 
 import { useStyles } from './CheckboxAnswers.style';
 
 function CheckboxAnswers({ answers, questionId }) {
   const classes = useStyles();
-
   let filteredAnswers = answers;
 
   const handleChange = id => {

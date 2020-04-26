@@ -4,20 +4,15 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import inputDate from '../../../assets/images/inputOptions/input-date.png';
-import inputNumber from '../../../assets/images/inputOptions/input-number.png';
-import inputText from '../../../assets/images/inputOptions/input-text.png';
 import ImageContainer from '../ImageContainer';
+import {
+  ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
+  ANSWER_SECTION_BUTTON_LABEL,
+  INPUT_TYPES
+} from '../../../Globals/variables';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './InputSection.style';
 
-const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
-const BUTTON_LABEL = 'Submit & continue';
-const TYPES = [
-  { name: 'TEXT', src: inputText, tooltip: 'Text', text: 'Text' },
-  { name: 'NUMBER', src: inputNumber, tooltip: 'Number', text: 'Number' },
-  { name: 'DATE', src: inputDate, tooltip: 'Date', text: 'Date' }
-];
 const TITLE = 'Choose input type';
 
 function InputSection({ activeId, inputType: inputTypeProps }) {
@@ -63,7 +58,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
         <Typography variant="h5">{TITLE}</Typography>
       </div>
       <div className={classes.typeWrapper}>
-        {TYPES.map(img => (
+        {INPUT_TYPES.map(img => (
           <ImageContainer
             classes={classes}
             handleClick={handleClick}
@@ -82,7 +77,9 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
           size="large"
           variant="contained"
         >
-          {isChanged ? BUTTON_ACCEPT_CHANGES_LABEL : BUTTON_LABEL}
+          {isChanged
+            ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
+            : ANSWER_SECTION_BUTTON_LABEL}
         </Button>
       </div>
     </div>

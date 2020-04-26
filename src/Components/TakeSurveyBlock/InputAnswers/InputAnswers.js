@@ -5,8 +5,8 @@ import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { TextField } from '@material-ui/core';
 import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider
 } from '@material-ui/pickers';
 
 import { useStyles } from './InputAnswers.style';

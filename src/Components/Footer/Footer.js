@@ -1,19 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import {
+  COPYRIGHT_INFO,
+  MENU_ITEMS,
+  WEBSITE_CREATOR
+} from '../../Globals/variables';
 import logo from '../../assets/images/logo/logo.png';
 import ROUTES from '../../Routes/Routes';
 import { useStyles } from './Footer.style';
-
-const COPY_INFO = 'Copyright © 2020 Survey';
-const MENU_ITEMS = [
-  { name: 'Create Survey', route: ROUTES.create },
-  { name: 'Take Survey', route: ROUTES.survey },
-  { name: 'Results', route: ROUTES.results },
-  { name: 'About', route: ROUTES.about },
-  { name: 'Contacts', route: ROUTES.contacts }
-];
-const WEBSITE_CREATOR = 'Website by SED Team';
 
 function Footer() {
   const classes = useStyles();
@@ -39,7 +34,7 @@ function Footer() {
       <div className={classes.infoWrapper}>
         <div className={classes.infoSection}>
           <div>
-            <span>{COPY_INFO}</span>
+            <span>{COPYRIGHT_INFO}</span>
           </div>
           <div className={classes.websiteCreator}>
             <span>{WEBSITE_CREATOR}</span>

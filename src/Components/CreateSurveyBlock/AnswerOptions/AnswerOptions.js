@@ -1,42 +1,10 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import checkboxImage from '../../../assets/images/answerOptions/checkboxes-720x420.png';
-import dropdownImage from '../../../assets/images/answerOptions/dropdown-menu-720x420.png';
-import inputImage from '../../../assets/images/answerOptions/inputfield-720x420.png';
-import radiobuttonImage from '../../../assets/images/answerOptions/radiobuttons-720x420.png';
-import rangeImage from '../../../assets/images/answerOptions/range-slider-720x420.png';
+import { ANSWER_OPTION_TYPES } from '../../../Globals/variables';
 import ImageContainer from '../ImageContainer';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './AnswerOptions.style';
-
-const TYPES = [
-  {
-    name: 'INPUT',
-    src: inputImage,
-    tooltip: 'Input field',
-    text: 'Input field'
-  },
-  {
-    name: 'RADIOBUTTON',
-    src: radiobuttonImage,
-    tooltip: 'Radiobutton',
-    text: 'Radiobutton'
-  },
-  {
-    name: 'CHECKBOX',
-    src: checkboxImage,
-    tooltip: 'Checkbox',
-    text: 'Checkbox'
-  },
-  {
-    name: 'DROPDOWN',
-    src: dropdownImage,
-    tooltip: 'Dropdown',
-    text: 'Dropdown list'
-  },
-  { name: 'RANGE', src: rangeImage, tooltip: 'Range', text: 'Range' }
-];
 
 function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
   const classes = useStyles();
@@ -61,7 +29,7 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
 
   return (
     <div className={classes.answerOptionsContainer}>
-      {TYPES.map(img => (
+      {ANSWER_OPTION_TYPES.map(img => (
         <ImageContainer
           classes={classes}
           handleClick={handleClick}

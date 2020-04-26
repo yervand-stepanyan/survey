@@ -3,23 +3,24 @@ import React, { useContext, useState } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
+import {
+  CONNECTION_ERROR,
+  CONNECTION_ERROR_TRY_AGAIN,
+  NO_SURVEY_TEXT,
+  NO_SURVEY_TITLE,
+  REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
+  REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
+} from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
 import SurveyComponent from '../SurveyComponent';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './Surveys.style';
 
-const CONNECTION_ERROR_TEXT_BIG = 'Connection error!';
-const CONNECTION_ERROR_TEXT_SMALL = 'Try again later!';
-const SNACKBAR_MESSAGE_ERROR = 'Something went wrong. Try again!';
-const SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
-const NO_SURVEY_TEXT_BIG = 'No surveys yet!';
-const NO_SURVEY_TEXT_SMALL = 'Create the first survey!';
-
 function Surveys() {
   const classes = useStyles();
-  const [loadingRemove, setLoadingRemove] = useState(false);
-  const [loadingButton, setLoadingButton] = useState(false);
   const [buttonToLoad, setButtonToLoad] = useState('');
+  const [loadingButton, setLoadingButton] = useState(false);
+  const [loadingRemove, setLoadingRemove] = useState(false);
   const {
     stateSurvey,
     dispatchSurvey,
@@ -47,11 +48,11 @@ function Surveys() {
 
       dispatchSurvey({ type: 'REMOVE_SURVEY', payload: filteredSurveys });
 
-      handleShowSnackbar(true, SNACKBAR_MESSAGE_SUCCESS);
+      handleShowSnackbar(true, REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS);
     } catch (e) {
       setLoadingRemove(false);
 
-      handleShowSnackbar(false, SNACKBAR_MESSAGE_ERROR);
+      handleShowSnackbar(false, REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR);
     } finally {
       setLoadingRemove(false);
 
@@ -66,19 +67,19 @@ function Surveys() {
           {isConnectionError ? (
             <div className={classes.noSurveysContainer}>
               <Typography variant="h3" color="secondary">
-                {CONNECTION_ERROR_TEXT_BIG}
+                {CONNECTION_ERROR}
               </Typography>
               <Typography variant="h4" color="primary">
-                {CONNECTION_ERROR_TEXT_SMALL}
+                {CONNECTION_ERROR_TRY_AGAIN}
               </Typography>
             </div>
           ) : (
             <div className={classes.noSurveysContainer}>
               <Typography variant="h3" color="secondary">
-                {NO_SURVEY_TEXT_BIG}
+                {NO_SURVEY_TITLE}
               </Typography>
               <Typography variant="h4" color="primary">
-                {NO_SURVEY_TEXT_SMALL}
+                {NO_SURVEY_TEXT}
               </Typography>
             </div>
           )}

@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ANSWER_TYPES } from '../../../Globals/variables';
 import CheckboxSection from '../CheckboxSection';
 import DropdownSection from '../DropdownSection';
 import InputSection from '../InputSection';
 import RadiobuttonSection from '../RadiobuttonSection';
 import RangeSection from '../RangeSection';
 import { useStyles } from './AnswerSection.style';
-
-const TYPES = {
-  checkbox: 'CHECKBOX',
-  dropdown: 'DROPDOWN',
-  input: 'INPUT',
-  radiobutton: 'RADIOBUTTON',
-  range: 'RANGE'
-};
 
 function AnswerSection({
   activeId,
@@ -31,9 +24,9 @@ function AnswerSection({
 
   const showType = typeToShow => {
     switch (typeToShow) {
-      case TYPES.input:
+      case ANSWER_TYPES.input:
         return <InputSection activeId={activeId} inputType={inputType} />;
-      case TYPES.radiobutton:
+      case ANSWER_TYPES.radiobutton:
         return (
           <RadiobuttonSection
             activeId={activeId}
@@ -41,11 +34,11 @@ function AnswerSection({
             hasLastInput={hasLastInput}
           />
         );
-      case TYPES.checkbox:
+      case ANSWER_TYPES.checkbox:
         return <CheckboxSection activeId={activeId} answers={answers} />;
-      case TYPES.dropdown:
+      case ANSWER_TYPES.dropdown:
         return <DropdownSection activeId={activeId} answers={answers} />;
-      case TYPES.range:
+      case ANSWER_TYPES.range:
         return (
           <RangeSection
             activeId={activeId}

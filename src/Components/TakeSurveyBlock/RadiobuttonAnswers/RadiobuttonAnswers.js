@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  RadioGroup,
   FormControlLabel,
   Radio,
+  RadioGroup,
   TextField
 } from '@material-ui/core';
 
 import { useStyles } from './RadiobuttonAnswers.style';
 
 function RadiobuttonAnswers({ answers, hasLastInput }) {
-  const [value, setValue] = useState('');
-  const [textValue, setTextValue] = useState('');
-  const [isInputVisible, setIsInputVisible] = useState(false);
   const classes = useStyles();
+  const [isInputVisible, setIsInputVisible] = useState(false);
+  const [textValue, setTextValue] = useState('');
+  const [value, setValue] = useState('');
 
   const handleChange = event => {
     if (hasLastInput) {

@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
+import {
+  CREATE_SURVEY_SNACKBAR_MESSAGE_ERROR,
+  CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
+} from '../../../Globals/variables';
 import { doPost } from '../../../FetchAPI/fetchData';
 import QuestionSection from '../QuestionSection';
 import ROUTES from '../../../Routes/Routes';
@@ -13,8 +17,6 @@ import SurveyTitleCreator from '../SurveyTitleCreator';
 import { useStyles } from './CreateSurveyBlock.style';
 
 const BLOCK_TITLE = 'Create survey';
-const SNACKBAR_MESSAGE_ERROR = 'Something went wrong. Try again!';
-const SNACKBAR_MESSAGE_SUCCESS = 'Survey saved!';
 
 function CreateSurveyBlock({ history }) {
   const classes = useStyles();
@@ -85,13 +87,13 @@ function CreateSurveyBlock({ history }) {
 
       dispatchSurvey({ type: 'ADD_SURVEY', payload: response });
 
-      handleShowSnackbar(true, SNACKBAR_MESSAGE_SUCCESS);
+      handleShowSnackbar(true, CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS);
 
       history.push(ROUTES.home);
     } catch (e) {
       setLoading(false);
 
-      handleShowSnackbar(false, SNACKBAR_MESSAGE_ERROR);
+      handleShowSnackbar(false, CREATE_SURVEY_SNACKBAR_MESSAGE_ERROR);
     } finally {
       handleOpenSnackbar();
     }

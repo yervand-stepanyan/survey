@@ -5,12 +5,14 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+import {
+  ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
+  ANSWER_SECTION_BUTTON_LABEL
+} from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
 import SurveyContext from '../../../State/context';
 import { useStyles } from './RangeSection.style';
 
-const BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
-const BUTTON_LABEL = 'Submit & continue';
 const END_VALUE_LABEL = 'End value';
 const START_VALUE_LABEL = 'Start value';
 const STEP_VALUE_LABEL = 'Step';
@@ -227,7 +229,9 @@ function RangeSection({
             size="large"
             variant="contained"
           >
-            {isChanged ? BUTTON_ACCEPT_CHANGES_LABEL : BUTTON_LABEL}
+            {isChanged
+              ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
+              : ANSWER_SECTION_BUTTON_LABEL}
           </Button>
         </div>
       </div>
