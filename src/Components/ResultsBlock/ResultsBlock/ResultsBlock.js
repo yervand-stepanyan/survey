@@ -9,7 +9,7 @@ import getSurveyResults  from '../getSurveyResults';
 // import { SURVEYS } from '../SurveyResultsData'
 import { useStyles } from './ResultsBlock.style';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
 const RADIAN = Math.PI / 180;
 
@@ -38,30 +38,33 @@ function ResultsBlock() {
     <div>
       { result.map(res => (
         
-
-        (res.type === 'checkbox') &&
-
-        <PieChart width={1200} height={1000} key={uuid()}>
-          
-          <Pie
-          
-            dataKey="value"
-            data={Object.values(res.answers)}
-            cx={800}
-            cy={200}
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
+        (res.type !== 'text') &&
+        <div>
+          <div>{res.title}</div>
+          <PieChart 
+            width={400} 
+            height={200} 
+            key={uuid()}
           >
-            {
-              Object.values(res.answers).map((entry, index) => <Cell key={uuid()} fill={COLORS[index % COLORS.length]} />)
-            }
-          </Pie>
-          <Tooltip />
-
-        </PieChart>
+            <Pie
+              dataKey="value"
+              data={Object.values(res.answers)}
+              // cx={200}
+              // cy={200}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+            >
+              {
+                Object.values(res.answers).map((entry, index) => <Cell key={uuid()} fill={COLORS[index % COLORS.length]} />)
+              }
+            </Pie>
         
+            <Tooltip />
+
+          </PieChart>
+        </div>
       ))}
     </div>
    
