@@ -1,5 +1,7 @@
 import React from 'react';
-
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
 import getSurveyResults  from '../getSurveyResults';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart'
 import { useStyles } from './ResultsBlock.style';
@@ -14,14 +16,20 @@ function ResultsBlock() {
   result.map(res => console.log(Object.values(res.answers)));
 
   return (
-    <div>
-      { result.map(res => (
-        
-        (res.type !== 'text') &&
-        <CustomPieChart title={res.title} data={Object.values(res.answers)} />
-      ))}
-    </div>
-   
+    <>
+      <CssBaseline />
+      <Container>
+        <Typography component="div" style={{ backgroundColor: '#cfe8fc' }}>
+
+          { result.map(res => (
+            (res.type !== 'text') &&
+            <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+          ))}
+        </Typography>
+      </Container>
+    </>
+    
+      
   )
 }
 
