@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ResultsBlock from '../../Components/ResultsBlock';
+import ResultsBlock from '../../Components/ResultsBlock/ResultsBlock';
 import SurveyContext from '../../State/context';
 import { useStyles } from './Results.style';
 

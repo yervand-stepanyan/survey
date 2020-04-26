@@ -4,7 +4,7 @@ export const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    height: '78%',
+    // height: '78%',
     marginTop: `${theme.customSpacing.xxLarge}`,
     padding: `0 ${theme.customSpacing.base}`
   }
