@@ -1,4 +1,5 @@
 import React from 'react';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';

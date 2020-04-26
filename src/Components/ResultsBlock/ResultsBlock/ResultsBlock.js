@@ -37,7 +37,7 @@ function ResultsBlock() {
                 );
               case 'text':
                 return (
-                  <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+                  <div>{res.count}</div>
                 );
               case 'range': 
                 return (
