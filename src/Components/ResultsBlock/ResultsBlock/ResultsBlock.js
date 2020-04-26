@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import getSurveyResults  from '../getSurveyResults';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomTextChart from '../Charts/CustomTextChart';
+import CustomRangeChart from '../Charts/CustomRangeChart';
 import { useStyles } from './ResultsBlock.style';
 
 
@@ -42,7 +43,13 @@ function ResultsBlock() {
                 );
               case 'range': 
                 return (
-                  <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+                  <CustomRangeChart 
+                    title={res.title} 
+                    data={Object.values(res.answers)} 
+                    startValue={res.startValue} 
+                    endValue={res.endValue}
+                    stepValue={res.stepValue}
+                  />
                 );
               default:
                 return 'there is no answer';

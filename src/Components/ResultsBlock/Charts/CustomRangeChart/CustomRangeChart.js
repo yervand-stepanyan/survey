@@ -5,14 +5,22 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 
 import { useStyles } from './CustomRangeChart.style';
 
-function CustomRangeChart ({ data, title }) {
+function CustomRangeChart ({ data, title, startValue, endValue, stepValue }) {
     const classes = useStyles();
 
+    const lastValue = data.filter(item => item.name === endValue);
+    const firsValue = data.filter(item => item.name === startValue)
+    if(!lastValue) {
+      data.unshift({name: startValue, value: startValue})
+    }
+
+    if(!firsValue) {
+      data.unshift({name: startValue, value: startValue})
+    }
     return (
       <Card className={classes.root}>
 
         <div className={classes.details}>
-
           <CardContent className={classes.content}>
             <div className={classes.chartList}>
               <BarChart
@@ -26,7 +34,7 @@ function CustomRangeChart ({ data, title }) {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="uv" fill="#82ca9d" />
+                <Bar dataKey="answers" fill="#82ca9d" />
               </BarChart>
             </div>
             

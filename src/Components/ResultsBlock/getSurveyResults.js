@@ -65,10 +65,15 @@ function getSurveyResults (id) {
     
       else if (question.answerType === 'range') {
         if (typeof results[question.id].answers[question.answers.customAnswer] === 'undefined') {
-          results[question.id].answers[question.answers.customAnswer] = {name: question.answers.customAnswer, value: 0 };
+          results[question.id].answers[question.answers.customAnswer] = {name: question.answers.customAnswer, answers: 0 };
         }
   
-        results[question.id].answers[question.answers.customAnswer].value += 1;
+        results[question.id].answers[question.answers.customAnswer].answers += 1;
+        results[question.id].startValue = question.startValue;
+        results[question.id].endValue = question.endValue;
+        results[question.id].stepValue = question.stepValue;
+
+
       }
     
       else if (question.answerType === 'text') {
@@ -82,7 +87,8 @@ function getSurveyResults (id) {
       }
     })
   ))
-   
+  console.log(10000)
+   console.log(results)
   return results;
 }
 
