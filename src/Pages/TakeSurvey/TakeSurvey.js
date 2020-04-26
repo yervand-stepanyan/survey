@@ -17,7 +17,10 @@ function TakeSurvey({ match }) {
 
   return (
     <div className={classes.container}>
-      <SurveyQuestions questions={chosenSurvey.questions} />
+      <SurveyQuestions
+        questions={chosenSurvey.questions}
+        survey={chosenSurvey.id}
+      />
     </div>
   );
 }

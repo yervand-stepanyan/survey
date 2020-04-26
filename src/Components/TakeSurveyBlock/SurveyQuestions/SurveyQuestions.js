@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from '@material-ui/core';
@@ -6,10 +6,40 @@ import { Button } from '@material-ui/core';
 import SurveyQuestion from '../SurveyQuestion';
 import { useStyles } from './SurveyQuestions.style';
 
-function SurveyQuestions({ questions }) {
+function SurveyQuestions({ questions, survey }) {
+  const [surveyAnswers, setSurveyAnswers] = useState([]);
+  const [results, setResults] = useState({});
   const classes = useStyles();
 
   const SUBMIT_TEXT = 'submit';
+
+  const receiveAnswers = (markedAnswers, customAnswer, questionId) => {
+    if (surveyAnswers.some(answer => answer.questionId === questionId)) {
+      const newSurveyAnswers = surveyAnswers.map(item => {
+        if (item.questionId === questionId) {
+          item.markedAnswers = markedAnswers;
+          item.customAnswer = customAnswer;
+        }
+        return item;
+      });
+      setSurveyAnswers(newSurveyAnswers);
+    } else {
+      setSurveyAnswers([
+        ...surveyAnswers,
+        {
+          markedAnswers,
+          customAnswer,
+          questionId
+        }
+      ]);
+    }
+  };
+
+  useEffect(() => {
+    setResults({ survey, answers: surveyAnswers });
+  }, [surveyAnswers]);
+
+  const consoleAnswers = () => {};
 
   return (
     <div className={classes.container}>
@@ -37,11 +67,12 @@ function SurveyQuestions({ questions }) {
               endValue={endValue}
               stepValue={stepValue}
               key={id}
+              receiveAnswers={receiveAnswers}
             />
           );
         }
       )}
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={consoleAnswers}>
         {SUBMIT_TEXT}
       </Button>
     </div>
@@ -49,7 +80,8 @@ function SurveyQuestions({ questions }) {
 }
 
 SurveyQuestions.propTypes = {
-  questions: PropTypes.array.isRequired
+  questions: PropTypes.array.isRequired,
+  survey: PropTypes.string.isRequired
 };
 
 export default SurveyQuestions;
