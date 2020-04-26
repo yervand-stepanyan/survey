@@ -87,8 +87,6 @@ function getSurveyResults (id) {
       }
     })
   ))
-  console.log(10000)
-   console.log(results)
   return results;
 }
 

@@ -14,7 +14,8 @@ export const useStyles = makeStyles(theme => ({
       width: "100%"
     },
     chartList: {
-      width: '60%'
+      width: '60%',
+      padding: theme.customSpacing.base
     },
     content: {
       flex: '1 0 auto',

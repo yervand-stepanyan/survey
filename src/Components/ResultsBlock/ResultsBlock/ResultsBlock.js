@@ -15,7 +15,6 @@ function ResultsBlock() {
   const classes = useStyles();
   
   const result = getSurveyResults(1);
-  result.map(res => console.log(Object.values(res.answers)));
 
   return (
     <>
