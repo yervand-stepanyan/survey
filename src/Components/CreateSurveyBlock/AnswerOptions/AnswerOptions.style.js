@@ -4,6 +4,7 @@ export const useStyles = makeStyles(theme => ({
   answerOptionsContainer: {
     display: 'flex',
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
     marginTop: `${theme.customSpacing.large}`
   },
   typeImage: {
