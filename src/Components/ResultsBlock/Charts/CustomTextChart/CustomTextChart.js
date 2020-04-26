@@ -1,10 +1,13 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -15,7 +18,7 @@ import { useStyles } from './CustomTextChart.style';
 
 
 
-function CustomTextChart ({title, data}) {
+function CustomTextChart ({title, data, count}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -28,25 +31,22 @@ function CustomTextChart ({title, data}) {
   };
   return (
     <Card className={classes.root}>
-
-      <div className={classes.details}>
-
-        <CardContent className={classes.content}>
-          <div className={classes.chartList}>
-            <List component="nav" aria-label="main mailbox folders">
-              <Typography variant="subtitle1" color="textSecondary">
-                {title}
-              </Typography>
-              
-            </List>
-          </div>
-        
-        </CardContent>
-      </div>
+      <CardContent className={classes.content}>
+        <div className={classes.chartList}>
+          <List component="nav" aria-label="main mailbox folders">
+            <Typography variant="subtitle1" color="textSecondary">
+              {title}
+            </Typography>
+            
+          </List>
+        </div>
+      
+      </CardContent>
       <div>
-        <button type="button" onClick={handleOpen}>
-          see answers
-        </button>
+        <Button variant="outlined" color="primary" onClick={handleOpen} className={classes.modalButton}>
+          <PersonPinIcon />
+          <Typography>{`${count} answers`}</Typography>
+        </Button>
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -63,11 +63,13 @@ function CustomTextChart ({title, data}) {
             <div className={classes.paper}>
               <h2 id="transition-modal-title">{title}</h2>
               <p id="transition-modal-description">
-                <ul>
+                <List component="nav" aria-label="main mailbox folders">
                   {data.map(answer => (
-                    <li>{answer}</li>
+                    <ListItem button>
+                      <ListItemText primary={answer} />
+                    </ListItem>
                   ))}
-                </ul>
+                </List>
               </p>
             </div>
           </Fade>

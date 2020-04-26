@@ -26,7 +26,8 @@ const theme = createMuiTheme({
     mainColorGreen
   },
   customSpacing: {
-    small: `${MAIN_SPACING_VALUE * 0.5}px`,
+    xSmall: `${MAIN_SPACING_VALUE * 0.2}px`,
+    small: `${MAIN_SPACING_VALUE}px`,
     base: `${MAIN_SPACING_VALUE}px`,
     large: `${MAIN_SPACING_VALUE * 2}px`,
     xLarge: `${MAIN_SPACING_VALUE * 3}px`,
