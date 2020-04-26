@@ -22,6 +22,7 @@ function CustomRangeChart ({ data, title, startValue, endValue }) {
     
     const lastValue = data.filter(item => item.name === endValue);
     const firsValue = data.filter(item => item.name === startValue)
+
     if(!lastValue) {
       data.unshift({name: startValue, value: startValue})
     }
@@ -50,23 +51,28 @@ function CustomRangeChart ({ data, title, startValue, endValue }) {
               </BarChart>
 
             </div>
-            <List component="nav" aria-label="main mailbox folders">
-              <Typography variant="subtitle1" color="textSecondary">
+            <List 
+              component="div" 
+              aria-label="main mailbox folders"
+            >
+              <Typography 
+                variant="subtitle1" 
+                color="textSecondary">
                 {title}
               </Typography>
+              <div className={classes.avarageVal}>
+                {Object.keys(rangeData).map(item =>  (
+                  <ListItem button className={classes.answerDetails}>
+                    <ListItemIcon>
+                      {item} 
+                      :
+                    </ListItemIcon>
 
-              {Object.keys(rangeData).map(item =>  (
-                <ListItem button className={classes.answerDetails}>
-                  <ListItemIcon>
-                    {item} 
-                    :
-                  </ListItemIcon>
-
-                  <ListItemText primary={rangeData[item]} />
-                </ListItem>
-              )
-              )}                
-              
+                    <ListItemText primary={rangeData[item]} />
+                  </ListItem>
+                )
+                )}                
+              </div>
             </List>
             
           </CardContent>

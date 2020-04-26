@@ -8,7 +8,6 @@ import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
 import Results from '../Results';
-// import SingleSurveyAnswers from '../../Components/ResultsBlock/SingleSurveyAnswers';
 import ROUTES from '../../Routes/Routes';
 import ScrollToTop from '../../Components/ScrollToTop';
 import SnackbarComponent from '../../Components/SnackbarComponent';

@@ -17,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
       boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     width: '800px',
-    height: '501px',
+    height: '500px',
     overflowY: 'auto',
     border: '1px solid grey',
     borderRadius: '10px',
