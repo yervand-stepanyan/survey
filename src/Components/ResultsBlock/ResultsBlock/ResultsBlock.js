@@ -21,10 +21,32 @@ function ResultsBlock() {
       <Container maxWidth='md'>
         <Typography component="div">
 
-          { result.map(res => (
-            (res.type !== 'text') &&
-            <CustomPieChart title={res.title} data={Object.values(res.answers)} />
-          ))}
+          { result.map(res => {
+             switch (res.type) {
+              case 'checkbox':
+                return (
+                  <CustomPieChart title={res.title} data={Object.values(res.answers)} /> 
+                );
+              case 'radiobutton':
+                return (
+                  <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+                );
+              case 'dropdown':
+                return (
+                  <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+                );
+              case 'text':
+                return (
+                  <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+                );
+              case 'range': 
+                return (
+                  <CustomPieChart title={res.title} data={Object.values(res.answers)} />
+                );
+              default:
+                return 'there is no answer';
+              } 
+            })}
         </Typography>
       </Container>
     </>
