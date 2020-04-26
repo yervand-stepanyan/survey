@@ -1,5 +1,4 @@
 import React from 'react';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -56,7 +55,7 @@ function CustomPieChart ( {data, title}) {
                         <Brightness1RoundedIcon style={{fill: color}} />
                       </ListItemIcon>
 
-                      <ListItemText primary={`${val.name} - ${val.value} people`} />
+                      <ListItemText primary={val.name} />
                     </ListItem>
                 ))
                 
@@ -65,7 +64,7 @@ function CustomPieChart ( {data, title}) {
             </List>
           </div>
           <PieChart 
-            width={400} 
+            width={250} 
             height={250} 
             key={uuid()}
           >
@@ -73,11 +72,8 @@ function CustomPieChart ( {data, title}) {
               innerRadius={40}
               outerRadius={120} 
               fill="#8884d8"
-            // paddingAngle={5}
               dataKey="value"
               data={data}
-              // cx={200}
-              // cy={200}
               labelLine={false}
               label={renderCustomizedLabel}
             >

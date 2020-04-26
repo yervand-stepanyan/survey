@@ -19,8 +19,8 @@ export const useStyles = makeStyles(theme => ({
   },
   mainContainer: {
     color: `${theme.customTypography.fontColor.base}`,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     fontFamily: `${theme.customTypography.fontFamily.base}`,
-    height: '100vh'
+    // height: '100vh'
   }
 }));

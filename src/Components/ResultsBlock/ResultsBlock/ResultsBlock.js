@@ -18,8 +18,8 @@ function ResultsBlock() {
   return (
     <>
       <CssBaseline />
-      <Container>
-        <Typography component="div" style={{ backgroundColor: '#cfe8fc' }}>
+      <Container maxWidth='md'>
+        <Typography component="div">
 
           { result.map(res => (
             (res.type !== 'text') &&
