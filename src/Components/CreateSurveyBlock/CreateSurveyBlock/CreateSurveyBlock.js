@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -18,7 +18,7 @@ import { useStyles } from './CreateSurveyBlock.style';
 
 const BLOCK_TITLE = 'Create survey';
 
-function CreateSurveyBlock({ history }) {
+function CreateSurveyBlock() {
   const classes = useStyles();
   const [allQuestionsSubmitted, setAllQuestionsSubmitted] = useState(false);
   const [isAnswerSubmit, setIsAnswerSubmit] = useState(false);
@@ -29,6 +29,7 @@ function CreateSurveyBlock({ history }) {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState('');
+  const history = useHistory();
   const { dispatchSurvey, handleOpenSnackbar, handleShowSnackbar } = useContext(
     SurveyContext
   );
@@ -147,9 +148,5 @@ function CreateSurveyBlock({ history }) {
     </div>
   );
 }
-
-CreateSurveyBlock.propTypes = {
-  history: PropTypes.object.isRequired
-};
 
 export default CreateSurveyBlock;

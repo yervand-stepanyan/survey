@@ -17,12 +17,12 @@ function SurveyQuestions({ questions }) {
         ({
           answers,
           answerType,
-          endValue = '100',
+          endValue,
           hasLastInput,
           id,
           inputType,
-          startValue = '0',
-          stepValue = '10',
+          startValue,
+          stepValue,
           title
         }) => {
           return (
