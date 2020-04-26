@@ -3,7 +3,8 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import getSurveyResults  from '../getSurveyResults';
-import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart'
+import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
+import CustomTextChart from '../Charts/CustomTextChart';
 import { useStyles } from './ResultsBlock.style';
 
 
@@ -37,7 +38,7 @@ function ResultsBlock() {
                 );
               case 'text':
                 return (
-                  <div>{res.count}</div>
+                  <CustomTextChart title={res.title} data={Object.values(res.textAnswers)} count={res.count} />
                 );
               case 'range': 
                 return (
