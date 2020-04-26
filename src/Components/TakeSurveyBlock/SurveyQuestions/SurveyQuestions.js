@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 import SurveyQuestion from '../SurveyQuestion';
 import { useStyles } from './SurveyQuestions.style';
 
-const SUBMIT_TEXT = 'submit';
+const SUBMIT_TEXT = 'Submit';
 
 function SurveyQuestions({ questions }) {
   const classes = useStyles();

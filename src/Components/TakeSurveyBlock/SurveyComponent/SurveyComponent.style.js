@@ -19,7 +19,8 @@ export const useStyles = makeStyles(theme => ({
   },
   buttonContainer: {
     marginRight: `${theme.customSpacing.small}`,
-    position: 'relative'
+    position: 'relative',
+    whiteSpace: 'nowrap'
   },
   link: {
     textDecoration: 'none'
