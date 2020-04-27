@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { ResponsiveContainer ,PieChart, Pie, Cell, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 
 import uuid from 'react-uuid';
@@ -65,28 +65,31 @@ function CustomPieChart ( {data, title}) {
               
             </List>
           </div>
-          <PieChart 
-            width={250} 
-            height={250} 
-            key={uuid()}
-          >
-            <Pie
-              innerRadius={40}
-              outerRadius={120} 
-              fill="#8884d8"
-              dataKey="value"
-              data={data}
-              labelLine={false}
-              label={renderCustomizedLabel}
+          <ResponsiveContainer width={700}>
+            <PieChart 
+              width={250} 
+              height={250} 
+              key={uuid()}
             >
-              {
-                data.map((entry, index) => <Cell key={uuid()} fill={COLORS[index % COLORS.length]} />)
-              }
-            </Pie>
+              <Pie
+                innerRadius={40}
+                outerRadius={120} 
+                fill="#8884d8"
+                dataKey="value"
+                data={data}
+                labelLine={false}
+                label={renderCustomizedLabel}
+              >
+                {
+                  data.map((entry, index) => <Cell key={uuid()} fill={COLORS[index % COLORS.length]} />)
+                }
+              </Pie>
 
-            {/* <Tooltip /> */}
+              {/* <Tooltip /> */}
 
-          </PieChart>
+            </PieChart>
+          </ResponsiveContainer>
+          
         </CardContent>
       </div>
     </Card>
