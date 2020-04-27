@@ -37,7 +37,7 @@ function Footer() {
             <span>{COPYRIGHT_INFO}</span>
           </div>
           <div className={classes.line} />
-          <div className={classes.websiteCreator}>
+          <div>
             <span>{WEBSITE_CREATOR}</span>
           </div>
         </div>

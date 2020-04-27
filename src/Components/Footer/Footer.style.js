@@ -66,7 +66,7 @@ export const useStyles = makeStyles(theme => ({
   },
   line: {
     width: '2px',
-    background: `${theme.color.mainColorGreen}`,
+    background: `${theme.color.simpleWhite}`,
     margin: '0px 20px'
   }
 }));
