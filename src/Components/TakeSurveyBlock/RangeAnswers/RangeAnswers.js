@@ -6,14 +6,14 @@ import Slider from '@material-ui/core/Slider';
 import { useStyles } from './RangeAnswers.style';
 
 function RangeAnswers({
-  startValue,
   endValue,
-  stepValue,
+  questionId,
   receiveAnswers,
-  questionId
+  startValue,
+  stepValue
 }) {
   const classes = useStyles();
-  const defaultValue = Math.abs(startValue - endValue) / 2;
+  const defaultValue = startValue + stepValue;
   const [showValueLabel, setShowValueLabel] = useState(true);
   const [rangeValue, setRangeValue] = useState('');
   const marks = [
