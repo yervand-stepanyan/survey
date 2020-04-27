@@ -46,7 +46,9 @@ export const useStyles = makeStyles(theme => ({
   },
   infoWrapper: {
     color: 'white',
-    marginTop: `${theme.customSpacing.xxLarge}`
+    marginTop: `${theme.customSpacing.xxLarge}`,
+    display: 'flex',
+    justifyContent: 'center'
   },
   infoSection: {
     '@media (max-width: 550px)': {
@@ -60,14 +62,11 @@ export const useStyles = makeStyles(theme => ({
       fontSize: '12px'
     },
     display: 'flex',
-    justifyContent: 'center',
-    position: 'relative'
+    justifyContent: 'center'
   },
-  websiteCreator: {
-    '@media (max-width: 550px)': {
-      position: 'relative'
-    },
-    position: 'absolute',
-    right: 0
+  line: {
+    width: '2px',
+    background: `${theme.color.mainColorGreen}`,
+    margin: '0px 20px'
   }
 }));
