@@ -55,7 +55,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
     return (
       <TextField
         id="outlined-number"
-        label="Number"
+        label="Type here..."
         type="number"
         InputLabelProps={{
           shrink: true
@@ -69,8 +69,8 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
   if (inputType === 'TEXT') {
     return (
       <TextField
-        required
         id="outlined"
+        label="Type here..."
         variant="outlined"
         value={textValue}
         onChange={handleTextChange}
