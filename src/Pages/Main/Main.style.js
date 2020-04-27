@@ -22,8 +22,5 @@ export const useStyles = makeStyles(theme => ({
     // backgroundColor: 'white',
     fontFamily: `${theme.customTypography.fontFamily.base}`
     // height: '100vh'
-  },
-  minHeight: {
-    minHeight: '56.4vh'
   }
 }));
