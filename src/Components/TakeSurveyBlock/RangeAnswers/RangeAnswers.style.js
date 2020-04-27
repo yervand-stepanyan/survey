@@ -4,6 +4,7 @@ export const useStyles = makeStyles({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: '70%'
   }
 });
