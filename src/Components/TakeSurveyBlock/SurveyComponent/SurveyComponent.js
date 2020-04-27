@@ -34,10 +34,10 @@ function SurveyComponent({
         <div className={classes.buttonContainer}>
           <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
             <Button
-              color="primary"
               disabled={buttonToLoad === id && loadingButton}
               onClick={() => handleButtonClick()}
               variant="contained"
+              className={classes.menuItemButton}
             >
               {TAKE_SURVEY_BUTTON_LABEL}
             </Button>

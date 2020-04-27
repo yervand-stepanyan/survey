@@ -115,7 +115,7 @@ function SurveyQuestions({ questions, survey, title: surveyTitle }) {
       )}
       <div className={classes.buttonWrapper}>
         <Button
-          color="primary"
+          className={classes.menuItemButton}
           disabled={loading}
           onClick={handleSubmit}
           variant="contained"
