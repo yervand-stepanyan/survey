@@ -73,9 +73,6 @@ export const INPUT_TYPES = [
 
 export const MENU_ITEMS = [
   { name: 'Create Survey', route: ROUTES.create },
-  { name: 'Take Survey', route: ROUTES.survey },
-  { name: 'Results', route: ROUTES.results },
-  { name: 'About', route: ROUTES.about },
   { name: 'Contacts', route: ROUTES.contacts }
 ];
 
@@ -96,5 +93,9 @@ export const REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR =
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
 
 export const SLIDER_TIMER = 4000;
+
+export const TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR =
+  'Something went wrong. Try again!';
+export const TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Submitted!';
 
 export const WEBSITE_CREATOR = 'Website by SED Team';

@@ -18,7 +18,7 @@ function Footer() {
       <div className={classes.logoAndMenuWrapper}>
         <div className={classes.logoSection}>
           <Link to={ROUTES.home}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" className={classes.logo} />
           </Link>
         </div>
         <div className={classes.menuSection}>

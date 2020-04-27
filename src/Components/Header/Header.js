@@ -9,7 +9,7 @@ import logo from '../../assets/images/logo/logo.png';
 import ROUTES from '../../Routes/Routes';
 import { useStyles } from './Header.style';
 
-const MENU_ITEM_CREATE_TEXT = 'create survey';
+const MENU_ITEM_CREATE_TEXT = 'Create survey';
 
 function Header() {
   const classes = useStyles();

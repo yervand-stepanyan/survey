@@ -13,5 +13,19 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     padding: `${theme.customSpacing.base} ${theme.customSpacing.large}`
+  },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: `${theme.customSpacing.base}`,
+    position: 'relative'
+  },
+  buttonProgress: {
+    color: `${theme.color.buttonHoverColorGreen}`,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12
   }
 }));

@@ -20,7 +20,8 @@ function SurveyQuestion({
   hasLastInput,
   startValue,
   endValue,
-  stepValue
+  stepValue,
+  receiveAnswers
 }) {
   const classes = useStyles();
 
@@ -33,6 +34,7 @@ function SurveyQuestion({
             answerType={answerType}
             hasLastInput={hasLastInput}
             questionId={id}
+            receiveAnswers={receiveAnswers}
           />
         );
       case ANSWER_TYPES.checkbox:
@@ -41,6 +43,7 @@ function SurveyQuestion({
             answers={answers}
             answerType={answerType}
             questionId={id}
+            receiveAnswers={receiveAnswers}
           />
         );
       case ANSWER_TYPES.dropdown:
@@ -49,6 +52,7 @@ function SurveyQuestion({
             answers={answers}
             answerType={answerType}
             questionId={id}
+            receiveAnswers={receiveAnswers}
           />
         );
       case ANSWER_TYPES.range:
@@ -60,6 +64,7 @@ function SurveyQuestion({
             questionId={id}
             startValue={Number(startValue)}
             stepValue={Number(stepValue)}
+            receiveAnswers={receiveAnswers}
           />
         );
       case ANSWER_TYPES.input:
@@ -69,6 +74,7 @@ function SurveyQuestion({
             answerType={answerType}
             inputType={inputType}
             questionId={id}
+            receiveAnswers={receiveAnswers}
           />
         );
       default:
@@ -94,6 +100,7 @@ SurveyQuestion.propTypes = {
   hasLastInput: PropTypes.bool,
   startValue: PropTypes.string,
   endValue: PropTypes.string,
+  receiveAnswers: PropTypes.func.isRequired,
   stepValue: PropTypes.string
 };
 

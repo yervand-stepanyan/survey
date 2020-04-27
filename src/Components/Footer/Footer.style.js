@@ -6,6 +6,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: `${theme.customSpacing.xxxLarge}`,
+    minWidth: '280px',
     padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`
   },
   logoAndMenuWrapper: {
@@ -13,7 +14,13 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around'
   },
   logoSection: {
+    '@media (max-width:360px)': {
+      width: '55%'
+    },
     alignSelf: 'center'
+  },
+  logo: {
+    width: '100%'
   },
   menuSection: {
     display: 'flex',
@@ -24,6 +31,9 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: `${theme.customSpacing.base}`
   },
   menuItem: {
+    '@media (max-width:400px)': {
+      fontSize: '13px'
+    },
     border: '1px solid transparent',
     color: 'white',
     padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`,
@@ -39,11 +49,24 @@ export const useStyles = makeStyles(theme => ({
     marginTop: `${theme.customSpacing.xxLarge}`
   },
   infoSection: {
+    '@media (max-width: 550px)': {
+      flexDirection: 'column-reverse',
+      alignItems: 'center',
+      fontSize: '14px'
+    },
+    '@media (max-width: 400px)': {
+      flexDirection: 'column-reverse',
+      alignItems: 'center',
+      fontSize: '12px'
+    },
     display: 'flex',
     justifyContent: 'center',
     position: 'relative'
   },
   websiteCreator: {
+    '@media (max-width: 550px)': {
+      position: 'relative'
+    },
     position: 'absolute',
     right: 0
   }

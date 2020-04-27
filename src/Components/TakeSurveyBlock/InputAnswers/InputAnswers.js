@@ -11,18 +11,29 @@ import {
 
 import { useStyles } from './InputAnswers.style';
 
-function InputAnswers({ inputType }) {
+function InputAnswers({ inputType, receiveAnswers, questionId }) {
   const classes = useStyles();
   const [selectedDate, setSelectedDate] = useState(
     new Date('2020-04-13T21:11:54')
   );
   const [textValue, setTextValue] = useState('');
+  const [numberValue, setNumberValue] = useState('');
 
   const handleDateChange = date => {
     setSelectedDate(date);
+
+    receiveAnswers([], date, questionId);
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
+
+    receiveAnswers([], e.target.value, questionId);
+  };
+
+  const handleNumberChange = e => {
+    setNumberValue(e.target.value);
+
+    receiveAnswers([], e.target.value, questionId);
   };
 
   if (inputType === 'DATE') {
@@ -51,7 +62,9 @@ function InputAnswers({ inputType }) {
         InputLabelProps={{
           shrink: true
         }}
+        value={numberValue}
         variant="outlined"
+        onChange={handleNumberChange}
       />
     );
   }
@@ -71,7 +84,9 @@ function InputAnswers({ inputType }) {
 }
 
 InputAnswers.propTypes = {
-  inputType: PropTypes.string.isRequired
+  inputType: PropTypes.string.isRequired,
+  questionId: PropTypes.string.isRequired,
+  receiveAnswers: PropTypes.func.isRequired
 };
 
 export default InputAnswers;

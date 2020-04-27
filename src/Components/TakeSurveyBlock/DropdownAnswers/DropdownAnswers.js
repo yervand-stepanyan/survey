@@ -5,12 +5,14 @@ import { FormControl, MenuItem, Select } from '@material-ui/core';
 
 import { useStyles } from './DropdownAnswers.style';
 
-function DropdownAnswers({ answers }) {
+function DropdownAnswers({ answers, receiveAnswers, questionId }) {
   const classes = useStyles();
   const [answer, setAnswer] = useState('');
 
   const handleChange = event => {
     setAnswer(event.target.value);
+
+    receiveAnswers([event.target.value], '', questionId);
   };
 
   return (
@@ -39,7 +41,9 @@ function DropdownAnswers({ answers }) {
 }
 
 DropdownAnswers.propTypes = {
-  answers: PropTypes.array.isRequired
+  answers: PropTypes.array.isRequired,
+  questionId: PropTypes.string.isRequired,
+  receiveAnswers: PropTypes.func.isRequired
 };
 
 export default DropdownAnswers;

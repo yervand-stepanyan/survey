@@ -5,7 +5,13 @@ import { Slider } from '@material-ui/core';
 
 import { useStyles } from './RangeAnswers.style';
 
-function RangeAnswers({ endValue, startValue, stepValue }) {
+function RangeAnswers({
+  startValue,
+  endValue,
+  stepValue,
+  receiveAnswers,
+  questionId
+}) {
   const classes = useStyles();
   const defaultValue = Math.abs(startValue - endValue) / 2;
   const marks = [
@@ -23,6 +29,10 @@ function RangeAnswers({ endValue, startValue, stepValue }) {
     return `${value}`;
   };
 
+  const commitHandler = (event, value) => {
+    receiveAnswers([], value, questionId);
+  };
+
   return (
     <div className={classes.container}>
       <Slider
@@ -32,6 +42,7 @@ function RangeAnswers({ endValue, startValue, stepValue }) {
         marks={marks}
         max={endValue}
         min={startValue}
+        onChangeCommitted={commitHandler}
         step={stepValue}
         valueLabelDisplay="auto"
       />
@@ -42,7 +53,9 @@ function RangeAnswers({ endValue, startValue, stepValue }) {
 RangeAnswers.propTypes = {
   startValue: PropTypes.number.isRequired,
   endValue: PropTypes.number.isRequired,
-  stepValue: PropTypes.number.isRequired
+  stepValue: PropTypes.number.isRequired,
+  questionId: PropTypes.string.isRequired,
+  receiveAnswers: PropTypes.func.isRequired
 };
 
 export default RangeAnswers;

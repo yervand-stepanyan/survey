@@ -14,7 +14,7 @@ function TakeSurvey() {
 
   return (
     <div className={classes.container}>
-      <SurveyQuestions questions={questions} title={title} />
+      <SurveyQuestions questions={questions} survey={survey.id} title={title} />
     </div>
   );
 }

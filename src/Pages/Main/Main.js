@@ -1,5 +1,10 @@
 import React, { useState, useReducer, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 import About from '../About';
 import Contacts from '../Contacts';
@@ -109,6 +114,9 @@ function Main() {
               </Route>
               <Route path={ROUTES.contacts}>
                 <Contacts />
+              </Route>
+              <Route path="*">
+                <Redirect to={ROUTES.home} />
               </Route>
             </Switch>
             <Footer />
