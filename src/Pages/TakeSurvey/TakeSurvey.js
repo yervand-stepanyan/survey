@@ -21,7 +21,7 @@ function TakeSurvey() {
     if (surveyObject) {
       setSurvey(surveyObject);
     }
-  });
+  }, [stateSurvey, id]);
 
   return (
     <div className={classes.container}>
