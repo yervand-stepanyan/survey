@@ -2,29 +2,35 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
   container: {
-    backgroundColor: `${theme.color.mainColorDarkBlue}`
+    minWidth: '320px',
+    backgroundColor: `${theme.color.simpleWhite}`,
+    boxShadow: ' 0 2px 4px -1px rgba(0,0,0,0.25)'
+  },
+  logo: {
+    '@media (max-width:400px)': {
+      width: '150px'
+    },
+    '@media (max-width:350px)': {
+      width: '130px'
+    }
   },
   menu: {
     display: 'flex',
     marginLeft: 'auto'
   },
   menuItem: {
-    border: '1px solid transparent',
-    color: 'white',
-    minWidth: '100px',
-    padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`,
-    textAlign: 'center',
-    textDecoration: 'none',
-    '&:hover': {
-      border: `1px solid ${theme.color.mainColorGreen}`,
-      borderRadius: `${theme.borders.borderRadius.base}`,
-      color: `${theme.color.mainColorGreen}`
-    }
-  },
-  menuItemLogin: {
     textDecoration: 'none'
   },
-  logInButton: {
+  menuItemButton: {
+    '@media (max-width:400px)': {
+      fontSize: '13px'
+    },
+    '@media (max-width:380px)': {
+      fontSize: '12px'
+    },
+    '@media (max-width:350px)': {
+      fontSize: '11px'
+    },
     backgroundColor: `${theme.color.mainColorGreen}`,
     borderColor: `${theme.color.mainColorDarkBlue}`,
     color: 'white',

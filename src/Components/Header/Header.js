@@ -6,11 +6,10 @@ import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 
 import logo from '../../assets/images/logo/logo.png';
-import { MENU_ITEMS } from '../../Globals/variables';
 import ROUTES from '../../Routes/Routes';
 import { useStyles } from './Header.style';
 
-const LOGIN_BUTTON_TEXT = 'Log in';
+const MENU_ITEM_CREATE_TEXT = 'create survey';
 
 function Header() {
   const classes = useStyles();
@@ -19,20 +18,15 @@ function Header() {
     <AppBar position="static" className={classes.container}>
       <Toolbar>
         <Link to={ROUTES.home}>
-          <img src={logo} alt="logo" />
+          <img src={logo} className={classes.logo} alt="logo" />
         </Link>
         <nav className={classes.menu}>
-          {MENU_ITEMS.map(item => (
-            <Link to={item.route} className={classes.menuItem} key={item.name}>
-              {item.name}
-            </Link>
-          ))}
+          <Link to={ROUTES.create} className={classes.menuItem}>
+            <Button variant="contained" className={classes.menuItemButton}>
+              {MENU_ITEM_CREATE_TEXT}
+            </Button>
+          </Link>
         </nav>
-        <Link to={ROUTES.auth} className={classes.menuItemLogin}>
-          <Button variant="outlined" className={classes.logInButton}>
-            {LOGIN_BUTTON_TEXT}
-          </Button>
-        </Link>
       </Toolbar>
     </AppBar>
   );

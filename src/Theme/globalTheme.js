@@ -5,6 +5,7 @@ const mainColorDarkBlue = '#282C34';
 const mainColorGreen = '#20BA66';
 const buttonHoverColorGreen = '#11703C';
 const mainTextColor = '#282C34';
+const simpleWhite = '#ffffff';
 
 const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
@@ -23,7 +24,8 @@ const theme = createMuiTheme({
     boxShadowColor,
     buttonHoverColorGreen,
     mainColorDarkBlue,
-    mainColorGreen
+    mainColorGreen,
+    simpleWhite
   },
   customSpacing: {
     xSmall: `${MAIN_SPACING_VALUE * 0.2}px`,
