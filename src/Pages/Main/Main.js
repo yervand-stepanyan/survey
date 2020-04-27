@@ -42,7 +42,6 @@ function Main() {
       const surveys = await doGet('surveys');
       const surveyAnswers = await doGet('survey-answers');
       const reversedSurveys = await surveys.slice().reverse();
-
       dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedSurveys });
       dispatchSurveyAnswer({
         type: 'ADD_SURVEY_ANSWERS',

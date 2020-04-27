@@ -84,7 +84,7 @@ function CustomPieChart ( {data, title}) {
               }
             </Pie>
 
-            {/* <Tooltip /> */}
+            <Tooltip />
 
           </PieChart>
         </CardContent>

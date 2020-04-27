@@ -4,44 +4,44 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
-import getSurveyResults from '../getSurveyResults';
+import PrepareSurveyResults from '../PrepareSurveyResults';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomTextChart from '../Charts/CustomTextChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
 import CustomActiveShapePieChart from '../Charts/CustomActiveShapePieChart/CustomActiveShapePieChart';
 
-function ResultsBlock() {
-  const result = getSurveyResults(1);
-
+function ResultsBlock({answers}) {
+  const result = PrepareSurveyResults(answers);
+  console.log(result)
   return (
     <>
       <CssBaseline />
       <Container maxWidth="md">
         <Typography component="div">
-          {result.map(res => {
+          {Object.values(result).map(res => {
             switch (res.type) {
-              case 'checkbox':
+              case 'CHECKBOX':
                 return (
                   <CustomPieChart
                     title={res.title}
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'radiobutton':
+              case 'RADIOBUTTON':
                 return (
                   <CustomPieChart
                     title={res.title}
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'dropdown':
+              case 'DROPDOWN':
                 return (
                   <CustomPieChart
                     title={res.title}
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'text':
+              case 'TEXT':
                 return (
                   <CustomTextChart
                     title={res.title}
@@ -49,7 +49,7 @@ function ResultsBlock() {
                     count={res.count}
                   />
                 );
-              case 'range':
+              case 'RANGE':
                 return (
                   <CustomRangeChart
                     title={res.title}
