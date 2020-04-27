@@ -5,5 +5,8 @@ export const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column'
+  },
+  inputFieldForText: {
+    width: '100%'
   }
 });

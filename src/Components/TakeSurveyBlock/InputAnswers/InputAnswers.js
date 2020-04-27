@@ -13,9 +13,7 @@ import { useStyles } from './InputAnswers.style';
 
 function InputAnswers({ inputType, receiveAnswers, questionId }) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = useState(
-    new Date('2020-04-13T21:11:54')
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [textValue, setTextValue] = useState('');
   const [numberValue, setNumberValue] = useState('');
 
@@ -72,11 +70,11 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
     return (
       <TextField
         required
-        id="outlined-required"
-        label="Required"
+        id="outlined"
         variant="outlined"
         value={textValue}
         onChange={handleTextChange}
+        className={classes.inputFieldForText}
       />
     );
   }
