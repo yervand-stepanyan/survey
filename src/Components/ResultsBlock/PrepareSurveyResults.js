@@ -1,12 +1,13 @@
 function PrepareSurveyResults(submissions) {
 
   const results = {};
+  console.log(submissions)
 
   submissions.forEach(submission => {
-
     submission.answers.forEach(answer => {
       const [subQuestion] = submission.survey.questions.filter(question => question.id === answer.questionId)
-
+      
+      // console.log(subQuestion.answers)
       if (typeof results[answer.questionId] === 'undefined') {
 
         results[answer.questionId] = {
@@ -19,8 +20,9 @@ function PrepareSurveyResults(submissions) {
 
       if (results[answer.questionId].type === 'CHECKBOX') {
         answer.markedAnswers.forEach(optionId => {
+          const [ optionData ] = subQuestion.answers.filter(item => item.id === optionId);
           if (typeof results[answer.questionId].answers[optionId] === 'undefined') {
-            results[answer.questionId].answers[optionId] = {name: optionId, value: 0}
+            results[answer.questionId].answers[optionId] = {name: optionData.title, value: 0}
           }
 
           results[answer.questionId].answers[optionId].value += 1;
@@ -28,10 +30,11 @@ function PrepareSurveyResults(submissions) {
       }
 
       else if (results[answer.questionId].type === 'RADIOBUTTON') {
-        console.log(answer)
+        const [ optionData ] = subQuestion.answers.filter(item => item.id === answer.markedAnswers[0]);
+
         if(answer.markedAnswers.length > 0) {
           if (typeof results[answer.questionId].answers[answer.markedAnswers[0]] === 'undefined') {
-            results[answer.questionId].answers[answer.markedAnswers[0]] = {name: answer.markedAnswers[0], value: 0}
+            results[answer.questionId].answers[answer.markedAnswers[0]] = {name: optionData.title, value: 0}
           }
           results[answer.questionId].answers[answer.markedAnswers[0]].value += 1;
         } 
@@ -46,8 +49,10 @@ function PrepareSurveyResults(submissions) {
       }
 
       else if (results[answer.questionId].type === 'DROPDOWN') {
+        const [ optionData ] = subQuestion.answers.filter(item => item.id === answer.customAnswer);
+
         if (typeof results[answer.questionId].answers[answer.customAnswer] === 'undefined') {
-          results[answer.questionId].answers[answer.customAnswer] = {name: answer.customAnswer, value: 0}
+          results[answer.questionId].answers[answer.customAnswer] = {name: optionData.title, value: 0}
         }
         results[answer.questionId].answers[answer.customAnswer].value += 1;
       }
