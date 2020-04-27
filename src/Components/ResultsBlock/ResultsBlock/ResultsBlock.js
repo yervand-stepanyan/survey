@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
@@ -9,14 +10,12 @@ import PrepareSurveyResults from '../PrepareSurveyResults';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomTextChart from '../Charts/CustomTextChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
-import CustomActiveShapePieChart from '../Charts/CustomActiveShapePieChart/CustomActiveShapePieChart';
 
 import { useStyles } from './ResultsBlock.style'
 
 function ResultsBlock({answers}) {
   const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-  console.log(answers[0])
   const SurveyTitle = answers[0] ? answers[0].survey.title : ''
   return (
     <>
@@ -84,11 +83,14 @@ function ResultsBlock({answers}) {
                 )
             }
           })}
-          <CustomActiveShapePieChart />
         </Typography>
       </Container>
     </>
   );
+}
+
+ResultsBlock.propTypes = {
+  answers: PropTypes.array.isRequired,
 }
 
 export default ResultsBlock;
