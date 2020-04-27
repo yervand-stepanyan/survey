@@ -1,21 +1,12 @@
-import betconstruct from '../assets/images/partners/betconstruct.png';
 import checkboxImage from '../assets/images/answerOptions/checkboxes-720x420.png';
 import dropdownImage from '../assets/images/answerOptions/dropdown-menu-720x420.png';
-import helix from '../assets/images/partners/helix.png';
 import inputDate from '../assets/images/inputOptions/input-date.png';
 import inputImage from '../assets/images/answerOptions/inputfield-720x420.png';
 import inputNumber from '../assets/images/inputOptions/input-number.png';
 import inputText from '../assets/images/inputOptions/input-text.png';
-import picsart from '../assets/images/partners/picsart.png';
 import radiobuttonImage from '../assets/images/answerOptions/radiobuttons-720x420.png';
 import rangeImage from '../assets/images/answerOptions/range-slider-720x420.png';
 import ROUTES from '../Routes/Routes';
-import sfl from '../assets/images/partners/sfl.png';
-import teamable from '../assets/images/partners/teamable.png';
-import workfront from '../assets/images/partners/workfront_new.png';
-
-export const AD_IMAGE_URL = 'https://bit.ly/aca-logo';
-export const AD_URL = 'https://bit.ly/aca-url';
 
 export const ANSWER_OPTION_TYPES = [
   {
@@ -79,20 +70,9 @@ export const MENU_ITEMS = [
 export const NO_SURVEY_TITLE = 'No surveys yet!';
 export const NO_SURVEY_TEXT = 'Create the first survey!';
 
-export const PARTNERS_IMAGES = [
-  betconstruct,
-  helix,
-  picsart,
-  sfl,
-  teamable,
-  workfront
-];
-
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
-
-export const SLIDER_TIMER = 4000;
 
 export const TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
