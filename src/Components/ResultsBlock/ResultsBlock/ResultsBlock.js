@@ -8,6 +8,7 @@ import getSurveyResults from '../getSurveyResults';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomTextChart from '../Charts/CustomTextChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
+import CustomActiveShapePieChart from '../Charts/CustomActiveShapePieChart/CustomActiveShapePieChart';
 
 function ResultsBlock() {
   const result = getSurveyResults(1);
@@ -62,6 +63,7 @@ function ResultsBlock() {
                 return 'there is no answer';
             }
           })}
+          <CustomActiveShapePieChart />
         </Typography>
       </Container>
     </>

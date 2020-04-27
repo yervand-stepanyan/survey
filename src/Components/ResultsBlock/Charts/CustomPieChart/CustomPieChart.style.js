@@ -6,7 +6,8 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: theme.customSpacing.base
   },
   answerDetails: {
-    padding: theme.customSpacing.xSmall
+    padding: theme.customSpacing.xSmall,
+    cursor: 'auto'
   },
   details: {
     display: 'flex',
