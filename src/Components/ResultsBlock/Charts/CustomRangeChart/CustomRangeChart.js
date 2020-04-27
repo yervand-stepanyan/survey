@@ -49,7 +49,7 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
               </Typography>
               <div className={classes.answers}>
                 {Object.keys(rangeData).map(item => (
-                  <ListItem>
+                  <ListItem key={item}>
                     <ListItemIcon>{`${item} :`}</ListItemIcon>
                     <ListItemText primary={rangeData[item]} />
                   </ListItem>
@@ -79,10 +79,10 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
 }
 
 CustomRangeChart.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  startValue: PropTypes.string.isRequired,
-  endValue: PropTypes.string.isRequired
+  startValue: PropTypes.number.isRequired,
+  endValue: PropTypes.number.isRequired
 };
 
 export default CustomRangeChart;

@@ -52,7 +52,7 @@ function CustomPieChart ( {data, title}) {
               {data.map((val, id) => (
                 COLORS.map((color, index) => (
                   index === id &&
-                    <ListItem className={classes.answerDetails}>
+                    <ListItem key={uuid()} className={classes.answerDetails}>
                       <ListItemIcon>
                         <Brightness1RoundedIcon style={{fill: color}} />
                       </ListItemIcon>
@@ -95,7 +95,7 @@ function CustomPieChart ( {data, title}) {
 
 CustomPieChart.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
 }
 
 renderCustomizedLabel.propTypes = {

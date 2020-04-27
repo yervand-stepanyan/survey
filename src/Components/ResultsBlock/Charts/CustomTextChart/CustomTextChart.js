@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import uuid from 'react-uuid'
 
 import { useStyles } from './CustomTextChart.style';
 
@@ -65,7 +66,7 @@ function CustomTextChart({ title, data, count }) {
               <p id="transition-modal-description">
                 <List component="nav" aria-label="main mailbox folders">
                   {data.map(answer => (
-                    <ListItem button>
+                    <ListItem button key={uuid()}>
                       <ListItemText primary={answer} />
                     </ListItem>
                   ))}
@@ -81,7 +82,7 @@ function CustomTextChart({ title, data, count }) {
 
 CustomTextChart.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   count: PropTypes.number.isRequired
 };
 
