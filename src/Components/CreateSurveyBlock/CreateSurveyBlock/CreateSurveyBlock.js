@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography';
 
+import { addSurvey } from '../../../State/actions';
 import {
   CREATE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
@@ -11,9 +12,10 @@ import { doPost } from '../../../FetchAPI/fetchData';
 import QuestionSection from '../QuestionSection';
 import ROUTES from '../../../Routes/Routes';
 import SaveSurvey from '../SaveSurvey';
-import SurveyContext from '../../../State/context';
+import StoreContext from '../../../State/context';
 import SurveyTitle from '../SurveyTitle';
 import SurveyTitleCreator from '../SurveyTitleCreator';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './CreateSurveyBlock.style';
 
 const BLOCK_TITLE = 'Create survey';
@@ -30,9 +32,7 @@ function CreateSurveyBlock() {
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState('');
   const history = useHistory();
-  const { dispatchSurvey, handleOpenSnackbar, handleShowSnackbar } = useContext(
-    SurveyContext
-  );
+  const { dispatchSurvey, handleOpenSnackbar, handleShowSnackbar } = useStore();
 
   const handleAddTitle = titleValue => {
     setTitle(titleValue);
@@ -86,7 +86,7 @@ function CreateSurveyBlock() {
 
       const response = await doPost('surveys', surveyData);
 
-      dispatchSurvey({ type: 'ADD_SURVEY', payload: response });
+      dispatchSurvey(addSurvey(response));
 
       handleShowSnackbar(true, CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS);
 
@@ -106,7 +106,7 @@ function CreateSurveyBlock() {
         <Typography variant="h4">{BLOCK_TITLE}</Typography>
       </div>
       <div className={classes.createSurveyWrapper}>
-        <SurveyContext.Provider
+        <StoreContext.Provider
           value={{
             disableSave,
             handleIsAnswerSubmitted,
@@ -143,7 +143,7 @@ function CreateSurveyBlock() {
               loading={loading}
             />
           ) : null}
-        </SurveyContext.Provider>
+        </StoreContext.Provider>
       </div>
     </div>
   );

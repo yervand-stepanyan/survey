@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ANSWER_OPTION_TYPES } from '../../../Globals/variables';
 import ImageContainer from '../ImageContainer';
-import SurveyContext from '../../../State/context';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './AnswerOptions.style';
 
 function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
   const classes = useStyles();
   const [answerType, setAnswerType] = useState(answerTypeProps || '');
-  const { disableSave, handleAddAnswerType } = useContext(SurveyContext);
+  const { disableSave, handleAddAnswerType } = useStore();
 
   const handleClick = e => {
     const type = e.target.alt ? e.target.alt : e.target.children[0].alt;

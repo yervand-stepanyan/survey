@@ -1,5 +1,5 @@
 import React from 'react';
 
-const SurveyContext = React.createContext();
+const StoreContext = React.createContext();
 
-export { SurveyContext as default };
+export { StoreContext as default };

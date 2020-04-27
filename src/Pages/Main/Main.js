@@ -6,20 +6,24 @@ import {
   Switch
 } from 'react-router-dom';
 
-import About from '../About';
+import { addSurveys, addSurveyAnswers } from '../../State/actions';
 import Contacts from '../Contacts';
 import CreateSurvey from '../CreateSurvey';
 import { doGet } from '../../FetchAPI/fetchData';
 import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
 import Home from '../Home';
+import {
+  initialState,
+  surveyAnswerReducer,
+  surveyReducer
+} from '../../State/reducer';
 import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
 import ScrollToTop from '../../Components/ScrollToTop';
 import SnackbarComponent from '../../Components/SnackbarComponent';
-import SurveyContext from '../../State/context';
+import StoreContext from '../../State/context';
 import TakeSurvey from '../TakeSurvey/TakeSurvey';
-import { surveyAnswerReducer, surveyReducer } from '../../State/reducer';
 import { useStyles } from './Main.style';
 
 function Main() {
@@ -29,10 +33,10 @@ function Main() {
   const [snackbarText, setSnackbarText] = useState('');
   const [loadingData, setLoadingData] = useState(true);
   const [isConnectionError, setIsConnectionError] = useState(false);
-  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, []);
+  const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, initialState);
   const [stateSurveyAnswer, dispatchSurveyAnswer] = useReducer(
     surveyAnswerReducer,
-    []
+    initialState
   );
 
   const getData = async () => {
@@ -43,11 +47,8 @@ function Main() {
       const surveyAnswers = await doGet('survey-answers');
       const reversedSurveys = await surveys.slice().reverse();
 
-      dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedSurveys });
-      dispatchSurveyAnswer({
-        type: 'ADD_SURVEY_ANSWERS',
-        payload: surveyAnswers
-      });
+      dispatchSurvey(addSurveys(reversedSurveys));
+      dispatchSurveyAnswer(addSurveyAnswers(surveyAnswers));
     } catch (e) {
       setLoadingData(false);
 
@@ -81,7 +82,7 @@ function Main() {
 
   return (
     <div className={classes.mainContainer}>
-      <SurveyContext.Provider
+      <StoreContext.Provider
         value={{
           stateSurvey,
           stateSurveyAnswer,
@@ -109,9 +110,6 @@ function Main() {
               <Route path={`${ROUTES.results}/:id`}>
                 <Results />
               </Route>
-              <Route path={ROUTES.about}>
-                <About />
-              </Route>
               <Route path={ROUTES.contacts}>
                 <Contacts />
               </Route>
@@ -122,7 +120,7 @@ function Main() {
             <Footer />
           </ScrollToTop>
         </Router>
-      </SurveyContext.Provider>
+      </StoreContext.Provider>
       <SnackbarComponent
         onClose={handleClose}
         open={open}

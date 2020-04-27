@@ -1,38 +1,39 @@
-import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
+import { addSurveyAnswer } from '../../../State/actions';
 import { doPost } from '../../../FetchAPI/fetchData';
 import ROUTES from '../../../Routes/Routes';
-import SurveyContext from '../../../State/context';
 import SurveyQuestion from '../SurveyQuestion';
 import {
   TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
 } from '../../../Globals/variables';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './SurveyQuestions.style';
 
 const SUBMIT_TEXT = 'Submit';
 
-function SurveyQuestions({ questions, survey, title: surveyTitle }) {
+function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   const classes = useStyles();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-  const [surveyAnswers, setSurveyAnswers] = useState([]);
   const [results, setResults] = useState({});
+  const [surveyAnswers, setSurveyAnswers] = useState([]);
   const {
     dispatchSurveyAnswer,
     handleOpenSnackbar,
     handleShowSnackbar
-  } = useContext(SurveyContext);
+  } = useStore();
 
   useEffect(() => {
-    setResults({ survey, answers: surveyAnswers });
-  }, [surveyAnswers]);
+    setResults({ survey: surveyId, answers: surveyAnswers });
+  }, [surveyId, surveyAnswers]);
 
   const receiveAnswers = (markedAnswers, customAnswer, questionId) => {
     if (surveyAnswers.some(answer => answer.questionId === questionId)) {
@@ -65,7 +66,7 @@ function SurveyQuestions({ questions, survey, title: surveyTitle }) {
 
       const response = await doPost('survey-answers', results);
 
-      dispatchSurveyAnswer({ type: 'ADD_SURVEY_ANSWER', payload: response });
+      dispatchSurveyAnswer(addSurveyAnswer(response));
 
       handleShowSnackbar(true, TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS);
 
@@ -136,7 +137,7 @@ function SurveyQuestions({ questions, survey, title: surveyTitle }) {
 
 SurveyQuestions.propTypes = {
   questions: PropTypes.array.isRequired,
-  survey: PropTypes.string.isRequired,
+  surveyId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 };
 

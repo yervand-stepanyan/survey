@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
@@ -12,8 +12,9 @@ import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
 } from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
+import { removeSurvey } from '../../../State/actions';
 import SurveyComponent from '../SurveyComponent';
-import SurveyContext from '../../../State/context';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './Surveys.style';
 
 function Surveys() {
@@ -28,7 +29,7 @@ function Surveys() {
     handleShowSnackbar,
     isConnectionError,
     loadingData
-  } = useContext(SurveyContext);
+  } = useStore();
 
   const handleButtonClick = id => {
     setLoadingButton(true);
@@ -44,9 +45,7 @@ function Surveys() {
 
       await doDelete('surveys', id);
 
-      const filteredSurveys = stateSurvey.filter(survey => survey.id !== id);
-
-      dispatchSurvey({ type: 'REMOVE_SURVEY', payload: filteredSurveys });
+      dispatchSurvey(removeSurvey(id));
 
       handleShowSnackbar(true, REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS);
     } catch (e) {

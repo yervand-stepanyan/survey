@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import ResultsBlock from '../../Components/ResultsBlock/ResultsBlock';
-import SurveyContext from '../../State/context';
+import { useStore } from '../../State/use-store';
 import { useStyles } from './Results.style';
 
 function Results() {
   const classes = useStyles();
   const { id } = useParams();
-  const { stateSurveyAnswer } = useContext(SurveyContext);
+  const { stateSurveyAnswer } = useStore();
   const answers = stateSurveyAnswer.filter(
     surveyAnswers => surveyAnswers.survey.id === id
   );

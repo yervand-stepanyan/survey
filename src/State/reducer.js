@@ -1,8 +1,12 @@
-const ADD_SURVEY = 'ADD_SURVEY';
-const ADD_SURVEY_ANSWER = 'ADD_SURVEY_ANSWER';
-const ADD_SURVEY_ANSWERS = 'ADD_SURVEY_ANSWERS';
-const ADD_SURVEYS = 'ADD_SURVEYS';
-const REMOVE_SURVEY = 'REMOVE_SURVEY';
+import {
+  ADD_SURVEY,
+  ADD_SURVEY_ANSWER,
+  ADD_SURVEY_ANSWERS,
+  ADD_SURVEYS,
+  REMOVE_SURVEY
+} from './actions';
+
+export const initialState = [];
 
 export function surveyReducer(state, action) {
   switch (action.type) {
@@ -11,7 +15,7 @@ export function surveyReducer(state, action) {
     case ADD_SURVEY:
       return [action.payload, ...state];
     case REMOVE_SURVEY:
-      return action.payload;
+      return state.filter(survey => survey.id !== action.payload);
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import {
   ANSWER_SECTION_BUTTON_LABEL
 } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
-import SurveyContext from '../../../State/context';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './RangeSection.style';
 
 const END_VALUE_LABEL = 'End value';
@@ -42,7 +42,7 @@ function RangeSection({
     disableSave,
     handleAddRangeValues,
     handleSubmitQuestion
-  } = useContext(SurveyContext);
+  } = useStore();
 
   useEffect(() => {
     if (!activeId) {

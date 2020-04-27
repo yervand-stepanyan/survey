@@ -1,20 +1,24 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import SurveyContext from '../../State/context';
 import SurveyQuestions from '../../Components/TakeSurveyBlock/SurveyQuestions';
+import { useStore } from '../../State/use-store';
 import { useStyles } from './TakeSurvey.style';
 
 function TakeSurvey() {
   const classes = useStyles();
   const { id } = useParams();
-  const { stateSurvey } = useContext(SurveyContext);
+  const { stateSurvey } = useStore();
   const survey = stateSurvey.find(item => item.id === id);
-  const { title, questions } = survey;
+  const { id: surveyId, title, questions } = survey;
 
   return (
     <div className={classes.container}>
-      <SurveyQuestions questions={questions} survey={survey.id} title={title} />
+      <SurveyQuestions
+        questions={questions}
+        surveyId={surveyId}
+        title={title}
+      />
     </div>
   );
 }

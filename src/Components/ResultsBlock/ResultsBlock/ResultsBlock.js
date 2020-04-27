@@ -4,10 +4,10 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
-import getSurveyResults from '../getSurveyResults';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomTextChart from '../Charts/CustomTextChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
+import getSurveyResults from '../getSurveyResults';
 
 function ResultsBlock() {
   const result = getSurveyResults(1);

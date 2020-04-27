@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 import _ from 'lodash';
 
 import AddNewQuestion from '../AddNewQuestion';
 import QuestionSectionCreator from '../QuestionSectionCreator';
-import SurveyContext from '../../../State/context';
+import StoreContext from '../../../State/context';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './QuestionSection.style';
 
 function QuestionSection({
@@ -24,7 +25,7 @@ function QuestionSection({
     disableSave,
     handleIsAnswerSubmitted,
     handleIsQuestionSubmitted
-  } = useContext(SurveyContext);
+  } = useStore();
 
   useEffect(() => {
     handleIsQuestionOpen();
@@ -308,7 +309,7 @@ function QuestionSection({
 
   return (
     <div className={classes.questionSectionContainer}>
-      <SurveyContext.Provider
+      <StoreContext.Provider
         value={{
           disableSave,
           handleAddAnswers,
@@ -371,7 +372,7 @@ function QuestionSection({
         {showAddNew ? (
           <AddNewQuestion handleAddNewQuestion={handleAddNewQuestion} />
         ) : null}
-      </SurveyContext.Provider>
+      </StoreContext.Provider>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,7 @@ import {
   ANSWER_SECTION_BUTTON_LABEL,
   INPUT_TYPES
 } from '../../../Globals/variables';
-import SurveyContext from '../../../State/context';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './InputSection.style';
 
 const TITLE = 'Choose input type';
@@ -20,9 +20,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   const [inputType, setInputType] = useState(inputTypeProps || '');
   const [isChanged, setIsChanged] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(!!inputTypeProps || false);
-  const { disableSave, handleAddInputType, handleSubmitQuestion } = useContext(
-    SurveyContext
-  );
+  const { disableSave, handleAddInputType, handleSubmitQuestion } = useStore();
 
   const handleClick = e => {
     const type = e.target.alt ? e.target.alt : e.target.children[0].alt;

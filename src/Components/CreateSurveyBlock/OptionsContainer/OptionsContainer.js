@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
@@ -15,7 +15,7 @@ import {
   ANSWER_SECTION_BUTTON_LABEL
 } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
-import SurveyContext from '../../../State/context';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './OptionsContainer.style';
 
 const CHECKBOX_LABEL = 'Add an input field as the last option';
@@ -47,7 +47,7 @@ function OptionsContainer({
     handleAddAnswers,
     handleHasLastInput,
     handleSubmitQuestion
-  } = useContext(SurveyContext);
+  } = useStore();
 
   useEffect(() => {
     if (!activeId) {

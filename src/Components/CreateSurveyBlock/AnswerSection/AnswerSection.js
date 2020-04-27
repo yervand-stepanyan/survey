@@ -61,23 +61,23 @@ function AnswerSection({
 
 AnswerSection.propTypes = {
   activeId: PropTypes.string.isRequired,
-  answerType: PropTypes.string,
-  inputType: PropTypes.string,
   answers: PropTypes.array,
-  hasLastInput: PropTypes.bool,
-  startValue: PropTypes.string,
+  answerType: PropTypes.string,
   endValue: PropTypes.string,
+  hasLastInput: PropTypes.bool,
+  inputType: PropTypes.string,
+  startValue: PropTypes.string,
   stepValue: PropTypes.string,
   type: PropTypes.string.isRequired
 };
 
 AnswerSection.defaultProps = {
-  answerType: '',
-  inputType: '',
   answers: undefined,
-  hasLastInput: false,
-  startValue: '',
+  answerType: '',
   endValue: '',
+  hasLastInput: false,
+  inputType: '',
+  startValue: '',
   stepValue: ''
 };
 

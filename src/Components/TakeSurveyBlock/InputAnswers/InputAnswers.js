@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider
