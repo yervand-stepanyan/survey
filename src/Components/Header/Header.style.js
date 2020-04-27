@@ -33,13 +33,13 @@ export const useStyles = makeStyles(theme => ({
     },
     backgroundColor: `${theme.color.mainColorGreen}`,
     borderColor: `${theme.color.mainColorDarkBlue}`,
-    color: 'white',
+    color: `${theme.color.simpleWhite}`,
     marginLeft: `${theme.customSpacing.base}`,
     textDecoration: 'none',
     '&:hover': {
-      background: 'white',
-      borderColor: `${theme.color.mainColorDarkBlue}`,
-      color: `${theme.color.mainColorGreen}`
+      background: `${theme.color.buttonHoverColorGreen}`,
+      borderColor: `${theme.color.buttonHoverColorGreen}`,
+      color: `${theme.color.simpleWhite}`
     }
   }
 }));

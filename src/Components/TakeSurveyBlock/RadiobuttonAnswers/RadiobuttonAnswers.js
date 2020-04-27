@@ -20,17 +20,23 @@ function RadiobuttonAnswers({
   const [value, setValue] = useState('');
 
   const handleChange = event => {
+    let isLastInputChosen = false;
     if (hasLastInput) {
       const lastAnswer = answers[answers.length - 1];
-      const isLastInputChosen = lastAnswer.id === event.target.value;
+      isLastInputChosen = lastAnswer.id === event.target.value;
       setIsInputVisible(isLastInputChosen);
     }
 
     setValue(event.target.value);
-    receiveAnswers([event.target.value], textValue, questionId);
+    receiveAnswers(
+      [event.target.value],
+      isLastInputChosen ? textValue : '',
+      questionId
+    );
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
+    receiveAnswers([value], e.target.value, questionId);
   };
 
   return (

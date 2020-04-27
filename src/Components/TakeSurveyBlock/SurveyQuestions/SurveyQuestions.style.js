@@ -14,6 +14,18 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     padding: `${theme.customSpacing.base} ${theme.customSpacing.large}`
   },
+  menuItemButton: {
+    backgroundColor: `${theme.color.mainColorGreen}`,
+    borderColor: `${theme.color.mainColorDarkBlue}`,
+    color: `${theme.color.simpleWhite}`,
+    marginLeft: `${theme.customSpacing.base}`,
+    textDecoration: 'none',
+    '&:hover': {
+      background: `${theme.color.buttonHoverColorGreen}`,
+      borderColor: `${theme.color.buttonHoverColorGreen}`,
+      color: `${theme.color.simpleWhite}`
+    }
+  },
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',

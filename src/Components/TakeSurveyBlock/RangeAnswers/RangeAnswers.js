@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Slider from '@material-ui/core/Slider';
@@ -14,6 +14,8 @@ function RangeAnswers({
 }) {
   const classes = useStyles();
   const defaultValue = Math.abs(startValue - endValue) / 2;
+  const [showValueLabel, setShowValueLabel] = useState(true);
+  const [rangeValue, setRangeValue] = useState('');
   const marks = [
     {
       value: startValue,
@@ -25,12 +27,17 @@ function RangeAnswers({
     }
   ];
 
+  useEffect(() => {
+    receiveAnswers([], rangeValue || defaultValue.toString(), questionId);
+  }, [rangeValue]);
+
   const valuetext = value => {
     return `${value}`;
   };
 
   const commitHandler = (event, value) => {
-    receiveAnswers([], value, questionId);
+    setRangeValue(value.toString());
+    setShowValueLabel(false);
   };
 
   return (
@@ -44,7 +51,7 @@ function RangeAnswers({
         min={startValue}
         onChangeCommitted={commitHandler}
         step={stepValue}
-        valueLabelDisplay="auto"
+        valueLabelDisplay={showValueLabel ? 'on' : 'auto'}
       />
     </div>
   );

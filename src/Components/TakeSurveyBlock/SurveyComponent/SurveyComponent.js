@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PollIcon from '@material-ui/icons/Poll';
-
+import { Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import ROUTES from '../../../Routes/Routes';
@@ -27,15 +27,17 @@ function SurveyComponent({
 
   return (
     <div className={classes.singleSurveyContainer}>
-      <div>{title}</div>
+      <Typography variant="h6" component="h2">
+        {title}
+      </Typography>
       <div className={classes.takeAndResultsCellsContainer}>
         <div className={classes.buttonContainer}>
           <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
             <Button
-              color="primary"
               disabled={buttonToLoad === id && loadingButton}
               onClick={() => handleButtonClick()}
               variant="contained"
+              className={classes.menuItemButton}
             >
               {TAKE_SURVEY_BUTTON_LABEL}
             </Button>

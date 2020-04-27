@@ -17,6 +17,18 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  menuItemButton: {
+    backgroundColor: `${theme.color.mainColorGreen}`,
+    borderColor: `${theme.color.mainColorDarkBlue}`,
+    color: `${theme.color.simpleWhite}`,
+    marginLeft: `${theme.customSpacing.base}`,
+    textDecoration: 'none',
+    '&:hover': {
+      background: `${theme.color.buttonHoverColorGreen}`,
+      borderColor: `${theme.color.buttonHoverColorGreen}`,
+      color: `${theme.color.simpleWhite}`
+    }
+  },
   buttonContainer: {
     marginRight: `${theme.customSpacing.small}`,
     position: 'relative',
