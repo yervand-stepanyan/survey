@@ -52,7 +52,7 @@ function CustomPieChart ( {data, title}) {
               {data.map((val, id) => (
                 COLORS.map((color, index) => (
                   index === id &&
-                    <ListItem button className={classes.answerDetails}>
+                    <ListItem className={classes.answerDetails}>
                       <ListItemIcon>
                         <Brightness1RoundedIcon style={{fill: color}} />
                       </ListItemIcon>

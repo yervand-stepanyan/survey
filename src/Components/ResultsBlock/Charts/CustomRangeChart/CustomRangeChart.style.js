@@ -4,6 +4,13 @@ export const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: theme.customSpacing.base
   },
+  answerDetails: {
+    border: `1px solid ${theme.color.mainColorDarkBlue}`,
+    borderRadius: theme.customSpacing.small,
+    padding: theme.customSpacing.base,
+    margin: theme.customSpacing.base,
+
+  },
   avarageVal: {
     border: `1px solid ${theme.colors}`
   },

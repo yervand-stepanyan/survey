@@ -60,7 +60,7 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
             <Typography variant="subtitle1" color="textSecondary">
               {title}
             </Typography>
-            <div>
+            <div className={classes.answerDetails}>
               {Object.keys(rangeData).map(item => (
                 <ListItem button>
                   <ListItemIcon>{`${item} :`}</ListItemIcon>
