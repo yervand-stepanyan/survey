@@ -1,13 +1,12 @@
 function PrepareSurveyResults(submissions) {
 
   const results = {};
-  console.log(submissions)
 
   submissions.forEach(submission => {
+    console.log(submission)
     submission.answers.forEach(answer => {
       const [subQuestion] = submission.survey.questions.filter(question => question.id === answer.questionId)
       
-      // console.log(subQuestion.answers)
       if (typeof results[answer.questionId] === 'undefined') {
 
         results[answer.questionId] = {
@@ -68,117 +67,13 @@ function PrepareSurveyResults(submissions) {
 
       }
 
-      else if (results[answer.questionId].type === 'TEXT') {
+      else if (results[answer.questionId].type === 'INPUT') {
         results[answer.questionId].textAnswers.push(answer.customAnswer);
       }
     })
   })
 
   return results;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // let SURVEYS = [];
-  // const SURVEY_ANSWERS = SURVEYS.filter(survey => +survey.surveyId === 1);
-  // SURVEY_ANSWERS.map(userAnswers =>
-  //   userAnswers.questions.forEach(question => {
-  //     if (typeof results[question.id] === 'undefined') {
-  //       results[question.id] = {
-  //         title: question.title,
-  //         type: question.answerType,
-  //         answers: {},
-  //         textAnswers: []
-  //       };
-  //     }
-
-  //     if (question.answerType === 'checkbox') {
-  //       question.answers.markedAnswers.forEach(option => {
-  //         if (typeof results[question.id].answers[option] === 'undefined') {
-  //           results[question.id].answers[option] = { name: option, value: 0 };
-  //         }
-
-  //         results[question.id].answers[option].value += 1;
-  //       });
-  //     } else if (question.answerType === 'dropdown') {
-  //       if (question.answers.markedAnswers.length > 0) {
-  //         question.answers.markedAnswers.forEach(option => {
-  //           if (typeof results[question.id].answers[option] === 'undefined') {
-  //             results[question.id].answers[option] = { name: option, value: 0 };
-  //           }
-
-  //           results[question.id].answers[option].value += 1;
-  //         });
-  //       }
-  //     } else if (question.answerType === 'radiobutton') {
-  //       if (question.answers.markedAnswers.length > 0) {
-  //         question.answers.markedAnswers.forEach(option => {
-  //           if (typeof results[question.id].answers[option] === 'undefined') {
-  //             results[question.id].answers[option] = { name: option, value: 0 };
-  //           }
-
-  //           results[question.id].answers[option].value += 1;
-  //         });
-  //       } else {
-  //         if (typeof results[question.id].answers.other === 'undefined') {
-  //           results[question.id].answers.other = { name: 'other', value: 0 };
-  //         }
-
-  //         results[question.id].answers.other.value += 1;
-  //       }
-  //     } else if (question.answerType === 'range') {
-  //       if (
-  //         typeof results[question.id].answers[question.answers.customAnswer] ===
-  //         'undefined'
-  //       ) {
-  //         results[question.id].answers[question.answers.customAnswer] = {
-  //           name: question.answers.customAnswer,
-  //           answers: 0
-  //         };
-  //       }
-
-  //       results[question.id].answers[
-  //         question.answers.customAnswer
-  //       ].answers += 1;
-  //       results[question.id].startValue = question.startValue;
-  //       results[question.id].endValue = question.endValue;
-  //       results[question.id].stepValue = question.stepValue;
-  //     } else if (question.answerType === 'text') {
-  //       if (typeof results[question.id].count === 'undefined') {
-  //         results[question.id].count = 0;
-  //       }
-
-  //       results[question.id].count += 1;
-  //       results[question.id].textAnswers.push(question.answers.customAnswer);
-  //     }
-  //   })
-  // );
-  // return results;
 }
 
 export default PrepareSurveyResults;

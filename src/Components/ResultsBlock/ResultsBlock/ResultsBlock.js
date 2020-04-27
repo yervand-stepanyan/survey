@@ -1,5 +1,6 @@
 import React from 'react';
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -41,12 +42,12 @@ function ResultsBlock({answers}) {
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'TEXT':
+              case 'INPUT':
                 return (
                   <CustomTextChart
                     title={res.title}
                     data={Object.values(res.textAnswers)}
-                    count={res.count}
+                    count={res.textAnswers.length}
                   />
                 );
               case 'RANGE':
@@ -60,7 +61,15 @@ function ResultsBlock({answers}) {
                   />
                 );
               default:
-                return 'there is no answer';
+                return (
+                  <Card style={{marginBottom: 14}}>
+                    <CardContent>
+                      <Typography>
+                        There is no answer
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                )
             }
           })}
           <CustomActiveShapePieChart />
