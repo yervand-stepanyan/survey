@@ -5,6 +5,6 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: `${theme.customSpacing.xLarge}`,
-    minHeight: '50%'
+    minHeight: '100%'
   }
 }));

@@ -7,7 +7,10 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     marginTop: `${theme.customSpacing.xxxLarge}`,
     minWidth: '280px',
-    padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`
+    padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`,
+    position: 'relative',
+    bottom: 0,
+    right: 0
   },
   logoAndMenuWrapper: {
     display: 'flex',

@@ -97,26 +97,28 @@ function Main() {
         <Router>
           <ScrollToTop>
             <Header />
-            <Switch>
-              <Route exact path={ROUTES.home}>
-                <Home />
-              </Route>
-              <Route path={ROUTES.create}>
-                <CreateSurvey />
-              </Route>
-              <Route path={`${ROUTES.survey}/:id`}>
-                <TakeSurvey />
-              </Route>
-              <Route path={`${ROUTES.results}/:id`}>
-                <Results />
-              </Route>
-              <Route path={ROUTES.contacts}>
-                <Contacts />
-              </Route>
-              <Route path="*">
-                <Redirect to={ROUTES.home} />
-              </Route>
-            </Switch>
+            <div className={classes.minHeight}>
+              <Switch>
+                <Route exact path={ROUTES.home}>
+                  <Home />
+                </Route>
+                <Route path={ROUTES.create}>
+                  <CreateSurvey />
+                </Route>
+                <Route path={`${ROUTES.survey}/:id`}>
+                  <TakeSurvey />
+                </Route>
+                <Route path={`${ROUTES.results}/:id`}>
+                  <Results />
+                </Route>
+                <Route path={ROUTES.contacts}>
+                  <Contacts />
+                </Route>
+                <Route path="*">
+                  <Redirect to={ROUTES.home} />
+                </Route>
+              </Switch>
+            </div>
             <Footer />
           </ScrollToTop>
         </Router>
