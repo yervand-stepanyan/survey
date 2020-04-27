@@ -11,13 +11,25 @@ import CustomTextChart from '../Charts/CustomTextChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
 import CustomActiveShapePieChart from '../Charts/CustomActiveShapePieChart/CustomActiveShapePieChart';
 
+import { useStyles } from './ResultsBlock.style'
+
 function ResultsBlock({answers}) {
+  const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-  console.log(result)
+  console.log(answers[0])
+  const SurveyTitle = answers[0] ? answers[0].survey.title : ''
   return (
     <>
       <CssBaseline />
       <Container maxWidth="md">
+        
+        <Typography 
+          variant='h4'
+          className={classes.surveyTitle}
+        >
+          {SurveyTitle}
+        </Typography>
+
         <Typography component="div">
           {Object.values(result).map(res => {
             switch (res.type) {
