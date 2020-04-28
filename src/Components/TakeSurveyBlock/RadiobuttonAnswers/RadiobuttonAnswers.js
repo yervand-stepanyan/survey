@@ -36,7 +36,7 @@ function RadiobuttonAnswers({
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
-    receiveAnswers([value], e.target.value, questionId);
+    receiveAnswers([], e.target.value, questionId);
   };
 
   return (
