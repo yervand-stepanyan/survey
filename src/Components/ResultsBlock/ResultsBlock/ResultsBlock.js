@@ -25,7 +25,7 @@ function ResultsBlock({ answers, surveyTitle }) {
       <CssBaseline />
       <Container maxWidth="md">
         <Typography className={classes.surveyTitle} variant="h4">
-          {SurveyTitle}
+          {surveyTitle}
         </Typography>
         <Typography component="div">
           {Object.values(result).map(res => {
@@ -91,7 +91,8 @@ function ResultsBlock({ answers, surveyTitle }) {
 }
 
 ResultsBlock.propTypes = {
-  answers: PropTypes.array.isRequired
+  answers: PropTypes.array.isRequired,
+  surveyTitle: PropTypes.string.isRequired
 };
 
 export default ResultsBlock;
