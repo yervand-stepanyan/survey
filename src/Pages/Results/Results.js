@@ -13,9 +13,7 @@ function Results() {
     surveyAnswers => surveyAnswers.survey.id === id
   );
 
-  const [survey] = stateSurvey.filter(
-    item => item.id === id
-  );
+  const [survey] = stateSurvey.filter(item => item.id === id);
 
   const surveyTitle = survey ? survey.title : '';
 

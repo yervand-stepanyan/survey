@@ -18,7 +18,7 @@ import { useStyles } from './ResultsBlock.style';
 function ResultsBlock({ answers, surveyTitle }) {
   const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-  
+
   return (
     <>
       <CssBaseline />
@@ -27,8 +27,7 @@ function ResultsBlock({ answers, surveyTitle }) {
           {surveyTitle}
         </Typography>
         <Typography component="div">
-          {Object.values(result).length > 0 ?
-          
+          {Object.values(result).length > 0 ? (
             Object.values(result).map(res => {
               switch (res.type) {
                 case ANSWER_TYPES.checkbox:
@@ -84,14 +83,14 @@ function ResultsBlock({ answers, surveyTitle }) {
                     </Card>
                   );
               }
-            }) : (
-              <Card key={uuid()} className={classes.noAnswerContainer}>
-                <Typography className={classes.noAnswer}>
-                  There is no answers for this survey
-                </Typography>
-              </Card>
-            )}
-         
+            })
+          ) : (
+            <Card key={uuid()} className={classes.noAnswerContainer}>
+              <Typography className={classes.noAnswer}>
+                There is no answers for this survey
+              </Typography>
+            </Card>
+          )}
         </Typography>
       </Container>
     </>

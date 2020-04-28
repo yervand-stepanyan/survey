@@ -12,5 +12,5 @@ export const useStyles = makeStyles(theme => ({
     backgroundColor: '#20ba6675',
     textAlign: 'center',
     padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
-  },
+  }
 }));
