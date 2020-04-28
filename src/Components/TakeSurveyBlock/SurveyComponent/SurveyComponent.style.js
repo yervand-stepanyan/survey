@@ -19,7 +19,8 @@ export const useStyles = makeStyles(theme => ({
     '@media (max-width:450px)': {
       display: 'flex',
       flexDirection: 'column',
-      padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
+      padding: `${theme.customSpacing.small} ${theme.customSpacing.small}`,
+      marginTop: `${theme.customSpacing.small}`
     }
   },
   surveyTitleContainer: {
@@ -60,11 +61,12 @@ export const useStyles = makeStyles(theme => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     '@media (max-width:450px)': {
+      height: '100%',
       '& span': {
         fontSize: '10px'
       },
       '& .MuiSvgIcon-root': {
-        fontSize: '1rem'
+        fontSize: '1.1rem'
       }
     }
   },
