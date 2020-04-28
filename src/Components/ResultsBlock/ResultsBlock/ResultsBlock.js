@@ -18,9 +18,7 @@ import { useStyles } from './ResultsBlock.style';
 function ResultsBlock({ answers, surveyTitle }) {
   const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-
-  // console.log(result)
-
+  
   return (
     <>
       <CssBaseline />
