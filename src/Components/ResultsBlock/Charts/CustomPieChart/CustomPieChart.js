@@ -86,13 +86,4 @@ CustomPieChart.propTypes = {
   customText: PropTypes.array.isRequired
 };
 
-renderCustomizedLabel.propTypes = {
-  cx: PropTypes.number.isRequired,
-  cy: PropTypes.number.isRequired,
-  midAngle: PropTypes.number.isRequired,
-  innerRadius: PropTypes.number.isRequired,
-  outerRadius: PropTypes.number.isRequired,
-  percent: PropTypes.number.isRequired,
-};
-
 export default CustomPieChart;
