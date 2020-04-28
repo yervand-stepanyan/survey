@@ -18,8 +18,9 @@ import { useStyles } from './ResultsBlock.style';
 function ResultsBlock({ answers, surveyTitle }) {
   const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-  // const SurveyTitle = answers[0] ? answers[0].survey.title : '';
-  // console.log(title)
+
+  // console.log(result)
+
   return (
     <>
       <CssBaseline />
@@ -86,12 +87,13 @@ function ResultsBlock({ answers, surveyTitle }) {
                   );
               }
             }) : (
-              <Card key={uuid()} className={classes.noSurveyAnswer}>
-                <CardContent>
-                  <Typography>There is no answers for this survey</Typography>
-                </CardContent>
+              <Card key={uuid()} className={classes.noAnswerContainer}>
+                <Typography className={classes.noAnswer}>
+                  There is no answers for this survey
+                </Typography>
               </Card>
             )}
+         
         </Typography>
       </Container>
     </>

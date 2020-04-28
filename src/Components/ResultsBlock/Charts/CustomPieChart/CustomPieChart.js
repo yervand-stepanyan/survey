@@ -45,7 +45,6 @@ const renderCustomizedLabel = ({
 
 function CustomPieChart({ data, title }) {
   const classes = useStyles();
-
   return (
     <Card className={classes.root}>
       <div className={classes.details}>

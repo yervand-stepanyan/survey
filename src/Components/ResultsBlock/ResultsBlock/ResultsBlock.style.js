@@ -5,10 +5,12 @@ export const useStyles = makeStyles(theme => ({
     padding: theme.customSpacing.xLarge,
     textAlign: 'center'
   },
-  noSurveyAnswer: {
+  noAnswerContainer: {
     marginBottom: theme.customSpacing.base,
     width: 400,
     margin: 'auto',
-    backgroundColor: ''
-  }
+    backgroundColor: '#20ba6675',
+    textAlign: 'center',
+    padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
+  },
 }));

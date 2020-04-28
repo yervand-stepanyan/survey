@@ -66,7 +66,7 @@ function CustomTextChart({ title, data, count }) {
               <p id="transition-modal-description">
                 <List component="nav" aria-label="main mailbox folders">
                   {data.map(answer => (
-                    <ListItem button key={uuid()}>
+                    <ListItem key={uuid()}>
                       <ListItemText primary={answer} />
                     </ListItem>
                   ))}
