@@ -10,12 +10,38 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: `${theme.customSpacing.small}`,
     padding: `${theme.customSpacing.base} ${theme.customSpacing.xLarge}`,
     boxShadow: '0 8px 6px -6px black',
-    borderRadius: `${theme.borders.borderRadius.base}`
+    borderRadius: `${theme.borders.borderRadius.base}`,
+    '@media (max-width:823px)': {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: `${theme.customSpacing.small} ${theme.customSpacing.large}`
+    },
+    '@media (max-width:450px)': {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
+    }
+  },
+  surveyTitleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    '@media (max-width:823px)': {
+      justifyContent: 'center'
+    }
+  },
+  surveyTitle: {
+    '@media (max-width:823px)': {
+      textAlign: 'center'
+    }
   },
   takeAndResultsCellsContainer: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    '@media (max-width:450px)': {
+      marginTop: '5px'
+    }
   },
   menuItemButton: {
     backgroundColor: `${theme.color.mainColorGreen}`,
@@ -32,7 +58,15 @@ export const useStyles = makeStyles(theme => ({
   buttonContainer: {
     marginRight: `${theme.customSpacing.small}`,
     position: 'relative',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    '@media (max-width:450px)': {
+      '& span': {
+        fontSize: '10px'
+      },
+      '& .MuiSvgIcon-root': {
+        fontSize: '1rem'
+      }
+    }
   },
   link: {
     textDecoration: 'none'

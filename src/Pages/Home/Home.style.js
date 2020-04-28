@@ -4,7 +4,8 @@ export const useStyles = makeStyles(theme => ({
   homeContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${theme.customSpacing.xLarge}`,
-    minHeight: '100%'
+    margin: `${theme.customSpacing.xLarge} auto`,
+    minHeight: '100%',
+    width: '95%'
   }
 }));
