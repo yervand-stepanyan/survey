@@ -82,7 +82,8 @@ function CustomPieChart({ data, title, customText }) {
 
 CustomPieChart.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  customText: PropTypes.array.isRequired
 };
 
 renderCustomizedLabel.propTypes = {
@@ -92,7 +93,6 @@ renderCustomizedLabel.propTypes = {
   innerRadius: PropTypes.number.isRequired,
   outerRadius: PropTypes.number.isRequired,
   percent: PropTypes.number.isRequired,
-  customText: PropTypes.array.isRequired
 };
 
 export default CustomPieChart;
