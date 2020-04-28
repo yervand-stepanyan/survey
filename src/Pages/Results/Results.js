@@ -8,15 +8,20 @@ import { useStyles } from './Results.style';
 function Results() {
   const classes = useStyles();
   const { id } = useParams();
-  const { stateSurveyAnswer } = useStore();
+  const { stateSurveyAnswer, stateSurvey } = useStore();
   const answers = stateSurveyAnswer.filter(
     surveyAnswers => surveyAnswers.survey.id === id
   );
 
-  // const survey = answers.length ? answers[0].survey : {};
+  const [survey] = stateSurvey.filter(
+    item => item.id === id
+  );
+
+  const surveyTitle = survey ? survey.title : '';
+
   return (
     <div className={classes.container}>
-      <ResultsBlock answers={answers} />
+      <ResultsBlock answers={answers} surveyTitle={surveyTitle} />
     </div>
   );
 }
