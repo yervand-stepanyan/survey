@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  singleSurveyContainer: {
+  surveyComponentContainer: {
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',

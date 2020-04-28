@@ -26,7 +26,7 @@ function SurveyComponent({
   const classes = useStyles();
 
   return (
-    <div className={classes.singleSurveyContainer}>
+    <div className={classes.surveyComponentContainer}>
       <Typography variant="h6" component="h2">
         {title}
       </Typography>
