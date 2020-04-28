@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
 import {
   NOT_FOUND_SURVEY_TITLE,
   NOT_FOUND_SURVEY_TEXT
 } from '../../Globals/variables';
+import PageLoader from '../../Components/Loaders/PageLoader';
 import SurveyQuestions from '../../Components/TakeSurveyBlock/SurveyQuestions';
 import { useStore } from '../../State/use-store';
 import { useStyles } from './TakeSurvey.style';
@@ -31,9 +31,7 @@ function TakeSurvey() {
   return (
     <div className={classes.takeSurveyContainer}>
       {loadingData ? (
-        <div>
-          <CircularProgress size={60} thickness={4} />
-        </div>
+        <PageLoader />
       ) : (
         <div>
           {survey ? (

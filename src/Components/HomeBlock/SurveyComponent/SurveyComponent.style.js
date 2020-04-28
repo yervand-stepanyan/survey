@@ -72,21 +72,5 @@ export const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: 'none'
-  },
-  buttonProgress: {
-    color: '#3F51B5',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12
-  },
-  buttonRemoveProgress: {
-    color: '#F50057',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12
   }
 }));

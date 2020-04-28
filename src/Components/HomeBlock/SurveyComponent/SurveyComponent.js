@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PollIcon from '@material-ui/icons/Poll';
-import { Typography } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
+import ButtonLoader from '../../Loaders/ButtonLoader';
 import ROUTES from '../../../Routes/Routes';
 import { useStyles } from './SurveyComponent.style';
 
@@ -46,11 +46,7 @@ function SurveyComponent({
             </Button>
           </Link>
           {buttonToLoad === id && loadingButton && (
-            <CircularProgress
-              className={classes.buttonProgress}
-              size={24}
-              thickness={8}
-            />
+            <ButtonLoader color="green" />
           )}
         </div>
         <div className={classes.buttonContainer}>
@@ -66,11 +62,7 @@ function SurveyComponent({
             </Button>
           </Link>
           {buttonToLoad === id && loadingButton && (
-            <CircularProgress
-              className={classes.buttonProgress}
-              size={24}
-              thickness={8}
-            />
+            <ButtonLoader color="blue" />
           )}
         </div>
         <div className={classes.buttonContainer}>
@@ -83,11 +75,7 @@ function SurveyComponent({
             <DeleteIcon />
           </Button>
           {buttonToLoad === id && loadingRemove && (
-            <CircularProgress
-              className={classes.buttonRemoveProgress}
-              size={24}
-              thickness={8}
-            />
+            <ButtonLoader color="pink" />
           )}
         </div>
       </div>

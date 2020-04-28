@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
 import { addSurveyAnswer } from '../../../State/actions';
+import ButtonLoader from '../../Loaders/ButtonLoader';
 import { doPost } from '../../../FetchAPI/fetchData';
 import ROUTES from '../../../Routes/Routes';
 import SurveyQuestion from '../SurveyQuestion';
@@ -123,13 +123,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
         >
           {SUBMIT_TEXT}
         </Button>
-        {loading && (
-          <CircularProgress
-            className={classes.buttonProgress}
-            size={24}
-            thickness={8}
-          />
-        )}
+        {loading && <ButtonLoader color="green" />}
       </div>
     </div>
   );

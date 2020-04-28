@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
+import ButtonLoader from '../../Loaders/ButtonLoader';
 import { useStyles } from './SaveSurvey.style';
 
 const BUTTON_LABEL = 'Save';
@@ -23,13 +23,7 @@ function SaveSurvey({ disabled, handleSave, loading }) {
         >
           {BUTTON_LABEL}
         </Button>
-        {loading && (
-          <CircularProgress
-            className={classes.buttonProgress}
-            size={24}
-            thickness={8}
-          />
-        )}
+        {loading && <ButtonLoader color="green" />}
       </div>
     </div>
   );

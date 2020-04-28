@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
 import {
@@ -10,11 +9,12 @@ import {
   NO_SURVEY_TITLE,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
-} from '../../Globals/variables';
-import { doDelete } from '../../FetchAPI/fetchData';
-import { removeSurvey } from '../../State/actions';
-import SurveyComponent from '../TakeSurveyBlock/SurveyComponent';
-import { useStore } from '../../State/use-store';
+} from '../../../Globals/variables';
+import { doDelete } from '../../../FetchAPI/fetchData';
+import PageLoader from '../../Loaders/PageLoader';
+import { removeSurvey } from '../../../State/actions';
+import SurveyComponent from '../SurveyComponent';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './HomeBlock.style';
 
 function HomeBlock() {
@@ -97,7 +97,7 @@ function HomeBlock() {
           />
         ))
       )}
-      {loadingData && <CircularProgress size={60} thickness={4} />}
+      {loadingData && <PageLoader />}
     </div>
   );
 }

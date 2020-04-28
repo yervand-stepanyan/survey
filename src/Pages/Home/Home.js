@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HomeBlock from '../../Components/HomeBlock';
+import HomeBlock from '../../Components/HomeBlock/HomeBlock';
 import { useStyles } from './Home.style';
 
 function Home() {
