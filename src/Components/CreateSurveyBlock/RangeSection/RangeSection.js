@@ -29,6 +29,7 @@ function RangeSection({
   const [isChanged, setIsChanged] = useState(false);
   const [isEndEmpty, setIsEndEmpty] = useState(false);
   const [isEqual, setIsEqual] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
   const [isStartEmpty, setIsStartEmpty] = useState(false);
   const [isStepEmpty, setIsStepEmpty] = useState(false);
   const [isStepValid, setIsStepValid] = useState(true);
@@ -95,6 +96,30 @@ function RangeSection({
         (targetKey === 'endValue' && firstKey === 'startValue')
       ) {
         setIsEqual(firstValue === event.target.value);
+      }
+
+      if (
+        targetKey === 'startValue' &&
+        firstKey === 'endValue' &&
+        Number(firstValue)
+      ) {
+        if (Number(firstValue) < Number(event.target.value)) {
+          setIsInvalid(true);
+        } else {
+          setIsInvalid(false);
+        }
+      }
+
+      if (
+        targetKey === 'endValue' &&
+        firstKey === 'startValue' &&
+        Number(firstValue)
+      ) {
+        if (Number(firstValue) > Number(event.target.value)) {
+          setIsInvalid(true);
+        } else {
+          setIsInvalid(false);
+        }
       }
 
       if (firstValue && secondValue) {
@@ -175,7 +200,7 @@ function RangeSection({
         <div className={classes.textFieldsSection}>
           <div className={classes.textFieldWrapper}>
             <TextField
-              error={isStartEmpty || isEqual}
+              error={isStartEmpty || isEqual || isInvalid}
               fullWidth
               id="outlined-basic"
               inputRef={inputEl}
@@ -189,7 +214,7 @@ function RangeSection({
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
-              error={isEndEmpty || isEqual}
+              error={isEndEmpty || isEqual || isInvalid}
               fullWidth
               id="outlined-basic"
               label={END_VALUE_LABEL}
