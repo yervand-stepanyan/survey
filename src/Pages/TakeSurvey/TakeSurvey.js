@@ -24,7 +24,7 @@ function TakeSurvey() {
   }, [stateSurvey, id]);
 
   return (
-    <div className={classes.container}>
+    <div className={classes.takeSurveyContainer}>
       {stateSurvey.length && survey ? (
         <SurveyQuestions
           questions={survey.questions}
@@ -32,7 +32,9 @@ function TakeSurvey() {
           title={survey.title}
         />
       ) : (
-        <CircularProgress size={60} thickness={4} />
+        <div>
+          <CircularProgress size={60} thickness={4} />
+        </div>
       )}
     </div>
   );
