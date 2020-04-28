@@ -1,9 +1,9 @@
 import React from 'react';
 
 import CreateSurveyBlock from '../../Components/CreateSurveyBlock/CreateSurveyBlock';
+import PageLoader from '../../Components/Loaders/PageLoader';
 import { useStore } from '../../State/use-store';
 import { useStyles } from './CreateSurvey.style';
-import PageLoader from '../../Components/Loaders/PageLoader';
 
 function CreateSurvey() {
   const classes = useStyles();

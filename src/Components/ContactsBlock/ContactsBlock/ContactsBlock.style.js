@@ -1,13 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  container: {
+  contactsBlockContainer: {
     display: 'flex',
     flexDirection: 'column',
-    borderRadius: `${theme.borders.borderRadius.base}`,
-    boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    padding: `${theme.customSpacing.small}`
+    width: '90%'
   },
   title: {
     display: 'flex',
@@ -36,6 +34,6 @@ export const useStyles = makeStyles(theme => ({
     boxSizing: 'border-box',
     padding: `${theme.customSpacing.small}`,
     width: '49%',
-    height: '100%'
+    height: '414px'
   }
 }));

@@ -1,8 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
-  container: {
+export const useStyles = makeStyles(theme => ({
+  resultsContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    justifyContent: 'center',
+    marginTop: `${theme.customSpacing.large}`,
+    minHeight: 'inherit'
   }
-});
+}));

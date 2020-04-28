@@ -15,7 +15,7 @@ function ContactsBlock() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.contactsBlockContainer}>
       <div className={classes.title}>
         <Typography variant="h4">{TITLE}</Typography>
       </div>

@@ -11,7 +11,6 @@ import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
 } from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
-import PageLoader from '../../Loaders/PageLoader';
 import { removeSurvey } from '../../../State/actions';
 import SurveyComponent from '../SurveyComponent';
 import { useStore } from '../../../State/use-store';
@@ -27,8 +26,7 @@ function HomeBlock() {
     dispatchSurvey,
     handleOpenSnackbar,
     handleShowSnackbar,
-    isConnectionError,
-    loadingData
+    isConnectionError
   } = useStore();
 
   const handleButtonClick = id => {
@@ -61,7 +59,7 @@ function HomeBlock() {
 
   return (
     <div className={classes.surveysContainer}>
-      {!loadingData && !stateSurvey.length ? (
+      {!stateSurvey.length ? (
         <div>
           {isConnectionError ? (
             <div className={classes.noSurveysContainer}>
@@ -97,7 +95,6 @@ function HomeBlock() {
           />
         ))
       )}
-      {loadingData && <PageLoader />}
     </div>
   );
 }

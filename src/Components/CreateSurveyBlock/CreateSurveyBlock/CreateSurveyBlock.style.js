@@ -7,7 +7,8 @@ export const useStyles = makeStyles(theme => ({
     borderRadius: `${theme.borders.borderRadius.base}`,
     boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    padding: `0 ${theme.customSpacing.small} ${theme.customSpacing.base}`
+    padding: `0 ${theme.customSpacing.small} ${theme.customSpacing.base}`,
+    width: '90%'
   },
   blockTitleWrapper: {
     display: 'flex',

@@ -1,57 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 
-import Typography from '@material-ui/core/Typography';
-
-import {
-  NOT_FOUND_SURVEY_TITLE,
-  NOT_FOUND_SURVEY_TEXT
-} from '../../Globals/variables';
 import PageLoader from '../../Components/Loaders/PageLoader';
-import SurveyQuestions from '../../Components/TakeSurveyBlock/SurveyQuestions';
+import TakeSurveyBlock from '../../Components/TakeSurveyBlock/TakeSurveyBlock';
 import { useStore } from '../../State/use-store';
 import { useStyles } from './TakeSurvey.style';
 
 function TakeSurvey() {
   const classes = useStyles();
-  const { id } = useParams();
-  const { loadingData, stateSurvey } = useStore();
-  const [survey, setSurvey] = useState(
-    stateSurvey.find(item => item.id === id)
-  );
-
-  useEffect(() => {
-    const surveyObject = stateSurvey.find(item => item.id === id);
-
-    if (surveyObject) {
-      setSurvey(surveyObject);
-    }
-  }, [stateSurvey, id]);
+  const { loadingData } = useStore();
 
   return (
     <div className={classes.takeSurveyContainer}>
-      {loadingData ? (
-        <PageLoader />
-      ) : (
-        <div>
-          {survey ? (
-            <SurveyQuestions
-              questions={survey.questions}
-              surveyId={survey.id}
-              title={survey.title}
-            />
-          ) : (
-            <div className={classes.notFoundContainer}>
-              <Typography variant="h3" color="secondary">
-                {NOT_FOUND_SURVEY_TITLE}
-              </Typography>
-              <Typography variant="h4" color="primary">
-                {NOT_FOUND_SURVEY_TEXT}
-              </Typography>
-            </div>
-          )}
-        </div>
-      )}
+      {loadingData ? <PageLoader /> : <TakeSurveyBlock />}
     </div>
   );
 }

@@ -7,7 +7,7 @@ function Contacts() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.contactsContainer}>
       <ContactsBlock />
     </div>
   );
