@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,7 +7,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 
@@ -61,7 +59,7 @@ function CustomPieChart({ data, title }) {
                 COLORS.map(
                   (color, index) =>
                     index === id && (
-                      <ListItem button className={classes.answerDetails}>
+                      <ListItem key={uuid()} className={classes.answerDetails}>
                         <ListItemIcon>
                           <Brightness1RoundedIcon style={{ fill: color }} />
                         </ListItemIcon>
@@ -98,7 +96,7 @@ function CustomPieChart({ data, title }) {
 
 CustomPieChart.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired
+  data: PropTypes.array.isRequired
 };
 
 renderCustomizedLabel.propTypes = {

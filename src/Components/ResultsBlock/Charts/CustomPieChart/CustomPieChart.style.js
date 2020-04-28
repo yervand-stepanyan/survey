@@ -15,12 +15,18 @@ export const useStyles = makeStyles(theme => ({
   },
   chartList: {
     width: '60%',
-    padding: theme.customSpacing.base
+    padding: theme.customSpacing.base,
+    '@media (max-width:400px)': {
+      width: '100%'
+    }
   },
   content: {
     flex: '1 0 auto',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    '@media (max-width:400px)': {
+      display: 'unset'
+    }
   },
   cover: {
     width: 151

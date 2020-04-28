@@ -10,7 +10,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  ResponsiveContainer
 } from 'recharts';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -41,34 +42,33 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
     <Card className={classes.root}>
       <div>
         <CardContent className={classes.content}>
-          <div className={classes.chartList}>
-            <BarChart
-              className={classes.rangeBarChart}
-              width={500}
-              height={300}
-              data={data}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="answers" fill="#82ca9d" />
-            </BarChart>
-          </div>
           <List component="div" aria-label="main mailbox folders">
-            <Typography variant="subtitle1" color="textSecondary">
-              {title}
-            </Typography>
-            <div>
-              {Object.keys(rangeData).map(item => (
-                <ListItem button>
-                  <ListItemIcon>{`${item} :`}</ListItemIcon>
-                  <ListItemText primary={rangeData[item]} />
-                </ListItem>
-              ))}
+            <div className={classes.answerDetails}>
+              <Typography variant="subtitle1" color="textSecondary">
+                {title}
+              </Typography>
+              <div className={classes.answers}>
+                {Object.keys(rangeData).map(item => (
+                  <ListItem key={item}>
+                    <ListItemIcon>{`${item} :`}</ListItemIcon>
+                    <ListItemText primary={rangeData[item]} />
+                  </ListItem>
+                ))}
+              </div>
             </div>
           </List>
+          <div className={classes.chartList}>
+            <ResponsiveContainer>
+              <BarChart className={classes.rangeBarChart} data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="answers" fill="#82ca9d" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </div>
     </Card>
@@ -76,10 +76,10 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
 }
 
 CustomRangeChart.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  startValue: PropTypes.string.isRequired,
-  endValue: PropTypes.string.isRequired
+  startValue: PropTypes.number.isRequired,
+  endValue: PropTypes.number.isRequired
 };
 
 export default CustomRangeChart;

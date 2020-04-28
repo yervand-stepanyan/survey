@@ -1,56 +1,72 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
 
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
+import { ANSWER_TYPES } from '../../../Globals/variables';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
-import CustomTextChart from '../Charts/CustomTextChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
-import getSurveyResults from '../getSurveyResults';
+import CustomTextChart from '../Charts/CustomTextChart';
+import PrepareSurveyResults from '../PrepareSurveyResults';
+import { useStyles } from './ResultsBlock.style';
 
-function ResultsBlock() {
-  const result = getSurveyResults(1);
+function ResultsBlock({ answers }) {
+  const classes = useStyles();
+  const result = PrepareSurveyResults(answers);
+  const SurveyTitle = answers[0] ? answers[0].survey.title : '';
 
   return (
     <>
       <CssBaseline />
       <Container maxWidth="md">
+        <Typography variant="h4" className={classes.surveyTitle}>
+          {SurveyTitle}
+        </Typography>
         <Typography component="div">
-          {result.map(res => {
+          {Object.values(result).map(res => {
             switch (res.type) {
-              case 'checkbox':
+              case ANSWER_TYPES.checkbox:
                 return (
                   <CustomPieChart
+                    key={res.id}
                     title={res.title}
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'radiobutton':
+              case ANSWER_TYPES.radiobutton:
                 return (
                   <CustomPieChart
+                    key={res.id}
                     title={res.title}
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'dropdown':
+              case ANSWER_TYPES.dropdown:
                 return (
                   <CustomPieChart
+                    key={res.id}
                     title={res.title}
                     data={Object.values(res.answers)}
                   />
                 );
-              case 'text':
+              case ANSWER_TYPES.input:
                 return (
                   <CustomTextChart
+                    key={res.id}
                     title={res.title}
                     data={Object.values(res.textAnswers)}
-                    count={res.count}
+                    count={res.textAnswers.length}
                   />
                 );
-              case 'range':
+              case ANSWER_TYPES.range:
                 return (
                   <CustomRangeChart
+                    key={res.id}
                     title={res.title}
                     data={Object.values(res.answers)}
                     startValue={res.startValue}
@@ -59,7 +75,13 @@ function ResultsBlock() {
                   />
                 );
               default:
-                return 'there is no answer';
+                return (
+                  <Card key={uuid()} style={{ marginBottom: 14 }}>
+                    <CardContent>
+                      <Typography>There is no answer</Typography>
+                    </CardContent>
+                  </Card>
+                );
             }
           })}
         </Typography>
@@ -67,5 +89,9 @@ function ResultsBlock() {
     </>
   );
 }
+
+ResultsBlock.propTypes = {
+  answers: PropTypes.array.isRequired
+};
 
 export default ResultsBlock;
