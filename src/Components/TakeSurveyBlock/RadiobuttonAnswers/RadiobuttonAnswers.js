@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -17,7 +17,15 @@ function RadiobuttonAnswers({
   const classes = useStyles();
   const [textValue, setTextValue] = useState('');
   const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
+  const [isInputDisable, setIsInputDisable] = useState(true);
   const inputEl = useRef(null);
+
+  useEffect(() => {
+    if (!isInputDisable) {
+      inputEl.current.focus();
+    }
+  });
 
   const handleChange = event => {
     let isLastInputChosen = false;
@@ -30,14 +38,25 @@ function RadiobuttonAnswers({
 
     if (isLastInputChosen) {
       receiveAnswers([], textValue, questionId);
-      inputEl.current.focus();
+      setIsInputDisable(false);
     } else {
       receiveAnswers([event.target.value], '', questionId);
+      setIsInputDisable(true);
+      setError(false);
+      setTextValue('');
     }
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
     receiveAnswers([], e.target.value, questionId);
+    if (e.target.value) {
+      setError(false);
+    }
+  };
+  const handleOnBlur = () => {
+    if (!textValue) {
+      setError(true);
+    }
   };
 
   const lastAnswersId = answers[answers.length - 1].id;
@@ -72,10 +91,12 @@ function RadiobuttonAnswers({
                     className={classes.radiobuttonInputAnswer}
                     id="standard-basic"
                     inputRef={inputEl}
-                    error={!textValue}
-                    label={textValue ? 'Write here' : 'Invalid input'}
+                    error={error}
+                    label={error ? 'Invalid input' : 'Write here'}
                     value={textValue}
                     onChange={handleTextChange}
+                    disabled={isInputDisable}
+                    onBlur={handleOnBlur}
                   />
                 ) : null}
               </div>

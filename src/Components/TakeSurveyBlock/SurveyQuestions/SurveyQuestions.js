@@ -31,6 +31,8 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
     handleShowSnackbar
   } = useStore();
 
+  console.log(surveyAnswers);
+
   useEffect(() => {
     setResults({ survey: surveyId, answers: surveyAnswers });
   }, [surveyId, surveyAnswers]);
