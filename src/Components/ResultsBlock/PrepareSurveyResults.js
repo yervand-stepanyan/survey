@@ -84,6 +84,7 @@ function PrepareSurveyResults(submissions) {
         }
         results[answer.questionId].answers[answer.markedAnswers[0]].value += 1;
       } else if (results[answer.questionId].type === "RANGE") {
+      
         if (
           typeof results[answer.questionId].answers[answer.customAnswer] ===
           "undefined"
@@ -95,9 +96,9 @@ function PrepareSurveyResults(submissions) {
           };
         }
         results[answer.questionId].answers[answer.customAnswer].answers += 1;
-        results[answer.questionId].startValue = 1;
-        results[answer.questionId].endValue = 100;
-        results[answer.questionId].steptValue = 1;
+        results[answer.questionId].startValue = subQuestion.startValue;
+        results[answer.questionId].endValue = subQuestion.endValue;
+        results[answer.questionId].steptValue = subQuestion.stepValue;
       } else if (results[answer.questionId].type === "INPUT") {
         results[answer.questionId].textAnswers.push(answer.customAnswer);
       }
