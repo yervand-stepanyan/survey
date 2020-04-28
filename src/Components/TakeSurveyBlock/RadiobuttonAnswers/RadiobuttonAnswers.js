@@ -28,11 +28,12 @@ function RadiobuttonAnswers({
     }
 
     setValue(event.target.value);
-    receiveAnswers(
-      [event.target.value],
-      isLastInputChosen ? textValue : '',
-      questionId
-    );
+
+    if (isLastInputChosen) {
+      receiveAnswers([], textValue, questionId);
+    } else {
+      receiveAnswers([event.target.value], '', questionId);
+    }
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
@@ -60,8 +61,10 @@ function RadiobuttonAnswers({
         })}
         {isInputVisible ? (
           <TextField
+            error={!textValue}
             id="outlined-required"
             variant="outlined"
+            label={textValue ? 'Write here' : 'Invalid input'}
             value={textValue}
             onChange={handleTextChange}
           />
