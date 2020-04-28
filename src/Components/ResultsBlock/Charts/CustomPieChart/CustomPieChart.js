@@ -11,12 +11,12 @@ import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
 import uuid from 'react-uuid';
 
-import renderCustomizedLabel from './renderCustomizedLabel'
+import renderCustomizedLabel from './renderCustomizedLabel';
+import CustomAnswersModal from './CustomAnswersModal';
 
 import { useStyles } from './CustomPieChart.style';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
-
 
 function CustomPieChart({ data, title, customText }) {
   console.log(customText)
@@ -39,9 +39,9 @@ function CustomPieChart({ data, title, customText }) {
                           <ListItemIcon>
                             <Brightness1RoundedIcon style={{ fill: color }} />
                           </ListItemIcon>
+                          <ListItemText primary={val.name} className={classes.customAnswer} />
+                          <CustomAnswersModal customText={customText} title={title}  />
 
-
-                          <ListItemText primary={val.name} />
                         </ListItem>
                       ) : (
                         <ListItem key={uuid()} className={classes.answerDetails}>
