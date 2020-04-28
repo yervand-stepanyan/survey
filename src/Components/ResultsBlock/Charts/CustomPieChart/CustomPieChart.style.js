@@ -41,6 +41,9 @@ export const useStyles = makeStyles(theme => ({
     flex: 'unset',
     marginRight: theme.customSpacing.base
   },
+  dialog: {
+    minWidth: 300
+  },
   playIcon: {
     height: 38,
     width: 38
