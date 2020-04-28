@@ -78,8 +78,8 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
 CustomRangeChart.propTypes = {
   data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  startValue: PropTypes.number.isRequired,
-  endValue: PropTypes.number.isRequired
+  startValue: PropTypes.string.isRequired,
+  endValue: PropTypes.string.isRequired
 };
 
 export default CustomRangeChart;
