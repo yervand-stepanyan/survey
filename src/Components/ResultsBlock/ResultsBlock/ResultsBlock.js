@@ -15,11 +15,11 @@ import CustomTextChart from '../Charts/CustomTextChart';
 import PrepareSurveyResults from '../PrepareSurveyResults';
 import { useStyles } from './ResultsBlock.style';
 
-function ResultsBlock({ answers }) {
+function ResultsBlock({ answers, surveyTitle }) {
   const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-  const SurveyTitle = answers[0] ? answers[0].survey.title : '';
-
+  // const SurveyTitle = answers[0] ? answers[0].survey.title : '';
+  // console.log(title)
   return (
     <>
       <CssBaseline />
