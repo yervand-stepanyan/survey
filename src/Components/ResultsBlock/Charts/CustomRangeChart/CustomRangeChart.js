@@ -25,7 +25,6 @@ import { useStyles } from './CustomRangeChart.style';
 
 function CustomRangeChart({ data, title, startValue, endValue }) {
   const classes = useStyles();
-  console.log(data)
   const rangeData = CalculateRangeData(data);
 
   const lastValue = data.filter(item => item.name === endValue);

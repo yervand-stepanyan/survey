@@ -18,7 +18,7 @@ import { useStyles } from './ResultsBlock.style';
 function ResultsBlock({ answers, surveyTitle }) {
   const classes = useStyles();
   const result = PrepareSurveyResults(answers);
-  
+
   return (
     <>
       <CssBaseline />
@@ -30,6 +30,8 @@ function ResultsBlock({ answers, surveyTitle }) {
           {Object.values(result).length > 0 ?
           
             Object.values(result).map(res => {
+              console.log(result)
+
               switch (res.type) {
                 case ANSWER_TYPES.checkbox:
                   return (
@@ -45,6 +47,7 @@ function ResultsBlock({ answers, surveyTitle }) {
                       data={Object.values(res.answers)}
                       key={res.id}
                       title={res.title}
+                      customText={res.textAnswers}
                     />
                   );
                 case ANSWER_TYPES.dropdown:

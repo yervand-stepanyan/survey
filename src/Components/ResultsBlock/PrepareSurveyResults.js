@@ -2,7 +2,6 @@ function PrepareSurveyResults(submissions) {
   const results = {};
 
   submissions.forEach(submission => {
-    console.log(submission)
     submission.answers.forEach(answer => {
       const [subQuestion] = submission.survey.questions.filter(
         question => question.id === answer.questionId

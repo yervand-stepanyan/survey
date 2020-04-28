@@ -9,41 +9,17 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
-
 import uuid from 'react-uuid';
+
+import renderCustomizedLabel from './renderCustomizedLabel'
 
 import { useStyles } from './CustomPieChart.style';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
-const RADIAN = Math.PI / 180;
 
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? 'start' : 'end'}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
-function CustomPieChart({ data, title }) {
+function CustomPieChart({ data, title, customText }) {
+  console.log(customText)
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -58,14 +34,26 @@ function CustomPieChart({ data, title }) {
                 COLORS.map(
                   (color, index) =>
                     index === id && (
-                      <ListItem key={uuid()} className={classes.answerDetails}>
-                        <ListItemIcon>
-                          <Brightness1RoundedIcon style={{ fill: color }} />
-                        </ListItemIcon>
+                      val.name === 'other' ? (
+                        <ListItem key={uuid()} className={classes.answerDetails}>
+                          <ListItemIcon>
+                            <Brightness1RoundedIcon style={{ fill: color }} />
+                          </ListItemIcon>
 
-                        <ListItemText primary={val.name} />
-                      </ListItem>
-                    )
+
+                          <ListItemText primary={val.name} />
+                        </ListItem>
+                      ) : (
+                        <ListItem key={uuid()} className={classes.answerDetails}>
+                          <ListItemIcon>
+                            <Brightness1RoundedIcon style={{ fill: color }} />
+                          </ListItemIcon>
+
+                          <ListItemText primary={val.name} />
+                        </ListItem>
+                      )
+                      
+                    ) 
                 )
               )}
             </List>
