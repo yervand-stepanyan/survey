@@ -24,7 +24,7 @@ function ResultsBlock({ answers }) {
     <>
       <CssBaseline />
       <Container maxWidth="md">
-        <Typography variant="h4" className={classes.surveyTitle}>
+        <Typography className={classes.surveyTitle} variant="h4">
           {SurveyTitle}
         </Typography>
         <Typography component="div">
@@ -33,45 +33,45 @@ function ResultsBlock({ answers }) {
               case ANSWER_TYPES.checkbox:
                 return (
                   <CustomPieChart
+                    data={Object.values(res.answers)}
                     key={res.id}
                     title={res.title}
-                    data={Object.values(res.answers)}
                   />
                 );
               case ANSWER_TYPES.radiobutton:
                 return (
                   <CustomPieChart
+                    data={Object.values(res.answers)}
                     key={res.id}
                     title={res.title}
-                    data={Object.values(res.answers)}
                   />
                 );
               case ANSWER_TYPES.dropdown:
                 return (
                   <CustomPieChart
+                    data={Object.values(res.answers)}
                     key={res.id}
                     title={res.title}
-                    data={Object.values(res.answers)}
                   />
                 );
               case ANSWER_TYPES.input:
                 return (
                   <CustomTextChart
+                    count={res.textAnswers.length}
+                    data={Object.values(res.textAnswers)}
                     key={res.id}
                     title={res.title}
-                    data={Object.values(res.textAnswers)}
-                    count={res.textAnswers.length}
                   />
                 );
               case ANSWER_TYPES.range:
                 return (
                   <CustomRangeChart
-                    key={res.id}
-                    title={res.title}
                     data={Object.values(res.answers)}
-                    startValue={res.startValue}
                     endValue={res.endValue}
+                    key={res.id}
+                    startValue={res.startValue}
                     stepValue={res.stepValue}
+                    title={res.title}
                   />
                 );
               default:
