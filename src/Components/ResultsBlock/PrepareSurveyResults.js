@@ -2,6 +2,7 @@ function PrepareSurveyResults(submissions) {
   const results = {};
 
   submissions.forEach(submission => {
+    console.log(submission)
     submission.answers.forEach(answer => {
       const [subQuestion] = submission.survey.questions.filter(
         question => question.id === answer.questionId
@@ -68,21 +69,20 @@ function PrepareSurveyResults(submissions) {
         }
       } else if (results[answer.questionId].type === "DROPDOWN") {
         const [optionData] = subQuestion.answers.filter(
-          item => item.id === answer.customAnswer
+          item => item.id === answer.markedAnswers[0]
         );
 
         if (
-          typeof results[answer.questionId].answers[answer.customAnswer] ===
+          typeof results[answer.questionId].answers[answer.markedAnswers[0]] ===
           "undefined"
         ) {
-          results[answer.questionId].answers[answer.customAnswer] = {
+          results[answer.questionId].answers[answer.markedAnswers[0]] = {
             name: optionData.title,
-
             value: 0,
-            id: answer.customAnswer
+            id: answer.markedAnswers[0]
           };
         }
-        results[answer.questionId].answers[answer.customAnswer].value += 1;
+        results[answer.questionId].answers[answer.markedAnswers[0]].value += 1;
       } else if (results[answer.questionId].type === "RANGE") {
         if (
           typeof results[answer.questionId].answers[answer.customAnswer] ===
