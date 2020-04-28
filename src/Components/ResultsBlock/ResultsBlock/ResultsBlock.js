@@ -28,10 +28,7 @@ function ResultsBlock({ answers, surveyTitle }) {
         </Typography>
         <Typography component="div">
           {Object.values(result).length > 0 ?
-          
             Object.values(result).map(res => {
-              console.log(result)
-
               switch (res.type) {
                 case ANSWER_TYPES.checkbox:
                   return (

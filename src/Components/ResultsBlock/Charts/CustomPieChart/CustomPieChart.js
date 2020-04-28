@@ -19,7 +19,6 @@ import { useStyles } from './CustomPieChart.style';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
 function CustomPieChart({ data, title, customText }) {
-  console.log(customText)
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -92,7 +91,8 @@ renderCustomizedLabel.propTypes = {
   midAngle: PropTypes.number.isRequired,
   innerRadius: PropTypes.number.isRequired,
   outerRadius: PropTypes.number.isRequired,
-  percent: PropTypes.number.isRequired
+  percent: PropTypes.number.isRequired,
+  customText: PropTypes.array.isRequired
 };
 
 export default CustomPieChart;
