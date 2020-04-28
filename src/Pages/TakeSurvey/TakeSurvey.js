@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
+import {
+  NOT_FOUND_SURVEY_TITLE,
+  NOT_FOUND_SURVEY_TEXT
+} from '../../Globals/variables';
 import SurveyQuestions from '../../Components/TakeSurveyBlock/SurveyQuestions';
 import { useStore } from '../../State/use-store';
 import { useStyles } from './TakeSurvey.style';
@@ -10,7 +15,7 @@ import { useStyles } from './TakeSurvey.style';
 function TakeSurvey() {
   const classes = useStyles();
   const { id } = useParams();
-  const { stateSurvey } = useStore();
+  const { loadingData, stateSurvey } = useStore();
   const [survey, setSurvey] = useState(
     stateSurvey.find(item => item.id === id)
   );
@@ -25,15 +30,28 @@ function TakeSurvey() {
 
   return (
     <div className={classes.takeSurveyContainer}>
-      {stateSurvey.length && survey ? (
-        <SurveyQuestions
-          questions={survey.questions}
-          surveyId={survey.id}
-          title={survey.title}
-        />
-      ) : (
+      {loadingData ? (
         <div>
           <CircularProgress size={60} thickness={4} />
+        </div>
+      ) : (
+        <div>
+          {survey ? (
+            <SurveyQuestions
+              questions={survey.questions}
+              surveyId={survey.id}
+              title={survey.title}
+            />
+          ) : (
+            <div className={classes.notFoundContainer}>
+              <Typography variant="h3" color="secondary">
+                {NOT_FOUND_SURVEY_TITLE}
+              </Typography>
+              <Typography variant="h4" color="primary">
+                {NOT_FOUND_SURVEY_TEXT}
+              </Typography>
+            </div>
+          )}
         </div>
       )}
     </div>

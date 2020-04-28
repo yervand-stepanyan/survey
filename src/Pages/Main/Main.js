@@ -132,21 +132,3 @@ function Main() {
 }
 
 export default Main;
-
-// doGet('surveys')
-//   .then(res => {
-//     const reversedArray = res.slice().reverse();
-//
-//     dispatchSurvey({ type: 'ADD_SURVEYS', payload: reversedArray });
-//
-//     setLoadingData(false);
-//   })
-//   .catch(() => setLoadingData(false));
-//
-// doGet('survey-answers')
-//   .then(res => {
-//     dispatchSurveyAnswer({ type: 'ADD_SURVEY_ANSWERS', payload: res });
-//
-//     setLoadingData(false);
-//   })
-//   .catch(() => setLoadingData(false));

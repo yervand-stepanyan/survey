@@ -70,6 +70,9 @@ export const MENU_ITEMS = [
 export const NO_SURVEY_TITLE = 'No surveys yet!';
 export const NO_SURVEY_TEXT = 'Create the first survey!';
 
+export const NOT_FOUND_SURVEY_TITLE = 'Survey not found!';
+export const NOT_FOUND_SURVEY_TEXT = 'Return to home page!';
+
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';

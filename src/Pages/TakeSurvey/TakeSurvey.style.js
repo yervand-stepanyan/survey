@@ -8,5 +8,10 @@ export const useStyles = makeStyles(theme => ({
     height: 'auto',
     marginTop: `${theme.customSpacing.xxLarge}`,
     padding: `0 ${theme.customSpacing.base}`
+  },
+  notFoundContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column'
   }
 }));
