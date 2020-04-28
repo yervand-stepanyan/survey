@@ -27,9 +27,12 @@ function SurveyComponent({
 
   return (
     <div className={classes.surveyComponentContainer}>
-      <Typography variant="h6" component="h2">
-        {title}
-      </Typography>
+      <div className={classes.surveyTitleContainer}>
+        <Typography variant="h6" component="h2" className={classes.surveyTitle}>
+          {title}
+        </Typography>
+      </div>
+
       <div className={classes.takeAndResultsCellsContainer}>
         <div className={classes.buttonContainer}>
           <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>

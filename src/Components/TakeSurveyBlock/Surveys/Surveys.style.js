@@ -8,7 +8,13 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     borderRadius: `${theme.borders.borderRadius.base}`,
     boxSizing: 'border-box',
-    width: '60%'
+    width: '60%',
+    '@media (max-width:1000px)': {
+      width: '80%'
+    },
+    '@media (max-width:450px)': {
+      width: '95%'
+    }
   },
   noSurveysContainer: {
     display: 'flex',

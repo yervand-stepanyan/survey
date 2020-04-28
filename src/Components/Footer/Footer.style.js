@@ -6,7 +6,6 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: `${theme.customSpacing.xxxLarge}`,
-    minWidth: '280px',
     padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`,
     position: 'relative',
     bottom: 0,
