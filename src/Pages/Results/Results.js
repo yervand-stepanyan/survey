@@ -17,9 +17,11 @@ function Results() {
     item => item.id === id
   );
 
+  const surveyTitle = survey ? survey.title : '';
+
   return (
     <div className={classes.container}>
-      <ResultsBlock answers={answers} surveyTitle={survey.title} />
+      <ResultsBlock answers={answers} surveyTitle={surveyTitle} />
     </div>
   );
 }
