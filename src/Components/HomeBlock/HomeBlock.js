@@ -10,14 +10,14 @@ import {
   NO_SURVEY_TITLE,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
-} from '../../../Globals/variables';
-import { doDelete } from '../../../FetchAPI/fetchData';
-import { removeSurvey } from '../../../State/actions';
-import SurveyComponent from '../SurveyComponent';
-import { useStore } from '../../../State/use-store';
-import { useStyles } from './Surveys.style';
+} from '../../Globals/variables';
+import { doDelete } from '../../FetchAPI/fetchData';
+import { removeSurvey } from '../../State/actions';
+import SurveyComponent from '../TakeSurveyBlock/SurveyComponent';
+import { useStore } from '../../State/use-store';
+import { useStyles } from './HomeBlock.style';
 
-function Surveys() {
+function HomeBlock() {
   const classes = useStyles();
   const [buttonToLoad, setButtonToLoad] = useState('');
   const [loadingButton, setLoadingButton] = useState(false);
@@ -102,4 +102,4 @@ function Surveys() {
   );
 }
 
-export default Surveys;
+export default HomeBlock;

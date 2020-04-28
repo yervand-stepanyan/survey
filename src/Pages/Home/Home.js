@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Surveys from '../../Components/TakeSurveyBlock/Surveys';
+import HomeBlock from '../../Components/HomeBlock';
 import { useStyles } from './Home.style';
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
 
   return (
     <div className={classes.homeContainer}>
-      <Surveys />
+      <HomeBlock />
     </div>
   );
 }
