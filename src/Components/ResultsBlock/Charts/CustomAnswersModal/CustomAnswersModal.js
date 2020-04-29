@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
@@ -88,7 +89,7 @@ function CustomAnswersModal({ title, customText }) {
           {customText.map(text => (
             <ListItem key={uuid()}>
               <ListItemIcon>
-                <KeyboardArrowRightIcon />
+                <CheckRoundedIcon />
               </ListItemIcon>
 
               <ListItemText primary={text} />
