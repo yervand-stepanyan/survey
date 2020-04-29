@@ -70,9 +70,13 @@ function CustomAnswersModal({ title, customText }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.seeAnswers}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        className={classes.seeAnswers}
+      >
         <PersonPinIcon />
-
         See answers
       </Button>
       <Dialog

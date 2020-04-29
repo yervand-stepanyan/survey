@@ -12,18 +12,16 @@ import Typography from '@material-ui/core/Typography';
 import uuid from 'react-uuid';
 
 import renderCustomizedLabel from './renderCustomizedLabel';
-import CustomAnswersModal from '../CustomAnswersModal'
+import CustomAnswersModal from '../CustomAnswersModal';
 import { useStyles } from './CustomPieChart.style';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
-
 function CustomPieChart({ data, title, customText }) {
   const answers = data.filter(other => other.name !== 'other');
   const [otherAnswer] = data.filter(other => other.name === 'other');
-  if(otherAnswer) {
+  if (otherAnswer) {
     answers.splice(answers.length + 1, 1, otherAnswer);
-
   }
   const classes = useStyles();
   return (

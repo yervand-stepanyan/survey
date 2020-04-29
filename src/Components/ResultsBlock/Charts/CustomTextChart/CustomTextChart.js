@@ -24,10 +24,7 @@ function CustomTextChart({ title, data }) {
         </div>
       </CardContent>
       <div>
-        <CustomAnswersModal 
-          customText={data}
-          title={title}
-        />
+        <CustomAnswersModal customText={data} title={title} />
       </div>
     </Card>
   );
@@ -35,7 +32,7 @@ function CustomTextChart({ title, data }) {
 
 CustomTextChart.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired
   // count: PropTypes.number.isRequired
 };
 

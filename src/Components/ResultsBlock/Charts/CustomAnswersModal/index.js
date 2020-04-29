@@ -1,1 +1,1 @@
-export { default } from './CustomAnswersModal'
+export { default } from './CustomAnswersModal';
