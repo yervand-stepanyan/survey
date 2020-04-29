@@ -1,16 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
+  card: {
+    marginBottom: theme.customSpacing.base
+  },
   surveyComponentContainer: {
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#e6e6e6',
-    marginBottom: `${theme.customSpacing.small}`,
-    padding: `${theme.customSpacing.base} ${theme.customSpacing.xLarge}`,
-    boxShadow: '0 8px 6px -6px black',
-    borderRadius: `${theme.borders.borderRadius.base}`,
+    padding: `${theme.customSpacing.base} ${theme.customSpacing.base}  ${theme.customSpacing.base} ${theme.customSpacing.xLarge}`,
+    borderRadius: `${theme.borders.borderRadius.small}`,
     '@media (max-width:823px)': {
       display: 'flex',
       flexDirection: 'column',
@@ -25,6 +25,7 @@ export const useStyles = makeStyles(theme => ({
   },
   surveyTitleContainer: {
     display: 'flex',
+    color: '#606060',
     alignItems: 'center',
     width: '100%',
     '@media (max-width:823px)': {
@@ -39,6 +40,7 @@ export const useStyles = makeStyles(theme => ({
   takeAndResultsCellsContainer: {
     display: 'flex',
     justifyContent: 'center',
+    marginLeft: 10,
     alignItems: 'center',
     '@media (max-width:450px)': {
       marginTop: '5px'
@@ -72,5 +74,8 @@ export const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: 'none'
+  },
+  resultsButton: {
+    color: theme.color.mainColorGreen
   }
 }));
