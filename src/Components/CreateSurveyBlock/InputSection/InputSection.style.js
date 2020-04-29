@@ -22,11 +22,14 @@ export const useStyles = makeStyles(theme => ({
     height: '75px',
     width: '150px'
   },
-
   typeImage: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  textContainer: {
+    cursor: 'pointer',
+    outline: 'none'
   },
   text: {
     color: `${theme.customTypography.fontColor.base}`

@@ -22,7 +22,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   const [isSubmitted, setIsSubmitted] = useState(!!inputTypeProps || false);
   const { disableSave, handleAddInputType, handleSubmitQuestion } = useStore();
 
-  const handleClick = e => {
+  const handleImageClick = e => {
     const type = e.target.alt ? e.target.alt : e.target.children[0].alt;
 
     setInputType(type);
@@ -38,9 +38,19 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
     }
   };
 
+  const handleTextClick = type => {
+    setInputType(type);
+
+    setIsSubmitted(false);
+
+    handleAddInputType(activeId, type);
+
+    disableSave(true);
+  };
+
   const handleEnterKey = e => {
     if (e.key === 'Enter') {
-      handleClick(e);
+      handleImageClick(e);
     }
   };
 
@@ -56,14 +66,15 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
         <Typography variant="h5">{TITLE}</Typography>
       </div>
       <div className={classes.typeWrapper}>
-        {INPUT_TYPES.map(img => (
+        {INPUT_TYPES.map(type => (
           <ImageContainer
             classes={classes}
-            handleClick={handleClick}
             handleEnterKey={handleEnterKey}
+            handleImageClick={handleImageClick}
+            handleTextClick={handleTextClick}
             imageClicked={inputType}
-            img={img}
-            key={img.name}
+            type={type}
+            key={type.name}
           />
         ))}
       </div>

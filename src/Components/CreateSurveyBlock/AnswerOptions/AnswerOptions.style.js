@@ -13,7 +13,8 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   textContainer: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    outline: 'none'
   },
   text: {
     color: `${theme.customTypography.fontColor.base}`

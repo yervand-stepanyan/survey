@@ -7,55 +7,55 @@ import Zoom from '@material-ui/core/Zoom';
 
 function ImageContainer({
   classes,
-  handleClick,
   handleEnterKey,
-  // handleTextClick,
+  handleImageClick,
+  handleTextClick,
   imageClicked,
-  img,
+  type,
   tabIndex
 }) {
   return (
-    <div className={classes.typeImage} key={img.name}>
+    <div className={classes.typeImage} key={type.name}>
       <div
         className={classes.textContainer}
-        // onClick={e => handleTextClick(e)}
-        // onKeyDown={e => handleEnterKey(e)}
-        // role="button"
-        // tabIndex={tabIndex}
+        onClick={() => handleTextClick(type.name)}
+        onKeyDown={e => handleEnterKey(e)}
+        role="button"
+        tabIndex={tabIndex}
       >
         <Typography
           className={
-            imageClicked === img.name ? classes.textClicked : classes.text
+            imageClicked === type.name ? classes.textClicked : classes.text
           }
           gutterBottom
           variant="subtitle1"
         >
-          {img.text}
+          {type.text}
         </Typography>
       </div>
       <Tooltip
         arrow
-        key={img.name}
-        title={img.tooltip}
+        key={type.name}
+        title={type.tooltip}
         TransitionComponent={Zoom}
       >
         <div
           className={
-            imageClicked === img.name
+            imageClicked === type.name
               ? classes.imageContainerClicked
               : classes.imageContainer
           }
-          onClick={e => handleClick(e)}
+          onClick={e => handleImageClick(e)}
           onKeyDown={e => handleEnterKey(e)}
           role="button"
           tabIndex={tabIndex}
         >
           <img
-            alt={img.name}
+            alt={type.name}
             className={
-              imageClicked === img.name ? classes.imageClicked : classes.image
+              imageClicked === type.name ? classes.imageClicked : classes.image
             }
-            src={img.src}
+            src={type.src}
           />
         </div>
       </Tooltip>
@@ -65,11 +65,12 @@ function ImageContainer({
 
 ImageContainer.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleClick: PropTypes.func.isRequired,
   handleEnterKey: PropTypes.func.isRequired,
+  handleImageClick: PropTypes.func.isRequired,
+  handleTextClick: PropTypes.func.isRequired,
   imageClicked: PropTypes.string,
-  img: PropTypes.object.isRequired,
-  tabIndex: PropTypes.number
+  tabIndex: PropTypes.number,
+  type: PropTypes.object.isRequired
 };
 
 ImageContainer.defaultProps = {

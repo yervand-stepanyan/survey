@@ -11,7 +11,7 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
   const [answerType, setAnswerType] = useState(answerTypeProps || '');
   const { disableSave, handleAddAnswerType } = useStore();
 
-  const handleClick = e => {
+  const handleImageClick = e => {
     const type = e.target.alt ? e.target.alt : e.target.children[0].alt;
 
     setAnswerType(type);
@@ -23,26 +23,33 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
     disableSave(true);
   };
 
-  // const handleTextClick = () => {
-  // };
+  const handleTextClick = type => {
+    setAnswerType(type);
+
+    setType(type);
+
+    handleAddAnswerType(activeId, type);
+
+    disableSave(true);
+  };
 
   const handleEnterKey = e => {
     if (e.key === 'Enter') {
-      handleClick(e);
+      handleImageClick(e);
     }
   };
 
   return (
     <div className={classes.answerOptionsContainer}>
-      {ANSWER_OPTION_TYPES.map(img => (
+      {ANSWER_OPTION_TYPES.map(type => (
         <ImageContainer
           classes={classes}
-          handleClick={handleClick}
           handleEnterKey={handleEnterKey}
-          // handleTextClick={handleTextClick}
+          handleImageClick={handleImageClick}
+          handleTextClick={handleTextClick}
           imageClicked={answerType}
-          img={img}
-          key={img.name}
+          type={type}
+          key={type.name}
         />
       ))}
     </div>
