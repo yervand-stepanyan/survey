@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   notFoundBlockContainer: {},
   card: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: `${theme.customSpacing.large}`
   },
   cardContent: {
     display: 'flex',
@@ -15,4 +16,4 @@ export const useStyles = makeStyles({
   link: {
     textDecoration: 'none'
   }
-});
+}));
