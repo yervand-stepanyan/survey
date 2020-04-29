@@ -59,7 +59,7 @@ function HomeBlock() {
         <NotFoundBlock isConnectionError={isConnectionError} />
       ) : (
         <div>
-          {!stateSurvey.length ? (
+          {stateSurvey.length ? (
             stateSurvey.map(({ id, title }) => (
               <SurveyComponent
                 buttonToLoad={buttonToLoad}
