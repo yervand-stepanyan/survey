@@ -12,13 +12,19 @@ import Typography from '@material-ui/core/Typography';
 import uuid from 'react-uuid';
 
 import renderCustomizedLabel from './renderCustomizedLabel';
-import CustomAnswersModal from './CustomAnswersModal';
-
+import CustomAnswersModal from '../CustomAnswersModal'
 import { useStyles } from './CustomPieChart.style';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
+
 function CustomPieChart({ data, title, customText }) {
+  const answers = data.filter(other => other.name !== 'other');
+  const [otherAnswer] = data.filter(other => other.name === 'other');
+  if(otherAnswer) {
+    answers.splice(answers.length + 1, 1, otherAnswer);
+
+  }
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -29,7 +35,8 @@ function CustomPieChart({ data, title, customText }) {
               <Typography variant="subtitle1" color="textSecondary">
                 {title}
               </Typography>
-              {data.map((val, id) =>
+              {/* {console.log(data)} */}
+              {answers.map((val, id) =>
                 COLORS.map(
                   (color, index) =>
                     index === id &&
@@ -66,7 +73,7 @@ function CustomPieChart({ data, title, customText }) {
               outerRadius={120}
               fill="#8884d8"
               dataKey="value"
-              data={data}
+              data={answers}
               labelLine={false}
               label={renderCustomizedLabel}
             >

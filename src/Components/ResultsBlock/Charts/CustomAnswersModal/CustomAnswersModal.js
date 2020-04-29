@@ -13,9 +13,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+
 import Typography from '@material-ui/core/Typography';
 
-import { useStyles } from './CustomPieChart.style';
+import { useStyles } from './CustomAnswersModal.style';
 
 const styles = theme => ({
   root: {
@@ -31,9 +33,9 @@ const styles = theme => ({
 });
 
 const DialogTitle = withStyles(styles)(props => {
-  const { children, classes, onClose, ...other } = props;
+  const { children, classes, onClose } = props;
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+    <MuiDialogTitle disableTypography className={classes.root}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton
@@ -68,7 +70,9 @@ function CustomAnswersModal({ title, customText }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.seeAnswers}>
+        <PersonPinIcon />
+
         See answers
       </Button>
       <Dialog
