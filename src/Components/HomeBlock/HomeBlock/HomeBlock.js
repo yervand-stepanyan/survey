@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
@@ -12,7 +14,6 @@ import { removeSurvey } from '../../../State/actions';
 import SurveyComponent from '../SurveyComponent';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './HomeBlock.style';
-import { Typography } from '@material-ui/core';
 
 function HomeBlock() {
   const classes = useStyles();
@@ -63,7 +64,7 @@ function HomeBlock() {
           {isConnectionError ? (
             <NotFoundBlock isConnectionError={isConnectionError} />
           ) : (
-            <div>
+            <div className={classes.surveyList}>
               <Typography variant='h4' className={classes.surveyHeading}>
                 Survey List
               </Typography>

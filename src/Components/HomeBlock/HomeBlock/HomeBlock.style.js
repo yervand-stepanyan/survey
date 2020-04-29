@@ -17,5 +17,15 @@ export const useStyles = makeStyles(theme => ({
   surveyHeading: {
     textAlign: 'center',
     padding: theme.customSpacing.large
+  },
+  surveyList: {
+    minWidth: 900,
+    
+    '@media screen and (max-width: 992px)': {
+      minWidth: 'unset'
+    },
+    '@media screen and (min-width: 992px)': {
+
+    },
   }
 }));
