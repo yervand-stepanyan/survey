@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import TextField from '@material-ui/core/TextField';
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider
-} from '@material-ui/pickers';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import { useStyles } from './InputAnswers.style';
 import removeSpaces from '../../../helpers/removeSpaces';
@@ -24,13 +21,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
 
   const handleDateChange = date => {
     setSelectedDate(date);
-    if (date) {
-      const isDateValid = date.getDay();
-
-      if (isDateValid) {
-        receiveAnswers([], date, questionId);
-      }
-    }
+    receiveAnswers([], date, questionId);
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
@@ -50,7 +41,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
   if (inputType === 'DATE') {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
+        <DatePicker
           margin="normal"
           id="date-picker-dialog"
           label={DATE_INPUT_PLACEHOLDER_TEXT}
