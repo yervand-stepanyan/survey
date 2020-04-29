@@ -10,6 +10,7 @@ function ImageContainer({
   handleEnterKey,
   handleImageClick,
   handleTextClick,
+  handleTextEnterKey,
   imageClicked,
   type,
   tabIndex
@@ -17,9 +18,13 @@ function ImageContainer({
   return (
     <div className={classes.typeImage} key={type.name}>
       <div
-        className={classes.textContainer}
+        className={
+          imageClicked === type.name
+            ? classes.textContainerClicked
+            : classes.textContainer
+        }
         onClick={() => handleTextClick(type.name)}
-        onKeyDown={e => handleEnterKey(e)}
+        onKeyDown={e => handleTextEnterKey(e, type.name)}
         role="button"
         tabIndex={tabIndex}
       >
@@ -68,6 +73,7 @@ ImageContainer.propTypes = {
   handleEnterKey: PropTypes.func.isRequired,
   handleImageClick: PropTypes.func.isRequired,
   handleTextClick: PropTypes.func.isRequired,
+  handleTextEnterKey: PropTypes.func.isRequired,
   imageClicked: PropTypes.string,
   tabIndex: PropTypes.number,
   type: PropTypes.object.isRequired

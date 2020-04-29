@@ -54,6 +54,12 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
     }
   };
 
+  const handleTextEnterKey = (e, type) => {
+    if (e.key === 'Enter') {
+      handleTextClick(type);
+    }
+  };
+
   const handleSubmit = () => {
     handleSubmitQuestion(activeId);
 
@@ -72,6 +78,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
             handleEnterKey={handleEnterKey}
             handleImageClick={handleImageClick}
             handleTextClick={handleTextClick}
+            handleTextEnterKey={handleTextEnterKey}
             imageClicked={inputType}
             type={type}
             key={type.name}

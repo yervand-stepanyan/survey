@@ -13,6 +13,9 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   textContainer: {
+    cursor: 'pointer'
+  },
+  textContainerClicked: {
     cursor: 'pointer',
     outline: 'none'
   },
@@ -34,6 +37,7 @@ export const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     filter: 'drop-shadow(8px 8px 10px gray)',
     height: '100px',
+    outline: 'none',
     width: '200px'
   },
   image: {

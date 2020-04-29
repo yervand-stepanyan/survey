@@ -39,6 +39,12 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
     }
   };
 
+  const handleTextEnterKey = (e, type) => {
+    if (e.key === 'Enter') {
+      handleTextClick(type);
+    }
+  };
+
   return (
     <div className={classes.answerOptionsContainer}>
       {ANSWER_OPTION_TYPES.map(type => (
@@ -47,6 +53,7 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
           handleEnterKey={handleEnterKey}
           handleImageClick={handleImageClick}
           handleTextClick={handleTextClick}
+          handleTextEnterKey={handleTextEnterKey}
           imageClicked={answerType}
           type={type}
           key={type.name}
