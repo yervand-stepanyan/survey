@@ -7,6 +7,10 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import TextField from '@material-ui/core/TextField';
 
 import { useStyles } from './RadiobuttonAnswers.style';
+import removeSpaces from '../../../helpers/removeSpaces';
+
+const INPUT_LABEL_PLACEHOLDER_VALID_TEXT = 'Type here';
+const INPUT_LABEL_PLACEHOLDER_ERROR_TEXT = 'Invalid input';
 
 function RadiobuttonAnswers({
   questionId,
@@ -47,14 +51,15 @@ function RadiobuttonAnswers({
     }
   };
   const handleTextChange = e => {
+    const filteredValue = removeSpaces(e.target.value);
     setTextValue(e.target.value);
-    receiveAnswers([], e.target.value, questionId);
-    if (e.target.value) {
+    receiveAnswers([], filteredValue, questionId);
+    if (filteredValue) {
       setError(false);
     }
   };
   const handleOnBlur = () => {
-    if (!textValue) {
+    if (!removeSpaces(textValue)) {
       setError(true);
     }
   };
@@ -92,7 +97,11 @@ function RadiobuttonAnswers({
                     id="standard-basic"
                     inputRef={inputEl}
                     error={error}
-                    label={error ? 'Invalid input' : 'Write here'}
+                    label={
+                      error
+                        ? INPUT_LABEL_PLACEHOLDER_ERROR_TEXT
+                        : INPUT_LABEL_PLACEHOLDER_VALID_TEXT
+                    }
                     value={textValue}
                     onChange={handleTextChange}
                     disabled={isInputDisable}
