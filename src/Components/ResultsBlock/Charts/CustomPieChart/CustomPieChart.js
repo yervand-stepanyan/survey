@@ -65,7 +65,7 @@ function CustomPieChart({ data, title, customText }) {
               )}
             </List>
           </div>
-          <PieChart width={250} height={250} key={uuid()}>
+          <PieChart width={250} height={250} key={uuid()} className={classes.pieChart}>
             <Pie
               innerRadius={40}
               outerRadius={120}
