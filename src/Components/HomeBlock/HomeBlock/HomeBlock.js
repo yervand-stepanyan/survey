@@ -5,6 +5,7 @@ import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
 } from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
+import NoSurveyBlock from '../NoSurveyBlock';
 import NotFoundBlock from '../../NotFoundBlock';
 import { removeSurvey } from '../../../State/actions';
 import SurveyComponent from '../SurveyComponent';
@@ -54,21 +55,27 @@ function HomeBlock() {
 
   return (
     <div className={classes.homeBlockContainer}>
-      {!stateSurvey.length ? (
+      {isConnectionError ? (
         <NotFoundBlock isConnectionError={isConnectionError} />
       ) : (
-        stateSurvey.map(({ id, title }) => (
-          <SurveyComponent
-            buttonToLoad={buttonToLoad}
-            handleButtonClick={handleButtonClick}
-            handleRemoveSurvey={handleRemoveSurvey}
-            id={id}
-            key={id}
-            loadingButton={loadingButton}
-            loadingRemove={loadingRemove}
-            title={title}
-          />
-        ))
+        <div>
+          {!stateSurvey.length ? (
+            stateSurvey.map(({ id, title }) => (
+              <SurveyComponent
+                buttonToLoad={buttonToLoad}
+                handleButtonClick={handleButtonClick}
+                handleRemoveSurvey={handleRemoveSurvey}
+                id={id}
+                key={id}
+                loadingButton={loadingButton}
+                loadingRemove={loadingRemove}
+                title={title}
+              />
+            ))
+          ) : (
+            <NoSurveyBlock />
+          )}
+        </div>
       )}
     </div>
   );

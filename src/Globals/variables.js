@@ -67,8 +67,8 @@ export const MENU_ITEMS = [
   { name: 'Contacts', route: ROUTES.contacts }
 ];
 
-export const NO_SURVEY_TITLE = 'No surveys yet!';
-export const NO_SURVEY_TEXT = 'Create the first survey!';
+export const NO_SURVEY = 'No surveys yet!';
+export const NO_SURVEY_CREATE_BUTTON = 'Click to create the first survey!';
 
 export const NOT_FOUND_404 = '404';
 export const NOT_FOUND_TEXT = 'Not found!';
