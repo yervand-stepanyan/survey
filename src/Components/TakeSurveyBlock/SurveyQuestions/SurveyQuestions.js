@@ -24,6 +24,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState({});
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [surveyAnswers, setSurveyAnswers] = useState([]);
   const {
     dispatchSurveyAnswer,
@@ -32,6 +33,11 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   } = useStore();
 
   useEffect(() => {
+    const disableButton = surveyAnswers.some(
+      answer =>
+        answer.markedAnswers[0] === undefined && answer.customAnswer === ''
+    );
+    setIsButtonDisabled(disableButton);
     setResults({ survey: surveyId, answers: surveyAnswers });
   }, [surveyId, surveyAnswers]);
 
@@ -117,7 +123,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.menuItemButton}
-          disabled={loading}
+          disabled={loading || isButtonDisabled}
           onClick={handleSubmit}
           variant="contained"
         >

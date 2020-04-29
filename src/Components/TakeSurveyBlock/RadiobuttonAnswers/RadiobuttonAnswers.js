@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,30 +15,51 @@ function RadiobuttonAnswers({
   receiveAnswers
 }) {
   const classes = useStyles();
-  const [isInputVisible, setIsInputVisible] = useState(false);
   const [textValue, setTextValue] = useState('');
   const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
+  const [isInputDisable, setIsInputDisable] = useState(true);
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    if (!isInputDisable) {
+      inputEl.current.focus();
+    }
+  });
 
   const handleChange = event => {
     let isLastInputChosen = false;
     if (hasLastInput) {
       const lastAnswer = answers[answers.length - 1];
       isLastInputChosen = lastAnswer.id === event.target.value;
-      setIsInputVisible(isLastInputChosen);
     }
 
     setValue(event.target.value);
 
     if (isLastInputChosen) {
       receiveAnswers([], textValue, questionId);
+      setIsInputDisable(false);
     } else {
       receiveAnswers([event.target.value], '', questionId);
+      setIsInputDisable(true);
+      setError(false);
+      setTextValue('');
     }
   };
   const handleTextChange = e => {
     setTextValue(e.target.value);
     receiveAnswers([], e.target.value, questionId);
+    if (e.target.value) {
+      setError(false);
+    }
   };
+  const handleOnBlur = () => {
+    if (!textValue) {
+      setError(true);
+    }
+  };
+
+  const lastAnswersId = answers[answers.length - 1].id;
 
   return (
     <div className={classes.container}>
@@ -48,27 +69,40 @@ function RadiobuttonAnswers({
         value={value}
         onChange={handleChange}
       >
-        {answers.map(({ id, title }) => {
-          return (
-            <FormControlLabel
-              key={id}
-              className={classes.formControlLabel}
-              value={id}
-              control={<Radio />}
-              label={title}
-            />
-          );
-        })}
-        {isInputVisible ? (
-          <TextField
-            error={!textValue}
-            id="outlined-required"
-            variant="outlined"
-            label={textValue ? 'Write here' : 'Invalid input'}
-            value={textValue}
-            onChange={handleTextChange}
-          />
-        ) : null}
+        <div>
+          {answers.map(({ id, title }) => {
+            return (
+              <div
+                key={id}
+                className={
+                  hasLastInput && lastAnswersId === id
+                    ? classes.radiobuttonInputAnswerContainer
+                    : null
+                }
+              >
+                <FormControlLabel
+                  className={classes.formControlLabel}
+                  value={id}
+                  control={<Radio />}
+                  label={title}
+                />
+                {hasLastInput && lastAnswersId === id ? (
+                  <TextField
+                    className={classes.radiobuttonInputAnswer}
+                    id="standard-basic"
+                    inputRef={inputEl}
+                    error={error}
+                    label={error ? 'Invalid input' : 'Write here'}
+                    value={textValue}
+                    onChange={handleTextChange}
+                    disabled={isInputDisable}
+                    onBlur={handleOnBlur}
+                  />
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
       </RadioGroup>
     </div>
   );

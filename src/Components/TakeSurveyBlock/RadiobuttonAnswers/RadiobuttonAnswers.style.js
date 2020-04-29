@@ -11,5 +11,11 @@ export const useStyles = makeStyles({
     '& .Mui-checked': {
       color: green[500]
     }
+  },
+  radiobuttonInputAnswerContainer: {
+    display: 'flex'
+  },
+  radiobuttonInputAnswer: {
+    paddingBottom: '20px'
   }
 });
