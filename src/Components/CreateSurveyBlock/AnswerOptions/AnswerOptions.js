@@ -23,8 +23,13 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
     disableSave(true);
   };
 
+  // const handleTextClick = () => {
+  // };
+
   const handleEnterKey = e => {
-    if (e.key === 'Enter') handleClick(e);
+    if (e.key === 'Enter') {
+      handleClick(e);
+    }
   };
 
   return (
@@ -34,6 +39,7 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
           classes={classes}
           handleClick={handleClick}
           handleEnterKey={handleEnterKey}
+          // handleTextClick={handleTextClick}
           imageClicked={answerType}
           img={img}
           key={img.name}

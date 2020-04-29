@@ -9,21 +9,30 @@ function ImageContainer({
   classes,
   handleClick,
   handleEnterKey,
+  // handleTextClick,
   imageClicked,
   img,
   tabIndex
 }) {
   return (
     <div className={classes.typeImage} key={img.name}>
-      <Typography
-        className={
-          imageClicked === img.name ? classes.textClicked : classes.text
-        }
-        gutterBottom
-        variant="subtitle1"
+      <div
+        className={classes.textContainer}
+        // onClick={e => handleTextClick(e)}
+        // onKeyDown={e => handleEnterKey(e)}
+        // role="button"
+        // tabIndex={tabIndex}
       >
-        {img.text}
-      </Typography>
+        <Typography
+          className={
+            imageClicked === img.name ? classes.textClicked : classes.text
+          }
+          gutterBottom
+          variant="subtitle1"
+        >
+          {img.text}
+        </Typography>
+      </div>
       <Tooltip
         arrow
         key={img.name}

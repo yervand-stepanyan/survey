@@ -1,3 +1,5 @@
+import { ANSWER_TYPES } from '../../Globals/variables';
+
 function PrepareSurveyResults(submissions) {
   const results = {};
 
@@ -17,7 +19,7 @@ function PrepareSurveyResults(submissions) {
         };
       }
 
-      if (results[answer.questionId].type === 'CHECKBOX') {
+      if (results[answer.questionId].type === ANSWER_TYPES.checkbox) {
         answer.markedAnswers.forEach(optionId => {
           const [optionData] = subQuestion.answers.filter(
             item => item.id === optionId
@@ -34,7 +36,7 @@ function PrepareSurveyResults(submissions) {
 
           results[answer.questionId].answers[optionId].value += 1;
         });
-      } else if (results[answer.questionId].type === 'RADIOBUTTON') {
+      } else if (results[answer.questionId].type === ANSWER_TYPES.radiobutton) {
         const [optionData] = subQuestion.answers.filter(
           item => item.id === answer.markedAnswers[0]
         );
@@ -62,28 +64,29 @@ function PrepareSurveyResults(submissions) {
               id: answer.markedAnswers[0]
             };
           }
+
           results[answer.questionId].answers[
             answer.markedAnswers[0]
           ].value += 1;
         }
-      } else if (results[answer.questionId].type === 'DROPDOWN') {
+      } else if (results[answer.questionId].type === ANSWER_TYPES.dropdown) {
         const [optionData] = subQuestion.answers.filter(
-          item => item.id === answer.customAnswer
+          item => item.id === answer.markedAnswers[0]
         );
 
         if (
-          typeof results[answer.questionId].answers[answer.customAnswer] ===
+          typeof results[answer.questionId].answers[answer.markedAnswers[0]] ===
           'undefined'
         ) {
-          results[answer.questionId].answers[answer.customAnswer] = {
+          results[answer.questionId].answers[answer.markedAnswers[0]] = {
             name: optionData.title,
-
             value: 0,
-            id: answer.customAnswer
+            id: answer.markedAnswers[0]
           };
         }
-        results[answer.questionId].answers[answer.customAnswer].value += 1;
-      } else if (results[answer.questionId].type === 'RANGE') {
+
+        results[answer.questionId].answers[answer.markedAnswers[0]].value += 1;
+      } else if (results[answer.questionId].type === ANSWER_TYPES.range) {
         if (
           typeof results[answer.questionId].answers[answer.customAnswer] ===
           'undefined'
@@ -94,11 +97,12 @@ function PrepareSurveyResults(submissions) {
             id: answer.customAnswer
           };
         }
+
         results[answer.questionId].answers[answer.customAnswer].answers += 1;
-        results[answer.questionId].startValue = 1;
-        results[answer.questionId].endValue = 100;
-        results[answer.questionId].steptValue = 1;
-      } else if (results[answer.questionId].type === 'INPUT') {
+        results[answer.questionId].startValue = subQuestion.startValue;
+        results[answer.questionId].endValue = subQuestion.endValue;
+        results[answer.questionId].steptValue = subQuestion.stepValue;
+      } else if (results[answer.questionId].type === ANSWER_TYPES.input) {
         results[answer.questionId].textAnswers.push(answer.customAnswer);
       }
     });

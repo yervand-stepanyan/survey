@@ -25,7 +25,6 @@ import { useStyles } from './CustomRangeChart.style';
 
 function CustomRangeChart({ data, title, startValue, endValue }) {
   const classes = useStyles();
-
   const rangeData = CalculateRangeData(data);
 
   const lastValue = data.filter(item => item.name === endValue);
@@ -78,8 +77,8 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
 CustomRangeChart.propTypes = {
   data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
-  startValue: PropTypes.number.isRequired,
-  endValue: PropTypes.number.isRequired
+  startValue: PropTypes.string.isRequired,
+  endValue: PropTypes.string.isRequired
 };
 
 export default CustomRangeChart;

@@ -41,6 +41,7 @@ function ResultsBlock({ answers, surveyTitle }) {
                 case ANSWER_TYPES.radiobutton:
                   return (
                     <CustomPieChart
+                      customText={res.textAnswers}
                       data={Object.values(res.answers)}
                       key={res.id}
                       title={res.title}
@@ -86,9 +87,7 @@ function ResultsBlock({ answers, surveyTitle }) {
             })
           ) : (
             <Card key={uuid()} className={classes.noAnswerContainer}>
-              <Typography className={classes.noAnswer}>
-                There is no answers for this survey
-              </Typography>
+              <Typography>There is no answers for this survey</Typography>
             </Card>
           )}
         </Typography>

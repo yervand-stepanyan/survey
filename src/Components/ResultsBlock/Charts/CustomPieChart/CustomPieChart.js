@@ -9,41 +9,16 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
-
 import uuid from 'react-uuid';
+
+import renderCustomizedLabel from './renderCustomizedLabel';
+import CustomAnswersModal from './CustomAnswersModal';
 
 import { useStyles } from './CustomPieChart.style';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
 
-const RADIAN = Math.PI / 180;
-
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? 'start' : 'end'}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-
-function CustomPieChart({ data, title }) {
+function CustomPieChart({ data, title, customText }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -57,7 +32,22 @@ function CustomPieChart({ data, title }) {
               {data.map((val, id) =>
                 COLORS.map(
                   (color, index) =>
-                    index === id && (
+                    index === id &&
+                    (val.name === 'other' ? (
+                      <ListItem key={uuid()} className={classes.answerDetails}>
+                        <ListItemIcon>
+                          <Brightness1RoundedIcon style={{ fill: color }} />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={val.name}
+                          className={classes.customAnswer}
+                        />
+                        <CustomAnswersModal
+                          customText={customText}
+                          title={title}
+                        />
+                      </ListItem>
+                    ) : (
                       <ListItem key={uuid()} className={classes.answerDetails}>
                         <ListItemIcon>
                           <Brightness1RoundedIcon style={{ fill: color }} />
@@ -65,7 +55,7 @@ function CustomPieChart({ data, title }) {
 
                         <ListItemText primary={val.name} />
                       </ListItem>
-                    )
+                    ))
                 )
               )}
             </List>
@@ -95,16 +85,11 @@ function CustomPieChart({ data, title }) {
 
 CustomPieChart.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  customText: PropTypes.array
 };
-
-renderCustomizedLabel.propTypes = {
-  cx: PropTypes.number.isRequired,
-  cy: PropTypes.number.isRequired,
-  midAngle: PropTypes.number.isRequired,
-  innerRadius: PropTypes.number.isRequired,
-  outerRadius: PropTypes.number.isRequired,
-  percent: PropTypes.number.isRequired
+CustomPieChart.defaultProps = {
+  customText: []
 };
 
 export default CustomPieChart;

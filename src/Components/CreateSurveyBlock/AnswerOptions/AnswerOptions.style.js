@@ -12,6 +12,9 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center'
   },
+  textContainer: {
+    cursor: 'pointer'
+  },
   text: {
     color: `${theme.customTypography.fontColor.base}`
   },

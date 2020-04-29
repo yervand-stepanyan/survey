@@ -21,7 +21,7 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   content: {
-    flex: '1 0 auto',
+    // flex: '1 0 auto',
     display: 'flex',
     justifyContent: 'space-between',
     '@media (max-width:400px)': {
@@ -36,6 +36,13 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     paddingLeft: theme.spacing(1),
     paddingBottom: theme.spacing(1)
+  },
+  customAnswer: {
+    flex: 'unset',
+    marginRight: theme.customSpacing.base
+  },
+  dialog: {
+    minWidth: 300
   },
   playIcon: {
     height: 38,
