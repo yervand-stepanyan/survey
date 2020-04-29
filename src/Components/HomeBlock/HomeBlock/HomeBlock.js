@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 
-import Typography from '@material-ui/core/Typography';
-
 import {
-  CONNECTION_ERROR,
-  CONNECTION_ERROR_TRY_AGAIN,
-  NO_SURVEY_TEXT,
-  NO_SURVEY_TITLE,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
 } from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
+import NotFoundBlock from '../../NotFoundBlock';
 import { removeSurvey } from '../../../State/actions';
 import SurveyComponent from '../SurveyComponent';
 import { useStore } from '../../../State/use-store';
@@ -58,29 +53,9 @@ function HomeBlock() {
   };
 
   return (
-    <div className={classes.surveysContainer}>
+    <div className={classes.homeBlockContainer}>
       {!stateSurvey.length ? (
-        <div>
-          {isConnectionError ? (
-            <div className={classes.noSurveysContainer}>
-              <Typography variant="h3" color="secondary">
-                {CONNECTION_ERROR}
-              </Typography>
-              <Typography variant="h4" color="primary">
-                {CONNECTION_ERROR_TRY_AGAIN}
-              </Typography>
-            </div>
-          ) : (
-            <div className={classes.noSurveysContainer}>
-              <Typography variant="h3" color="secondary">
-                {NO_SURVEY_TITLE}
-              </Typography>
-              <Typography variant="h4" color="primary">
-                {NO_SURVEY_TEXT}
-              </Typography>
-            </div>
-          )}
-        </div>
+        <NotFoundBlock isConnectionError={isConnectionError} />
       ) : (
         stateSurvey.map(({ id, title }) => (
           <SurveyComponent

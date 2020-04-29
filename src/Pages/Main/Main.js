@@ -21,7 +21,7 @@ import {
 import Results from '../Results';
 import ROUTES from '../../Routes/Routes';
 import ScrollToTop from '../../Components/ScrollToTop';
-import SnackbarComponent from '../../Components/SnackbarComponent';
+import SnackbarComponent from '../../Components/Snackbar/SnackbarComponent';
 import StoreContext from '../../State/context';
 import TakeSurvey from '../TakeSurvey/TakeSurvey';
 import { useStyles } from './Main.style';

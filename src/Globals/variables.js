@@ -48,7 +48,7 @@ export const ANSWER_TYPES = {
 };
 
 export const CONNECTION_ERROR = 'Connection error!';
-export const CONNECTION_ERROR_TRY_AGAIN = 'Try again later!';
+export const CONNECTION_ERROR_REFRESH_BUTTON = 'Please, refresh the page!';
 
 export const COPYRIGHT_INFO = 'Copyright © 2020 Survey';
 
@@ -70,8 +70,9 @@ export const MENU_ITEMS = [
 export const NO_SURVEY_TITLE = 'No surveys yet!';
 export const NO_SURVEY_TEXT = 'Create the first survey!';
 
-export const NOT_FOUND_SURVEY_TITLE = 'Survey not found!';
-export const NOT_FOUND_SURVEY_TEXT = 'Return to home page!';
+export const NOT_FOUND_404 = '404';
+export const NOT_FOUND_TEXT = 'Not found!';
+export const NOT_FOUND_RETURN_BUTTON = 'Return to Homepage!';
 
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';

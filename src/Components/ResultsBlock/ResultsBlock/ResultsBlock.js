@@ -13,10 +13,13 @@ import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
 import CustomTextChart from '../Charts/CustomTextChart';
 import PrepareSurveyResults from '../PrepareSurveyResults';
+import { useStore } from '../../../State/use-store';
 import { useStyles } from './ResultsBlock.style';
+import NotFoundBlock from '../../NotFoundBlock';
 
 function ResultsBlock({ answers, surveyTitle }) {
   const classes = useStyles();
+  const { isConnectionError } = useStore();
   const result = PrepareSurveyResults(answers);
 
   return (
@@ -79,16 +82,16 @@ function ResultsBlock({ answers, surveyTitle }) {
                   return (
                     <Card key={uuid()} style={{ marginBottom: 14 }}>
                       <CardContent>
-                        <Typography>There is no answer</Typography>
+                        <Typography>
+                          There is no answer for this survey
+                        </Typography>
                       </CardContent>
                     </Card>
                   );
               }
             })
           ) : (
-            <Card key={uuid()} className={classes.noAnswerContainer}>
-              <Typography>There is no answers for this survey</Typography>
-            </Card>
+            <NotFoundBlock isConnectionError={isConnectionError} />
           )}
         </Typography>
       </Container>
