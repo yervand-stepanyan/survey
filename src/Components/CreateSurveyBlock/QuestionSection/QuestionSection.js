@@ -119,6 +119,8 @@ function QuestionSection({
     }
 
     disableSave(false);
+
+    handleIsAnswerSubmitted(true);
   };
 
   const handleAddAnswerType = (id, type) => {
