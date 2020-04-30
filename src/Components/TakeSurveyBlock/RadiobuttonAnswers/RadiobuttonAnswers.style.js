@@ -16,6 +16,7 @@ export const useStyles = makeStyles({
     display: 'flex'
   },
   radiobuttonInputAnswer: {
-    paddingBottom: '20px'
+    paddingBottom: '20px',
+    width: '100%'
   }
 });

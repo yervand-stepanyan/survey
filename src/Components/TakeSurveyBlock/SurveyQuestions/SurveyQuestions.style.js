@@ -12,7 +12,10 @@ export const useStyles = makeStyles(theme => ({
   titleContainer: {
     display: 'flex',
     justifyContent: 'center',
-    padding: `${theme.customSpacing.base} ${theme.customSpacing.large}`
+    padding: `${theme.customSpacing.base} ${theme.customSpacing.large}`,
+    '& h3': {
+      textAlign: 'center'
+    }
   },
   menuItemButton: {
     backgroundColor: `${theme.color.mainColorGreen}`,

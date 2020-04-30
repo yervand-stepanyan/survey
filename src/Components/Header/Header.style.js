@@ -6,10 +6,10 @@ export const useStyles = makeStyles(theme => ({
     boxShadow: ' 0 2px 4px -1px rgba(0,0,0,0.25)'
   },
   logo: {
-    '@media (max-width:400px)': {
+    '@media only screen and (max-width:400px)': {
       width: '150px'
     },
-    '@media (max-width:350px)': {
+    '@media only screen and (max-width:350px)': {
       width: '130px'
     }
   },
@@ -21,13 +21,13 @@ export const useStyles = makeStyles(theme => ({
     textDecoration: 'none'
   },
   menuItemButton: {
-    '@media (max-width:400px)': {
+    '@media only screen and (max-width:400px)': {
       fontSize: '13px'
     },
-    '@media (max-width:380px)': {
+    '@media only screen and (max-width:380px)': {
       fontSize: '12px'
     },
-    '@media (max-width:350px)': {
+    '@media only screen and (max-width:350px)': {
       fontSize: '11px'
     },
     backgroundColor: `${theme.color.simpleWhite}`,

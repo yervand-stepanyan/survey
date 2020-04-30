@@ -16,7 +16,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around'
   },
   logoSection: {
-    '@media (max-width:360px)': {
+    '@media only screen and(max-width:360px)': {
       width: '55%'
     },
     alignSelf: 'center'
@@ -33,7 +33,7 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: `${theme.customSpacing.base}`
   },
   menuItem: {
-    '@media (max-width:400px)': {
+    '@media only screen and (max-width:400px)': {
       fontSize: '13px'
     },
     border: '1px solid transparent',
@@ -53,12 +53,12 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   infoSection: {
-    '@media (max-width: 550px)': {
+    '@media only screen and (max-width: 550px)': {
       flexDirection: 'column-reverse',
       alignItems: 'center',
       fontSize: '14px'
     },
-    '@media (max-width: 400px)': {
+    '@media only screen and (max-width: 400px)': {
       flexDirection: 'column-reverse',
       alignItems: 'center',
       fontSize: '12px'
@@ -69,6 +69,9 @@ export const useStyles = makeStyles(theme => ({
   line: {
     width: '2px',
     background: `${theme.color.simpleWhite}`,
-    margin: '0px 20px'
+    margin: '0px 20px',
+    '@media only screen and (max-width: 550px)': {
+      marginTop: `${theme.customSpacing.small}`
+    }
   }
 }));
