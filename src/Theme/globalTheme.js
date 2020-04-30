@@ -7,6 +7,10 @@ const buttonHoverColorGreen = '#11703C';
 const mainTextColor = '#282C34';
 const simpleWhite = '#ffffff';
 
+const yellowButton = '#FBBC05';
+const redButton = '#EA4335';
+const lightGreyBorder = '#e4dddd';
+
 const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
 const MAIN_SPACING_VALUE = 14;
@@ -14,7 +18,8 @@ const MAIN_SPACING_VALUE = 14;
 const theme = createMuiTheme({
   borders: {
     borderRadius: {
-      base: `${BORDER_RADIUS_VALUE}px`
+      base: `${BORDER_RADIUS_VALUE}px`,
+      large: `${BORDER_RADIUS_VALUE *2}px`
     }
   },
   boxShadow: {
@@ -23,9 +28,12 @@ const theme = createMuiTheme({
   color: {
     boxShadowColor,
     buttonHoverColorGreen,
+    lightGreyBorder,
     mainColorDarkBlue,
     mainColorGreen,
-    simpleWhite
+    simpleWhite,
+    yellowButton,
+    redButton
   },
   customSpacing: {
     xSmall: `${MAIN_SPACING_VALUE * 0.2}px`,

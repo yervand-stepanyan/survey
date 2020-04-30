@@ -30,13 +30,14 @@ export const useStyles = makeStyles(theme => ({
     '@media (max-width:350px)': {
       fontSize: '11px'
     },
-    backgroundColor: `${theme.color.mainColorGreen}`,
-    borderColor: `${theme.color.mainColorDarkBlue}`,
-    color: `${theme.color.simpleWhite}`,
+    backgroundColor: `${theme.color.simpleWhite}`,
+    borderColor: `${theme.color.mainColorGreen}`,
+    borderRadius: `${theme.borders.borderRadius.large}`,
+    color: `${theme.color.mainColorDarkBlue}`,
     marginLeft: `${theme.customSpacing.base}`,
     textDecoration: 'none',
     '&:hover': {
-      background: `${theme.color.buttonHoverColorGreen}`,
+      background: `${theme.color.mainColorGreen}`,
       borderColor: `${theme.color.buttonHoverColorGreen}`,
       color: `${theme.color.simpleWhite}`
     }

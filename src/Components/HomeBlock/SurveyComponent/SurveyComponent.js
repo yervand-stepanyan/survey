@@ -8,12 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import { ACTION_BUTTONS } from '../../../Globals/variables';
 import ButtonLoader from '../../Loaders/ButtonLoader';
 import ROUTES from '../../../Routes/Routes';
 import { useStyles } from './SurveyComponent.style';
 
-// const RESULTS_BUTTON_LABEL = 'Results';
-// const TAKE_SURVEY_BUTTON_LABEL = 'Take survey';
 
 function SurveyComponent({
   buttonToLoad,
@@ -33,66 +32,59 @@ function SurveyComponent({
           <Typography
             variant="h6"
             component="h2"
-            className={classes.surveyTitle}
           >
             {title}
           </Typography>
         </div>
 
         <div className={classes.takeAndResultsCellsContainer}>
-          <div className={classes.buttonContainer}>
-            <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
-              <Tooltip title="Take survey" arrow>
-                <IconButton
-                  style={{ color: '#34A853' }}
-                  aria-label="take-survey"
-                  color="primary"
-                  variant="contained"
-                  disabled={buttonToLoad === id && loadingButton}
-                  onClick={() => handleButtonClick()}
-                >
-                  <QuestionAnswerRoundedIcon />
-                </IconButton>
-              </Tooltip>
-            </Link>
-            {buttonToLoad === id && loadingButton && (
-              <ButtonLoader color="green" />
-            )}
-          </div>
-          <div className={classes.buttonContainer}>
-            <Link className={classes.link} to={`${ROUTES.results}/${id}`}>
-              <Tooltip title="Results" arrow>
-                <IconButton
-                  style={{ color: '#FBBC05' }}
-                  className={classes.resultButton}
-                  disabled={buttonToLoad === id && loadingButton}
-                  onClick={() => handleButtonClick()}
-                  variant="round"
-                >
-                  <PollIcon />
-                </IconButton>
-              </Tooltip>
-            </Link>
-            {buttonToLoad === id && loadingButton && (
-              <ButtonLoader color="blue" />
-            )}
-          </div>
-          <div className={classes.buttonContainer}>
-            <Tooltip title="Delete" arrow>
+          <Link to={`${ROUTES.survey}/${id}`}>
+            <Tooltip title={ACTION_BUTTONS.take} arrow>
               <IconButton
-                aria-label="delete"
-                style={{ color: '#EA4335' }}
-                disabled={buttonToLoad === id && loadingRemove}
-                onClick={() => handleRemoveSurvey(id)}
+                className={classes.takeSurveyButton}
+                aria-label="take-survey"
+                color="primary"
                 variant="contained"
+                disabled={buttonToLoad === id && loadingButton}
+                onClick={() => handleButtonClick()}
               >
-                <DeleteIcon />
+                <QuestionAnswerRoundedIcon />
               </IconButton>
             </Tooltip>
-            {buttonToLoad === id && loadingRemove && (
-              <ButtonLoader color="pink" />
-            )}
-          </div>
+          </Link>
+          {buttonToLoad === id && loadingButton && (
+            <ButtonLoader color="green" />
+          )}
+          <Link to={`${ROUTES.results}/${id}`}>
+            <Tooltip title={ACTION_BUTTONS.results} arrow>
+              <IconButton
+                className={classes.resultsButton}
+                disabled={buttonToLoad === id && loadingButton}
+                onClick={() => handleButtonClick()}
+                variant="round"
+              >
+                <PollIcon />
+              </IconButton>
+            </Tooltip>
+          </Link>
+          {buttonToLoad === id && loadingButton && (
+            <ButtonLoader color="blue" />
+          )}
+      
+          <Tooltip title={ACTION_BUTTONS.remove} arrow>
+            <IconButton
+              className={classes.removeButton}
+              aria-label="remove"
+              disabled={buttonToLoad === id && loadingRemove}
+              onClick={() => handleRemoveSurvey(id)}
+              variant="contained"
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+          {buttonToLoad === id && loadingRemove && (
+            <ButtonLoader color="pink" />
+          )}
         </div>
       </div>
     </Card>

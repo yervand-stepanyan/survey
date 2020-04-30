@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
-  REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
+  REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
+  SURVEY_LIST
 } from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
 import NoSurveyBlock from '../NoSurveyBlock';
@@ -60,34 +61,32 @@ function HomeBlock() {
     <>
       <CssBaseline />
       <Container maxWidth="md">
-        <div className={classes.homeBlockContainer}>
-          {isConnectionError ? (
-            <NotFoundBlock isConnectionError={isConnectionError} />
-          ) : (
-            <div className={classes.surveyList}>
-              <Typography variant="h4" className={classes.surveyHeading}>
-                Survey List
-              </Typography>
+        {isConnectionError ? (
+          <NotFoundBlock isConnectionError={isConnectionError} />
+        ) : (
+          <div>
+            <Typography variant="h4" className={classes.surveyHeading}>
+              {SURVEY_LIST}
+            </Typography>
 
-              {stateSurvey.length ? (
-                stateSurvey.map(({ id, title }) => (
-                  <SurveyComponent
-                    buttonToLoad={buttonToLoad}
-                    handleButtonClick={handleButtonClick}
-                    handleRemoveSurvey={handleRemoveSurvey}
-                    id={id}
-                    key={id}
-                    loadingButton={loadingButton}
-                    loadingRemove={loadingRemove}
-                    title={title}
-                  />
-                ))
-              ) : (
-                <NoSurveyBlock />
-              )}
-            </div>
-          )}
-        </div>
+            {stateSurvey.length ? (
+              stateSurvey.map(({ id, title }) => (
+                <SurveyComponent
+                  buttonToLoad={buttonToLoad}
+                  handleButtonClick={handleButtonClick}
+                  handleRemoveSurvey={handleRemoveSurvey}
+                  id={id}
+                  key={id}
+                  loadingButton={loadingButton}
+                  loadingRemove={loadingRemove}
+                  title={title}
+                />
+              ))
+            ) : (
+              <NoSurveyBlock />
+            )}
+          </div>
+        )}
       </Container>
     </>
   );

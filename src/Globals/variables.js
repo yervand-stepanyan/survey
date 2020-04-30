@@ -8,6 +8,12 @@ import radiobuttonImage from '../assets/images/answerOptions/radiobuttons-720x42
 import rangeImage from '../assets/images/answerOptions/range-slider-720x420.png';
 import ROUTES from '../Routes/Routes';
 
+export const ACTION_BUTTONS = {
+  take: 'Take Survey',
+  results: 'Results',
+  remove: 'Remove'
+}
+
 export const ANSWER_OPTION_TYPES = [
   {
     name: 'INPUT',
@@ -77,6 +83,8 @@ export const NOT_FOUND_RETURN_BUTTON = 'Return to Homepage!';
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
+
+export const SURVEY_LIST = 'Survey list';
 
 export const TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
