@@ -7,8 +7,6 @@ export const useStyles = makeStyles(theme => ({
   surveyComponentContainer: {
     display: 'flex',
     width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     padding: `${theme.customSpacing.base} ${theme.customSpacing.base}  ${theme.customSpacing.base} ${theme.customSpacing.xLarge}`,
     borderRadius: `${theme.borders.borderRadius.small}`,
     '@media (max-width:768px)': {
@@ -32,16 +30,15 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   takeAndResultsCellsContainer: {
+    alignItems: 'center',
+    borderLeft: '1px solid #e4dddd',
     display: 'flex',
     justifyContent: 'center',
     marginLeft: theme.customSpacing.small,
-    borderLeft: '1px solid #e4dddd',
     paddingLeft: theme.customSpacing.midLarge,
-
-    alignItems: 'center',
     '@media (max-width:768px)': {
-      marginTop: theme.customSpacing.small,
       borderLeft: 'none',
+      marginTop: theme.customSpacing.small,
       paddingLeft: 0
     }
   },
@@ -57,20 +54,7 @@ export const useStyles = makeStyles(theme => ({
       color: theme.color.simpleWhite
     }
   },
-  buttonContainer: {
-    marginRight: theme.customSpacing.small,
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    '@media (max-width:450px)': {
-      height: '100%',
-      '& span': {
-        fontSize: '10px'
-      },
-      '& .MuiSvgIcon-root': {
-        fontSize: '1.1rem'
-      }
-    }
-  },
+  
   link: {
     textDecoration: 'none'
   },
