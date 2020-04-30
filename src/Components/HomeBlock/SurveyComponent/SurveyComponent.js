@@ -39,7 +39,7 @@ function SurveyComponent({
         <div className={classes.takeAndResultsCellsContainer}>
           <div className={classes.buttonContainer}>
             <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
-              <Tooltip title="Take survey">
+              <Tooltip title="Take survey" arrow>
                 <IconButton 
                   style={{color: '#34A853'}}
                   aria-label="take-survey" 
@@ -59,7 +59,7 @@ function SurveyComponent({
           </div>
           <div className={classes.buttonContainer}>
             <Link className={classes.link} to={`${ROUTES.results}/${id}`}>
-              <Tooltip title="Results">
+              <Tooltip title="Results" arrow>
                 <IconButton 
                   style={{color: '#FBBC05'}}
                   className={classes.resultButton}
@@ -76,10 +76,10 @@ function SurveyComponent({
             )}
           </div>
           <div className={classes.buttonContainer}>
-            <Tooltip title="Delete">
+            <Tooltip title="Delete" arrow>
               <IconButton 
                 aria-label="delete" 
-                style={{color: '#EA4335'}}
+                style={{color: '#EA4335',}}
                 disabled={buttonToLoad === id && loadingRemove}
                 onClick={() => handleRemoveSurvey(id)}
                 variant="contained"

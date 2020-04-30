@@ -22,10 +22,11 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 900,
     
     '@media screen and (max-width: 992px)': {
-      minWidth: 'unset'
+      minWidth: 550
     },
-    '@media screen and (min-width: 992px)': {
-
+    '@media screen and (max-width: 600px)': {
+      width: '90%',
+      minWidth: 'unset'
     },
   }
 }));
