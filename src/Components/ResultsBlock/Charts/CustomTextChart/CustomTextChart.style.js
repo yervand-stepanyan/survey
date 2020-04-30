@@ -5,7 +5,12 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     marginBottom: theme.customSpacing.base,
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: `${theme.customSpacing.base} ${theme.customSpacing.large} ${theme.customSpacing.base} ${theme.customSpacing.small}`,
+    '@media screen and (max-width: 600px)':{
+      flexDirection: 'column',
+      paddingBottom: theme.customSpacing.base
+    }
   },
   modal: {
     display: 'flex',
