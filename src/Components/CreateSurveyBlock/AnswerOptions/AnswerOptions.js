@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '@material-ui/core/Card';
+
 import { ANSWER_OPTION_TYPES } from '../../../Globals/variables';
 import ImageContainer from '../ImageContainer';
 import { useStore } from '../../../State/use-store';
@@ -28,7 +30,7 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
   };
 
   return (
-    <div className={classes.answerOptionsContainer}>
+    <Card className={classes.answerOptionsContainer}>
       {ANSWER_OPTION_TYPES.map(type => (
         <ImageContainer
           classes={classes}
@@ -39,7 +41,7 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
           key={type.name}
         />
       ))}
-    </div>
+    </Card>
   );
 }
 

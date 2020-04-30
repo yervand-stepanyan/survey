@@ -5,7 +5,8 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    marginTop: `${theme.customSpacing.base}`
+    marginTop: `${theme.customSpacing.base}`,
+    paddingBottom: `${theme.customSpacing.base}`
   },
   card: {
     display: 'flex',

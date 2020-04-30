@@ -49,20 +49,18 @@ function QuestionSectionCreator({
           />
         )}
       </Card>
-      <div>
-        {question ? (
-          <AnswerTypes
-            activeId={activeId}
-            answers={answers}
-            answerType={answerType}
-            endValue={endValue}
-            hasLastInput={hasLastInput}
-            inputType={inputType}
-            startValue={startValue}
-            stepValue={stepValue}
-          />
-        ) : null}
-      </div>
+      {question ? (
+        <AnswerTypes
+          activeId={activeId}
+          answers={answers}
+          answerType={answerType}
+          endValue={endValue}
+          hasLastInput={hasLastInput}
+          inputType={inputType}
+          startValue={startValue}
+          stepValue={stepValue}
+        />
+      ) : null}
     </div>
   );
 }

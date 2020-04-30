@@ -3,7 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   rangeSectionContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    marginTop: `${theme.customSpacing.base}`,
+    paddingBottom: `${theme.customSpacing.base}`
   },
   titleWrapper: {
     display: 'flex',
@@ -14,20 +16,28 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     flexDirection: 'column',
     boxSizing: 'border-box',
-    height: '240px',
+    // height: '240px',
     marginTop: `${theme.customSpacing.large}`
   },
   textFieldsSection: {
     display: 'flex',
-    justifyContent: 'space-around'
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    '@media only screen and (min-width: 478px)': {
+      flexDirection: 'row'
+    }
   },
   textFieldWrapper: {
-    width: '30%'
+    width: '100%',
+    marginBottom: `${theme.customSpacing.base}`,
+    '@media only screen and (min-width: 478px)': {
+      width: '30%'
+    }
   },
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${theme.customSpacing.large}`
+    marginTop: `${theme.customSpacing.base}`
   },
   button: {
     backgroundColor: `${theme.color.mainColorGreen}`,
