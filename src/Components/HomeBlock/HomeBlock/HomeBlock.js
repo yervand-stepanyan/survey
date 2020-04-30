@@ -19,8 +19,9 @@ import { useStyles } from './HomeBlock.style';
 function HomeBlock() {
   const classes = useStyles();
   const [buttonToLoad, setButtonToLoad] = useState('');
-  const [loadingButton, setLoadingButton] = useState(false);
   const [loadingRemove, setLoadingRemove] = useState(false);
+  const [loadingResultsButton, setLoadingResultsButton] = useState(false);
+  const [loadingTakeSurveyButton, setLoadingTakeSurveyButton] = useState(false);
   const {
     stateSurvey,
     dispatchSurvey,
@@ -29,18 +30,11 @@ function HomeBlock() {
     isConnectionError
   } = useStore();
 
-  const handleButtonClick = id => {
-    setLoadingButton(true);
-
-    setButtonToLoad(id);
-  };
-
   const handleRemoveSurvey = async id => {
     try {
       setButtonToLoad(id);
 
       setLoadingRemove(true);
-
       await doDelete('surveys', id);
 
       dispatchSurvey(removeSurvey(id));
@@ -55,6 +49,18 @@ function HomeBlock() {
 
       handleOpenSnackbar();
     }
+  };
+
+  const handleResultsButtonClick = id => {
+    setLoadingResultsButton(true);
+
+    setButtonToLoad(id);
+  };
+
+  const handleTakeSurveyButtonClick = id => {
+    setLoadingTakeSurveyButton(true);
+
+    setButtonToLoad(id);
   };
 
   return (
@@ -73,12 +79,14 @@ function HomeBlock() {
               stateSurvey.map(({ id, title }) => (
                 <SurveyComponent
                   buttonToLoad={buttonToLoad}
-                  handleButtonClick={handleButtonClick}
                   handleRemoveSurvey={handleRemoveSurvey}
+                  handleResultsButtonClick={handleResultsButtonClick}
+                  handleTakeSurveyButtonClick={handleTakeSurveyButtonClick}
                   id={id}
                   key={id}
-                  loadingButton={loadingButton}
                   loadingRemove={loadingRemove}
+                  loadingResultsButton={loadingResultsButton}
+                  loadingTakeSurveyButton={loadingTakeSurveyButton}
                   title={title}
                 />
               ))

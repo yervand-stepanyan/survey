@@ -3,17 +3,17 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   fabProgress: {
     position: 'absolute',
-    top: -6,
-    left: -6,
+    top: -10,
+    left: -10,
     zIndex: 1
   },
-  blue: {
-    color: '#3F51B5'
+  yellow: {
+    color: `${theme.color.yellowButton}`
   },
   green: {
     color: `${theme.color.buttonHoverColorGreen}`
   },
-  pink: {
-    color: '#F50057'
+  red: {
+    color: `${theme.color.redButton}`
   }
 }));

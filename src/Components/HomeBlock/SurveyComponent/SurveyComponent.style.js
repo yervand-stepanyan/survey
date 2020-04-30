@@ -48,5 +48,8 @@ export const useStyles = makeStyles(theme => ({
   },
   takeSurveyButton: {
     color: theme.color.mainColorGreen
+  },
+  iconWrapper: {
+    position: 'relative'
   }
 }));

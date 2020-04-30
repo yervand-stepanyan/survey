@@ -12,7 +12,6 @@ function IconLoader({ color }) {
     <CircularProgress
       className={`${classes.fabProgress} ${classes[color]}`}
       size={68}
-      thickness={8}
     />
   );
 }

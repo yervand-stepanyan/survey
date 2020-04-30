@@ -51,7 +51,7 @@ function Question({
           </div>
           <div className={classes.removeIcon}>
             <Tooltip arrow title="Remove" TransitionComponent={Zoom}>
-              <IconButton color="secondary" onClick={handleRemove}>
+              <IconButton className={classes.removeIcon} onClick={handleRemove}>
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
