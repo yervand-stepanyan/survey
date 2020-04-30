@@ -3,20 +3,28 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   answerOptionsContainer: {
     display: 'flex',
-    justifyContent: 'space-around',
     flexWrap: 'wrap',
-    marginTop: `${theme.customSpacing.large}`
+    justifyContent: 'space-around',
+    marginTop: `${theme.customSpacing.base}`
   },
-  typeImage: {
+  card: {
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column',
-    alignItems: 'center'
+    marginTop: `${theme.customSpacing.base}`
   },
-  textContainer: {
+  textImageContainer: {
+    border: '10px solid transparent',
     cursor: 'pointer'
   },
-  textContainerClicked: {
+  textImageContainerClicked: {
+    border: `10px solid ${theme.color.mainColorGreen}`,
     cursor: 'pointer',
+    outline: 'none'
+  },
+  textContainer: {
+    display: 'flex',
+    justifyContent: 'center',
     outline: 'none'
   },
   text: {
@@ -26,16 +34,12 @@ export const useStyles = makeStyles(theme => ({
     color: `${theme.customTypography.fontColor.clicked}`
   },
   imageContainer: {
-    border: '10px solid transparent',
-    cursor: 'pointer',
     filter: 'grayscale(100%) opacity(50%)',
     height: '100px',
+    outline: 'none',
     width: '200px'
   },
   imageContainerClicked: {
-    border: `10px solid ${theme.color.mainColorGreen}`,
-    cursor: 'pointer',
-    filter: 'drop-shadow(8px 8px 10px gray)',
     height: '100px',
     outline: 'none',
     width: '200px'

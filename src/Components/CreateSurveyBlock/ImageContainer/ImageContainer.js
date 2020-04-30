@@ -1,43 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '@material-ui/core/Card';
+
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
 function ImageContainer({
   classes,
-  handleEnterKey,
-  handleImageClick,
-  handleTextClick,
-  handleTextEnterKey,
+  handleCardClick,
+  handleCardEnterKey,
   imageClicked,
   type,
   tabIndex
 }) {
   return (
-    <div className={classes.typeImage} key={type.name}>
-      <div
-        className={
-          imageClicked === type.name
-            ? classes.textContainerClicked
-            : classes.textContainer
-        }
-        onClick={() => handleTextClick(type.name)}
-        onKeyDown={e => handleTextEnterKey(e, type.name)}
-        role="button"
-        tabIndex={tabIndex}
-      >
-        <Typography
-          className={
-            imageClicked === type.name ? classes.textClicked : classes.text
-          }
-          gutterBottom
-          variant="subtitle1"
-        >
-          {type.text}
-        </Typography>
-      </div>
+    <Card className={classes.card} key={type.name}>
       <Tooltip
         arrow
         key={type.name}
@@ -47,33 +26,52 @@ function ImageContainer({
         <div
           className={
             imageClicked === type.name
-              ? classes.imageContainerClicked
-              : classes.imageContainer
+              ? classes.textImageContainerClicked
+              : classes.textImageContainer
           }
-          onClick={e => handleImageClick(e)}
-          onKeyDown={e => handleEnterKey(e)}
+          onClick={e => handleCardClick(e, type.name)}
+          onKeyDown={e => handleCardEnterKey(e, type.name)}
           role="button"
           tabIndex={tabIndex}
         >
-          <img
-            alt={type.name}
+          <div className={classes.textContainer}>
+            <Typography
+              className={
+                imageClicked === type.name ? classes.textClicked : classes.text
+              }
+              gutterBottom
+              variant="subtitle1"
+            >
+              {type.text}
+            </Typography>
+          </div>
+          <div
             className={
-              imageClicked === type.name ? classes.imageClicked : classes.image
+              imageClicked === type.name
+                ? classes.imageContainerClicked
+                : classes.imageContainer
             }
-            src={type.src}
-          />
+          >
+            <img
+              alt={type.name}
+              className={
+                imageClicked === type.name
+                  ? classes.imageClicked
+                  : classes.image
+              }
+              src={type.src}
+            />
+          </div>
         </div>
       </Tooltip>
-    </div>
+    </Card>
   );
 }
 
 ImageContainer.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleEnterKey: PropTypes.func.isRequired,
-  handleImageClick: PropTypes.func.isRequired,
-  handleTextClick: PropTypes.func.isRequired,
-  handleTextEnterKey: PropTypes.func.isRequired,
+  handleCardClick: PropTypes.func.isRequired,
+  handleCardEnterKey: PropTypes.func.isRequired,
   imageClicked: PropTypes.string,
   tabIndex: PropTypes.number,
   type: PropTypes.object.isRequired

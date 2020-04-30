@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
 import AnswerOptions from '../AnswerOptions';
@@ -23,7 +24,7 @@ function AnswerTypes({
   const [type, setType] = useState('');
 
   return (
-    <div className={classes.answerTypesContainer}>
+    <Card className={classes.answerTypesContainer}>
       <div className={classes.answerTypesTitleWrapper}>
         <Typography variant="h5">{TITLE}</Typography>
       </div>
@@ -43,7 +44,7 @@ function AnswerTypes({
         stepValue={stepValue}
         type={type}
       />
-    </div>
+    </Card>
   );
 }
 

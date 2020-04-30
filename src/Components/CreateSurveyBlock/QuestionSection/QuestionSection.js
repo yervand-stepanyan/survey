@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 import _ from 'lodash';
 
+import Card from '@material-ui/core/Card';
+
 import AddNewQuestion from '../AddNewQuestion';
 import QuestionSectionCreator from '../QuestionSectionCreator';
 import StoreContext from '../../../State/context';
@@ -308,7 +310,7 @@ function QuestionSection({
   };
 
   return (
-    <div className={classes.questionSectionContainer}>
+    <Card className={classes.questionSectionContainer}>
       <StoreContext.Provider
         value={{
           disableSave,
@@ -373,7 +375,7 @@ function QuestionSection({
           <AddNewQuestion handleAddNewQuestion={handleAddNewQuestion} />
         ) : null}
       </StoreContext.Provider>
-    </div>
+    </Card>
   );
 }
 

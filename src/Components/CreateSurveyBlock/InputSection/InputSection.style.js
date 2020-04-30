@@ -15,24 +15,25 @@ export const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     marginTop: `${theme.customSpacing.large}`
   },
-  imageContainer: {
-    border: '10px solid transparent',
-    cursor: 'pointer',
-    filter: 'grayscale(100%) opacity(50%)',
-    height: '75px',
-    width: '150px'
-  },
-  typeImage: {
+  card: {
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column',
-    alignItems: 'center'
+    marginTop: `${theme.customSpacing.base}`
   },
-  textContainer: {
+  textImageContainer: {
+    border: '10px solid transparent',
     cursor: 'pointer'
   },
-  textContainerClicked: {
+  textImageContainerClicked: {
+    border: `10px solid ${theme.color.mainColorGreen}`,
     cursor: 'pointer',
     outline: 'none'
+  },
+  textContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    cursor: 'pointer'
   },
   text: {
     color: `${theme.customTypography.fontColor.base}`
@@ -40,10 +41,13 @@ export const useStyles = makeStyles(theme => ({
   textClicked: {
     color: `${theme.customTypography.fontColor.clicked}`
   },
+  imageContainer: {
+    filter: 'grayscale(100%) opacity(50%)',
+    height: '75px',
+    outline: 'none',
+    width: '150px'
+  },
   imageContainerClicked: {
-    border: `10px solid ${theme.color.mainColorGreen}`,
-    cursor: 'pointer',
-    filter: 'drop-shadow(8px 8px 10px gray)',
     height: '75px',
     outline: 'none',
     width: '150px'

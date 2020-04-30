@@ -22,9 +22,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   const [isSubmitted, setIsSubmitted] = useState(!!inputTypeProps || false);
   const { disableSave, handleAddInputType, handleSubmitQuestion } = useStore();
 
-  const handleImageClick = e => {
-    const type = e.target.alt ? e.target.alt : e.target.children[0].alt;
-
+  const handleCardClick = (e, type) => {
     setInputType(type);
 
     setIsSubmitted(false);
@@ -38,25 +36,9 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
     }
   };
 
-  const handleTextClick = type => {
-    setInputType(type);
-
-    setIsSubmitted(false);
-
-    handleAddInputType(activeId, type);
-
-    disableSave(true);
-  };
-
-  const handleEnterKey = e => {
+  const handleCardEnterKey = (e, type) => {
     if (e.key === 'Enter') {
-      handleImageClick(e);
-    }
-  };
-
-  const handleTextEnterKey = (e, type) => {
-    if (e.key === 'Enter') {
-      handleTextClick(type);
+      handleCardClick(type);
     }
   };
 
@@ -75,10 +57,8 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
         {INPUT_TYPES.map(type => (
           <ImageContainer
             classes={classes}
-            handleEnterKey={handleEnterKey}
-            handleImageClick={handleImageClick}
-            handleTextClick={handleTextClick}
-            handleTextEnterKey={handleTextEnterKey}
+            handleCardClick={handleCardClick}
+            handleCardEnterKey={handleCardEnterKey}
             imageClicked={inputType}
             type={type}
             key={type.name}

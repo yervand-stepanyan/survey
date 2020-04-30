@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '@material-ui/core/Card';
+
 import AnswerTypes from '../AnswerTypes';
 import Question from '../Question';
 import QuestionCreator from '../QuestionCreator';
@@ -28,7 +30,7 @@ function QuestionSectionCreator({
 
   return (
     <div className={classes.questionSectionCreatorContainer}>
-      <div className={classes.questionSection}>
+      <Card className={classes.questionSection}>
         {isQuestionEdit ? (
           <QuestionCreator
             activeId={activeId}
@@ -46,8 +48,8 @@ function QuestionSectionCreator({
             question={question}
           />
         )}
-      </div>
-      <div className={classes.answerTypesWrapper}>
+      </Card>
+      <div>
         {question ? (
           <AnswerTypes
             activeId={activeId}
