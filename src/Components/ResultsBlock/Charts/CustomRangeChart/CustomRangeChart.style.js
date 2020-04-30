@@ -18,7 +18,7 @@ export const useStyles = makeStyles(theme => ({
   content: {
     display: 'flex',
     justifyContent: 'space-between',
-    '@media (max-width:500px)': {
+    '@media (max-width:600px)': {
       display: 'unset'
     }
   },
@@ -30,7 +30,7 @@ export const useStyles = makeStyles(theme => ({
     height: 300,
     position: 'relative',
     right: 34,
-    '@media (max-width:500px)': {
+    '@media (max-width:600px)': {
       width: '100%'
     }
   }

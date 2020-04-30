@@ -31,6 +31,7 @@ const theme = createMuiTheme({
     xSmall: `${MAIN_SPACING_VALUE * 0.2}px`,
     small: `${MAIN_SPACING_VALUE * 0.5}px`,
     base: `${MAIN_SPACING_VALUE}px`,
+    midLarge: `${MAIN_SPACING_VALUE * 1.25}px`,
     large: `${MAIN_SPACING_VALUE * 2}px`,
     xLarge: `${MAIN_SPACING_VALUE * 3}px`,
     xxLarge: `${MAIN_SPACING_VALUE * 4}px`,

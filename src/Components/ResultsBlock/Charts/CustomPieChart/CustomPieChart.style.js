@@ -16,15 +16,19 @@ export const useStyles = makeStyles(theme => ({
   chartList: {
     width: '60%',
     padding: theme.customSpacing.base,
-    '@media (max-width:400px)': {
+    '@media (max-width:600px)': {
       width: '100%'
     }
   },
+  pieChart: {
+    '@media (max-width:600px)': {
+      margin: 'auto'
+    }
+  },
   content: {
-    // flex: '1 0 auto',
     display: 'flex',
     justifyContent: 'space-between',
-    '@media (max-width:400px)': {
+    '@media (max-width:600px)': {
       display: 'unset'
     }
   },

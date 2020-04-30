@@ -30,7 +30,7 @@ function CustomPieChart({ data, title, customText }) {
         <CardContent className={classes.content}>
           <div className={classes.chartList}>
             <List component="nav" aria-label="main mailbox folders">
-              <Typography variant="subtitle1" color="textSecondary">
+              <Typography variant="h6" color="textSecondary">
                 {title}
               </Typography>
               {/* {console.log(data)} */}
@@ -65,7 +65,12 @@ function CustomPieChart({ data, title, customText }) {
               )}
             </List>
           </div>
-          <PieChart width={250} height={250} key={uuid()}>
+          <PieChart
+            width={250}
+            height={250}
+            key={uuid()}
+            className={classes.pieChart}
+          >
             <Pie
               innerRadius={40}
               outerRadius={120}
