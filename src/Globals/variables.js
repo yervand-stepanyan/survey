@@ -73,6 +73,8 @@ export const MENU_ITEMS = [
   { name: 'Contacts', route: ROUTES.contacts }
 ];
 
+export const NO_ANSWER_FOR_SURVEY = 'There is no answer for this survey';
+
 export const NO_SURVEY = 'No surveys yet!';
 export const NO_SURVEY_CREATE_BUTTON = 'Click to create the first survey!';
 

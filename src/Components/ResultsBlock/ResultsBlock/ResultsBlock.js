@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
-import { ANSWER_TYPES } from '../../../Globals/variables';
+import { ANSWER_TYPES, NO_ANSWER_FOR_SURVEY } from '../../../Globals/variables';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
 import CustomTextChart from '../Charts/CustomTextChart';
@@ -82,25 +82,19 @@ function ResultsBlock({ answers, surveyTitle }) {
                   return (
                     <Card key={uuid()} style={{ marginBottom: 14 }}>
                       <CardContent>
-                        <Typography>
-                          There is no answer for this survey
-                        </Typography>
+                        <Typography>{NO_ANSWER_FOR_SURVEY}</Typography>
                       </CardContent>
                     </Card>
                   );
               }
             })}
-
           {!surveyTitle && (
             <NotFoundBlock isConnectionError={isConnectionError} />
           )}
-
           {surveyTitle && Object.values(result).length === 0 && (
             <Card className={classes.noAnswerCard}>
-              <CardContent className={classes.cardContent}>
-                <Typography variant="h4">
-                  there is no answer for this survey
-                </Typography>
+              <CardContent>
+                <Typography variant="h4">{NO_ANSWER_FOR_SURVEY}</Typography>
               </CardContent>
             </Card>
           )}
