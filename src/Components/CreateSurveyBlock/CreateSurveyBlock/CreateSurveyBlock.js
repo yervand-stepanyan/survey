@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
 import { addSurvey } from '../../../State/actions';
@@ -113,7 +114,7 @@ function CreateSurveyBlock() {
             handleIsQuestionSubmitted
           }}
         >
-          <div className={classes.titleWrapper}>
+          <Card className={classes.titleWrapper}>
             {isTitleEdit ? (
               <SurveyTitleCreator
                 handleAddTitle={handleAddTitle}
@@ -122,7 +123,7 @@ function CreateSurveyBlock() {
             ) : (
               <SurveyTitle handleEditTitle={handleEditTitle} title={title} />
             )}
-          </div>
+          </Card>
           {isQuestionOpen || !isTitleEdit ? (
             <QuestionSection
               handleIsQuestionOpen={handleIsQuestionOpen}

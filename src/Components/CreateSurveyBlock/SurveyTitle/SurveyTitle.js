@@ -19,22 +19,22 @@ function SurveyTitle({ handleEditTitle, title }) {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.surveyTitleContainer}>
       <div className={classes.titleWrapper}>
         <div className={classes.titleLabel}>
           <div className={classes.label}>
             <Typography variant="h5">{TITLE_LABEL}</Typography>
           </div>
           <div className={classes.title}>
-            <Typography variant="h5">{title}</Typography>
+            <Typography variant="h6">{title}</Typography>
           </div>
-        </div>
-        <div className={classes.editIcon}>
-          <Tooltip arrow title="Edit" TransitionComponent={Zoom}>
-            <IconButton color="primary" onClick={handleEdit}>
-              <CreateIcon />
-            </IconButton>
-          </Tooltip>
+          <div className={classes.editIcon}>
+            <Tooltip arrow title="Edit" TransitionComponent={Zoom}>
+              <IconButton color="primary" onClick={handleEdit}>
+                <CreateIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
         </div>
       </div>
     </div>

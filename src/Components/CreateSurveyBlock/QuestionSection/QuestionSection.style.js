@@ -4,12 +4,15 @@ export const useStyles = makeStyles(theme => ({
   questionSectionContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${theme.customSpacing.small}`
-  },
-  questionSection: {
-    height: '114px'
-  },
-  answerTypesWrapper: {
-    marginTop: `${theme.customSpacing.small}`
+    marginTop: `${theme.customSpacing.base}`
   }
+  // questionSection: {
+  //   height: '160px',
+  //   '@media only screen and (min-width: 600px)': {
+  //     height: '114px'
+  //   }
+  // },
+  // answerTypesWrapper: {
+  //   marginTop: `${theme.customSpacing.small}`
+  // }
 }));

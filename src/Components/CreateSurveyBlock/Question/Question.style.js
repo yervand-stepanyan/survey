@@ -15,21 +15,39 @@ export const useStyles = makeStyles(theme => ({
   },
   questionLabel: {
     display: 'flex',
-    padding: `0 ${theme.customSpacing.xxxxLarge} 0 ${theme.customSpacing.xxLarge}`
+    alignItems: 'center',
+    flexDirection: 'column',
+    padding: `0 ${theme.customSpacing.base}`,
+    '@media only screen and (min-width: 600px)': {
+      alignItems: 'flex-start',
+      flexDirection: 'row',
+      padding: `0 ${theme.customSpacing.xxxxLarge} 0 ${theme.customSpacing.xxLarge}`
+    }
   },
   label: {
-    whiteSpace: 'nowrap'
+    display: 'flex',
+    alignItems: 'center',
+    height: '48px',
+    whiteSpace: 'nowrap',
+    '@media only screen and (min-width: 600px)': {
+      alignItems: 'flex-start'
+    }
   },
   question: {
     color: `${theme.color.mainColorGreen}`,
-    height: 'inherit',
-    marginLeft: `${theme.customSpacing.base}`,
-    overflowY: 'auto'
+    height: '90px',
+    overflowY: 'auto',
+    '@media only screen and (min-width: 600px)': {
+      marginLeft: `${theme.customSpacing.base}`
+    }
   },
   icons: {
     display: 'flex',
     position: 'absolute',
-    right: 0
+    right: 0,
+    '@media only screen and (min-width: 600px)': {
+      top: '-7px'
+    }
   },
   editIcon: {
     marginRight: `${theme.customSpacing.small}`

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -39,7 +38,7 @@ function Question({
             <Typography variant="h5">{label}</Typography>
           </div>
           <div className={classes.question}>
-            <Typography variant="h5">{question}</Typography>
+            <Typography variant="h6">{question}</Typography>
           </div>
         </div>
         <div className={classes.icons}>
@@ -52,9 +51,9 @@ function Question({
           </div>
           <div className={classes.removeIcon}>
             <Tooltip arrow title="Remove" TransitionComponent={Zoom}>
-              <Fab color="secondary" onClick={handleRemove} size="medium">
+              <IconButton color="secondary" onClick={handleRemove}>
                 <DeleteIcon />
-              </Fab>
+              </IconButton>
             </Tooltip>
           </div>
         </div>

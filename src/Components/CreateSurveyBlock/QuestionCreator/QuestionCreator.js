@@ -65,7 +65,7 @@ function QuestionCreator({
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.questionCreatorContainer}>
       <div className={classes.textFieldWrapper}>
         <div className={classes.titleLabel}>
           <Typography variant="h5">{QUESTION_LABEL}</Typography>
