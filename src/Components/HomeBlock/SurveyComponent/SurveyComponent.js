@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import Card from '@material-ui/core/Card';
 import DeleteIcon from '@material-ui/icons/Delete';
-import PollIcon from '@material-ui/icons/Poll';
-import Typography from '@material-ui/core/Typography';
-import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import IconButton from '@material-ui/core/IconButton';
+import PollIcon from '@material-ui/icons/Poll';
+import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import Tooltip from '@material-ui/core/Tooltip';
-import { ACTION_BUTTONS } from '../../../Globals/variables';
+import Typography from '@material-ui/core/Typography';
+
+import { HOME_ICON_TOOLTIPS } from '../../../Globals/variables';
 import ButtonLoader from '../../Loaders/ButtonLoader';
 import ROUTES from '../../../Routes/Routes';
 import { useStyles } from './SurveyComponent.style';
@@ -35,7 +37,7 @@ function SurveyComponent({
 
         <div className={classes.takeAndResultsCellsContainer}>
           <Link to={`${ROUTES.survey}/${id}`}>
-            <Tooltip title={ACTION_BUTTONS.take} arrow>
+            <Tooltip title={HOME_ICON_TOOLTIPS.take} arrow>
               <IconButton
                 className={classes.takeSurveyButton}
                 aria-label="take-survey"
@@ -52,7 +54,7 @@ function SurveyComponent({
             <ButtonLoader color="green" />
           )}
           <Link to={`${ROUTES.results}/${id}`}>
-            <Tooltip title={ACTION_BUTTONS.results} arrow>
+            <Tooltip title={HOME_ICON_TOOLTIPS.results} arrow>
               <IconButton
                 className={classes.resultsButton}
                 disabled={buttonToLoad === id && loadingButton}
@@ -67,7 +69,7 @@ function SurveyComponent({
             <ButtonLoader color="blue" />
           )}
 
-          <Tooltip title={ACTION_BUTTONS.remove} arrow>
+          <Tooltip title={HOME_ICON_TOOLTIPS.remove} arrow>
             <IconButton
               className={classes.removeButton}
               aria-label="remove"

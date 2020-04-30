@@ -1,15 +1,15 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const boxShadowColor = '#79d5a3';
+const buttonHoverColorGreen = '#11703C';
 const mainColorDarkBlue = '#282C34';
 const mainColorGreen = '#20BA66';
-const buttonHoverColorGreen = '#11703C';
 const mainTextColor = '#282C34';
 const simpleWhite = '#ffffff';
 
-const yellowButton = '#FBBC05';
-const redButton = '#EA4335';
 const lightGreyBorder = '#e4dddd';
+const redButton = '#EA4335';
+const yellowButton = '#FBBC05';
 
 const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
@@ -31,9 +31,9 @@ const theme = createMuiTheme({
     lightGreyBorder,
     mainColorDarkBlue,
     mainColorGreen,
+    redButton,
     simpleWhite,
-    yellowButton,
-    redButton
+    yellowButton
   },
   customSpacing: {
     xSmall: `${MAIN_SPACING_VALUE * 0.2}px`,
@@ -48,8 +48,8 @@ const theme = createMuiTheme({
   },
   customTypography: {
     fontColor: {
-      base: mainTextColor,
-      clicked: mainColorGreen
+      clicked: mainColorGreen,
+      base: mainTextColor
     },
     fontFamily: {
       base: 'sans-serif'

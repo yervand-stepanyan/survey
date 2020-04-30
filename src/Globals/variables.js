@@ -8,12 +8,6 @@ import radiobuttonImage from '../assets/images/answerOptions/radiobuttons-720x42
 import rangeImage from '../assets/images/answerOptions/range-slider-720x420.png';
 import ROUTES from '../Routes/Routes';
 
-export const ACTION_BUTTONS = {
-  take: 'Take Survey',
-  results: 'Results',
-  remove: 'Remove'
-};
-
 export const ANSWER_OPTION_TYPES = [
   {
     name: 'INPUT',
@@ -61,6 +55,12 @@ export const COPYRIGHT_INFO = 'Copyright © 2020 Survey';
 export const CREATE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
 export const CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey saved!';
+
+export const HOME_ICON_TOOLTIPS = {
+  take: 'Take Survey',
+  results: 'Results',
+  remove: 'Remove'
+};
 
 export const INPUT_TYPES = [
   { name: 'TEXT', src: inputText, tooltip: 'Text', text: 'Text' },
