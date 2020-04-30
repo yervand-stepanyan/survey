@@ -60,34 +60,32 @@ function HomeBlock() {
     <>
       <CssBaseline />
       <Container maxWidth="md">
-        <div className={classes.homeBlockContainer}>
-          {isConnectionError ? (
-            <NotFoundBlock isConnectionError={isConnectionError} />
-          ) : (
-            <div className={classes.surveyList}>
-              <Typography variant="h4" className={classes.surveyHeading}>
-                Survey List
-              </Typography>
+        {isConnectionError ? (
+          <NotFoundBlock isConnectionError={isConnectionError} />
+        ) : (
+          <div className={classes.surveyList}>
+            <Typography variant="h4" className={classes.surveyHeading}>
+              Survey List
+            </Typography>
 
-              {stateSurvey.length ? (
-                stateSurvey.map(({ id, title }) => (
-                  <SurveyComponent
-                    buttonToLoad={buttonToLoad}
-                    handleButtonClick={handleButtonClick}
-                    handleRemoveSurvey={handleRemoveSurvey}
-                    id={id}
-                    key={id}
-                    loadingButton={loadingButton}
-                    loadingRemove={loadingRemove}
-                    title={title}
-                  />
-                ))
-              ) : (
-                <NoSurveyBlock />
-              )}
-            </div>
-          )}
-        </div>
+            {stateSurvey.length ? (
+              stateSurvey.map(({ id, title }) => (
+                <SurveyComponent
+                  buttonToLoad={buttonToLoad}
+                  handleButtonClick={handleButtonClick}
+                  handleRemoveSurvey={handleRemoveSurvey}
+                  id={id}
+                  key={id}
+                  loadingButton={loadingButton}
+                  loadingRemove={loadingRemove}
+                  title={title}
+                />
+              ))
+            ) : (
+              <NoSurveyBlock />
+            )}
+          </div>
+        )}
       </Container>
     </>
   );
