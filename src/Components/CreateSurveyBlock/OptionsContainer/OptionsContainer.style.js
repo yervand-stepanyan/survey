@@ -17,6 +17,9 @@ export const useStyles = makeStyles(theme => ({
   textFieldWrapper: {
     width: '80%',
     '@media only screen and (min-width: 600px)': {
+      width: '70%'
+    },
+    '@media only screen and (min-width: 768px)': {
       width: '60%'
     }
   },
@@ -37,6 +40,9 @@ export const useStyles = makeStyles(theme => ({
     padding: `${theme.customSpacing.small}`,
     width: '80%',
     '@media only screen and (min-width: 600px)': {
+      width: '70%'
+    },
+    '@media only screen and (min-width: 768px)': {
       width: '60%'
     }
   },
@@ -51,6 +57,9 @@ export const useStyles = makeStyles(theme => ({
   checkboxSection: {
     width: '80%',
     '@media only screen and (min-width: 600px)': {
+      width: '70%'
+    },
+    '@media only screen and (min-width: 768px)': {
       width: '60%'
     }
   },
