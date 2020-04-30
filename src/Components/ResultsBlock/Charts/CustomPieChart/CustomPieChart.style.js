@@ -17,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
     width: '60%',
     padding: theme.customSpacing.base,
     '@media (max-width:600px)': {
-      width: '100%',
+      width: '100%'
     }
   },
   pieChart: {

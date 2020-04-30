@@ -17,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
     padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
   },
   noAnswerCard: {
-    color:noAnswerColor,
+    color: noAnswerColor,
     textAlign: 'center',
     padding: theme.customSpacing.xxxLarge
   }

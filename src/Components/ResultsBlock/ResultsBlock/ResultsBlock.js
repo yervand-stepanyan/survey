@@ -30,7 +30,7 @@ function ResultsBlock({ answers, surveyTitle }) {
           {surveyTitle}
         </Typography>
         <Typography component="div">
-          {(Object.values(result).length > 0) && (
+          {Object.values(result).length > 0 &&
             Object.values(result).map(res => {
               switch (res.type) {
                 case ANSWER_TYPES.checkbox:
@@ -89,14 +89,13 @@ function ResultsBlock({ answers, surveyTitle }) {
                     </Card>
                   );
               }
-            })
-          )}
+            })}
 
           {!surveyTitle && (
             <NotFoundBlock isConnectionError={isConnectionError} />
           )}
 
-          {(surveyTitle && (Object.values(result).length === 0)) && (
+          {surveyTitle && Object.values(result).length === 0 && (
             <Card className={classes.noAnswerCard}>
               <CardContent className={classes.cardContent}>
                 <Typography variant="h4">
@@ -105,7 +104,6 @@ function ResultsBlock({ answers, surveyTitle }) {
               </CardContent>
             </Card>
           )}
-
         </Typography>
       </Container>
     </>
