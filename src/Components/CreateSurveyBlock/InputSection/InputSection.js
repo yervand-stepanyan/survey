@@ -23,16 +23,18 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   const { disableSave, handleAddInputType, handleSubmitQuestion } = useStore();
 
   const handleCardClick = (e, type) => {
-    setInputType(type);
+    if (inputType !== type) {
+      setInputType(type);
 
-    setIsSubmitted(false);
+      setIsSubmitted(false);
 
-    handleAddInputType(activeId, type);
+      handleAddInputType(activeId, type);
 
-    disableSave(true);
+      disableSave(true);
 
-    if (isSubmitted) {
-      setIsChanged(true);
+      if (isSubmitted) {
+        setIsChanged(true);
+      }
     }
   };
 
