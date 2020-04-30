@@ -14,13 +14,15 @@ function AnswerOptions({ activeId, answerType: answerTypeProps, setType }) {
   const { disableSave, handleAddAnswerType } = useStore();
 
   const handleCardClick = (e, type) => {
-    setAnswerType(type);
+    if (answerType !== type) {
+      setAnswerType(type);
 
-    setType(type);
+      setType(type);
 
-    handleAddAnswerType(activeId, type);
+      handleAddAnswerType(activeId, type);
 
-    disableSave(true);
+      disableSave(true);
+    }
   };
 
   const handleCardEnterKey = (e, type) => {
