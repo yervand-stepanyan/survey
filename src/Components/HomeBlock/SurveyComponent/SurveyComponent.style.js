@@ -37,7 +37,7 @@ export const useStyles = makeStyles(theme => ({
       paddingLeft: 0,
       width: 140,
       alignItems: 'center',
-      margin: `${theme.customSpacing.base} auto 0`,
+      margin: `${theme.customSpacing.base} auto 0`
     }
   },
   removeButton: {

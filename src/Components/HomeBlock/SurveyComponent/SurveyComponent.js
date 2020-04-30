@@ -13,7 +13,6 @@ import ButtonLoader from '../../Loaders/ButtonLoader';
 import ROUTES from '../../../Routes/Routes';
 import { useStyles } from './SurveyComponent.style';
 
-
 function SurveyComponent({
   buttonToLoad,
   handleButtonClick,
@@ -29,10 +28,7 @@ function SurveyComponent({
     <Card className={classes.card}>
       <div className={classes.surveyComponentContainer}>
         <div className={classes.surveyTitleContainer}>
-          <Typography
-            variant="h6"
-            component="h2"
-          >
+          <Typography variant="h6" component="h2">
             {title}
           </Typography>
         </div>
@@ -70,7 +66,7 @@ function SurveyComponent({
           {buttonToLoad === id && loadingButton && (
             <ButtonLoader color="blue" />
           )}
-      
+
           <Tooltip title={ACTION_BUTTONS.remove} arrow>
             <IconButton
               className={classes.removeButton}

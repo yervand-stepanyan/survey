@@ -12,7 +12,7 @@ export const ACTION_BUTTONS = {
   take: 'Take Survey',
   results: 'Results',
   remove: 'Remove'
-}
+};
 
 export const ANSWER_OPTION_TYPES = [
   {

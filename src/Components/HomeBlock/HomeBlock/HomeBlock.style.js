@@ -9,5 +9,5 @@ export const useStyles = makeStyles(theme => ({
   surveyHeading: {
     textAlign: 'center',
     padding: theme.customSpacing.large
-  },
+  }
 }));
