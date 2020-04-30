@@ -49,9 +49,6 @@ export const useStyles = makeStyles(theme => ({
       top: '-7px'
     }
   },
-  editIcon: {
-    marginRight: `${theme.customSpacing.small}`
-  },
   removeIcon: {
     color: `${theme.color.redButton}`
   }

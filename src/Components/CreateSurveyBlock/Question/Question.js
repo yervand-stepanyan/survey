@@ -42,7 +42,7 @@ function Question({
           </div>
         </div>
         <div className={classes.icons}>
-          <div className={classes.editIcon}>
+          <div>
             <Tooltip title="Edit" TransitionComponent={Zoom} arrow>
               <IconButton color="primary" onClick={handleEdit}>
                 <CreateIcon />
