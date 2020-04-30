@@ -9,6 +9,7 @@ const simpleWhite = '#ffffff';
 
 const yellowButton = '#FBBC05';
 const redButton = '#EA4335';
+const lightGreyBorder = '#e4dddd';
 
 const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
@@ -27,6 +28,7 @@ const theme = createMuiTheme({
   color: {
     boxShadowColor,
     buttonHoverColorGreen,
+    lightGreyBorder,
     mainColorDarkBlue,
     mainColorGreen,
     simpleWhite,

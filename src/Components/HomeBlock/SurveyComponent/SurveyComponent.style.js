@@ -20,13 +20,8 @@ export const useStyles = makeStyles(theme => ({
     color: '#606060',
     alignItems: 'center',
     width: '100%',
-    '@media (max-width:823px)': {
+    '@media (max-width:768px)': {
       justifyContent: 'center'
-    }
-  },
-  surveyTitle: {
-    '@media (max-width:823px)': {
-      textAlign: 'center'
     }
   },
   takeAndResultsCellsContainer: {
@@ -37,7 +32,7 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: theme.customSpacing.small,
     paddingLeft: theme.customSpacing.midLarge,
     '@media (max-width:768px)': {
-      borderTop: '1px solid #e4dddd',
+      borderTop: `1px solid ${theme.color.lightGreyBorder}`,
       borderLeft: 'none',
       paddingLeft: 0,
       width: 140,

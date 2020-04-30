@@ -33,7 +33,6 @@ function SurveyComponent({
           <Typography
             variant="h6"
             component="h2"
-            className={classes.surveyTitle}
           >
             {title}
           </Typography>
