@@ -8,12 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import { ACTION_BUTTONS } from '../../../Globals/variables';
 import ButtonLoader from '../../Loaders/ButtonLoader';
 import ROUTES from '../../../Routes/Routes';
 import { useStyles } from './SurveyComponent.style';
 
-// const RESULTS_BUTTON_LABEL = 'Results';
-// const TAKE_SURVEY_BUTTON_LABEL = 'Take survey';
 
 function SurveyComponent({
   buttonToLoad,
@@ -40,7 +39,7 @@ function SurveyComponent({
 
         <div className={classes.takeAndResultsCellsContainer}>
           <Link to={`${ROUTES.survey}/${id}`}>
-            <Tooltip title="Take survey" arrow>
+            <Tooltip title={ACTION_BUTTONS.take} arrow>
               <IconButton
                 className={classes.takeSurveyButton}
                 aria-label="take-survey"
@@ -57,7 +56,7 @@ function SurveyComponent({
             <ButtonLoader color="green" />
           )}
           <Link to={`${ROUTES.results}/${id}`}>
-            <Tooltip title="Results" arrow>
+            <Tooltip title={ACTION_BUTTONS.results} arrow>
               <IconButton
                 className={classes.resultsButton}
                 disabled={buttonToLoad === id && loadingButton}
@@ -72,7 +71,7 @@ function SurveyComponent({
             <ButtonLoader color="blue" />
           )}
       
-          <Tooltip title="Remove" arrow>
+          <Tooltip title={ACTION_BUTTONS.remove} arrow>
             <IconButton
               className={classes.removeButton}
               aria-label="remove"

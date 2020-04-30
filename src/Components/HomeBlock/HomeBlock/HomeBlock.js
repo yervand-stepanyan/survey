@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
-  REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
+  REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
+  SURVEY_LIST
 } from '../../../Globals/variables';
 import { doDelete } from '../../../FetchAPI/fetchData';
 import NoSurveyBlock from '../NoSurveyBlock';
@@ -65,7 +66,7 @@ function HomeBlock() {
         ) : (
           <div>
             <Typography variant="h4" className={classes.surveyHeading}>
-              Survey List
+              {SURVEY_LIST}
             </Typography>
 
             {stateSurvey.length ? (
