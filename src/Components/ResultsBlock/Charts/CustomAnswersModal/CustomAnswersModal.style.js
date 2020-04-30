@@ -21,7 +21,4 @@ export const useStyles = makeStyles(theme => ({
     height: 38,
     width: 38
   },
-  seeAnswers: {
-    margin: 21
-  }
 }));

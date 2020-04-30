@@ -4,7 +4,8 @@ export const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     marginBottom: theme.customSpacing.base,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   modal: {
     display: 'flex',
