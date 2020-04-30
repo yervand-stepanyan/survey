@@ -11,7 +11,7 @@ export const useStyles = makeStyles(theme => ({
     padding: theme.customSpacing.large
   },
   surveyList: {
-    minWidth: 900,
+    // minWidth: 900,
 
     '@media screen and (max-width: 992px)': {
       minWidth: 550
