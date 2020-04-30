@@ -40,7 +40,7 @@ function SurveyComponent({
         </div>
 
         <div className={classes.takeAndResultsCellsContainer}>
-          <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
+          <Link to={`${ROUTES.survey}/${id}`}>
             <Tooltip title="Take survey" arrow>
               <IconButton
                 style={{ color: '#34A853' }}
@@ -57,7 +57,7 @@ function SurveyComponent({
           {buttonToLoad === id && loadingButton && (
             <ButtonLoader color="green" />
           )}
-          <Link className={classes.link} to={`${ROUTES.results}/${id}`}>
+          <Link to={`${ROUTES.results}/${id}`}>
             <Tooltip title="Results" arrow>
               <IconButton
                 style={{ color: '#FBBC05' }}

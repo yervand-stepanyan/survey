@@ -45,22 +45,6 @@ export const useStyles = makeStyles(theme => ({
       margin: `${theme.customSpacing.base} auto 0`,
     }
   },
-  menuItemButton: {
-    backgroundColor: theme.color.mainColorGreen,
-    borderColor: theme.color.mainColorDarkBlue,
-    color: theme.color.simpleWhite,
-    marginLeft: theme.customSpacing.base,
-    textDecoration: 'none',
-    '&:hover': {
-      background: theme.color.buttonHoverColorGreen,
-      borderColor: theme.color.buttonHoverColorGreen,
-      color: theme.color.simpleWhite
-    }
-  },
-  
-  link: {
-    textDecoration: 'none'
-  },
   resultsButton: {
     color: theme.color.mainColorGreen
   }
