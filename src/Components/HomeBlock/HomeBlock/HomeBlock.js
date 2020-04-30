@@ -65,10 +65,10 @@ function HomeBlock() {
             <NotFoundBlock isConnectionError={isConnectionError} />
           ) : (
             <div className={classes.surveyList}>
-              <Typography variant='h4' className={classes.surveyHeading}>
+              <Typography variant="h4" className={classes.surveyHeading}>
                 Survey List
               </Typography>
-               
+
               {stateSurvey.length ? (
                 stateSurvey.map(({ id, title }) => (
                   <SurveyComponent

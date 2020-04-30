@@ -15,7 +15,7 @@ export const useStyles = makeStyles(theme => ({
       display: 'flex',
       flexDirection: 'column',
       padding: `${theme.customSpacing.small} ${theme.customSpacing.large}`
-    },
+    }
   },
   surveyTitleContainer: {
     display: 'flex',
@@ -36,13 +36,13 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     marginLeft: theme.customSpacing.small,
     borderLeft: '1px solid #e4dddd',
-    paddingLeft: theme.customSpacing.midLarge,    
+    paddingLeft: theme.customSpacing.midLarge,
 
     alignItems: 'center',
     '@media (max-width:768px)': {
       marginTop: theme.customSpacing.small,
       borderLeft: 'none',
-      paddingLeft: 0,      
+      paddingLeft: 0
     }
   },
   menuItemButton: {

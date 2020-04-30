@@ -7,7 +7,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: `${theme.borders.borderRadius.base}`,
-    boxSizing: 'border-box',
+    boxSizing: 'border-box'
   },
   noSurveysContainer: {
     display: 'flex',
@@ -20,13 +20,13 @@ export const useStyles = makeStyles(theme => ({
   },
   surveyList: {
     minWidth: 900,
-    
+
     '@media screen and (max-width: 992px)': {
       minWidth: 550
     },
     '@media screen and (max-width: 600px)': {
       width: '90%',
       minWidth: 'unset'
-    },
+    }
   }
 }));

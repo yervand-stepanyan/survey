@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card'
+import Card from '@material-ui/core/Card';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PollIcon from '@material-ui/icons/Poll';
 import Typography from '@material-ui/core/Typography';
@@ -28,10 +28,13 @@ function SurveyComponent({
 
   return (
     <Card className={classes.card}>
-
       <div className={classes.surveyComponentContainer}>
         <div className={classes.surveyTitleContainer}>
-          <Typography variant="h6" component="h2" className={classes.surveyTitle}>
+          <Typography
+            variant="h6"
+            component="h2"
+            className={classes.surveyTitle}
+          >
             {title}
           </Typography>
         </div>
@@ -40,16 +43,15 @@ function SurveyComponent({
           <div className={classes.buttonContainer}>
             <Link className={classes.link} to={`${ROUTES.survey}/${id}`}>
               <Tooltip title="Take survey" arrow>
-                <IconButton 
-                  style={{color: '#34A853'}}
-                  aria-label="take-survey" 
+                <IconButton
+                  style={{ color: '#34A853' }}
+                  aria-label="take-survey"
                   color="primary"
                   variant="contained"
                   disabled={buttonToLoad === id && loadingButton}
                   onClick={() => handleButtonClick()}
                 >
                   <QuestionAnswerRoundedIcon />
-
                 </IconButton>
               </Tooltip>
             </Link>
@@ -60,8 +62,8 @@ function SurveyComponent({
           <div className={classes.buttonContainer}>
             <Link className={classes.link} to={`${ROUTES.results}/${id}`}>
               <Tooltip title="Results" arrow>
-                <IconButton 
-                  style={{color: '#FBBC05'}}
+                <IconButton
+                  style={{ color: '#FBBC05' }}
                   className={classes.resultButton}
                   disabled={buttonToLoad === id && loadingButton}
                   onClick={() => handleButtonClick()}
@@ -77,9 +79,9 @@ function SurveyComponent({
           </div>
           <div className={classes.buttonContainer}>
             <Tooltip title="Delete" arrow>
-              <IconButton 
-                aria-label="delete" 
-                style={{color: '#EA4335',}}
+              <IconButton
+                aria-label="delete"
+                style={{ color: '#EA4335' }}
                 disabled={buttonToLoad === id && loadingRemove}
                 onClick={() => handleRemoveSurvey(id)}
                 variant="contained"
@@ -94,7 +96,6 @@ function SurveyComponent({
         </div>
       </div>
     </Card>
-      
   );
 }
 
