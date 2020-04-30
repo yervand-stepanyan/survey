@@ -21,15 +21,12 @@ import { useStyles } from './CustomAnswersModal.style';
 
 const styles = theme => ({
   root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: 0,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
 });
 
 const DialogTitle = withStyles(styles)(props => {
