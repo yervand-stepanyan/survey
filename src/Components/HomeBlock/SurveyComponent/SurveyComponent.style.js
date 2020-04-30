@@ -37,9 +37,12 @@ export const useStyles = makeStyles(theme => ({
     marginLeft: theme.customSpacing.small,
     paddingLeft: theme.customSpacing.midLarge,
     '@media (max-width:768px)': {
+      borderTop: '1px solid #e4dddd',
       borderLeft: 'none',
-      marginTop: theme.customSpacing.small,
-      paddingLeft: 0
+      paddingLeft: 0,
+      width: 140,
+      alignItems: 'center',
+      margin: `${theme.customSpacing.base} auto 0`,
     }
   },
   menuItemButton: {

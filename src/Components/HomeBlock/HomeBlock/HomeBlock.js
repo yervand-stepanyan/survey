@@ -63,7 +63,7 @@ function HomeBlock() {
         {isConnectionError ? (
           <NotFoundBlock isConnectionError={isConnectionError} />
         ) : (
-          <div className={classes.surveyList}>
+          <div>
             <Typography variant="h4" className={classes.surveyHeading}>
               Survey List
             </Typography>
