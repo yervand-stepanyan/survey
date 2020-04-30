@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
 
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
@@ -54,30 +57,39 @@ function HomeBlock() {
   };
 
   return (
-    <div className={classes.homeBlockContainer}>
-      {isConnectionError ? (
-        <NotFoundBlock isConnectionError={isConnectionError} />
-      ) : (
-        <div>
-          {stateSurvey.length ? (
-            stateSurvey.map(({ id, title }) => (
-              <SurveyComponent
-                buttonToLoad={buttonToLoad}
-                handleButtonClick={handleButtonClick}
-                handleRemoveSurvey={handleRemoveSurvey}
-                id={id}
-                key={id}
-                loadingButton={loadingButton}
-                loadingRemove={loadingRemove}
-                title={title}
-              />
-            ))
+    <>
+      <CssBaseline />
+      <Container maxWidth="md">
+        <div className={classes.homeBlockContainer}>
+          {isConnectionError ? (
+            <NotFoundBlock isConnectionError={isConnectionError} />
           ) : (
-            <NoSurveyBlock />
+            <div className={classes.surveyList}>
+              <Typography variant='h4' className={classes.surveyHeading}>
+                Survey List
+              </Typography>
+               
+              {stateSurvey.length ? (
+                stateSurvey.map(({ id, title }) => (
+                  <SurveyComponent
+                    buttonToLoad={buttonToLoad}
+                    handleButtonClick={handleButtonClick}
+                    handleRemoveSurvey={handleRemoveSurvey}
+                    id={id}
+                    key={id}
+                    loadingButton={loadingButton}
+                    loadingRemove={loadingRemove}
+                    title={title}
+                  />
+                ))
+              ) : (
+                <NoSurveyBlock />
+              )}
+            </div>
           )}
         </div>
-      )}
-    </div>
+      </Container>
+    </>
   );
 }
 

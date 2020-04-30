@@ -5,7 +5,7 @@ const noAnswerColor = red[900];
 
 export const useStyles = makeStyles(theme => ({
   surveyTitle: {
-    padding: theme.customSpacing.xLarge,
+    padding: theme.customSpacing.large,
     textAlign: 'center'
   },
   noAnswerContainer: {
