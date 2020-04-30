@@ -17,7 +17,8 @@ const MAIN_SPACING_VALUE = 14;
 const theme = createMuiTheme({
   borders: {
     borderRadius: {
-      base: `${BORDER_RADIUS_VALUE}px`
+      base: `${BORDER_RADIUS_VALUE}px`,
+      large: `${BORDER_RADIUS_VALUE *2}px`
     }
   },
   boxShadow: {
