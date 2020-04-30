@@ -42,7 +42,7 @@ export const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     '&:hover': {
       border: `1px solid ${theme.color.mainColorGreen}`,
-      borderRadius: `${theme.borders.borderRadius.base}`,
+      borderRadius: `${theme.borders.borderRadius.large}`,
       color: `${theme.color.mainColorGreen}`
     }
   },
