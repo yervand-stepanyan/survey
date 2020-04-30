@@ -45,7 +45,13 @@ export const useStyles = makeStyles(theme => ({
       margin: `${theme.customSpacing.base} auto 0`,
     }
   },
+  removeButton: {
+    color: theme.color.redButton
+  },
   resultsButton: {
+    color: theme.color.yellowButton
+  },
+  takeSurveyButton: {
     color: theme.color.mainColorGreen
   }
 }));

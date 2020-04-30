@@ -43,7 +43,7 @@ function SurveyComponent({
           <Link to={`${ROUTES.survey}/${id}`}>
             <Tooltip title="Take survey" arrow>
               <IconButton
-                style={{ color: '#34A853' }}
+                className={classes.takeSurveyButton}
                 aria-label="take-survey"
                 color="primary"
                 variant="contained"
@@ -60,8 +60,7 @@ function SurveyComponent({
           <Link to={`${ROUTES.results}/${id}`}>
             <Tooltip title="Results" arrow>
               <IconButton
-                style={{ color: '#FBBC05' }}
-                className={classes.resultButton}
+                className={classes.resultsButton}
                 disabled={buttonToLoad === id && loadingButton}
                 onClick={() => handleButtonClick()}
                 variant="round"
@@ -74,10 +73,10 @@ function SurveyComponent({
             <ButtonLoader color="blue" />
           )}
       
-          <Tooltip title="Delete" arrow>
+          <Tooltip title="Remove" arrow>
             <IconButton
-              aria-label="delete"
-              style={{ color: '#EA4335' }}
+              className={classes.removeButton}
+              aria-label="remove"
               disabled={buttonToLoad === id && loadingRemove}
               onClick={() => handleRemoveSurvey(id)}
               variant="contained"
