@@ -4,7 +4,6 @@ export const useStyles = makeStyles(theme => ({
   surveyTitleCreatorContainer: {
     display: 'flex',
     flexDirection: 'column'
-    // padding: `0 ${theme.customSpacing.small}`
   },
   textFieldWrapper: {
     display: 'flex',
@@ -14,7 +13,6 @@ export const useStyles = makeStyles(theme => ({
       flexDirection: 'row',
       justifyContent: 'center'
     }
-    // width: '100%'
   },
   titleLabel: {
     display: 'flex',

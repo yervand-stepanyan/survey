@@ -4,7 +4,6 @@ export const useStyles = makeStyles(theme => ({
   optionsContainer: {
     display: 'flex',
     flexDirection: 'column'
-    // height: '268px'
   },
   titleWrapper: {
     display: 'flex',
@@ -16,7 +15,10 @@ export const useStyles = makeStyles(theme => ({
     marginTop: `${theme.customSpacing.large}`
   },
   textFieldWrapper: {
-    width: '60%'
+    width: '80%',
+    '@media only screen and (min-width: 600px)': {
+      width: '60%'
+    }
   },
   chipsWrapper: {
     display: 'flex',
@@ -25,15 +27,18 @@ export const useStyles = makeStyles(theme => ({
   },
   root: {
     display: 'flex',
-    justifyContent: 'center',
     flexWrap: 'wrap',
+    justifyContent: 'center',
     border: `2px solid ${theme.color.mainColorGreen}`,
     borderRadius: `${theme.borders.borderRadius.base}`,
     boxSizing: 'border-box',
     height: '114px',
     overflowY: 'auto',
     padding: `${theme.customSpacing.small}`,
-    width: '60%'
+    width: '80%',
+    '@media only screen and (min-width: 600px)': {
+      width: '60%'
+    }
   },
   chip: {
     margin: `${theme.customSpacing.small}`,
@@ -44,7 +49,10 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   checkboxSection: {
-    width: '60%'
+    width: '80%',
+    '@media only screen and (min-width: 600px)': {
+      width: '60%'
+    }
   },
   buttonWrapper: {
     display: 'flex',

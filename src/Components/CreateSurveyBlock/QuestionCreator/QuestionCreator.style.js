@@ -4,7 +4,6 @@ export const useStyles = makeStyles(theme => ({
   questionCreatorContainer: {
     display: 'flex',
     flexDirection: 'column'
-    // padding: `0 ${theme.customSpacing.small}`
   },
   textFieldWrapper: {
     display: 'flex',

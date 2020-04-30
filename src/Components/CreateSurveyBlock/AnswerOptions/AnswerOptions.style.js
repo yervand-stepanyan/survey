@@ -12,7 +12,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    marginTop: `${theme.customSpacing.base}`
+    margin: `${theme.customSpacing.base} ${theme.customSpacing.small} 0`
   },
   textImageContainer: {
     border: '10px solid transparent',

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
 import { addSurvey } from '../../../State/actions';
@@ -102,51 +103,53 @@ function CreateSurveyBlock() {
   };
 
   return (
-    <div className={classes.createSurveyBlockContainer}>
-      <div className={classes.blockTitleWrapper}>
-        <Typography variant="h4">{BLOCK_TITLE}</Typography>
-      </div>
-      <div className={classes.createSurveyWrapper}>
-        <StoreContext.Provider
-          value={{
-            disableSave,
-            handleIsAnswerSubmitted,
-            handleIsQuestionSubmitted
-          }}
-        >
-          <Card className={classes.titleWrapper}>
-            {isTitleEdit ? (
-              <SurveyTitleCreator
-                handleAddTitle={handleAddTitle}
-                title={title}
+    <Container maxWidth="md">
+      <div className={classes.createSurveyBlockContainer}>
+        <div className={classes.blockTitleWrapper}>
+          <Typography variant="h4">{BLOCK_TITLE}</Typography>
+        </div>
+        <div className={classes.createSurveyWrapper}>
+          <StoreContext.Provider
+            value={{
+              disableSave,
+              handleIsAnswerSubmitted,
+              handleIsQuestionSubmitted
+            }}
+          >
+            <Card className={classes.titleWrapper}>
+              {isTitleEdit ? (
+                <SurveyTitleCreator
+                  handleAddTitle={handleAddTitle}
+                  title={title}
+                />
+              ) : (
+                <SurveyTitle handleEditTitle={handleEditTitle} title={title} />
+              )}
+            </Card>
+            {isQuestionOpen || !isTitleEdit ? (
+              <QuestionSection
+                handleIsQuestionOpen={handleIsQuestionOpen}
+                handleSetQuestions={handleSetQuestions}
+                questions={questions}
               />
-            ) : (
-              <SurveyTitle handleEditTitle={handleEditTitle} title={title} />
-            )}
-          </Card>
-          {isQuestionOpen || !isTitleEdit ? (
-            <QuestionSection
-              handleIsQuestionOpen={handleIsQuestionOpen}
-              handleSetQuestions={handleSetQuestions}
-              questions={questions}
-            />
-          ) : null}
-          {questions && questions.length ? (
-            <SaveSurvey
-              disabled={
-                isTitleEdit ||
-                !allQuestionsSubmitted ||
-                !isQuestionSubmitted ||
-                !isAnswerSubmit ||
-                isSaveDisabled
-              }
-              handleSave={handleSave}
-              loading={loading}
-            />
-          ) : null}
-        </StoreContext.Provider>
+            ) : null}
+            {questions && questions.length ? (
+              <SaveSurvey
+                disabled={
+                  isTitleEdit ||
+                  !allQuestionsSubmitted ||
+                  !isQuestionSubmitted ||
+                  !isAnswerSubmit ||
+                  isSaveDisabled
+                }
+                handleSave={handleSave}
+                loading={loading}
+              />
+            ) : null}
+          </StoreContext.Provider>
+        </div>
       </div>
-    </div>
+    </Container>
   );
 }
 

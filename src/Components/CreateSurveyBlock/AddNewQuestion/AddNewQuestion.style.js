@@ -3,8 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
   addNewQuestionContainer: {
     display: 'flex',
-    marginTop: `${theme.customSpacing.large}`,
-    padding: `0 ${theme.customSpacing.xxLarge}`
+    justifyContent: 'center',
+    paddingBottom: `${theme.customSpacing.base}`,
+    marginTop: `${theme.customSpacing.small}`,
+    '@media only screen and (min-width: 600px)': {
+      justifyContent: 'flex-start',
+      padding: `0 0 ${theme.customSpacing.base} ${theme.customSpacing.xxLarge}`
+    }
   },
   buttonWrapper: {
     '&:hover + $textWrapper': {
