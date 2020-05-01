@@ -177,6 +177,7 @@ export const TEXT_LABELS = {
   inputSectionTitle: 'Choose input type',
   optionsContainerCheckboxLabel: 'Add an input field as the last option',
   optionsContainerInputLabel: 'Option',
+  optionsContainerIconTooltipLabel: 'Submit option',
   optionsContainerInputTooltipLabel: 'Input custom option name',
   questionSectionQuestionLabel: 'Question',
   questionCreatorInputErrorLabel: '* Invalid question',

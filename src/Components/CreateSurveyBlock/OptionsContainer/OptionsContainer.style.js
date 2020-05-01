@@ -15,7 +15,7 @@ export const useStyles = makeStyles(
       justifyContent: 'center',
       marginTop: `${theme.customSpacing.large}`
     },
-    textFieldWrapper: {
+    textFieldAndIconWrapper: {
       position: 'relative',
       width: '80%',
       '@media only screen and (min-width: 600px)': {

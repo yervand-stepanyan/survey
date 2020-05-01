@@ -51,11 +51,11 @@ function OptionsContainer({
     handleSubmitQuestion
   } = useStore();
 
-  useEffect(() => {
-    if (!activeId) {
-      inputEl.current.focus();
-    }
-  });
+  // useEffect(() => {
+  //   if (!activeId) {
+  //     inputEl.current.focus();
+  //   }
+  // }, []);
 
   useEffect(() => {
     handleAddAnswers(activeId, answers, checked);
@@ -245,34 +245,45 @@ function OptionsContainer({
   return (
     <div className={classes.optionsContainer}>
       <div className={classes.inputWrapper}>
-        <div className={classes.textFieldWrapper}>
-          <Tooltip
-            open={isTooltip}
-            placement="top-start"
-            title={TEXT_LABELS.optionsContainerInputTooltipLabel}
-            TransitionComponent={Zoom}
-          >
-            <TextField
-              error={isEmpty}
-              fullWidth
-              id="outlined-basic"
-              InputProps={{ className: classes.inputField }}
-              inputRef={inputEl}
-              label={TEXT_LABELS.optionsContainerInputLabel}
-              onChange={e => handleInputChange(e)}
-              onKeyDown={handleSubmitOnEnter}
-              value={title}
-              variant="outlined"
-            />
-          </Tooltip>
-          <div className={classes.iconWrapper}>
-            <IconButton
-              color="primary"
-              disabled={isIconDisabled || !isTyped}
-              onClick={handleIconClick}
+        <div className={classes.textFieldAndIconWrapper}>
+          <div>
+            <Tooltip
+              open={isTooltip}
+              placement="top-start"
+              title={TEXT_LABELS.optionsContainerInputTooltipLabel}
+              TransitionComponent={Zoom}
             >
-              <SendIcon fontSize="large" />
-            </IconButton>
+              <TextField
+                error={isEmpty}
+                fullWidth
+                id="outlined-basic"
+                InputProps={{ className: classes.inputField }}
+                inputRef={inputEl}
+                label={TEXT_LABELS.optionsContainerInputLabel}
+                onChange={e => handleInputChange(e)}
+                onKeyDown={handleSubmitOnEnter}
+                value={title}
+                variant="outlined"
+              />
+            </Tooltip>
+          </div>
+          <div className={classes.iconWrapper}>
+            <Tooltip
+              arrow
+              disableHoverListener={isIconDisabled || !isTyped}
+              title={TEXT_LABELS.optionsContainerIconTooltipLabel}
+              TransitionComponent={Zoom}
+            >
+              <div>
+                <IconButton
+                  color="primary"
+                  disabled={isIconDisabled || !isTyped}
+                  onClick={handleIconClick}
+                >
+                  <SendIcon fontSize="large" />
+                </IconButton>
+              </div>
+            </Tooltip>
           </div>
         </div>
       </div>
