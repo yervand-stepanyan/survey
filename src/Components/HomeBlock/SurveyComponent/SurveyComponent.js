@@ -9,6 +9,7 @@ import PollIcon from '@material-ui/icons/Poll';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
 
 import { HOME_ICON_TOOLTIPS } from '../../../Globals/variables';
 import IconLoader from '../../Loaders/IconLoader';
@@ -39,7 +40,11 @@ function SurveyComponent({
         <div className={classes.takeAndResultsCellsContainer}>
           <Link to={`${ROUTES.survey}/${id}`}>
             <div className={classes.iconWrapper}>
-              <Tooltip arrow title={HOME_ICON_TOOLTIPS.take}>
+              <Tooltip
+                arrow
+                title={HOME_ICON_TOOLTIPS.take}
+                TransitionComponent={Zoom}
+              >
                 <IconButton
                   aria-label="take-survey"
                   className={classes.takeSurveyButton}
@@ -57,7 +62,11 @@ function SurveyComponent({
           </Link>
           <Link to={`${ROUTES.results}/${id}`}>
             <div className={classes.iconWrapper}>
-              <Tooltip arrow title={HOME_ICON_TOOLTIPS.results}>
+              <Tooltip
+                arrow
+                title={HOME_ICON_TOOLTIPS.results}
+                TransitionComponent={Zoom}
+              >
                 <IconButton
                   className={classes.resultsButton}
                   disabled={buttonToLoad === id && loadingResultsButton}
@@ -73,7 +82,11 @@ function SurveyComponent({
             </div>
           </Link>
           <div className={classes.iconWrapper}>
-            <Tooltip arrow title={HOME_ICON_TOOLTIPS.remove}>
+            <Tooltip
+              arrow
+              title={HOME_ICON_TOOLTIPS.remove}
+              TransitionComponent={Zoom}
+            >
               <IconButton
                 aria-label="remove"
                 className={classes.removeButton}
