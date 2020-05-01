@@ -74,7 +74,6 @@ function HomeBlock() {
             <Typography variant="h4" className={classes.surveyHeading}>
               {SURVEY_LIST}
             </Typography>
-
             {stateSurvey.length ? (
               stateSurvey.map(({ id, title }) => (
                 <SurveyComponent
