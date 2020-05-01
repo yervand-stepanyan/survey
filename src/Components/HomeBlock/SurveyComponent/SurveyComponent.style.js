@@ -35,19 +35,25 @@ export const useStyles = makeStyles(theme => ({
       borderTop: `1px solid ${theme.color.lightGreyBorder}`,
       borderLeft: 'none',
       paddingLeft: 0,
-      width: 140,
+      width: 160,
       alignItems: 'center',
       margin: `${theme.customSpacing.base} auto 0`
     }
   },
   removeButton: {
-    color: theme.color.redButton
+    color: theme.color.redButton,
+    '@media screen and (max-width:768px)': {
+      marginLeft: theme.customSpacing.base
+    }
   },
   resultsButton: {
     color: theme.color.yellowButton
   },
   takeSurveyButton: {
-    color: theme.color.mainColorGreen
+    color: theme.color.mainColorGreen,
+    '@media screen and (max-width:768px)': {
+      marginRight: theme.customSpacing.base
+    }
   },
   iconWrapper: {
     position: 'relative'

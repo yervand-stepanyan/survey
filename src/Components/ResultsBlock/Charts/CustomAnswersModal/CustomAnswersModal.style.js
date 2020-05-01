@@ -20,8 +20,5 @@ export const useStyles = makeStyles(theme => ({
   playIcon: {
     height: 38,
     width: 38
-  },
-  seeAnswers: {
-    margin: 21
   }
 }));
