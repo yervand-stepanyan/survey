@@ -26,6 +26,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   const [results, setResults] = useState({});
   const [surveyAnswers, setSurveyAnswers] = useState([]);
   const {
+    stateSurvey,
     dispatchSurveyAnswer,
     handleOpenSnackbar,
     handleShowSnackbar
@@ -38,6 +39,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
     );
 
     setIsButtonDisabled(disableButton);
+
     setResults({ survey: surveyId, answers: surveyAnswers });
   }, [surveyId, surveyAnswers]);
 
@@ -71,8 +73,12 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
       setLoading(true);
 
       const response = await doPost('survey-answers', results);
+      const postedResult = {
+        ...response,
+        survey: stateSurvey.find(survey => survey.id === response.survey)
+      };
 
-      dispatchSurveyAnswer(addSurveyAnswer(response));
+      dispatchSurveyAnswer(addSurveyAnswer(postedResult));
 
       handleShowSnackbar(true, TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS);
 

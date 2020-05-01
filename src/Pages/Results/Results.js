@@ -9,11 +9,11 @@ import { useStyles } from './Results.style';
 function Results() {
   const classes = useStyles();
   const { id } = useParams();
-  const { loadingData, stateSurveyAnswer, stateSurvey } = useStore();
+  const { loadingData, stateSurvey, stateSurveyAnswer } = useStore();
   const answers = stateSurveyAnswer.filter(
     surveyAnswers => surveyAnswers.survey.id === id
   );
-  const [survey] = stateSurvey.filter(item => item.id === id);
+  const survey = stateSurvey.find(item => item.id === id);
   const surveyTitle = survey ? survey.title : '';
 
   return (
