@@ -30,7 +30,9 @@ function OptionsContainer({
   const [checked, setChecked] = useState(hasLastInput || false);
   const [chip, setChip] = useState({});
   const [customAnswerId, setCustomAnswerId] = useState(
-    answersProps && hasLastInput ? answersProps[answersProps.length - 1].id : ''
+    answersProps.length && hasLastInput
+      ? answersProps[answersProps.length - 1].id
+      : ''
   );
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -252,7 +254,7 @@ function OptionsContainer({
         </div>
       </div>
       <div className={classes.chipsWrapper}>
-        <div className={classes.root}>
+        <div className={classes.chipsRoot}>
           {answers.map(opt => (
             <Tooltip
               arrow
@@ -314,7 +316,7 @@ OptionsContainer.propTypes = {
 };
 
 OptionsContainer.defaultProps = {
-  answers: undefined,
+  answers: [],
   hasLastInput: false,
   type: ''
 };

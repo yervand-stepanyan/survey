@@ -25,11 +25,5 @@ export const useStyles = makeStyles(theme => ({
     '&:hover': {
       color: `${theme.color.mainColorGreen}`
     }
-  },
-  textWrapperDisabled: {
-    display: 'flex',
-    alignItems: 'center',
-    cursor: 'default',
-    outline: 'none'
   }
 }));

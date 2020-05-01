@@ -10,7 +10,6 @@ import { useStyles } from './AddNewQuestion.style';
 
 function AddNewQuestion({ handleAddNewQuestion }) {
   const classes = useStyles();
-  const enabled = false;
 
   const handleClick = () => {
     handleAddNewQuestion();
@@ -23,17 +22,12 @@ function AddNewQuestion({ handleAddNewQuestion }) {
   return (
     <div className={classes.addNewQuestionContainer}>
       <div className={classes.buttonWrapper}>
-        <Fab
-          color="primary"
-          disabled={enabled}
-          onClick={handleClick}
-          size="medium"
-        >
+        <Fab color="primary" onClick={handleClick} size="medium">
           <AddIcon fontSize="large" />
         </Fab>
       </div>
       <div
-        className={enabled ? classes.textWrapperDisabled : classes.textWrapper}
+        className={classes.textWrapper}
         onClick={e => handleClick(e)}
         onKeyDown={e => handleEnterKey(e)}
         role="button"

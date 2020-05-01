@@ -128,7 +128,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
       )}
       <div className={classes.buttonWrapper}>
         <Button
-          className={classes.menuItemButton}
+          className={classes.button}
           disabled={loading || isButtonDisabled}
           onClick={handleSubmit}
           size="large"
