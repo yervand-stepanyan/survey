@@ -16,6 +16,7 @@ export const useStyles = makeStyles(
       marginTop: `${theme.customSpacing.large}`
     },
     textFieldWrapper: {
+      position: 'relative',
       width: '80%',
       '@media only screen and (min-width: 600px)': {
         width: '70%'
@@ -23,6 +24,16 @@ export const useStyles = makeStyles(
       '@media only screen and (min-width: 768px)': {
         width: '60%'
       }
+    },
+    inputField: {
+      '& .MuiOutlinedInput-input': {
+        padding: '20px 73px 20px 14px'
+      }
+    },
+    iconWrapper: {
+      position: 'absolute',
+      top: 0,
+      right: 0
     },
     chipsWrapper: {
       display: 'flex',

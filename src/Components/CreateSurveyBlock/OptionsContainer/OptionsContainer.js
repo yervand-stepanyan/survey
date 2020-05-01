@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import IconButton from '@material-ui/core/IconButton';
+import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
@@ -36,6 +38,7 @@ function OptionsContainer({
   );
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isIconDisabled, setIsIconDisabled] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(!!answersProps || false);
   const [isTooltip, setIsTooltip] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
@@ -67,63 +70,73 @@ function OptionsContainer({
       setIsTyped(false);
 
       disableSave(false);
+
+      setIsIconDisabled(true);
     } else {
       setIsEmpty(false);
 
       setIsTyped(true);
 
       disableSave(true);
+
+      setIsIconDisabled(false);
     }
+  };
+
+  const handleIconClick = () => {
+    const filteredTitle = removeSpaces(title);
+    const id = uuid();
+
+    if (filteredTitle) {
+      setAnswers(
+        chip.id
+          ? answers.map(opt =>
+              opt.id === chip.id ? { id: chip.id, title: filteredTitle } : opt
+            )
+          : [...answers, { id, title: filteredTitle }]
+      );
+
+      setTitle('');
+
+      setChip({});
+
+      setIsTyped(false);
+
+      if (checked && !customAnswerId) {
+        setCustomAnswerId(id);
+
+        setIsTooltip(false);
+      }
+
+      if (activeId && isSubmitted) {
+        setIsChanged(true);
+      }
+
+      disableSave(true);
+    } else {
+      setIsEmpty(true);
+    }
+
+    if (checked) {
+      setAnswers(prevState => {
+        const answerId = customAnswerId || id;
+        const lastAnswer = prevState.find(opt => opt.id === answerId);
+        const filteredAnswers = prevState.filter(
+          opt => opt.id !== lastAnswer.id
+        );
+
+        return [...filteredAnswers, lastAnswer];
+      });
+    }
+
+    setIsSubmitted(false);
+
+    inputEl.current.focus();
   };
 
   const handleSubmitOnEnter = event => {
     if (event.key === 'Enter') {
-      const filteredTitle = removeSpaces(title);
-      const id = uuid();
-
-      if (filteredTitle) {
-        setAnswers(
-          chip.id
-            ? answers.map(opt =>
-                opt.id === chip.id ? { id: chip.id, title: filteredTitle } : opt
-              )
-            : [...answers, { id, title: filteredTitle }]
-        );
-
-        setTitle('');
-
-        setChip({});
-
-        setIsTyped(false);
-
-        if (checked && !customAnswerId) {
-          setCustomAnswerId(id);
-
-          setIsTooltip(false);
-        }
-
-        if (activeId && isSubmitted) {
-          setIsChanged(true);
-        }
-
-        disableSave(true);
-      } else {
-        setIsEmpty(true);
-      }
-
-      if (checked) {
-        setAnswers(prevState => {
-          const answerId = customAnswerId || id;
-          const lastAnswer = prevState.find(opt => opt.id === answerId);
-          const filteredAnswers = prevState.filter(
-            opt => opt.id !== lastAnswer.id
-          );
-
-          return [...filteredAnswers, lastAnswer];
-        });
-      }
-
-      setIsSubmitted(false);
+      handleIconClick();
     }
   };
 
@@ -243,6 +256,7 @@ function OptionsContainer({
               error={isEmpty}
               fullWidth
               id="outlined-basic"
+              InputProps={{ className: classes.inputField }}
               inputRef={inputEl}
               label={TEXT_LABELS.optionsContainerInputLabel}
               onChange={e => handleInputChange(e)}
@@ -251,6 +265,15 @@ function OptionsContainer({
               variant="outlined"
             />
           </Tooltip>
+          <div className={classes.iconWrapper}>
+            <IconButton
+              color="primary"
+              disabled={isIconDisabled || !isTyped}
+              onClick={handleIconClick}
+            >
+              <SendIcon fontSize="large" />
+            </IconButton>
+          </div>
         </div>
       </div>
       <div className={classes.chipsWrapper}>
