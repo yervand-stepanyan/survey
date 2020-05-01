@@ -125,6 +125,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
           className={classes.menuItemButton}
           disabled={loading || isButtonDisabled}
           onClick={handleSubmit}
+          size="large"
           variant="contained"
         >
           {SUBMIT_TEXT}

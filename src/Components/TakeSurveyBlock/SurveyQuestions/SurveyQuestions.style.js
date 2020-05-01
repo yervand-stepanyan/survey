@@ -19,14 +19,9 @@ export const useStyles = makeStyles(theme => ({
   },
   menuItemButton: {
     backgroundColor: `${theme.color.mainColorGreen}`,
-    borderColor: `${theme.color.mainColorDarkBlue}`,
     color: `${theme.color.simpleWhite}`,
-    marginLeft: `${theme.customSpacing.base}`,
-    textDecoration: 'none',
     '&:hover': {
-      background: `${theme.color.buttonHoverColorGreen}`,
-      borderColor: `${theme.color.buttonHoverColorGreen}`,
-      color: `${theme.color.simpleWhite}`
+      background: `${theme.color.buttonHoverColorGreen}`
     }
   },
   buttonWrapper: {
@@ -34,13 +29,5 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     marginTop: `${theme.customSpacing.base}`,
     position: 'relative'
-  },
-  buttonProgress: {
-    color: `${theme.color.buttonHoverColorGreen}`,
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12
   }
 }));
