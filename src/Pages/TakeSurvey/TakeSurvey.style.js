@@ -4,7 +4,6 @@ export const useStyles = makeStyles({
   takeSurveyContainer: {
     display: 'flex',
     justifyContent: 'center',
-    // marginTop: `${theme.customSpacing.large}`,
     minHeight: 'inherit'
   }
 });
