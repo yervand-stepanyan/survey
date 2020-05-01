@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
@@ -11,19 +10,20 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
-
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
+import { BUTTON_LABELS } from '../../../../Globals/variables';
 import { useStyles } from './CustomAnswersModal.style';
 
 const styles = theme => ({
   root: {
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'space-between',
     margin: 0,
     padding: theme.spacing(2)
   }
@@ -31,15 +31,12 @@ const styles = theme => ({
 
 const DialogTitle = withStyles(styles)(props => {
   const { children, classes, onClose } = props;
+
   return (
-    <MuiDialogTitle disableTypography className={classes.root}>
+    <MuiDialogTitle className={classes.root} disableTypography>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton
-          aria-label="close"
-          className={classes.closeButton}
-          onClick={onClose}
-        >
+        <IconButton aria-label="close" onClick={onClose}>
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -53,34 +50,29 @@ const DialogContent = withStyles(theme => ({
   }
 }))(MuiDialogContent);
 
-function CustomAnswersModal({ title, customText }) {
+function CustomAnswersModal({ customText, title }) {
   const classes = useStyles();
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleClickOpen}
-        className={classes.seeAnswers}
-      >
+      <Button color="primary" onClick={handleClickOpen} variant="outlined">
         <PersonPinIcon />
-        See answers
+        {BUTTON_LABELS.customAnswersModalSeeAnswers}
       </Button>
       <Dialog
-        onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
         className={classes.dialog}
+        onClose={handleClose}
+        open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {title}
@@ -102,8 +94,8 @@ function CustomAnswersModal({ title, customText }) {
 }
 
 CustomAnswersModal.propTypes = {
-  title: PropTypes.string.isRequired,
-  customText: PropTypes.array.isRequired
+  customText: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default CustomAnswersModal;

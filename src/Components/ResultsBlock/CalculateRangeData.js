@@ -1,10 +1,9 @@
 export default function CalculateRangeData(data) {
-  let sum = 0;
+  const medianArray = [];
   let count = 0;
   let max = 0;
   let min = +data[0].name;
-
-  const medianArray = [];
+  let sum = 0;
 
   data.forEach(item => {
     sum += +item.name * +item.answers;
@@ -25,16 +24,15 @@ export default function CalculateRangeData(data) {
 
   const median = arr => {
     const med = Math.floor(arr.length / 2);
-
     const nums = [...arr].sort((a, b) => a - b);
 
     return arr.length % 2 !== 0 ? nums[med] : (nums[med - 1] + nums[med]) / 2;
   };
 
   return {
-    min,
-    max,
     avg: (sum / count).toFixed(2),
-    median: median(medianArray)
+    max,
+    median: median(medianArray),
+    min
   };
 }

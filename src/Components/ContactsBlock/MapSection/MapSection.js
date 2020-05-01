@@ -2,22 +2,23 @@ import React from 'react';
 import { Map, Marker } from 'google-maps-react';
 import PropTypes from 'prop-types';
 
+import { MAP_DETAILS } from '../../../Globals/variables';
 import { useStyles } from './MapSection.style';
-
-const INITIAL_CENTER = {
-  lat: 40.198929,
-  lng: 44.490734
-};
-const ZOOM = 15;
-const MARKER_TITLE = 'ACA';
 
 function MapSection({ google }) {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <Map google={google} zoom={ZOOM} initialCenter={INITIAL_CENTER}>
-        <Marker position={INITIAL_CENTER} title={MARKER_TITLE} />
+      <Map
+        google={google}
+        initialCenter={MAP_DETAILS.initialCenter}
+        zoom={MAP_DETAILS.zoom}
+      >
+        <Marker
+          position={MAP_DETAILS.initialCenter}
+          title={MAP_DETAILS.markerTitle}
+        />
       </Map>
     </div>
   );

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+import CardHeader from '@material-ui/core/CardHeader';
 
-import { ANSWER_TYPES } from '../../../Globals/variables';
+import { ANSWER_TYPES, TEXT_LABELS } from '../../../Globals/variables';
 import CheckboxAnswers from '../CheckboxAnswers';
 import DropdownAnswers from '../DropdownAnswers';
 import InputAnswers from '../InputAnswers';
@@ -14,16 +14,16 @@ import RangeAnswers from '../RangeAnswers';
 import { useStyles } from './SurveyQuestion.style';
 
 function SurveyQuestion({
-  id,
-  title,
-  answerType,
-  inputType,
   answers,
-  hasLastInput,
-  startValue,
+  answerType,
   endValue,
+  hasLastInput,
+  id,
+  inputType,
+  receiveAnswers,
+  startValue,
   stepValue,
-  receiveAnswers
+  title
 }) {
   const classes = useStyles();
 
@@ -64,9 +64,9 @@ function SurveyQuestion({
             answerType={answerType}
             endValue={Number(endValue)}
             questionId={id}
+            receiveAnswers={receiveAnswers}
             startValue={Number(startValue)}
             stepValue={Number(stepValue)}
-            receiveAnswers={receiveAnswers}
           />
         );
       case ANSWER_TYPES.input:
@@ -80,7 +80,7 @@ function SurveyQuestion({
           />
         );
       default:
-        return 'No Answer type chosen';
+        return TEXT_LABELS.surveyQuestionNoAnswerTypeChosen;
     }
   };
   return (
@@ -94,24 +94,24 @@ function SurveyQuestion({
 }
 
 SurveyQuestion.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  answerType: PropTypes.string.isRequired,
-  inputType: PropTypes.string,
   answers: PropTypes.array,
-  hasLastInput: PropTypes.bool,
-  startValue: PropTypes.string,
+  answerType: PropTypes.string.isRequired,
   endValue: PropTypes.string,
+  hasLastInput: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  inputType: PropTypes.string,
   receiveAnswers: PropTypes.func.isRequired,
-  stepValue: PropTypes.string
+  startValue: PropTypes.string,
+  stepValue: PropTypes.string,
+  title: PropTypes.string.isRequired
 };
 
 SurveyQuestion.defaultProps = {
-  inputType: '',
   answers: [],
-  hasLastInput: false,
-  startValue: '',
   endValue: '',
+  hasLastInput: false,
+  inputType: '',
+  startValue: '',
   stepValue: ''
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'react-uuid';
+
 import Brightness1RoundedIcon from '@material-ui/icons/Brightness1Rounded';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,45 +9,44 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { Cell, Pie, PieChart, Tooltip } from 'recharts';
 import Typography from '@material-ui/core/Typography';
-import uuid from 'react-uuid';
 
-import renderCustomizedLabel from './renderCustomizedLabel';
 import CustomAnswersModal from '../CustomAnswersModal';
+import { CUSTOM_PIE_CHART_COLORS } from '../../../../Globals/variables';
+import renderCustomizedLabel from './renderCustomizedLabel';
 import { useStyles } from './CustomPieChart.style';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#B43ACE'];
-
-function CustomPieChart({ data, title, customText }) {
+function CustomPieChart({ customText, data, title }) {
+  const classes = useStyles();
   const answers = data.filter(other => other.name !== 'other');
   const [otherAnswer] = data.filter(other => other.name === 'other');
+
   if (otherAnswer) {
     answers.splice(answers.length + 1, 1, otherAnswer);
   }
-  const classes = useStyles();
+
   return (
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <div className={classes.chartList}>
-            <List component="nav" aria-label="main mailbox folders">
-              <Typography variant="h6" color="textSecondary">
+            <List aria-label="main mailbox folders" component="nav">
+              <Typography color="textSecondary" variant="h6">
                 {title}
               </Typography>
-              {/* {console.log(data)} */}
               {answers.map((val, id) =>
-                COLORS.map(
+                CUSTOM_PIE_CHART_COLORS.map(
                   (color, index) =>
                     index === id &&
                     (val.name === 'other' ? (
-                      <ListItem key={uuid()} className={classes.answerDetails}>
+                      <ListItem className={classes.answerDetails} key={uuid()}>
                         <ListItemIcon>
                           <Brightness1RoundedIcon style={{ fill: color }} />
                         </ListItemIcon>
                         <ListItemText
-                          primary={val.name}
                           className={classes.customAnswer}
+                          primary={val.name}
                         />
                         <CustomAnswersModal
                           customText={customText}
@@ -53,7 +54,7 @@ function CustomPieChart({ data, title, customText }) {
                         />
                       </ListItem>
                     ) : (
-                      <ListItem key={uuid()} className={classes.answerDetails}>
+                      <ListItem className={classes.answerDetails} key={uuid()}>
                         <ListItemIcon>
                           <Brightness1RoundedIcon style={{ fill: color }} />
                         </ListItemIcon>
@@ -66,25 +67,31 @@ function CustomPieChart({ data, title, customText }) {
             </List>
           </div>
           <PieChart
-            width={250}
-            height={250}
-            key={uuid()}
             className={classes.pieChart}
+            key={uuid()}
+            height={250}
+            width={250}
           >
             <Pie
-              innerRadius={40}
-              outerRadius={120}
-              fill="#8884d8"
-              dataKey="value"
               data={answers}
-              labelLine={false}
+              dataKey="value"
+              fill="#8884d8"
+              innerRadius={40}
               label={renderCustomizedLabel}
+              labelLine={false}
+              outerRadius={120}
             >
               {data.map((entry, index) => (
-                <Cell key={uuid()} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  fill={
+                    CUSTOM_PIE_CHART_COLORS[
+                      index % CUSTOM_PIE_CHART_COLORS.length
+                    ]
+                  }
+                  key={uuid()}
+                />
               ))}
             </Pie>
-
             <Tooltip />
           </PieChart>
         </CardContent>
@@ -94,9 +101,9 @@ function CustomPieChart({ data, title, customText }) {
 }
 
 CustomPieChart.propTypes = {
-  title: PropTypes.string.isRequired,
+  customText: PropTypes.array,
   data: PropTypes.array.isRequired,
-  customText: PropTypes.array
+  title: PropTypes.string.isRequired
 };
 CustomPieChart.defaultProps = {
   customText: []

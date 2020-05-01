@@ -18,13 +18,13 @@ function Footer() {
       <div className={classes.logoAndMenuWrapper}>
         <div className={classes.logoSection}>
           <Link to={ROUTES.home}>
-            <img src={logo} alt="logo" className={classes.logo} />
+            <img alt="logo" className={classes.logo} src={logo} />
           </Link>
         </div>
         <div className={classes.menuSection}>
           {MENU_ITEMS.map(item => (
             <div className={classes.menu} key={item.name}>
-              <Link to={item.route} className={classes.menuItem}>
+              <Link className={classes.menuItem} to={item.route}>
                 {item.name}
               </Link>
             </div>

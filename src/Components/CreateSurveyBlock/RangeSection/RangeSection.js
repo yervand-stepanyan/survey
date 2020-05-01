@@ -7,16 +7,12 @@ import Typography from '@material-ui/core/Typography';
 
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
-  ANSWER_SECTION_BUTTON_LABEL
+  ANSWER_SECTION_BUTTON_LABEL,
+  TEXT_LABELS
 } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './RangeSection.style';
-
-const END_VALUE_LABEL = 'End value';
-const START_VALUE_LABEL = 'Start value';
-const STEP_VALUE_LABEL = 'Step';
-const TITLE = 'Range values';
 
 function RangeSection({
   activeId,
@@ -52,8 +48,8 @@ function RangeSection({
   }, [activeId]);
 
   const checkStepIsValid = ({
-    startValue: start,
     endValue: end,
+    startValue: start,
     stepValue: step
   }) => {
     const isStepInvalid =
@@ -194,7 +190,7 @@ function RangeSection({
   return (
     <div className={classes.rangeSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TITLE}</Typography>
+        <Typography variant="h5">{TEXT_LABELS.rangeSectionTitle}</Typography>
       </div>
       <div className={classes.inputWrapper}>
         <div className={classes.textFieldsSection}>
@@ -204,7 +200,7 @@ function RangeSection({
               fullWidth
               id="outlined-basic"
               inputRef={inputEl}
-              label={START_VALUE_LABEL}
+              label={TEXT_LABELS.rangeSectionStartValueLabel}
               onChange={e => handleStartChange(e)}
               onKeyDown={handleSubmitOnEnter}
               type="number"
@@ -217,7 +213,7 @@ function RangeSection({
               error={isEndEmpty || isEqual || isInvalid}
               fullWidth
               id="outlined-basic"
-              label={END_VALUE_LABEL}
+              label={TEXT_LABELS.rangeSectionEndValueLabel}
               onChange={e => handleEndChange(e)}
               onKeyDown={handleSubmitOnEnter}
               type="number"
@@ -230,7 +226,7 @@ function RangeSection({
               error={isStepEmpty || !isStepValid}
               fullWidth
               id="outlined-basic"
-              label={STEP_VALUE_LABEL}
+              label={TEXT_LABELS.rangeSectionStepValueLabel}
               onChange={e => handleStepChange(e)}
               onKeyDown={handleSubmitOnEnter}
               type="number"

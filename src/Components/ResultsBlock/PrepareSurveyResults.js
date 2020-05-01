@@ -11,11 +11,11 @@ function PrepareSurveyResults(submissions) {
 
       if (typeof results[answer.questionId] === 'undefined') {
         results[answer.questionId] = {
-          id: answer.questionId,
-          title: subQuestion.title,
-          type: subQuestion.answerType,
           answers: {},
-          textAnswers: []
+          id: answer.questionId,
+          textAnswers: [],
+          title: subQuestion.title,
+          type: subQuestion.answerType
         };
       }
 
@@ -28,9 +28,9 @@ function PrepareSurveyResults(submissions) {
             typeof results[answer.questionId].answers[optionId] === 'undefined'
           ) {
             results[answer.questionId].answers[optionId] = {
+              id: optionId,
               name: optionData.title,
-              value: 0,
-              id: optionId
+              value: 0
             };
           }
 
@@ -44,9 +44,9 @@ function PrepareSurveyResults(submissions) {
         if (answer.customAnswer !== '') {
           if (typeof results[answer.questionId].answers.other === 'undefined') {
             results[answer.questionId].answers.other = {
+              id: 'other',
               name: 'other',
-              value: 0,
-              id: 'other'
+              value: 0
             };
           }
 
@@ -59,9 +59,9 @@ function PrepareSurveyResults(submissions) {
             ] === 'undefined'
           ) {
             results[answer.questionId].answers[answer.markedAnswers[0]] = {
+              id: answer.markedAnswers[0],
               name: optionData.title,
-              value: 0,
-              id: answer.markedAnswers[0]
+              value: 0
             };
           }
 
@@ -79,9 +79,9 @@ function PrepareSurveyResults(submissions) {
           'undefined'
         ) {
           results[answer.questionId].answers[answer.markedAnswers[0]] = {
+            id: answer.markedAnswers[0],
             name: optionData.title,
-            value: 0,
-            id: answer.markedAnswers[0]
+            value: 0
           };
         }
 
@@ -92,9 +92,9 @@ function PrepareSurveyResults(submissions) {
           'undefined'
         ) {
           results[answer.questionId].answers[answer.customAnswer] = {
+            id: answer.customAnswer,
             name: answer.customAnswer,
-            answers: 0,
-            id: answer.customAnswer
+            answers: 0
           };
         }
 

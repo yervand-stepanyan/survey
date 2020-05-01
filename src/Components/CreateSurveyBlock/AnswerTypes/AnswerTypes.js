@@ -6,9 +6,8 @@ import Typography from '@material-ui/core/Typography';
 
 import AnswerOptions from '../AnswerOptions';
 import AnswerSection from '../AnswerSection';
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './AnswerTypes.style';
-
-const TITLE = 'Answer type';
 
 function AnswerTypes({
   activeId,
@@ -26,7 +25,9 @@ function AnswerTypes({
   return (
     <Card className={classes.answerTypesContainer}>
       <div className={classes.answerTypesTitleWrapper}>
-        <Typography variant="h5">{TITLE}</Typography>
+        <Typography variant="h5">
+          {TEXT_LABELS.answerTypeSectionTitle}
+        </Typography>
       </div>
       <AnswerOptions
         activeId={activeId}

@@ -6,8 +6,8 @@ const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
   cx,
   cy,
-  midAngle,
   innerRadius,
+  midAngle,
   outerRadius,
   percent
 }) => {
@@ -31,8 +31,8 @@ const renderCustomizedLabel = ({
 renderCustomizedLabel.propTypes = {
   cx: PropTypes.number.isRequired,
   cy: PropTypes.number.isRequired,
-  midAngle: PropTypes.number.isRequired,
   innerRadius: PropTypes.number.isRequired,
+  midAngle: PropTypes.number.isRequired,
   outerRadius: PropTypes.number.isRequired,
   percent: PropTypes.number.isRequired
 };

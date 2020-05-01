@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './DropdownAnswers.style';
 
 function DropdownAnswers({ answers, receiveAnswers, questionId }) {
@@ -19,15 +20,15 @@ function DropdownAnswers({ answers, receiveAnswers, questionId }) {
 
   return (
     <div className={classes.container}>
-      <FormControl variant="outlined" className={classes.formControl}>
+      <FormControl variant="outlined">
         <Select
-          labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={answer}
+          labelId="demo-simple-select-outlined-label"
           onChange={handleChange}
+          value={answer}
         >
           <MenuItem value="">
-            <em>None</em>
+            <em>{TEXT_LABELS.dropdownAnswersSelectMenuItemNone}</em>
           </MenuItem>
           {answers.map(({ id, title }) => {
             return (

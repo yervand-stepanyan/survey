@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import {
   HashRouter as Router,
   Redirect,
@@ -28,11 +28,11 @@ import { useStyles } from './Main.style';
 
 function Main() {
   const classes = useStyles();
+  const [isConnectionError, setIsConnectionError] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
   const [open, setOpen] = useState(false);
   const [showSuccess, setShowSuccess] = useState(true);
   const [snackbarText, setSnackbarText] = useState('');
-  const [loadingData, setLoadingData] = useState(true);
-  const [isConnectionError, setIsConnectionError] = useState(false);
   const [stateSurvey, dispatchSurvey] = useReducer(surveyReducer, initialState);
   const [stateSurveyAnswer, dispatchSurveyAnswer] = useReducer(
     surveyAnswerReducer,

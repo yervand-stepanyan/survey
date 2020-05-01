@@ -3,29 +3,28 @@ import PropTypes from 'prop-types';
 
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import TextField from '@material-ui/core/TextField';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import TextField from '@material-ui/core/TextField';
 
-import { useStyles } from './InputAnswers.style';
+import { INPUT_TYPES, TEXT_LABELS } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
-
-const DATE_INPUT_PLACEHOLDER_TEXT = 'Date picker dialog';
-const NUMBER_INPUT_PALCEHOLDER_TEXT = 'Type here...';
-const TEXT_INPUT_PALCEHOLDER_TEXT = 'Type here...';
+import { useStyles } from './InputAnswers.style';
 
 function InputAnswers({ inputType, receiveAnswers, questionId }) {
   const classes = useStyles();
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [textValue, setTextValue] = useState('');
   const [numberValue, setNumberValue] = useState('');
+  const [textValue, setTextValue] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = date => {
     setSelectedDate(date);
     receiveAnswers([], date, questionId);
   };
+
   const handleTextChange = e => {
-    setTextValue(e.target.value);
     const filteredValue = removeSpaces(e.target.value);
+
+    setTextValue(e.target.value);
 
     if (filteredValue) {
       receiveAnswers([], filteredValue, questionId);
@@ -38,51 +37,55 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
     receiveAnswers([], e.target.value, questionId);
   };
 
-  if (inputType === 'DATE') {
+  if (inputType === INPUT_TYPES.date) {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label={DATE_INPUT_PLACEHOLDER_TEXT}
           format="MM/dd/yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
+          id="date-picker-dialog"
           KeyboardButtonProps={{
             'aria-label': 'change date'
           }}
+          label={TEXT_LABELS.inputAnswersInputDateLabel}
+          margin="normal"
+          onChange={handleDateChange}
+          value={selectedDate}
         />
       </MuiPickersUtilsProvider>
     );
   }
-  if (inputType === 'NUMBER') {
+  if (inputType === INPUT_TYPES.number) {
     return (
       <TextField
         id="outlined-number"
-        label={NUMBER_INPUT_PALCEHOLDER_TEXT}
-        type="number"
         InputLabelProps={{
           shrink: true
         }}
+        label={TEXT_LABELS.inputAnswersInputNumberLabel}
+        onChange={handleNumberChange}
+        type="number"
         value={numberValue}
         variant="outlined"
-        onChange={handleNumberChange}
       />
     );
   }
-  if (inputType === 'TEXT') {
+  if (inputType === INPUT_TYPES.text) {
     return (
       <TextField
-        id="outlined"
-        label={TEXT_INPUT_PALCEHOLDER_TEXT}
-        variant="outlined"
-        value={textValue}
-        onChange={handleTextChange}
         className={classes.inputFieldForText}
+        id="outlined"
+        label={TEXT_LABELS.inputAnswersInputTextLabel}
+        onChange={handleTextChange}
+        value={textValue}
+        variant="outlined"
       />
     );
   }
-  return <div className={classes.container}>Something went wrong!</div>;
+  return (
+    <div className={classes.container}>
+      {TEXT_LABELS.inputAnswersErrorLabel}
+    </div>
+  );
 }
 
 InputAnswers.propTypes = {

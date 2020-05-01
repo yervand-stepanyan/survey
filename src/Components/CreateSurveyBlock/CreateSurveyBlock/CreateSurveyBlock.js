@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { addSurvey } from '../../../State/actions';
 import {
   CREATE_SURVEY_SNACKBAR_MESSAGE_ERROR,
-  CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
+  CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
+  TEXT_LABELS
 } from '../../../Globals/variables';
 import { doPost } from '../../../FetchAPI/fetchData';
 import QuestionSection from '../QuestionSection';
@@ -20,10 +21,9 @@ import SurveyTitleCreator from '../SurveyTitleCreator';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './CreateSurveyBlock.style';
 
-const BLOCK_TITLE = 'Create survey';
-
 function CreateSurveyBlock() {
   const classes = useStyles();
+  const history = useHistory();
   const [allQuestionsSubmitted, setAllQuestionsSubmitted] = useState(false);
   const [isAnswerSubmit, setIsAnswerSubmit] = useState(false);
   const [isQuestionOpen, setIsQuestionOpen] = useState(false);
@@ -33,7 +33,6 @@ function CreateSurveyBlock() {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [title, setTitle] = useState('');
-  const history = useHistory();
   const { dispatchSurvey, handleOpenSnackbar, handleShowSnackbar } = useStore();
 
   const handleAddTitle = titleValue => {
@@ -106,7 +105,9 @@ function CreateSurveyBlock() {
     <Container maxWidth="md">
       <div className={classes.createSurveyBlockContainer}>
         <div className={classes.blockTitleWrapper}>
-          <Typography variant="h4">{BLOCK_TITLE}</Typography>
+          <Typography variant="h4">
+            {TEXT_LABELS.createSurveyPageTitle}
+          </Typography>
         </div>
         <div className={classes.createSurveyWrapper}>
           <StoreContext.Provider

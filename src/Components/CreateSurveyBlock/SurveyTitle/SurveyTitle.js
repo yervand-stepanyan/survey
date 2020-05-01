@@ -7,9 +7,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './SurveyTitle.style';
-
-const TITLE_LABEL = 'Survey title:';
 
 function SurveyTitle({ handleEditTitle, title }) {
   const classes = useStyles();
@@ -23,7 +22,9 @@ function SurveyTitle({ handleEditTitle, title }) {
       <div className={classes.titleWrapper}>
         <div className={classes.titleLabel}>
           <div className={classes.label}>
-            <Typography variant="h5">{TITLE_LABEL}</Typography>
+            <Typography variant="h5">
+              {TEXT_LABELS.surveyTitleSectionSurveyTitleLabel}
+            </Typography>
           </div>
           <div className={classes.title}>
             <Typography variant="h6">{title}</Typography>

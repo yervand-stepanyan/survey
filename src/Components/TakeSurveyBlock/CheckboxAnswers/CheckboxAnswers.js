@@ -13,10 +13,12 @@ function CheckboxAnswers({ answers, questionId, receiveAnswers }) {
   const handleChange = (event, id) => {
     if (checkedAnswers.some(answer => answer === id)) {
       const newAllAnswers = checkedAnswers.filter(answer => answer !== id);
+
       receiveAnswers(newAllAnswers, '', questionId);
       setCheckedAnswers(newAllAnswers);
     } else {
       const newAllAnswers = [...checkedAnswers, id];
+
       setCheckedAnswers(newAllAnswers);
       receiveAnswers(newAllAnswers, '', questionId);
     }
@@ -31,8 +33,8 @@ function CheckboxAnswers({ answers, questionId, receiveAnswers }) {
               className={classes.colorGreen}
               control={
                 <Checkbox
-                  onChange={event => handleChange(event, id)}
                   name={questionId}
+                  onChange={event => handleChange(event, id)}
                 />
               }
               label={title}

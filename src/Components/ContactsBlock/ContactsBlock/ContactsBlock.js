@@ -5,11 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import AddressSection from '../AddressSection';
 import DevelopersSection from '../DevelopersSection/index';
 import MapSection from '../MapSection';
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './ContactsBlock.style';
-
-const ADDRESS_SECTION_TITLE = 'Address';
-const DEVELOPERS_SECTION_TITLE = 'Our developers';
-const TITLE = 'Contacts';
 
 function ContactsBlock() {
   const classes = useStyles();
@@ -17,17 +14,21 @@ function ContactsBlock() {
   return (
     <div className={classes.contactsBlockContainer}>
       <div className={classes.title}>
-        <Typography variant="h4">{TITLE}</Typography>
+        <Typography variant="h4">{TEXT_LABELS.contactsBlockTitle}</Typography>
       </div>
       <div className={classes.contactsAndMapWrapper}>
         <div className={classes.contactsWrapper}>
           <div>
-            <Typography variant="h5">{DEVELOPERS_SECTION_TITLE}</Typography>
+            <Typography variant="h5">
+              {TEXT_LABELS.contactsBlockDevelopersSectionTitle}
+            </Typography>
           </div>
           <DevelopersSection />
           <div className={classes.addressWrapper}>
             <div>
-              <Typography variant="h5">{ADDRESS_SECTION_TITLE}</Typography>
+              <Typography variant="h5">
+                {TEXT_LABELS.contactsBlockAddressSectionTitle}
+              </Typography>
             </div>
             <AddressSection />
           </div>

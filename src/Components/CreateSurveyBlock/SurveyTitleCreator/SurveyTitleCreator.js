@@ -5,13 +5,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+import { BUTTON_LABELS, TEXT_LABELS } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './SurveyTitleCreator.style';
-
-const BUTTON_LABEL = 'Submit';
-const TITLE_ERROR_PLACEHOLDER = '* Invalid Title';
-const TITLE_PLACEHOLDER = '* Title';
-const TITLE_TEXT = 'Survey title:';
 
 function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const classes = useStyles();
@@ -57,7 +53,9 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
     <div className={classes.surveyTitleCreatorContainer}>
       <div className={classes.textFieldWrapper}>
         <div className={classes.titleLabel}>
-          <Typography variant="h5">{TITLE_TEXT}</Typography>
+          <Typography variant="h5">
+            {TEXT_LABELS.surveyTitleCreatorSurveyTitleLabel}
+          </Typography>
         </div>
         <div className={classes.textFieldSection}>
           <TextField
@@ -65,7 +63,11 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
             fullWidth
             id="outlined-basic"
             inputRef={inputEl}
-            label={isEmpty ? TITLE_PLACEHOLDER : TITLE_ERROR_PLACEHOLDER}
+            label={
+              isEmpty
+                ? TEXT_LABELS.surveyTitleCreatorInputLabel
+                : TEXT_LABELS.surveyTitleCreatorInputErrorLabel
+            }
             onChange={e => handleChange(e)}
             onKeyDown={handleSubmitOnEnter}
             variant="outlined"
@@ -81,7 +83,7 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
           size="large"
           variant="contained"
         >
-          {BUTTON_LABEL}
+          {BUTTON_LABELS.surveyTitleCreatorSubmit}
         </Button>
       </div>
     </div>

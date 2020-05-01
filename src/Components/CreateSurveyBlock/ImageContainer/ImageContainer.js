@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
-
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
+
+import { TABINDEX } from '../../../Globals/variables';
 
 function ImageContainer({
   classes,
   handleCardClick,
   handleCardEnterKey,
   imageClicked,
-  type,
-  tabIndex
+  type
 }) {
   return (
     <Card className={classes.card} key={type.name}>
@@ -32,7 +32,7 @@ function ImageContainer({
           onClick={e => handleCardClick(e, type.name)}
           onKeyDown={e => handleCardEnterKey(e, type.name)}
           role="button"
-          tabIndex={tabIndex}
+          tabIndex={TABINDEX}
         >
           <div className={classes.textContainer}>
             <Typography
@@ -73,13 +73,11 @@ ImageContainer.propTypes = {
   handleCardClick: PropTypes.func.isRequired,
   handleCardEnterKey: PropTypes.func.isRequired,
   imageClicked: PropTypes.string,
-  tabIndex: PropTypes.number,
   type: PropTypes.object.isRequired
 };
 
 ImageContainer.defaultProps = {
-  imageClicked: null,
-  tabIndex: 0
+  imageClicked: null
 };
 
 export default ImageContainer;

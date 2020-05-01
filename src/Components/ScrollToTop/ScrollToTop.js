@@ -5,9 +5,9 @@ function ScrollToTop({ children, history }) {
   useEffect(() => {
     const unListen = history.listen(() => {
       window.scrollTo({
-        top: 0,
+        behavior: 'smooth',
         left: 0,
-        behavior: 'smooth'
+        top: 0
       });
     });
 

@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 import OptionsContainer from '../OptionsContainer';
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './CheckboxSection.style';
-
-const TITLE = 'Checkbox answer options';
 
 function CheckboxSection({ activeId, answers }) {
   const classes = useStyles();
@@ -14,7 +13,7 @@ function CheckboxSection({ activeId, answers }) {
   return (
     <div className={classes.checkboxSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TITLE}</Typography>
+        <Typography variant="h5">{TEXT_LABELS.checkboxSectionTitle}</Typography>
       </div>
       <OptionsContainer activeId={activeId} answers={answers} />
     </div>

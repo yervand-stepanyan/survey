@@ -6,23 +6,22 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import TextField from '@material-ui/core/TextField';
 
-import { useStyles } from './RadiobuttonAnswers.style';
 import removeSpaces from '../../../helpers/removeSpaces';
-
-const INPUT_LABEL_PLACEHOLDER_VALID_TEXT = 'Type here';
-const INPUT_LABEL_PLACEHOLDER_ERROR_TEXT = 'Invalid input';
+import { TEXT_LABELS } from '../../../Globals/variables';
+import { useStyles } from './RadiobuttonAnswers.style';
 
 function RadiobuttonAnswers({
-  questionId,
   answers,
   hasLastInput,
+  questionId,
   receiveAnswers
 }) {
   const classes = useStyles();
-  const [textValue, setTextValue] = useState('');
-  const [value, setValue] = useState('');
   const [error, setError] = useState(false);
   const [isInputDisable, setIsInputDisable] = useState(true);
+  const lastAnswersId = answers[answers.length - 1].id;
+  const [textValue, setTextValue] = useState('');
+  const [value, setValue] = useState('');
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -33,8 +32,10 @@ function RadiobuttonAnswers({
 
   const handleChange = event => {
     let isLastInputChosen = false;
+
     if (hasLastInput) {
       const lastAnswer = answers[answers.length - 1];
+
       isLastInputChosen = lastAnswer.id === event.target.value;
     }
 
@@ -50,62 +51,64 @@ function RadiobuttonAnswers({
       setTextValue('');
     }
   };
+
   const handleTextChange = e => {
     const filteredValue = removeSpaces(e.target.value);
+
     setTextValue(e.target.value);
     receiveAnswers([], filteredValue, questionId);
+
     if (filteredValue) {
       setError(false);
     }
   };
+
   const handleOnBlur = () => {
     if (!removeSpaces(textValue)) {
       setError(true);
     }
   };
 
-  const lastAnswersId = answers[answers.length - 1].id;
-
   return (
     <div className={classes.container}>
       <RadioGroup
         aria-label="gender"
         name="gender1"
-        value={value}
         onChange={handleChange}
+        value={value}
       >
         <div>
           {answers.map(({ id, title }) => {
             return (
               <div
-                key={id}
                 className={
                   hasLastInput && lastAnswersId === id
                     ? classes.radiobuttonInputAnswerContainer
                     : null
                 }
+                key={id}
               >
                 <FormControlLabel
                   className={classes.formControlLabel}
-                  value={id}
                   control={<Radio />}
                   label={title}
+                  value={id}
                 />
                 {hasLastInput && lastAnswersId === id ? (
                   <TextField
                     className={classes.radiobuttonInputAnswer}
+                    disabled={isInputDisable}
+                    error={error}
                     id="standard-basic"
                     inputRef={inputEl}
-                    error={error}
                     label={
                       error
-                        ? INPUT_LABEL_PLACEHOLDER_ERROR_TEXT
-                        : INPUT_LABEL_PLACEHOLDER_VALID_TEXT
+                        ? TEXT_LABELS.radiobuttonAnswersInputErrorLabel
+                        : TEXT_LABELS.radiobuttonAnswersInputLabel
                     }
-                    value={textValue}
                     onChange={handleTextChange}
-                    disabled={isInputDisable}
                     onBlur={handleOnBlur}
+                    value={textValue}
                   />
                 ) : null}
               </div>

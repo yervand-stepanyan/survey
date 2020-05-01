@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
 import Checkbox from '@material-ui/core/Checkbox';
+import Chip from '@material-ui/core/Chip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -12,15 +12,12 @@ import Zoom from '@material-ui/core/Zoom';
 
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
-  ANSWER_SECTION_BUTTON_LABEL
+  ANSWER_SECTION_BUTTON_LABEL,
+  TEXT_LABELS
 } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './OptionsContainer.style';
-
-const CHECKBOX_LABEL = 'Add an input field as the last option';
-const INPUT_LABEL = 'Option';
-const INPUT_TOOLTIP_LABEL = 'Input custom option name';
 
 function OptionsContainer({
   activeId,
@@ -237,7 +234,7 @@ function OptionsContainer({
           <Tooltip
             open={isTooltip}
             placement="top-start"
-            title={INPUT_TOOLTIP_LABEL}
+            title={TEXT_LABELS.optionsContainerInputTooltipLabel}
             TransitionComponent={Zoom}
           >
             <TextField
@@ -245,7 +242,7 @@ function OptionsContainer({
               fullWidth
               id="outlined-basic"
               inputRef={inputEl}
-              label={INPUT_LABEL}
+              label={TEXT_LABELS.optionsContainerInputLabel}
               onChange={e => handleInputChange(e)}
               onKeyDown={handleSubmitOnEnter}
               value={title}
@@ -287,7 +284,7 @@ function OptionsContainer({
                   color="primary"
                 />
               }
-              label={CHECKBOX_LABEL}
+              label={TEXT_LABELS.optionsContainerCheckboxLabel}
             />
           </div>
         </div>

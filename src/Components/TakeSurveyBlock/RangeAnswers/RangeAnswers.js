@@ -14,8 +14,8 @@ function RangeAnswers({
 }) {
   const classes = useStyles();
   const defaultValue = startValue + stepValue;
-  const [showValueLabel, setShowValueLabel] = useState(true);
   const [rangeValue, setRangeValue] = useState('');
+  const [showValueLabel, setShowValueLabel] = useState(true);
   const marks = [
     {
       value: startValue,
@@ -58,11 +58,11 @@ function RangeAnswers({
 }
 
 RangeAnswers.propTypes = {
-  startValue: PropTypes.number.isRequired,
   endValue: PropTypes.number.isRequired,
-  stepValue: PropTypes.number.isRequired,
   questionId: PropTypes.string.isRequired,
-  receiveAnswers: PropTypes.func.isRequired
+  receiveAnswers: PropTypes.func.isRequired,
+  startValue: PropTypes.number.isRequired,
+  stepValue: PropTypes.number.isRequired
 };
 
 export default RangeAnswers;

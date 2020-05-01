@@ -8,7 +8,7 @@ import Alert from '../Alert';
 function SnackbarComponent({ onClose, open, showSuccess, snackbarText }) {
   return (
     <Snackbar
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
       autoHideDuration={2000}
       onClose={onClose}
       open={open}

@@ -38,7 +38,7 @@ function QuestionSection({
       handleSetQuestions(
         questions.map(question =>
           question.id === id
-            ? { ...question, title: questionVal, isQuestion: false }
+            ? { ...question, isQuestion: false, title: questionVal }
             : question
         )
       );
@@ -46,8 +46,8 @@ function QuestionSection({
       setQuestionObject({
         ...questionObject,
         id,
-        title: questionVal,
-        isQuestion: false
+        isQuestion: false,
+        title: questionVal
       });
 
       handleIsQuestionSubmitted(true);
@@ -57,8 +57,8 @@ function QuestionSection({
       setQuestionObject({
         ...questionObject,
         id: questionId,
-        title: questionVal,
-        isQuestion: false
+        isQuestion: false,
+        title: questionVal
       });
 
       setActiveId(questionId);
@@ -147,12 +147,12 @@ function QuestionSection({
     } else {
       setQuestionObject({
         ...questionObject,
-        answerType: type,
-        inputType: undefined,
         answers: undefined,
-        hasLastInput: false,
-        startValue: undefined,
+        answerType: type,
         endValue: undefined,
+        hasLastInput: false,
+        inputType: undefined,
+        startValue: undefined,
         stepValue: undefined
       });
     }
@@ -250,15 +250,15 @@ function QuestionSection({
 
       setQuestionObject({
         ...currentQuestion,
-        startValue: range.startValue,
         endValue: range.endValue,
+        startValue: range.startValue,
         stepValue: range.stepValue
       });
     } else {
       setQuestionObject({
         ...questionObject,
-        startValue: range.startValue,
         endValue: range.endValue,
+        startValue: range.startValue,
         stepValue: range.stepValue
       });
     }

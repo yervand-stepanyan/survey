@@ -8,12 +8,11 @@ import ImageContainer from '../ImageContainer';
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
   ANSWER_SECTION_BUTTON_LABEL,
-  INPUT_TYPES
+  INPUT_OPTION_TYPES,
+  TEXT_LABELS
 } from '../../../Globals/variables';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './InputSection.style';
-
-const TITLE = 'Choose input type';
 
 function InputSection({ activeId, inputType: inputTypeProps }) {
   const classes = useStyles();
@@ -53,10 +52,10 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   return (
     <div className={classes.inputSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TITLE}</Typography>
+        <Typography variant="h5">{TEXT_LABELS.inputSectionTitle}</Typography>
       </div>
       <div className={classes.typeWrapper}>
-        {INPUT_TYPES.map(type => (
+        {INPUT_OPTION_TYPES.map(type => (
           <ImageContainer
             classes={classes}
             handleCardClick={handleCardClick}

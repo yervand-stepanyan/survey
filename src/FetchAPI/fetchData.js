@@ -2,10 +2,10 @@ async function request({ url, method, body, id }) {
   const fetchData = body
     ? {
         body: JSON.stringify(body) || '',
-        method,
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        method
       }
     : {
         method

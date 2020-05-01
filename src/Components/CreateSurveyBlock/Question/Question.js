@@ -8,9 +8,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './Question.style';
-
-const QUESTION_LABEL = 'Question';
 
 function Question({
   activeId,
@@ -20,7 +19,7 @@ function Question({
   question
 }) {
   const classes = useStyles();
-  const label = `${QUESTION_LABEL} ${index + 1}:`;
+  const label = `${TEXT_LABELS.questionSectionQuestionLabel} ${index + 1}:`;
 
   const handleEdit = () => {
     handleEditQuestion(activeId);
@@ -43,7 +42,7 @@ function Question({
         </div>
         <div className={classes.icons}>
           <div>
-            <Tooltip title="Edit" TransitionComponent={Zoom} arrow>
+            <Tooltip arrow title="Edit" TransitionComponent={Zoom}>
               <IconButton color="primary" onClick={handleEdit}>
                 <CreateIcon />
               </IconButton>

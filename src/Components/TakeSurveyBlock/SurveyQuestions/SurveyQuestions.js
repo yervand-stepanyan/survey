@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -6,25 +6,24 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import { addSurveyAnswer } from '../../../State/actions';
+import {
+  BUTTON_LABELS,
+  TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR,
+  TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
+} from '../../../Globals/variables';
 import ButtonLoader from '../../Loaders/ButtonLoader';
 import { doPost } from '../../../FetchAPI/fetchData';
 import ROUTES from '../../../Routes/Routes';
 import SurveyQuestion from '../SurveyQuestion';
-import {
-  TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR,
-  TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
-} from '../../../Globals/variables';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './SurveyQuestions.style';
-
-const SUBMIT_TEXT = 'Submit';
 
 function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   const classes = useStyles();
   const history = useHistory();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState({});
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [surveyAnswers, setSurveyAnswers] = useState([]);
   const {
     dispatchSurveyAnswer,
@@ -37,6 +36,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
       answer =>
         answer.markedAnswers[0] === undefined && answer.customAnswer === ''
     );
+
     setIsButtonDisabled(disableButton);
     setResults({ survey: surveyId, answers: surveyAnswers });
   }, [surveyId, surveyAnswers]);
@@ -112,10 +112,10 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
               id={id}
               inputType={inputType}
               key={id}
+              receiveAnswers={receiveAnswers}
               startValue={startValue}
               stepValue={stepValue}
               title={title}
-              receiveAnswers={receiveAnswers}
             />
           );
         }
@@ -128,7 +128,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
           size="large"
           variant="contained"
         >
-          {SUBMIT_TEXT}
+          {BUTTON_LABELS.surveyQuestionsSubmit}
         </Button>
         {loading && <ButtonLoader color="green" />}
       </div>

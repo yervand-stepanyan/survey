@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 import OptionsContainer from '../OptionsContainer';
+import { TEXT_LABELS } from '../../../Globals/variables';
 import { useStyles } from './RadiobuttonSection.style';
-
-const TITLE = 'Radiobutton answer options';
 
 function RadiobuttonSection({ activeId, answers, hasLastInput }) {
   const classes = useStyles();
@@ -14,7 +13,9 @@ function RadiobuttonSection({ activeId, answers, hasLastInput }) {
   return (
     <div className={classes.radiobuttonSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TITLE}</Typography>
+        <Typography variant="h5">
+          {TEXT_LABELS.radiobuttonSectionTitle}
+        </Typography>
       </div>
       <OptionsContainer
         activeId={activeId}

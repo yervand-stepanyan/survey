@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
+} from 'recharts';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
-} from 'recharts';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,15 +20,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 
 import CalculateRangeData from '../../CalculateRangeData';
-
 import { useStyles } from './CustomRangeChart.style';
 
-function CustomRangeChart({ data, title, startValue, endValue }) {
+function CustomRangeChart({ endValue, data, startValue, title }) {
   const classes = useStyles();
-  const rangeData = CalculateRangeData(data);
-
-  const lastValue = data.filter(item => item.name === endValue);
   const firsValue = data.filter(item => item.name === startValue);
+  const lastValue = data.filter(item => item.name === endValue);
+  const rangeData = CalculateRangeData(data);
 
   if (!lastValue) {
     data.unshift({ name: startValue, value: startValue });
@@ -37,13 +35,14 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
   if (!firsValue) {
     data.unshift({ name: startValue, value: startValue });
   }
+
   return (
     <Card className={classes.root}>
       <div>
         <CardContent className={classes.content}>
-          <List component="div" aria-label="main mailbox folders">
+          <List aria-label="main mailbox folders" component="div">
             <div className={classes.answerDetails}>
-              <Typography variant="subtitle1" color="textSecondary">
+              <Typography color="textSecondary" variant="subtitle1">
                 {title}
               </Typography>
               <div className={classes.answers}>
@@ -76,9 +75,9 @@ function CustomRangeChart({ data, title, startValue, endValue }) {
 
 CustomRangeChart.propTypes = {
   data: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
+  endValue: PropTypes.string.isRequired,
   startValue: PropTypes.string.isRequired,
-  endValue: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default CustomRangeChart;

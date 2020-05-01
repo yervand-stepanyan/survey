@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 
+import { BUTTON_LABELS } from '../../../Globals/variables';
 import ButtonLoader from '../../Loaders/ButtonLoader';
 import { useStyles } from './SaveSurvey.style';
-
-const BUTTON_LABEL = 'Save';
 
 function SaveSurvey({ disabled, handleSave, loading }) {
   const classes = useStyles();
@@ -21,7 +20,7 @@ function SaveSurvey({ disabled, handleSave, loading }) {
           size="large"
           variant="contained"
         >
-          {BUTTON_LABEL}
+          {BUTTON_LABELS.saveSurvey}
         </Button>
         {loading && <ButtonLoader color="green" />}
       </div>

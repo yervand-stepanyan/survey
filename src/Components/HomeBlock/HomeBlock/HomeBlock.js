@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
+import { doDelete } from '../../../FetchAPI/fetchData';
+import NoSurveyBlock from '../NoSurveyBlock';
+import NotFoundBlock from '../../NotFoundBlock';
+import { removeSurvey } from '../../../State/actions';
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
   SURVEY_LIST
 } from '../../../Globals/variables';
-import { doDelete } from '../../../FetchAPI/fetchData';
-import NoSurveyBlock from '../NoSurveyBlock';
-import NotFoundBlock from '../../NotFoundBlock';
-import { removeSurvey } from '../../../State/actions';
 import SurveyComponent from '../SurveyComponent';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './HomeBlock.style';
@@ -25,9 +26,9 @@ function HomeBlock() {
   const {
     stateSurvey,
     dispatchSurvey,
+    isConnectionError,
     handleOpenSnackbar,
-    handleShowSnackbar,
-    isConnectionError
+    handleShowSnackbar
   } = useStore();
 
   const handleRemoveSurvey = async id => {
