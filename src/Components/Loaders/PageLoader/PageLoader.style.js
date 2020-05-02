@@ -4,6 +4,8 @@ export const useStyles = makeStyles({
   pageLoaderContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '30vh'
+    alignItems: 'center',
+    marginTop: '30vh',
+    minHeight: 166,
   }
 });

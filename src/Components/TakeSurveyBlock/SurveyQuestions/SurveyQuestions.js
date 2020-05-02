@@ -93,9 +93,9 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   };
 
   return (
-    <div className={classes.surveyQuestionsContainer}>
+    <div>
       <div className={classes.titleContainer}>
-        <Typography variant="h3">{surveyTitle}</Typography>
+        <Typography variant="h4">{surveyTitle}</Typography>
       </div>
       {questions.map(
         ({
