@@ -75,7 +75,8 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   arrow: {
-    color: `${theme.color.redButton}`
+    color: `${theme.color.redButton}`,
+    fontSize: '10px'
   },
   tooltip: {
     backgroundColor: `${theme.color.redButton}`,
