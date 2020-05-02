@@ -69,6 +69,7 @@ function QuestionCreator({
         </div>
         <div className={classes.textFieldSection}>
           <TextField
+            autoFocus
             error={isEmpty}
             fullWidth
             id="outlined-basic"
