@@ -29,7 +29,8 @@ export const useStyles = makeStyles(theme => ({
     paddingTop: `${theme.customSpacing.base}`
   },
   menu: {
-    marginBottom: `${theme.customSpacing.base}`
+    marginBottom: `${theme.customSpacing.base}`,
+    whiteSpace: 'nowrap'
   },
   menuItem: {
     '@media only screen and (max-width:400px)': {
