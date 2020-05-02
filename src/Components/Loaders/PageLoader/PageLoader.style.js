@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
   pageLoaderContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '30vh'
+    textAlign: 'center',
+    marginTop: '30vh',
+    minHeight: 200
   }
 });

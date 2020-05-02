@@ -24,17 +24,15 @@ function TakeSurveyBlock() {
 
   return (
     <div className={classes.takeSurveyBlockContainer}>
-      <div>
-        {survey ? (
-          <SurveyQuestions
-            questions={survey.questions}
-            surveyId={survey.id}
-            title={survey.title}
-          />
-        ) : (
-          <NotFoundBlock isConnectionError={isConnectionError} />
-        )}
-      </div>
+      {survey ? (
+        <SurveyQuestions
+          questions={survey.questions}
+          surveyId={survey.id}
+          title={survey.title}
+        />
+      ) : (
+        <NotFoundBlock isConnectionError={isConnectionError} />
+      )}
     </div>
   );
 }
