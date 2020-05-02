@@ -40,20 +40,24 @@ export const useStyles = makeStyles(theme => ({
       margin: `${theme.customSpacing.base} auto 0`
     }
   },
-  removeButton: {
-    color: theme.color.redButton,
+  takeSurveyButtonWrapper: {
+    '@media screen and (max-width:768px)': {
+      marginRight: theme.customSpacing.base
+    }
+  },
+  removeButtonWrapper: {
     '@media screen and (max-width:768px)': {
       marginLeft: theme.customSpacing.base
     }
+  },
+  removeButton: {
+    color: theme.color.redButton
   },
   resultsButton: {
     color: theme.color.yellowButton
   },
   takeSurveyButton: {
-    color: theme.color.mainColorGreen,
-    '@media screen and (max-width:768px)': {
-      marginRight: theme.customSpacing.base
-    }
+    color: theme.color.mainColorGreen
   },
   iconWrapper: {
     position: 'relative'

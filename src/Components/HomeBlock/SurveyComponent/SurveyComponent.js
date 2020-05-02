@@ -39,25 +39,27 @@ function SurveyComponent({
         </div>
         <div className={classes.takeAndResultsCellsContainer}>
           <Link to={`${ROUTES.survey}/${id}`}>
-            <div className={classes.iconWrapper}>
-              <Tooltip
-                arrow
-                title={HOME_ICON_TOOLTIPS.take}
-                TransitionComponent={Zoom}
-              >
-                <IconButton
-                  aria-label="take-survey"
-                  className={classes.takeSurveyButton}
-                  disabled={buttonToLoad === id && loadingTakeSurveyButton}
-                  onClick={() => handleTakeSurveyButtonClick(id)}
-                  variant="contained"
+            <div className={classes.takeSurveyButtonWrapper}>
+              <div className={classes.iconWrapper}>
+                <Tooltip
+                  arrow
+                  title={HOME_ICON_TOOLTIPS.take}
+                  TransitionComponent={Zoom}
                 >
-                  <QuestionAnswerRoundedIcon />
-                </IconButton>
-              </Tooltip>
-              {buttonToLoad === id && loadingTakeSurveyButton && (
-                <IconLoader color="green" />
-              )}
+                  <IconButton
+                    aria-label="take-survey"
+                    className={classes.takeSurveyButton}
+                    disabled={buttonToLoad === id && loadingTakeSurveyButton}
+                    onClick={() => handleTakeSurveyButtonClick(id)}
+                    variant="contained"
+                  >
+                    <QuestionAnswerRoundedIcon />
+                  </IconButton>
+                </Tooltip>
+                {buttonToLoad === id && loadingTakeSurveyButton && (
+                  <IconLoader color="green" />
+                )}
+              </div>
             </div>
           </Link>
           <Link to={`${ROUTES.results}/${id}`}>
@@ -81,23 +83,27 @@ function SurveyComponent({
               )}
             </div>
           </Link>
-          <div className={classes.iconWrapper}>
-            <Tooltip
-              arrow
-              title={HOME_ICON_TOOLTIPS.remove}
-              TransitionComponent={Zoom}
-            >
-              <IconButton
-                aria-label="remove"
-                className={classes.removeButton}
-                disabled={buttonToLoad === id && loadingRemove}
-                onClick={() => handleRemoveSurvey(id)}
-                variant="contained"
+          <div className={classes.removeButtonWrapper}>
+            <div className={classes.iconWrapper}>
+              <Tooltip
+                arrow
+                title={HOME_ICON_TOOLTIPS.remove}
+                TransitionComponent={Zoom}
               >
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-            {buttonToLoad === id && loadingRemove && <IconLoader color="red" />}
+                <IconButton
+                  aria-label="remove"
+                  className={classes.removeButton}
+                  disabled={buttonToLoad === id && loadingRemove}
+                  onClick={() => handleRemoveSurvey(id)}
+                  variant="contained"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Tooltip>
+              {buttonToLoad === id && loadingRemove && (
+                <IconLoader color="red" />
+              )}
+            </div>
           </div>
         </div>
       </div>
