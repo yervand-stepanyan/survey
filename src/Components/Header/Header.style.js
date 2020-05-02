@@ -31,7 +31,7 @@ export const useStyles = makeStyles(theme => ({
       fontSize: '11px'
     },
     backgroundColor: `${theme.color.simpleWhite}`,
-    border: `1px solid ${theme.color.mainColorGreen}`,
+    border: `1.5px solid ${theme.color.mainColorGreen}`,
     borderRadius: `${theme.borders.borderRadius.large}`,
     color: `${theme.color.mainColorGreen}`,
     marginLeft: `${theme.customSpacing.base}`,

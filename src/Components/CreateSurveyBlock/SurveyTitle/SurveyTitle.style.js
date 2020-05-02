@@ -25,10 +25,11 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     height: '36px',
-    whiteSpace: 'nowrap',
+    textAlign: 'center',
     '@media only screen and (min-width: 600px)': {
       alignItems: 'flex-start',
-      height: '48px'
+      height: '48px',
+      whiteSpace: 'nowrap'
     }
   },
   title: {

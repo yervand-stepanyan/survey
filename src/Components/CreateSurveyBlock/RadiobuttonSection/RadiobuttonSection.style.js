@@ -9,6 +9,7 @@ export const useStyles = makeStyles(theme => ({
   },
   titleWrapper: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlign: 'center'
   }
 }));

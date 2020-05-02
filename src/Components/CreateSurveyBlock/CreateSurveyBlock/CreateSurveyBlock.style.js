@@ -9,7 +9,8 @@ export const useStyles = makeStyles(theme => ({
   },
   blockTitleWrapper: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    textAlign: 'center'
   },
   createSurveyWrapper: {
     marginTop: `${theme.customSpacing.base}`,

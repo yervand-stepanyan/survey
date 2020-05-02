@@ -18,6 +18,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     height: '48px',
+    textAlign: 'center',
     '@media only screen and (min-width: 600px)': {
       paddingRight: `${theme.customSpacing.base}`
     }
