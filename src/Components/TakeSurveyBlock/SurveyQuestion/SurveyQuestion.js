@@ -84,12 +84,10 @@ function SurveyQuestion({
     }
   };
   return (
-    // <div className={classes.container}>
-      <Card className={classes.card}>
-        <CardHeader title={title} />
-        <CardContent>{pickAnswersType()}</CardContent>
-      </Card>
-    // </div>
+    <Card className={classes.card}>
+      <CardHeader title={title} />
+      <CardContent>{pickAnswersType()}</CardContent>
+    </Card>
   );
 }
 
