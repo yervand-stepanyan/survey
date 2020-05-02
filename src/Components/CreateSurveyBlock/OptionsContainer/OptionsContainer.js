@@ -53,12 +53,6 @@ function OptionsContainer({
     handleSubmitQuestion
   } = useStore();
 
-  // useEffect(() => {
-  //   if (!activeId) {
-  //     inputEl.current.focus();
-  //   }
-  // }, []);
-
   useEffect(() => {
     handleAddAnswers(activeId, answers, checked);
   }, [answers]);
@@ -256,6 +250,7 @@ function OptionsContainer({
               TransitionComponent={Zoom}
             >
               <TextField
+                autoFocus={!activeId}
                 error={isEmpty}
                 fullWidth
                 id="outlined-basic"
@@ -270,22 +265,13 @@ function OptionsContainer({
             </Tooltip>
           </div>
           <div className={classes.iconWrapper}>
-            <Tooltip
-              arrow
-              disableHoverListener={isIconDisabled || !isTyped}
-              title={TEXT_LABELS.optionsContainerIconTooltipLabel}
-              TransitionComponent={Zoom}
+            <IconButton
+              color="primary"
+              disabled={isIconDisabled || !isTyped}
+              onClick={handleIconClick}
             >
-              <span>
-                <IconButton
-                  color="primary"
-                  disabled={isIconDisabled || !isTyped}
-                  onClick={handleIconClick}
-                >
-                  <SendIcon fontSize="large" />
-                </IconButton>
-              </span>
-            </Tooltip>
+              <SendIcon fontSize="large" />
+            </IconButton>
           </div>
         </div>
       </div>
@@ -330,6 +316,7 @@ function OptionsContainer({
       <div className={classes.buttonWrapper}>
         <Tooltip
           arrow
+          classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
           disableHoverListener={answers.length >= 2 || isSubmitted}
           title={TEXT_LABELS.optionsContainerSubmitButtonErrorTooltipLabel}
           TransitionComponent={Zoom}

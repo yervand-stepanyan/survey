@@ -5,7 +5,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     boxSizing: 'border-box',
-    paddingTop: `${theme.customSpacing.small}`
+    paddingTop: `${theme.customSpacing.large}`
   },
   blockTitleWrapper: {
     display: 'flex',
