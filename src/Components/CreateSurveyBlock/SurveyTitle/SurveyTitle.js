@@ -29,9 +29,13 @@ function SurveyTitle({ handleEditTitle, title }) {
           <div className={classes.title}>
             <Typography variant="h6">{title}</Typography>
           </div>
-          <div className={classes.editIcon}>
+          <div className={classes.editIconWrapper}>
             <Tooltip arrow title="Edit" TransitionComponent={Zoom}>
-              <IconButton color="primary" onClick={handleEdit}>
+              <IconButton
+                className={classes.editIcon}
+                color="primary"
+                onClick={handleEdit}
+              >
                 <CreateIcon />
               </IconButton>
             </Tooltip>

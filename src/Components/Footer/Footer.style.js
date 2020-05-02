@@ -5,7 +5,6 @@ export const useStyles = makeStyles(theme => ({
     backgroundColor: `${theme.color.mainColorDarkBlue}`,
     display: 'flex',
     flexDirection: 'column',
-    marginTop: `${theme.customSpacing.xxxLarge}`,
     padding: `${theme.customSpacing.large} ${theme.customSpacing.base}`,
     position: 'relative',
     bottom: 0,

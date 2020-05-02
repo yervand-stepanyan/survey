@@ -84,8 +84,7 @@ export const useStyles = makeStyles(theme => ({
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${theme.customSpacing.base}`,
-    cursor: 'not-allowed'
+    marginTop: `${theme.customSpacing.base}`
   },
   button: {
     backgroundColor: `${theme.color.mainColorGreen}`,

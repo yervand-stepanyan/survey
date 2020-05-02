@@ -317,7 +317,7 @@ function OptionsContainer({
         <Tooltip
           arrow
           classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
-          disableHoverListener={answers.length >= 2 || isSubmitted}
+          disableHoverListener={answers.length >= 2}
           title={TEXT_LABELS.optionsContainerSubmitButtonErrorTooltipLabel}
           TransitionComponent={Zoom}
         >

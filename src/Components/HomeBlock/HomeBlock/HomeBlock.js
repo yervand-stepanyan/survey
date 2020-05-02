@@ -11,8 +11,8 @@ import { removeSurvey } from '../../../State/actions';
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
-  SURVEY_LIST,
-  SURVEYS_PER_PAGE
+  SURVEYS_PER_PAGE,
+  TEXT_LABELS
 } from '../../../Globals/variables';
 import Pagination from '../../Pagination';
 import SurveyComponent from '../SurveyComponent';
@@ -88,7 +88,7 @@ function HomeBlock() {
         ) : (
           <div>
             <Typography variant="h4" className={classes.surveyHeading}>
-              {SURVEY_LIST}
+              {TEXT_LABELS.homePageTitle}
             </Typography>
             {currentSurveys.length ? (
               <div>

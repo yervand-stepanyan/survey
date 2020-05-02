@@ -27,10 +27,11 @@ export const useStyles = makeStyles(theme => ({
   label: {
     display: 'flex',
     alignItems: 'center',
-    height: '48px',
+    height: '36px',
     whiteSpace: 'nowrap',
     '@media only screen and (min-width: 600px)': {
-      alignItems: 'flex-start'
+      alignItems: 'flex-start',
+      height: '48px'
     }
   },
   question: {
@@ -51,5 +52,12 @@ export const useStyles = makeStyles(theme => ({
   },
   removeIcon: {
     color: `${theme.color.redButton}`
+  },
+  icon: {
+    '@media only screen and (max-width: 600px)': {
+      '&.MuiButtonBase-root.MuiIconButton-root': {
+        padding: '6px'
+      }
+    }
   }
 }));

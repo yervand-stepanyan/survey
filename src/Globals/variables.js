@@ -152,8 +152,6 @@ export const REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR =
   'Something went wrong. Try again!';
 export const REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
 
-export const SURVEY_LIST = 'Survey list';
-
 export const SURVEYS_PER_PAGE = 7;
 
 export const TABINDEX = 0;
@@ -172,6 +170,7 @@ export const TEXT_LABELS = {
   createSurveyPageTitle: 'Create survey',
   dropdownSectionTitle: 'List options',
   dropdownAnswersSelectMenuItemNone: 'None',
+  homePageTitle: 'Survey list',
   inputAnswersInputDateLabel: 'Date picker dialog',
   inputAnswersInputNumberLabel: 'Type here...',
   inputAnswersInputTextLabel: 'Type here...',
@@ -179,7 +178,6 @@ export const TEXT_LABELS = {
   inputSectionTitle: 'Choose input type',
   optionsContainerCheckboxLabel: 'Add an input field as the last option',
   optionsContainerInputLabel: 'Input answer option',
-  optionsContainerIconTooltipLabel: 'Submit option',
   optionsContainerInputTooltipLabel: 'Input custom answer option name',
   optionsContainerSubmitButtonErrorTooltipLabel:
     'At least 2 options should be entered!',

@@ -20,7 +20,6 @@ export const useStyles = makeStyles(theme => ({
   },
   textImageContainerClicked: {
     border: `10px solid ${theme.color.mainColorGreen}`,
-    cursor: 'not-allowed',
     outline: 'none'
   },
   textContainer: {

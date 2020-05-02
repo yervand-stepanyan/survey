@@ -43,14 +43,21 @@ function Question({
         <div className={classes.icons}>
           <div>
             <Tooltip arrow title="Edit" TransitionComponent={Zoom}>
-              <IconButton color="primary" onClick={handleEdit}>
+              <IconButton
+                className={classes.icon}
+                color="primary"
+                onClick={handleEdit}
+              >
                 <CreateIcon />
               </IconButton>
             </Tooltip>
           </div>
-          <div className={classes.removeIcon}>
+          <div>
             <Tooltip arrow title="Remove" TransitionComponent={Zoom}>
-              <IconButton className={classes.removeIcon} onClick={handleRemove}>
+              <IconButton
+                className={`${classes.removeIcon} ${classes.icon}`}
+                onClick={handleRemove}
+              >
                 <DeleteIcon />
               </IconButton>
             </Tooltip>
