@@ -176,9 +176,11 @@ export const TEXT_LABELS = {
   inputAnswersErrorLabel: 'Something went wrong!',
   inputSectionTitle: 'Choose input type',
   optionsContainerCheckboxLabel: 'Add an input field as the last option',
-  optionsContainerInputLabel: 'Option',
+  optionsContainerInputLabel: 'Input answer option',
   optionsContainerIconTooltipLabel: 'Submit option',
-  optionsContainerInputTooltipLabel: 'Input custom option name',
+  optionsContainerInputTooltipLabel: 'Input custom answer option name',
+  optionsContainerSubmitButtonErrorTooltipLabel:
+    'At least 2 options should be entered!',
   questionSectionQuestionLabel: 'Question',
   questionCreatorInputErrorLabel: '* Invalid question',
   questionCreatorInputLabel: '* Question',

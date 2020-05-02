@@ -78,7 +78,8 @@ export const useStyles = makeStyles(
     buttonWrapper: {
       display: 'flex',
       justifyContent: 'center',
-      marginTop: `${theme.customSpacing.base}`
+      marginTop: `${theme.customSpacing.base}`,
+      cursor: 'not-allowed'
     },
     button: {
       backgroundColor: `${theme.color.mainColorGreen}`,
@@ -87,8 +88,7 @@ export const useStyles = makeStyles(
         backgroundColor: `${theme.color.buttonHoverColorGreen}`
       },
       '&$disabled': {
-        cursor: 'not-allowed',
-        pointerEvents: 'all'
+        pointerEvents: 'none'
       }
     },
     disabled: {}

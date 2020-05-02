@@ -39,7 +39,9 @@ function OptionsContainer({
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isIconDisabled, setIsIconDisabled] = useState(true);
-  const [isSubmitted, setIsSubmitted] = useState(!!answersProps || false);
+  const [isSubmitted, setIsSubmitted] = useState(
+    !!answersProps.length || false
+  );
   const [isTooltip, setIsTooltip] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
   const [title, setTitle] = useState('');
@@ -274,7 +276,7 @@ function OptionsContainer({
               title={TEXT_LABELS.optionsContainerIconTooltipLabel}
               TransitionComponent={Zoom}
             >
-              <div>
+              <span>
                 <IconButton
                   color="primary"
                   disabled={isIconDisabled || !isTyped}
@@ -282,7 +284,7 @@ function OptionsContainer({
                 >
                   <SendIcon fontSize="large" />
                 </IconButton>
-              </div>
+              </span>
             </Tooltip>
           </div>
         </div>
@@ -326,17 +328,26 @@ function OptionsContainer({
         </div>
       ) : null}
       <div className={classes.buttonWrapper}>
-        <Button
-          className={classes.button}
-          disabled={answers.length < 2 || isSubmitted}
-          onClick={handleSubmit}
-          size="large"
-          variant="contained"
+        <Tooltip
+          arrow
+          disableHoverListener={answers.length >= 2 || isSubmitted}
+          title={TEXT_LABELS.optionsContainerSubmitButtonErrorTooltipLabel}
+          TransitionComponent={Zoom}
         >
-          {isChanged
-            ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
-            : ANSWER_SECTION_BUTTON_LABEL}
-        </Button>
+          <span>
+            <Button
+              className={classes.button}
+              disabled={answers.length < 2 || isSubmitted}
+              onClick={handleSubmit}
+              size="large"
+              variant="contained"
+            >
+              {isChanged
+                ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
+                : ANSWER_SECTION_BUTTON_LABEL}
+            </Button>
+          </span>
+        </Tooltip>
       </div>
     </div>
   );
