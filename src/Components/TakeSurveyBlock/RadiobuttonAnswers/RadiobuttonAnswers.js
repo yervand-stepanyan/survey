@@ -95,21 +95,23 @@ function RadiobuttonAnswers({
                   value={id}
                 />
                 {hasLastInput && lastAnswersId === id ? (
-                  <TextField
-                    className={classes.radiobuttonInputAnswer}
-                    disabled={isInputDisable}
-                    error={error}
-                    id="standard-basic"
-                    inputRef={inputEl}
-                    label={
-                      error
-                        ? TEXT_LABELS.radiobuttonAnswersInputErrorLabel
-                        : TEXT_LABELS.radiobuttonAnswersInputLabel
-                    }
-                    onChange={handleTextChange}
-                    onBlur={handleOnBlur}
-                    value={textValue}
-                  />
+                  <div className={classes.customText}>
+                    <TextField
+                      className={classes.radiobuttonInputAnswer}
+                      disabled={isInputDisable}
+                      error={error}
+                      id="standard-basic"
+                      inputRef={inputEl}
+                      label={
+                        error
+                          ? TEXT_LABELS.radiobuttonAnswersInputErrorLabel
+                          : TEXT_LABELS.radiobuttonAnswersInputLabel
+                      }
+                      onChange={handleTextChange}
+                      onBlur={handleOnBlur}
+                      value={textValue}
+                    />
+                  </div>
                 ) : null}
               </div>
             );
