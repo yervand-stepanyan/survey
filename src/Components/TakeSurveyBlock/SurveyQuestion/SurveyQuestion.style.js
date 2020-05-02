@@ -11,7 +11,7 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   card: {
-    width: '100%',
-    padding: `${theme.customSpacing.small}`
+    marginBottom: theme.customSpacing.base,
+    padding: `${theme.customSpacing.small}`,
   }
 }));

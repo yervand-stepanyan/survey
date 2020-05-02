@@ -19,10 +19,8 @@ export const useStyles = makeStyles(
       }
     },
     buttonWrapper: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginTop: `${theme.customSpacing.base}`,
-      position: 'relative'
+      textAlign: 'center',
+      marginTop: `${theme.customSpacing.large}`,
     },
     disabled: {}
   }),

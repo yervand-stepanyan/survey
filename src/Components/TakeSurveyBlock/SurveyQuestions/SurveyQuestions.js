@@ -93,7 +93,7 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
   };
 
   return (
-    <div>
+    <div className={classes.surveyQuestionsContainer}>
       <div className={classes.titleContainer}>
         <Typography variant="h4">{surveyTitle}</Typography>
       </div>

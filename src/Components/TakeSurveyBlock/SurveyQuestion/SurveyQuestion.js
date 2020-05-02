@@ -84,12 +84,12 @@ function SurveyQuestion({
     }
   };
   return (
-    <div className={classes.container}>
+    // <div className={classes.container}>
       <Card className={classes.card}>
         <CardHeader title={title} />
         <CardContent>{pickAnswersType()}</CardContent>
       </Card>
-    </div>
+    // </div>
   );
 }
 
