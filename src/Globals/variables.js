@@ -154,6 +154,8 @@ export const REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Survey removed!';
 
 export const SURVEY_LIST = 'Survey list';
 
+export const SURVEYS_PER_PAGE = 7;
+
 export const TABINDEX = 0;
 
 export const TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR =

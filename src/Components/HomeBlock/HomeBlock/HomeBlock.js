@@ -11,8 +11,10 @@ import { removeSurvey } from '../../../State/actions';
 import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
-  SURVEY_LIST
+  SURVEY_LIST,
+  SURVEYS_PER_PAGE
 } from '../../../Globals/variables';
+import Pagination from '../../Pagination';
 import SurveyComponent from '../SurveyComponent';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './HomeBlock.style';
@@ -20,22 +22,35 @@ import { useStyles } from './HomeBlock.style';
 function HomeBlock() {
   const classes = useStyles();
   const [buttonToLoad, setButtonToLoad] = useState('');
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [loadingRemove, setLoadingRemove] = useState(false);
   const [loadingResultsButton, setLoadingResultsButton] = useState(false);
   const [loadingTakeSurveyButton, setLoadingTakeSurveyButton] = useState(false);
+  const indexOfLastSurvey = currentPage * SURVEYS_PER_PAGE;
+  const indexOfFirstSurvey = indexOfLastSurvey - SURVEYS_PER_PAGE;
   const {
     stateSurvey,
     dispatchSurvey,
-    isConnectionError,
     handleOpenSnackbar,
-    handleShowSnackbar
+    handleShowSnackbar,
+    isConnectionError
   } = useStore();
+  const totalPages = Math.ceil(stateSurvey.length / SURVEYS_PER_PAGE);
+  const currentSurveys = stateSurvey.slice(
+    indexOfFirstSurvey,
+    indexOfLastSurvey
+  );
+
+  const handlePaginationChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   const handleRemoveSurvey = async id => {
     try {
       setButtonToLoad(id);
 
       setLoadingRemove(true);
+
       await doDelete('surveys', id);
 
       dispatchSurvey(removeSurvey(id));
@@ -75,21 +90,27 @@ function HomeBlock() {
             <Typography variant="h4" className={classes.surveyHeading}>
               {SURVEY_LIST}
             </Typography>
-            {stateSurvey.length ? (
-              stateSurvey.map(({ id, title }) => (
-                <SurveyComponent
-                  buttonToLoad={buttonToLoad}
-                  handleRemoveSurvey={handleRemoveSurvey}
-                  handleResultsButtonClick={handleResultsButtonClick}
-                  handleTakeSurveyButtonClick={handleTakeSurveyButtonClick}
-                  id={id}
-                  key={id}
-                  loadingRemove={loadingRemove}
-                  loadingResultsButton={loadingResultsButton}
-                  loadingTakeSurveyButton={loadingTakeSurveyButton}
-                  title={title}
+            {currentSurveys.length ? (
+              <div>
+                {currentSurveys.map(({ id, title }) => (
+                  <SurveyComponent
+                    buttonToLoad={buttonToLoad}
+                    handleRemoveSurvey={handleRemoveSurvey}
+                    handleResultsButtonClick={handleResultsButtonClick}
+                    handleTakeSurveyButtonClick={handleTakeSurveyButtonClick}
+                    id={id}
+                    key={id}
+                    loadingRemove={loadingRemove}
+                    loadingResultsButton={loadingResultsButton}
+                    loadingTakeSurveyButton={loadingTakeSurveyButton}
+                    title={title}
+                  />
+                ))}
+                <Pagination
+                  totalPages={totalPages}
+                  handlePaginationChange={handlePaginationChange}
                 />
-              ))
+              </div>
             ) : (
               <NoSurveyBlock />
             )}
