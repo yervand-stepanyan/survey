@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '@material-ui/core/Card'
+import Card from '@material-ui/core/Card';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -18,7 +18,7 @@ function ContactsBlock() {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth='md' className={classes.contactsBlockContainer}>
+      <Container maxWidth="md" className={classes.contactsBlockContainer}>
         <div className={classes.title}>
           <Typography variant="h4">{TEXT_LABELS.contactsBlockTitle}</Typography>
         </div>

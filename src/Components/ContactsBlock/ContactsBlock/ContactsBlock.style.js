@@ -14,7 +14,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     '@media screen and (max-width: 992px)': {
-      flexDirection: 'column',
+      flexDirection: 'column'
     }
   },
   contactsWrapper: {
@@ -25,15 +25,14 @@ export const useStyles = makeStyles(theme => ({
     width: '50%',
     '@media screen and (max-width: 992px)': {
       margin: 'auto',
-      width: 680,
+      width: 680
     },
     '@media screen and (max-width: 768px)': {
-        width: '100%'
+      width: '100%'
     },
     '& .MuiListItemText-root': {
-      wordWrap:'break-word',
+      wordWrap: 'break-word'
     }
-
   },
   addressWrapper: {
     margin: `${theme.customSpacing.xLarge} 0`,
@@ -54,10 +53,10 @@ export const useStyles = makeStyles(theme => ({
       flexDirection: 'column-reverse',
       height: 'unset',
       margin: 'auto',
-      width: 680,
+      width: 680
     },
     '@media screen and (max-width: 768px)': {
       width: '100%'
-    },
+    }
   }
 }));

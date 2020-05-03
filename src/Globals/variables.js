@@ -69,9 +69,9 @@ export const CONNECTION_ERROR_REFRESH_BUTTON = 'Please, refresh the page!';
 export const CONTACT_ICONS_COLORS = {
   emailIcon: '#41C47C',
   githubIcon: '#000000',
-  linkedinIcon: '#0077B5',
+  linkedInIcon: '#0077B5',
   locationIcon: '#EA4335',
-  phoneIcon: '#1976D2',
+  phoneIcon: '#1976D2'
 };
 export const COPYRIGHT_INFO = 'Copyright © 2020 Survey';
 

@@ -40,7 +40,7 @@ function DeveloperInfo({ developer }) {
             </ListItemIcon>
             <ListItemText primary={developer.email} />
           </ListItem>
-          <Link href={developer.githubPageURL} color="inherit">
+          <Link color="inherit" href={developer.githubPageURL} target="_blank">
             <ListItem>
               <ListItemIcon className={classes.githubIcon}>
                 <GitHubIcon />
@@ -48,19 +48,21 @@ function DeveloperInfo({ developer }) {
               <ListItemText primary={developer.githubPageURL} />
             </ListItem>
           </Link>
-          <Link href={developer.linkedInPageURL} color="inherit">
+          <Link
+            color="inherit"
+            href={developer.linkedInPageURL}
+            target="_blank"
+          >
             <ListItem>
-              <ListItemIcon className={classes.linkedinIcon}>
+              <ListItemIcon className={classes.linkedInIcon}>
                 <LinkedInIcon />
               </ListItemIcon>
               <ListItemText primary={developer.linkedInPageURL} />
             </ListItem>
           </Link>
-          
         </List>
       </div>
     </Card>
-
   );
 }
 

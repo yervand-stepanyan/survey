@@ -4,7 +4,7 @@ import { CONTACT_ICONS_COLORS } from '../../../Globals/variables';
 export const useStyles = makeStyles(theme => ({
   developerInfo: {
     marginBottom: theme.customSpacing.base,
-    padding: `${theme.customSpacing.small}`,
+    padding: `${theme.customSpacing.small}`
   },
   socialWrapper: {
     marginLeft: theme.customSpacing.xLarge,
@@ -33,16 +33,16 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   emailIcon: {
-    color: CONTACT_ICONS_COLORS.emailIcon,
+    color: CONTACT_ICONS_COLORS.emailIcon
   },
   phoneIcon: {
-    color: CONTACT_ICONS_COLORS.phoneIcon,
+    color: CONTACT_ICONS_COLORS.phoneIcon
   },
 
   githubIcon: {
     color: CONTACT_ICONS_COLORS.githubIcon
-  },  
-  linkedinIcon: {
-    color: CONTACT_ICONS_COLORS.linkedinIcon,
   },
+  linkedInIcon: {
+    color: CONTACT_ICONS_COLORS.linkedInIcon
+  }
 }));
