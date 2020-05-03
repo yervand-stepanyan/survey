@@ -6,7 +6,13 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: theme.customSpacing.base
   },
   answerDetails: {
-    padding: theme.customSpacing.xSmall
+    padding: theme.customSpacing.xSmall,
+    '& .MuiButton-outlined ': {
+      '@media screen and (max-width:600px)': {
+        fontSize: 12,
+        padding: theme.customSpacing.small
+      }
+    }
   },
   details: {
     display: 'flex',
