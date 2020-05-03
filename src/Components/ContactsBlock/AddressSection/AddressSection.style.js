@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 import { CONTACT_ICONS_COLORS } from '../../../Globals/variables'
+
 export const useStyles = makeStyles(theme => ({
   addressSection: {
     display: 'flex',

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import Link from '@material-ui/core/Link';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,8 +12,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import PhoneIcon from '@material-ui/icons/Phone';
 import Typography from '@material-ui/core/Typography';
-
-import Link from '@material-ui/core/Link';
 
 import { useStyles } from './DeveloperInfo.style';
 
