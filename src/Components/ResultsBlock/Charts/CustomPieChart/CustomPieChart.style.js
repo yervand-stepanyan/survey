@@ -9,8 +9,8 @@ export const useStyles = makeStyles(theme => ({
     padding: theme.customSpacing.xSmall,
     '& .MuiButton-outlined ': {
       '@media screen and (max-width:600px)': {
-        fontSize: 12,
-        padding: theme.customSpacing.small
+        fontSize: 11,
+        padding: 2
       }
     }
   },
@@ -35,6 +35,7 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     '@media (max-width:600px)': {
+      padding: 0,
       display: 'unset'
     }
   },
