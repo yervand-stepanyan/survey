@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-
+import { CONTACT_ICONS_COLORS } from '../../../Globals/variables'
 export const useStyles = makeStyles(theme => ({
   developerInfo: {
     marginBottom: theme.customSpacing.base,
@@ -32,16 +32,16 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   emailIcon: {
-    color: '#41C47C'
+    color: CONTACT_ICONS_COLORS.emailIcon,
   },
   phoneIcon: {
-    color: '#1976D2'
+    color: CONTACT_ICONS_COLORS.phoneIcon,
   },
 
   githubIcon: {
-    color: '#000000'
+    color: CONTACT_ICONS_COLORS.githubIcon
   },  
   linkedinIcon: {
-    color: '#0077B5',
+    color: CONTACT_ICONS_COLORS.linkedinIcon,
   },
 }));
