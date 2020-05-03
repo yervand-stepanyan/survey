@@ -37,7 +37,8 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   iconWrapper: {
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'center'
   },
   helpIcon: {
     color: `${theme.color.yellowButton}`
