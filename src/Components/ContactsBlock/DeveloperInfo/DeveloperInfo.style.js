@@ -1,28 +1,48 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { CONTACT_ICONS_COLORS } from '../../../Globals/variables';
 
 export const useStyles = makeStyles(theme => ({
   developerInfo: {
-    padding: `${theme.customSpacing.small}`
+    marginBottom: theme.customSpacing.base,
+    padding: `${theme.customSpacing.small}`,
   },
   socialWrapper: {
-    marginLeft: `${theme.customSpacing.xxLarge}`
+    marginLeft: theme.customSpacing.xLarge,
+    '@media screen and (max-width:600px)': {
+      marginLeft: 0
+    }
   },
   socialSection: {
-    display: 'flex'
+    '& .MuiListItem-gutters': {
+      alignItems: 'start',
+      padding: 0,
+      '& .MuiListItemIcon-root': {
+        minWidth: 30
+      }
+    }
   },
-  iconContainer: {
-    marginRight: `${theme.customSpacing.small}`
-  },
-  icon: {
-    height: '20px',
-    width: '20px'
+  developersName: {
+    paddingLeft: `${theme.customSpacing.small}`
   },
   link: {
-    display: 'flex',
     color: `${theme.customTypography.fontColor.base}`,
+    display: 'flex',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline'
     }
-  }
+  },
+  emailIcon: {
+    color: CONTACT_ICONS_COLORS.emailIcon,
+  },
+  phoneIcon: {
+    color: CONTACT_ICONS_COLORS.phoneIcon,
+  },
+
+  githubIcon: {
+    color: CONTACT_ICONS_COLORS.githubIcon
+  },  
+  linkedinIcon: {
+    color: CONTACT_ICONS_COLORS.linkedinIcon,
+  },
 }));
