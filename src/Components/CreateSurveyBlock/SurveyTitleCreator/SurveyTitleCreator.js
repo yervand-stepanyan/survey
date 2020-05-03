@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +17,8 @@ import { useStyles } from './SurveyTitleCreator.style';
 
 function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const classes = useStyles();
-  const [isEmpty, setIsEmpty] = useState(true);
+  const [acceptedTitle, setAcceptedTitle] = useState('');
+  const [isEmpty, setIsEmpty] = useState(false);
   const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
   const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
   const [title, setTitle] = useState(titleProps);
@@ -32,9 +34,13 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
     setTitle(event.target.value);
 
     if (removeSpaces(event.target.value)) {
-      setIsEmpty(true);
-    } else {
       setIsEmpty(false);
+
+      setAcceptedTitle(removeSpaces(event.target.value));
+    } else {
+      setIsEmpty(true);
+
+      setAcceptedTitle(removeSpaces(event.target.value));
     }
   };
 
@@ -44,13 +50,13 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
     if (filteredTitle) {
       handleAddTitle(filteredTitle);
     } else {
-      setIsEmpty(false);
+      setIsEmpty(true);
     }
   };
 
   const handleSubmitOnEnter = event => {
     if (event.key === 'Enter') {
-      if (isEmpty) {
+      if (!isEmpty) {
         handleSubmit();
       }
     }
@@ -80,12 +86,12 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
         </div>
         <div className={classes.textFieldSection}>
           <TextField
-            error={!isEmpty}
+            error={isEmpty}
             fullWidth
             id="outlined-basic"
             inputRef={inputEl}
             label={
-              isEmpty
+              !isEmpty
                 ? TEXT_LABELS.surveyTitleCreatorInputLabel
                 : TEXT_LABELS.surveyTitleCreatorInputErrorLabel
             }
@@ -97,24 +103,6 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
           />
           <div className={classes.iconWrapper}>
             {isEmpty ? (
-              <Tooltip
-                arrow
-                classes={{
-                  arrow: classes.helpIconArrow,
-                  tooltip: classes.helpIconTooltip
-                }}
-                open={openHelpTooltip}
-                title={TEXT_LABELS.surveyTitleCreatorHelpTooltipMessage}
-                TransitionComponent={Zoom}
-              >
-                <IconButton
-                  className={classes.helpIcon}
-                  onClick={handleShowHelpTooltip}
-                >
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-            ) : (
               <Tooltip
                 arrow
                 classes={{
@@ -132,6 +120,36 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
                   <ErrorIcon />
                 </IconButton>
               </Tooltip>
+            ) : (
+              <div
+                className={
+                  acceptedTitle ? classes.checkIconWrapper : classes.iconWrapper
+                }
+              >
+                {acceptedTitle ? (
+                  <div className={classes.checkIconContainer}>
+                    <CheckCircleIcon className={classes.checkIcon} />
+                  </div>
+                ) : (
+                  <Tooltip
+                    arrow
+                    classes={{
+                      arrow: classes.helpIconArrow,
+                      tooltip: classes.helpIconTooltip
+                    }}
+                    open={openHelpTooltip}
+                    title={TEXT_LABELS.surveyTitleCreatorHelpTooltipMessage}
+                    TransitionComponent={Zoom}
+                  >
+                    <IconButton
+                      className={classes.helpIcon}
+                      onClick={handleShowHelpTooltip}
+                    >
+                      <HelpIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </div>
             )}
           </div>
         </div>
@@ -139,7 +157,7 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!title || !isEmpty}
+          disabled={!title || isEmpty}
           onClick={handleSubmit}
           size="large"
           variant="contained"

@@ -57,6 +57,17 @@ export const useStyles = makeStyles(theme => ({
     backgroundColor: `${theme.color.redButton}`,
     fontSize: '14px'
   },
+  checkIconWrapper: {
+    display: 'flex',
+    width: '48px',
+    marginTop: '16px'
+  },
+  checkIconContainer: {
+    margin: '0 auto'
+  },
+  checkIcon: {
+    color: `${theme.color.mainColorGreen}`
+  },
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',
