@@ -182,6 +182,8 @@ export const TEXT_LABELS = {
   optionsContainerSubmitButtonErrorTooltipLabel:
     'At least 2 options should be entered!',
   questionSectionQuestionLabel: 'Question',
+  questionCreatorErrorTooltipMessage: 'The question can not be empty!',
+  questionCreatorHelpTooltipMessage: 'Input question!',
   questionCreatorInputErrorLabel: '* Invalid question',
   questionCreatorInputLabel: '* Question',
   questionCreatorQuestionLabel: 'Question:',

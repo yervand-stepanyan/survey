@@ -2,8 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
+import ErrorIcon from '@material-ui/icons/Error';
+import HelpIcon from '@material-ui/icons/Help';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
 
 import { BUTTON_LABELS, TEXT_LABELS } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
@@ -17,7 +22,9 @@ function QuestionCreator({
   questionsLength
 }) {
   const classes = useStyles();
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
+  const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
   const [question, setQuestion] = useState(questionProps);
   const inputEl = useRef(null);
 
@@ -31,9 +38,9 @@ function QuestionCreator({
     setQuestion(event.target.value);
 
     if (removeSpaces(event.target.value)) {
-      setIsEmpty(false);
-    } else {
       setIsEmpty(true);
+    } else {
+      setIsEmpty(false);
     }
   };
 
@@ -43,13 +50,13 @@ function QuestionCreator({
     if (filteredQuestion) {
       handleAddQuestion(activeId, filteredQuestion);
     } else {
-      setIsEmpty(true);
+      setIsEmpty(false);
     }
   };
 
   const handleSubmitOnEnter = event => {
     if (event.key === 'Enter') {
-      if (!isEmpty) {
+      if (isEmpty) {
         handleSubmit();
       }
     }
@@ -57,6 +64,20 @@ function QuestionCreator({
 
   const handleCancel = () => {
     handleCancelQuestion();
+  };
+
+  const handleShowErrorTooltip = () => {
+    setOpenErrorTooltip(!openErrorTooltip);
+  };
+
+  const handleShowHelpTooltip = () => {
+    setOpenHelpTooltip(!openHelpTooltip);
+  };
+
+  const handleInputFocus = () => {
+    setOpenErrorTooltip(false);
+
+    setOpenHelpTooltip(false);
   };
 
   return (
@@ -69,26 +90,66 @@ function QuestionCreator({
         </div>
         <div className={classes.textFieldSection}>
           <TextField
-            error={isEmpty}
+            error={!isEmpty}
             fullWidth
             id="outlined-basic"
             inputRef={inputEl}
             label={
-              !isEmpty
+              isEmpty
                 ? TEXT_LABELS.questionCreatorInputLabel
                 : TEXT_LABELS.questionCreatorInputErrorLabel
             }
             onChange={e => handleChange(e)}
+            onFocus={handleInputFocus}
             onKeyDown={handleSubmitOnEnter}
             variant="outlined"
             value={question}
           />
+          <div className={classes.iconWrapper}>
+            {isEmpty ? (
+              <Tooltip
+                arrow
+                classes={{
+                  arrow: classes.helpIconArrow,
+                  tooltip: classes.helpIconTooltip
+                }}
+                open={openHelpTooltip}
+                title={TEXT_LABELS.questionCreatorHelpTooltipMessage}
+                TransitionComponent={Zoom}
+              >
+                <IconButton
+                  className={classes.helpIcon}
+                  onClick={handleShowHelpTooltip}
+                >
+                  <HelpIcon />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip
+                arrow
+                classes={{
+                  arrow: classes.errorIconArrow,
+                  tooltip: classes.errorIconTooltip
+                }}
+                open={openErrorTooltip}
+                title={TEXT_LABELS.questionCreatorErrorTooltipMessage}
+                TransitionComponent={Zoom}
+              >
+                <IconButton
+                  className={classes.errorIcon}
+                  onClick={handleShowErrorTooltip}
+                >
+                  <ErrorIcon />
+                </IconButton>
+              </Tooltip>
+            )}
+          </div>
         </div>
       </div>
       <div className={classes.buttonWrapper}>
         <Button
           className={classes.button}
-          disabled={!question || isEmpty}
+          disabled={!question || !isEmpty}
           onClick={handleSubmit}
           size="large"
           variant="contained"
