@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
+import { CONTACT_ICONS_COLORS } from '../../../Globals/variables'
 export const useStyles = makeStyles(theme => ({
   addressSection: {
     display: 'flex',
@@ -15,12 +16,12 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   emailIcon: {
-    color: '21BA67'
+    color: CONTACT_ICONS_COLORS.emailIcon
   },
   locationIcon: {
-    color: '#EA4335',
+    color: CONTACT_ICONS_COLORS.locationIcon,
   },
   phoneIcon: {
-    color: '#1976D2'
+    color: CONTACT_ICONS_COLORS.phoneIcon
   }
 }));
