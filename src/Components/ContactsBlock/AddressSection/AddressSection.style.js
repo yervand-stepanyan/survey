@@ -17,10 +17,10 @@ export const useStyles = makeStyles(theme => ({
   address: {
     display: 'flex'
   },
-  phone: {
+  email: {
     display: 'flex'
   },
-  email: {
+  phone: {
     display: 'flex'
   },
   iconContainer: {

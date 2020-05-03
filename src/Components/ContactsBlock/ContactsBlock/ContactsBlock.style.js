@@ -1,16 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  // contactsBlockContainer: {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   boxSizing: 'border-box',
-  //   width: '90%'
-  // },
   title: {
     display: 'flex',
     justifyContent: 'center',
     padding: `${theme.customSpacing.xLarge} 0`
+  },
+  developersTitle: {
+    padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
   },
   contactsAndMapWrapper: {
     display: 'flex',
@@ -30,11 +27,10 @@ export const useStyles = makeStyles(theme => ({
   },
   mapWrapper: {
     borderRadius: `${theme.borders.borderRadius.base}`,
-    marginTop: theme.customSpacing.xLarge,
-    // boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
+    height: '414px',
     padding: `${theme.customSpacing.base}`,
+    marginTop: theme.customSpacing.xxLarge,
     width: '50%',
-    height: '414px'
   }
 }));

@@ -17,12 +17,8 @@ export const useStyles = makeStyles(theme => ({
       }
     }
   },
-  iconContainer: {
-    marginRight: `${theme.customSpacing.small}`
-  },
-  icon: {
-    height: '20px',
-    width: '20px'
+  developersName: {
+    paddingLeft: `${theme.customSpacing.small}`
   },
   link: {
     display: 'flex',
@@ -31,5 +27,18 @@ export const useStyles = makeStyles(theme => ({
     '&:hover': {
       textDecoration: 'underline'
     }
-  }
+  },
+  emailIcon: {
+    color: '#41C47C'
+  },
+  phoneIcon: {
+    color: '#1976D2'
+  },
+
+  githubIcon: {
+    color: '#000000'
+  },  
+  linkedinIcon: {
+    color: '#0077B5',
+  },
 }));

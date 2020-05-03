@@ -8,10 +8,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
-import addressIcon from '../../../assets/icons/address-240px.png';
 import { ADDRESS_SECTION } from '../../../Globals/variables';
-import emailIcon from '../../../assets/icons/email-240px.png';
-import phoneIcon from '../../../assets/icons/phone-240px.png';
 import { useStyles } from './AddressSection.style';
 
 function AddressSection() {

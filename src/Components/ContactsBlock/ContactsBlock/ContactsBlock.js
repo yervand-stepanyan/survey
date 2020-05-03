@@ -25,7 +25,7 @@ function ContactsBlock() {
         <Card>
           <div className={classes.contactsAndMapWrapper}>
             <div className={classes.contactsWrapper}>
-              <div>
+              <div className={classes.developersTitle}>
                 <Typography variant="h5">
                   {TEXT_LABELS.contactsBlockDevelopersSectionTitle}
                 </Typography>
