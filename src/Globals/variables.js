@@ -156,10 +156,6 @@ export const SURVEYS_PER_PAGE = 7;
 
 export const TABINDEX = 0;
 
-export const TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR =
-  'Something went wrong. Try again!';
-export const TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Submitted!';
-
 export const TEXT_LABELS = {
   addNewQuestionLabel: 'Add question',
   answerTypeSectionTitle: 'Answer type',
@@ -190,8 +186,19 @@ export const TEXT_LABELS = {
   radiobuttonAnswersInputErrorLabel: '* Invalid input',
   radiobuttonSectionTitle: 'Radiobutton answer options',
   rangeSectionTitle: 'Range values',
+  rangeSectionEndValueErrorTooltipMessage: 'End value can not be empty!',
+  rangeSectionEndValueHelpTooltipMessage: 'Input end value!',
   rangeSectionEndValueLabel: 'End value',
+  rangeSectionEqualValuesErrorTooltipMessage:
+    'Start and End values can not be equal!',
+  rangeSectionInvalidEndValueErrorTooltipMessage: 'Invalid end value!',
+  rangeSectionInvalidStartValueErrorTooltipMessage: 'Invalid start value!',
+  rangeSectionInvalidStepValueErrorTooltipMessage: 'Invalid step value!',
+  rangeSectionStartValueErrorTooltipMessage: 'Start value can not be empty!',
+  rangeSectionStartValueHelpTooltipMessage: 'Input start value!',
   rangeSectionStartValueLabel: 'Start value',
+  rangeSectionStepValueErrorTooltipMessage: 'Step value can not be empty!',
+  rangeSectionStepValueHelpTooltipMessage: 'Input step value!',
   rangeSectionStepValueLabel: 'Step',
   surveyQuestionNoAnswerTypeChosen: 'No Answer type chosen',
   surveyTitleSectionSurveyTitleLabel: 'Survey title:',
@@ -201,5 +208,9 @@ export const TEXT_LABELS = {
   surveyTitleCreatorInputLabel: '* Title',
   surveyTitleCreatorSurveyTitleLabel: 'Survey title:'
 };
+export const TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR =
+  'Something went wrong. Try again!';
+
+export const TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS = 'Submitted!';
 
 export const WEBSITE_CREATOR = 'Website by SED Team';

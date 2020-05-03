@@ -2,8 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
+import HelpIcon from '@material-ui/icons/Help';
+import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
 
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
@@ -32,6 +38,12 @@ function RangeSection({
   const [isSubmitted, setIsSubmitted] = useState(
     (!!startValueProps && !!endValueProps && !!stepValueProps) || false
   );
+  const [openEndErrorTooltip, setOpenEndErrorTooltip] = useState(false);
+  const [openEndHelpTooltip, setOpenEndHelpTooltip] = useState(false);
+  const [openStartErrorTooltip, setOpenStartErrorTooltip] = useState(false);
+  const [openStartHelpTooltip, setOpenStartHelpTooltip] = useState(false);
+  const [openStepErrorTooltip, setOpenStepErrorTooltip] = useState(false);
+  const [openStepHelpTooltip, setOpenStepHelpTooltip] = useState(false);
   const [startValue, setStartValue] = useState(startValueProps || '');
   const [stepValue, setStepValue] = useState(stepValueProps || '');
   const inputEl = useRef(null);
@@ -40,12 +52,46 @@ function RangeSection({
     handleAddRangeValues,
     handleSubmitQuestion
   } = useStore();
+  const [endErrorTooltipTitle, setEndErrorTooltipTitle] = useState('');
+  const [startErrorTooltipTitle, setStartErrorTooltipTitle] = useState('');
 
   useEffect(() => {
     if (!activeId) {
       inputEl.current.focus();
     }
   }, [activeId]);
+
+  useEffect(() => {
+    if (isEndEmpty) {
+      setEndErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionEndValueErrorTooltipMessage
+      );
+    } else if (isEqual) {
+      setEndErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionEqualValuesErrorTooltipMessage
+      );
+    } else {
+      setEndErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionInvalidEndValueErrorTooltipMessage
+      );
+    }
+  }, [isEndEmpty, isEqual]);
+
+  useEffect(() => {
+    if (isStartEmpty) {
+      setStartErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionStartValueErrorTooltipMessage
+      );
+    } else if (isEqual) {
+      setStartErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionEqualValuesErrorTooltipMessage
+      );
+    } else {
+      setStartErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionInvalidStartValueErrorTooltipMessage
+      );
+    }
+  }, [isStartEmpty, isEqual]);
 
   const checkStepIsValid = ({
     endValue: end,
@@ -187,6 +233,63 @@ function RangeSection({
     }
   };
 
+  const handleShowStartErrorTooltip = () => {
+    setOpenStartErrorTooltip(!openStartErrorTooltip);
+  };
+
+  const handleShowStartHelpTooltip = () => {
+    setOpenStartHelpTooltip(!openStartHelpTooltip);
+  };
+
+  const handleStartInputFocus = () => {
+    setOpenEndErrorTooltip(false);
+    setOpenEndHelpTooltip(false);
+
+    setOpenStartErrorTooltip(false);
+    setOpenStartHelpTooltip(false);
+
+    setOpenStepErrorTooltip(false);
+    setOpenStepHelpTooltip(false);
+  };
+
+  const handleShowEndErrorTooltip = () => {
+    setOpenEndErrorTooltip(!openEndErrorTooltip);
+  };
+
+  const handleShowEndHelpTooltip = () => {
+    setOpenEndHelpTooltip(!openEndHelpTooltip);
+  };
+
+  const handleEndInputFocus = () => {
+    setOpenEndErrorTooltip(false);
+    setOpenEndHelpTooltip(false);
+
+    setOpenStartErrorTooltip(false);
+    setOpenStartHelpTooltip(false);
+
+    setOpenStepErrorTooltip(false);
+    setOpenStepHelpTooltip(false);
+  };
+
+  const handleShowStepErrorTooltip = () => {
+    setOpenStepErrorTooltip(!openStepErrorTooltip);
+  };
+
+  const handleShowStepHelpTooltip = () => {
+    setOpenStepHelpTooltip(!openStepHelpTooltip);
+  };
+
+  const handleStepInputFocus = () => {
+    setOpenEndErrorTooltip(false);
+    setOpenEndHelpTooltip(false);
+
+    setOpenStartErrorTooltip(false);
+    setOpenStartHelpTooltip(false);
+
+    setOpenStepErrorTooltip(false);
+    setOpenStepHelpTooltip(false);
+  };
+
   return (
     <div className={classes.rangeSectionContainer}>
       <div className={classes.titleWrapper}>
@@ -202,11 +305,65 @@ function RangeSection({
               inputRef={inputEl}
               label={TEXT_LABELS.rangeSectionStartValueLabel}
               onChange={e => handleStartChange(e)}
+              onFocus={handleStartInputFocus}
               onKeyDown={handleSubmitOnEnter}
               type="number"
               value={startValue}
               variant="outlined"
             />
+            <div className={classes.iconWrapper}>
+              {isStartEmpty || isEqual || isInvalid ? (
+                <Tooltip
+                  arrow
+                  classes={{
+                    arrow: classes.errorIconArrow,
+                    tooltip: classes.errorIconTooltip
+                  }}
+                  open={openStartErrorTooltip}
+                  title={startErrorTooltipTitle}
+                  TransitionComponent={Zoom}
+                >
+                  <IconButton
+                    className={classes.errorIcon}
+                    onClick={handleShowStartErrorTooltip}
+                  >
+                    <ErrorIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <div
+                  className={
+                    startValue ? classes.checkIconWrapper : classes.iconWrapper
+                  }
+                >
+                  {startValue ? (
+                    <div className={classes.checkIconContainer}>
+                      <CheckCircleIcon className={classes.checkIcon} />
+                    </div>
+                  ) : (
+                    <Tooltip
+                      arrow
+                      classes={{
+                        arrow: classes.helpIconArrow,
+                        tooltip: classes.helpIconTooltip
+                      }}
+                      open={openStartHelpTooltip}
+                      title={
+                        TEXT_LABELS.rangeSectionStartValueHelpTooltipMessage
+                      }
+                      TransitionComponent={Zoom}
+                    >
+                      <IconButton
+                        className={classes.helpIcon}
+                        onClick={handleShowStartHelpTooltip}
+                      >
+                        <HelpIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
@@ -215,11 +372,63 @@ function RangeSection({
               id="outlined-basic"
               label={TEXT_LABELS.rangeSectionEndValueLabel}
               onChange={e => handleEndChange(e)}
+              onFocus={handleEndInputFocus}
               onKeyDown={handleSubmitOnEnter}
               type="number"
               value={endValue}
               variant="outlined"
             />
+            <div className={classes.iconWrapper}>
+              {isEndEmpty || isEqual || isInvalid ? (
+                <Tooltip
+                  arrow
+                  classes={{
+                    arrow: classes.errorIconArrow,
+                    tooltip: classes.errorIconTooltip
+                  }}
+                  open={openEndErrorTooltip}
+                  title={endErrorTooltipTitle}
+                  TransitionComponent={Zoom}
+                >
+                  <IconButton
+                    className={classes.errorIcon}
+                    onClick={handleShowEndErrorTooltip}
+                  >
+                    <ErrorIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <div
+                  className={
+                    endValue ? classes.checkIconWrapper : classes.iconWrapper
+                  }
+                >
+                  {endValue ? (
+                    <div className={classes.checkIconContainer}>
+                      <CheckCircleIcon className={classes.checkIcon} />
+                    </div>
+                  ) : (
+                    <Tooltip
+                      arrow
+                      classes={{
+                        arrow: classes.helpIconArrow,
+                        tooltip: classes.helpIconTooltip
+                      }}
+                      open={openEndHelpTooltip}
+                      title={TEXT_LABELS.rangeSectionEndValueHelpTooltipMessage}
+                      TransitionComponent={Zoom}
+                    >
+                      <IconButton
+                        className={classes.helpIcon}
+                        onClick={handleShowEndHelpTooltip}
+                      >
+                        <HelpIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
@@ -228,11 +437,69 @@ function RangeSection({
               id="outlined-basic"
               label={TEXT_LABELS.rangeSectionStepValueLabel}
               onChange={e => handleStepChange(e)}
+              onFocus={handleStepInputFocus}
               onKeyDown={handleSubmitOnEnter}
               type="number"
               value={stepValue}
               variant="outlined"
             />
+            <div className={classes.iconWrapper}>
+              {isStepEmpty || !isStepValid ? (
+                <Tooltip
+                  arrow
+                  classes={{
+                    arrow: classes.errorIconArrow,
+                    tooltip: classes.errorIconTooltip
+                  }}
+                  open={openStepErrorTooltip}
+                  title={
+                    isStepEmpty
+                      ? TEXT_LABELS.rangeSectionStepValueErrorTooltipMessage
+                      : TEXT_LABELS.rangeSectionInvalidStepValueErrorTooltipMessage
+                  }
+                  TransitionComponent={Zoom}
+                >
+                  <IconButton
+                    className={classes.errorIcon}
+                    onClick={handleShowStepErrorTooltip}
+                  >
+                    <ErrorIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <div
+                  className={
+                    stepValue ? classes.checkIconWrapper : classes.iconWrapper
+                  }
+                >
+                  {stepValue ? (
+                    <div className={classes.checkIconContainer}>
+                      <CheckCircleIcon className={classes.checkIcon} />
+                    </div>
+                  ) : (
+                    <Tooltip
+                      arrow
+                      classes={{
+                        arrow: classes.helpIconArrow,
+                        tooltip: classes.helpIconTooltip
+                      }}
+                      open={openStepHelpTooltip}
+                      title={
+                        TEXT_LABELS.rangeSectionStepValueHelpTooltipMessage
+                      }
+                      TransitionComponent={Zoom}
+                    >
+                      <IconButton
+                        className={classes.helpIcon}
+                        onClick={handleShowStepHelpTooltip}
+                      >
+                        <HelpIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className={classes.buttonWrapper}>
