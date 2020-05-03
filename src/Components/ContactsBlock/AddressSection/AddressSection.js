@@ -19,7 +19,7 @@ function AddressSection() {
 
   return (
     <div className={classes.addressSection}>
-      <List component="div" className={classes.socialSection}>
+      <List component="div" className={classes.info}>
         <ListItem>
           <ListItemIcon>
             <RoomIcon />

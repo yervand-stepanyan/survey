@@ -31,6 +31,9 @@ function ContactsBlock() {
                 </Typography>
               </div>
               <DevelopersSection />
+            </div>
+            <div className={classes.mapWrapper}>
+              <MapSection />
               <div className={classes.addressWrapper}>
                 <div>
                   <Typography variant="h5">
@@ -39,9 +42,6 @@ function ContactsBlock() {
                 </div>
                 <AddressSection />
               </div>
-            </div>
-            <div className={classes.mapWrapper}>
-              <MapSection />
             </div>
           </div>
         </Card>

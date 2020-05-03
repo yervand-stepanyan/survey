@@ -4,7 +4,15 @@ export const useStyles = makeStyles(theme => ({
   addressSection: {
     display: 'flex',
     flexDirection: 'column',
-    padding: `${theme.customSpacing.small}`
+    padding: `${theme.customSpacing.small}`,
+    '& .MuiList-root': {
+      '& .MuiListItem-gutters': {
+        padding: 0,
+        '& .MuiListItemIcon-root': {
+          minWidth: 30
+        }
+      }
+    }
   },
   address: {
     display: 'flex'
