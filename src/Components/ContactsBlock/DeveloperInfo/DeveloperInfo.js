@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
 import emailIcon from '../../../assets/icons/email-240px.png';
@@ -13,7 +14,7 @@ function DeveloperInfo({ developer }) {
   const classes = useStyles();
 
   return (
-    <div className={classes.developerInfo} key={developer.email}>
+    <Card className={classes.developerInfo} key={developer.email}>
       <div>
         <Typography variant="h6">
           {`${developer.firstName} ${developer.lastName}`}
@@ -75,7 +76,8 @@ function DeveloperInfo({ developer }) {
           </a>
         </div>
       </div>
-    </div>
+    </Card>
+
   );
 }
 

@@ -1,12 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  contactsBlockContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    boxSizing: 'border-box',
-    width: '90%'
-  },
+  // contactsBlockContainer: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   boxSizing: 'border-box',
+  //   width: '90%'
+  // },
   title: {
     display: 'flex',
     justifyContent: 'center'

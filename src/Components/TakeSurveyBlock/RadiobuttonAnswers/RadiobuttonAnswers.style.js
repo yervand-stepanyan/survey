@@ -8,14 +8,15 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   customText: {
-    width: '50%',
+    width:'50%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
     '@media screen and (max-width: 992px)': {
       width: '100%',
-      padding: `0 ${theme.customSpacing.base}`
+      padding: `0 ${theme.customSpacing.base}`,
     }
+
   },
   formControlLabel: {
     alignItems: 'start',
@@ -32,20 +33,17 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.customSpacing.small,
     '@media (max-width: 992px)': {
       flexDirection: 'column',
-      width: '100%'
+      width: '100%',
     },
     '& label': {
       width: '50%',
       '@media (max-width: 992px)': {
-        width: '100%'
-      }
+        width: '100%',
+      },
     }
   },
 
   radiobuttonInputAnswer: {
-    paddingBottom: theme.customSpacing.small
-    // width: '50%',
-    // display: 'flex',
-    // justifyContent: 'flex-end'
+    paddingBottom: theme.customSpacing.small,
   }
 }));
