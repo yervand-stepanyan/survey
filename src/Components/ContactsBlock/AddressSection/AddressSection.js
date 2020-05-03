@@ -36,32 +36,6 @@ function AddressSection() {
           <ListItemText primary={ADDRESS_SECTION.email} />
         </ListItem>
       </List>
-
-
-      {/* <div className={classes.address}>
-        <div className={classes.iconContainer}>
-          <img alt="address-icon" className={classes.icon} src={addressIcon} />
-        </div>
-        <div>
-          <span>{ADDRESS_SECTION.address}</span>
-        </div>
-      </div>
-      <div className={classes.phone}>
-        <div className={classes.iconContainer}>
-          <img alt="address-icon" className={classes.icon} src={phoneIcon} />
-        </div>
-        <div>
-          <span>{ADDRESS_SECTION.phone}</span>
-        </div>
-      </div>
-      <div className={classes.email}>
-        <div className={classes.iconContainer}>
-          <img alt="address-icon" className={classes.icon} src={emailIcon} />
-        </div>
-        <div>
-          <span>{ADDRESS_SECTION.email}</span>
-        </div>
-      </div> */}
     </div>
   );
 }

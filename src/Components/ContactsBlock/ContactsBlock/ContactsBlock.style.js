@@ -10,20 +10,37 @@ export const useStyles = makeStyles(theme => ({
     padding: `${theme.customSpacing.small} ${theme.customSpacing.base}`
   },
   contactsAndMapWrapper: {
+    boxSizing: 'border-box',
     display: 'flex',
     justifyContent: 'space-between',
-    boxSizing: 'border-box',
+    '@media screen and (max-width: 992px)': {
+      flexDirection: 'column',
+    }
   },
   contactsWrapper: {
-    padding: theme.customSpacing.base,
+    boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    boxSizing: 'border-box',
-    width: '50%'
+    padding: theme.customSpacing.base,
+    width: '50%',
+    '@media screen and (max-width: 992px)': {
+      margin: 'auto',
+      width: 680,
+    },
+    '@media screen and (max-width: 768px)': {
+        width: '100%'
+    },
+    '& .MuiListItemText-root': {
+      wordWrap:'break-word',
+    }
+
   },
   addressWrapper: {
     margin: `${theme.customSpacing.xLarge} 0`,
-    padding: `${theme.customSpacing.small}`
+    padding: `${theme.customSpacing.small}`,
+    '@media screen and (max-width: 992px)': {
+      margin: `0 0 ${theme.customSpacing.xLarge} 0`
+    }
   },
   mapWrapper: {
     borderRadius: `${theme.borders.borderRadius.base}`,
@@ -32,5 +49,15 @@ export const useStyles = makeStyles(theme => ({
     padding: `${theme.customSpacing.base}`,
     marginTop: theme.customSpacing.xxLarge,
     width: '50%',
+    '@media screen and (max-width: 992px)': {
+      display: 'flex',
+      flexDirection: 'column-reverse',
+      height: 'unset',
+      margin: 'auto',
+      width: 680,
+    },
+    '@media screen and (max-width: 768px)': {
+      width: '100%'
+    },
   }
 }));

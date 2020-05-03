@@ -2,16 +2,19 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
   developerInfo: {
-    padding: `${theme.customSpacing.small}`,
     marginBottom: theme.customSpacing.base,
+    padding: `${theme.customSpacing.small}`,
   },
   socialWrapper: {
     marginLeft: theme.customSpacing.xLarge,
+    '@media screen and (max-width:600px)': {
+      marginLeft: 0
+    }
   },
   socialSection: {
     '& .MuiListItem-gutters': {
-      padding: 0,
       alignItems: 'start',
+      padding: 0,
       '& .MuiListItemIcon-root': {
         minWidth: 30
       }
@@ -21,8 +24,8 @@ export const useStyles = makeStyles(theme => ({
     paddingLeft: `${theme.customSpacing.small}`
   },
   link: {
-    display: 'flex',
     color: `${theme.customTypography.fontColor.base}`,
+    display: 'flex',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline'
