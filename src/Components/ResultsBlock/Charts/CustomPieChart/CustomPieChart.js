@@ -49,6 +49,7 @@ function CustomPieChart({ customText, data, title }) {
                           primary={val.name}
                         />
                         <CustomAnswersModal
+                          classes={classes.customAnswerModalButton}
                           customText={customText}
                           title={title}
                         />
