@@ -179,8 +179,7 @@ export const TEXT_LABELS = {
   optionsContainerCheckboxLabel: 'Add an input field as the last option',
   optionsContainerInputLabel: 'Input answer option',
   optionsContainerInputTooltipLabel: 'Input custom answer option name',
-  optionsContainerSubmitButtonErrorTooltipLabel:
-    'At least 2 options should be entered!',
+  optionsContainerTooltipMessage: 'At least 2 options should be entered!',
   questionSectionQuestionLabel: 'Question',
   questionCreatorErrorTooltipMessage: 'The question can not be empty!',
   questionCreatorHelpTooltipMessage: 'Input question!',

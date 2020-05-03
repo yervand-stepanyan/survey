@@ -4,8 +4,11 @@ import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Chip from '@material-ui/core/Chip';
+import ErrorIcon from '@material-ui/icons/Error';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import HelpIcon from '@material-ui/icons/Help';
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
@@ -36,14 +39,17 @@ function OptionsContainer({
       ? answersProps[answersProps.length - 1].id
       : ''
   );
+  const [isAnswerRemoved, setIsAnswerRemoved] = useState(false);
   const [isChanged, setIsChanged] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [isIconDisabled, setIsIconDisabled] = useState(true);
+  const [isSendIconDisabled, setIsSendIconDisabled] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(
     !!answersProps.length || false
   );
   const [isTooltip, setIsTooltip] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
+  const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
+  const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
   const [title, setTitle] = useState('');
   const inputEl = useRef(null);
   const {
@@ -67,7 +73,7 @@ function OptionsContainer({
 
       disableSave(false);
 
-      setIsIconDisabled(true);
+      setIsSendIconDisabled(true);
     } else {
       setIsEmpty(false);
 
@@ -75,11 +81,11 @@ function OptionsContainer({
 
       disableSave(true);
 
-      setIsIconDisabled(false);
+      setIsSendIconDisabled(false);
     }
   };
 
-  const handleIconClick = () => {
+  const handleSendIconClick = () => {
     const filteredTitle = removeSpaces(title);
     const id = uuid();
 
@@ -127,12 +133,14 @@ function OptionsContainer({
 
     setIsSubmitted(false);
 
-    inputEl.current.focus();
+    setIsAnswerRemoved(false);
+
+    // inputEl.current.focus();
   };
 
   const handleSubmitOnEnter = event => {
     if (event.key === 'Enter') {
-      handleIconClick();
+      handleSendIconClick();
     }
   };
 
@@ -172,6 +180,8 @@ function OptionsContainer({
     }
 
     disableSave(true);
+
+    setIsAnswerRemoved(true);
   };
 
   const handleCheckboxChange = event => {
@@ -238,103 +248,162 @@ function OptionsContainer({
     setIsChanged(false);
   };
 
+  const handleShowErrorTooltip = () => {
+    setOpenErrorTooltip(!openErrorTooltip);
+  };
+
+  const handleShowHelpTooltip = () => {
+    setOpenHelpTooltip(!openHelpTooltip);
+  };
+
+  const handleInputFocus = () => {
+    setOpenErrorTooltip(false);
+
+    setOpenHelpTooltip(false);
+  };
+
   return (
     <div className={classes.optionsContainer}>
-      <div className={classes.inputWrapper}>
-        <div className={classes.textFieldAndIconWrapper}>
-          <div>
-            <Tooltip
-              open={isTooltip}
-              placement="top-start"
-              title={TEXT_LABELS.optionsContainerInputTooltipLabel}
-              TransitionComponent={Zoom}
-            >
-              <TextField
-                autoFocus={!activeId}
-                error={isEmpty}
-                fullWidth
-                id="outlined-basic"
-                InputProps={{ className: classes.inputField }}
-                inputRef={inputEl}
-                label={TEXT_LABELS.optionsContainerInputLabel}
-                onChange={e => handleInputChange(e)}
-                onKeyDown={handleSubmitOnEnter}
-                value={title}
-                variant="outlined"
-              />
-            </Tooltip>
-          </div>
-          <div className={classes.iconWrapper}>
-            <IconButton
-              color="primary"
-              disabled={isIconDisabled || !isTyped}
-              onClick={handleIconClick}
-            >
-              <SendIcon fontSize="large" />
-            </IconButton>
-          </div>
-        </div>
-      </div>
-      <div className={classes.chipsWrapper}>
-        <div className={classes.chipsRoot}>
-          {answers.map(opt => (
-            <Tooltip
-              arrow
-              key={opt.id}
-              title={opt.title}
-              TransitionComponent={Zoom}
-            >
-              <Chip
-                className={classes.chip}
-                clickable
-                color="primary"
-                label={opt.title}
-                onClick={handleChipClick(opt)}
-                onDelete={handleChipDelete(opt.id)}
-              />
-            </Tooltip>
-          ))}
-        </div>
-      </div>
-      {type === 'addInput' ? (
-        <div className={classes.checkboxWrapper}>
-          <div className={classes.checkboxSection}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={checked}
-                  onChange={handleCheckboxChange}
-                  name="checkedB"
-                  color="primary"
+      <div className={classes.contentWrapper}>
+        <div className={classes.contentSection}>
+          <div className={classes.textFieldSection}>
+            <div className={classes.textFieldAndIconWrapper}>
+              <Tooltip
+                open={isTooltip}
+                placement="top-start"
+                title={TEXT_LABELS.optionsContainerInputTooltipLabel}
+                TransitionComponent={Zoom}
+              >
+                <TextField
+                  autoFocus={!activeId}
+                  error={isEmpty}
+                  fullWidth
+                  id="outlined-basic"
+                  InputProps={{ className: classes.inputField }}
+                  inputRef={inputEl}
+                  label={TEXT_LABELS.optionsContainerInputLabel}
+                  onChange={e => handleInputChange(e)}
+                  onFocus={handleInputFocus}
+                  onKeyDown={handleSubmitOnEnter}
+                  value={title}
+                  variant="outlined"
                 />
-              }
-              label={TEXT_LABELS.optionsContainerCheckboxLabel}
-            />
+              </Tooltip>
+              <div className={classes.sendIconWrapper}>
+                <IconButton
+                  color="primary"
+                  disabled={isSendIconDisabled || !isTyped}
+                  onClick={handleSendIconClick}
+                >
+                  <SendIcon fontSize="large" />
+                </IconButton>
+              </div>
+            </div>
           </div>
+          <div className={classes.chipsWrapper}>
+            <div className={classes.chipsRoot}>
+              {answers.map(opt => (
+                <Tooltip
+                  arrow
+                  key={opt.id}
+                  title={opt.title}
+                  TransitionComponent={Zoom}
+                >
+                  <Chip
+                    className={classes.chip}
+                    clickable
+                    color="primary"
+                    label={opt.title}
+                    onClick={handleChipClick(opt)}
+                    onDelete={handleChipDelete(opt.id)}
+                  />
+                </Tooltip>
+              ))}
+            </div>
+          </div>
+          {type === 'addInput' ? (
+            <div className={classes.checkboxWrapper}>
+              <div className={classes.checkboxSection}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={checked}
+                      onChange={handleCheckboxChange}
+                      name="checkedB"
+                      color="primary"
+                    />
+                  }
+                  label={TEXT_LABELS.optionsContainerCheckboxLabel}
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
-      ) : null}
-      <div className={classes.buttonWrapper}>
-        <Tooltip
-          arrow
-          classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
-          disableHoverListener={answers.length >= 2}
-          title={TEXT_LABELS.optionsContainerSubmitButtonErrorTooltipLabel}
-          TransitionComponent={Zoom}
+        <div
+          className={
+            answers.length >= 2 ? classes.checkIconWrapper : classes.iconWrapper
+          }
         >
-          <span>
-            <Button
-              className={classes.button}
-              disabled={answers.length < 2 || isSubmitted}
-              onClick={handleSubmit}
-              size="large"
-              variant="contained"
-            >
-              {isChanged
-                ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
-                : ANSWER_SECTION_BUTTON_LABEL}
-            </Button>
-          </span>
-        </Tooltip>
+          {answers.length < 2 ? (
+            <div>
+              {(answers.length === 1 && isAnswerRemoved) ||
+              (isAnswerRemoved && isChanged) ? (
+                <Tooltip
+                  arrow
+                  classes={{
+                    arrow: classes.errorIconArrow,
+                    tooltip: classes.errorIconTooltip
+                  }}
+                  open={openErrorTooltip}
+                  title={TEXT_LABELS.optionsContainerTooltipMessage}
+                  TransitionComponent={Zoom}
+                >
+                  <IconButton
+                    className={classes.errorIcon}
+                    onClick={handleShowErrorTooltip}
+                  >
+                    <ErrorIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip
+                  arrow
+                  classes={{
+                    arrow: classes.helpIconArrow,
+                    tooltip: classes.helpIconTooltip
+                  }}
+                  open={openHelpTooltip}
+                  title={TEXT_LABELS.optionsContainerTooltipMessage}
+                  TransitionComponent={Zoom}
+                >
+                  <IconButton
+                    className={classes.helpIcon}
+                    onClick={handleShowHelpTooltip}
+                  >
+                    <HelpIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          ) : (
+            <div className={classes.checkIconContainer}>
+              <CheckCircleIcon className={classes.checkIcon} />
+            </div>
+          )}
+        </div>
+      </div>
+      <div className={classes.buttonWrapper}>
+        <Button
+          className={classes.button}
+          disabled={answers.length < 2 || isSubmitted}
+          onClick={handleSubmit}
+          size="large"
+          variant="contained"
+        >
+          {isChanged
+            ? ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL
+            : ANSWER_SECTION_BUTTON_LABEL}
+        </Button>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export const useStyles = makeStyles(theme => ({
     '@media only screen and (min-width: 600px)': {
       alignItems: 'flex-start',
       flexDirection: 'row',
-      padding: `0 ${theme.customSpacing.xxxxLarge} 0 ${theme.customSpacing.xxLarge}`
+      padding: `0 ${theme.customSpacing.xxxxLarge}`
     }
   },
   label: {

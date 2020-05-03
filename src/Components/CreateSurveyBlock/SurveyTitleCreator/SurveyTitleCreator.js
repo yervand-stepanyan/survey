@@ -17,9 +17,9 @@ import { useStyles } from './SurveyTitleCreator.style';
 function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const classes = useStyles();
   const [isEmpty, setIsEmpty] = useState(true);
-  const [title, setTitle] = useState(titleProps);
   const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
   const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
+  const [title, setTitle] = useState(titleProps);
   const inputEl = useRef(null);
 
   useEffect(() => {

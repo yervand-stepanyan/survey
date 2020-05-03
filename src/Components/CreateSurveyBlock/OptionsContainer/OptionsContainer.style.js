@@ -5,17 +5,15 @@ export const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  titleWrapper: {
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  inputWrapper: {
+  contentWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: `${theme.customSpacing.large}`
+    marginTop: `${theme.customSpacing.large}`,
+    paddingLeft: '48px'
   },
-  textFieldAndIconWrapper: {
-    position: 'relative',
+  contentSection: {
+    display: 'flex',
+    flexDirection: 'column',
     width: '80%',
     '@media only screen and (min-width: 600px)': {
       width: '70%'
@@ -24,15 +22,68 @@ export const useStyles = makeStyles(theme => ({
       width: '60%'
     }
   },
+  titleWrapper: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  textFieldSection: {
+    display: 'flex',
+    position: 'relative',
+    width: '100%'
+  },
+  textFieldAndIconWrapper: {
+    display: 'flex',
+    width: '100%'
+  },
   inputField: {
     '& .MuiOutlinedInput-input': {
       padding: '20px 73px 20px 14px'
     }
   },
-  iconWrapper: {
+  sendIconWrapper: {
     position: 'absolute',
     top: 0,
     right: 0
+  },
+  iconWrapper: {
+    display: 'flex',
+    alignSelf: 'flex-start',
+    marginTop: '5.5px',
+    width: '48px'
+  },
+  checkIconWrapper: {
+    display: 'flex',
+    alignSelf: 'flex-start',
+    marginTop: '17.5px',
+    width: '48px'
+  },
+  checkIconContainer: {
+    margin: '0 auto'
+  },
+  helpIcon: {
+    color: `${theme.color.yellowButton}`
+  },
+  helpIconArrow: {
+    color: `${theme.color.yellowButton}`,
+    fontSize: '10px'
+  },
+  helpIconTooltip: {
+    backgroundColor: `${theme.color.yellowButton}`,
+    fontSize: '14px'
+  },
+  errorIcon: {
+    color: `${theme.color.redButton}`
+  },
+  checkIcon: {
+    color: `${theme.color.mainColorGreen}`
+  },
+  errorIconArrow: {
+    color: `${theme.color.redButton}`,
+    fontSize: '10px'
+  },
+  errorIconTooltip: {
+    backgroundColor: `${theme.color.redButton}`,
+    fontSize: '14px'
   },
   chipsWrapper: {
     display: 'flex',
@@ -49,13 +100,7 @@ export const useStyles = makeStyles(theme => ({
     height: '114px',
     overflowY: 'auto',
     padding: `${theme.customSpacing.small}`,
-    width: '80%',
-    '@media only screen and (min-width: 600px)': {
-      width: '70%'
-    },
-    '@media only screen and (min-width: 768px)': {
-      width: '60%'
-    }
+    width: '100%'
   },
   chip: {
     margin: `${theme.customSpacing.small}`,
@@ -66,21 +111,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   checkboxSection: {
-    width: '80%',
-    '@media only screen and (min-width: 600px)': {
-      width: '70%'
-    },
-    '@media only screen and (min-width: 768px)': {
-      width: '60%'
-    }
-  },
-  arrow: {
-    color: `${theme.color.redButton}`,
-    fontSize: '10px'
-  },
-  tooltip: {
-    backgroundColor: `${theme.color.redButton}`,
-    fontSize: '14px'
+    width: '100%'
   },
   buttonWrapper: {
     display: 'flex',

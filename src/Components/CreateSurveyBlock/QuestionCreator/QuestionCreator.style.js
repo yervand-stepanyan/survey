@@ -26,7 +26,9 @@ export const useStyles = makeStyles(theme => ({
   textFieldSection: {
     display: 'flex',
     width: '80%',
+    paddingLeft: '48px',
     '@media only screen and (min-width: 600px)': {
+      paddingLeft: 0,
       width: '50%'
     }
   },
