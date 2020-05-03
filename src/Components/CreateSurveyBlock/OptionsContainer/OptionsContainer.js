@@ -316,7 +316,7 @@ function OptionsContainer({
       <div className={classes.buttonWrapper}>
         <Tooltip
           arrow
-          classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
+          classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
           disableHoverListener={answers.length >= 2}
           title={TEXT_LABELS.optionsContainerSubmitButtonErrorTooltipLabel}
           TransitionComponent={Zoom}

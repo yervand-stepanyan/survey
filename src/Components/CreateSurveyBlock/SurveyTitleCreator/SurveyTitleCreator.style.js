@@ -24,10 +24,36 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   textFieldSection: {
+    display: 'flex',
     width: '80%',
     '@media only screen and (min-width: 600px)': {
       width: '50%'
     }
+  },
+  iconWrapper: {
+    display: 'flex'
+  },
+  helpIcon: {
+    color: `${theme.color.yellowButton}`
+  },
+  helpIconArrow: {
+    color: `${theme.color.yellowButton}`,
+    fontSize: '10px'
+  },
+  helpIconTooltip: {
+    backgroundColor: `${theme.color.yellowButton}`,
+    fontSize: '14px'
+  },
+  errorIcon: {
+    color: `${theme.color.redButton}`
+  },
+  errorIconArrow: {
+    color: `${theme.color.redButton}`,
+    fontSize: '10px'
+  },
+  errorIconTooltip: {
+    backgroundColor: `${theme.color.redButton}`,
+    fontSize: '14px'
   },
   buttonWrapper: {
     display: 'flex',

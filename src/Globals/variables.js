@@ -194,6 +194,8 @@ export const TEXT_LABELS = {
   rangeSectionStepValueLabel: 'Step',
   surveyQuestionNoAnswerTypeChosen: 'No Answer type chosen',
   surveyTitleSectionSurveyTitleLabel: 'Survey title:',
+  surveyTitleCreatorErrorTooltipMessage: 'The title can not be empty!',
+  surveyTitleCreatorHelpTooltipMessage: 'Input survey title!',
   surveyTitleCreatorInputErrorLabel: '* Invalid title',
   surveyTitleCreatorInputLabel: '* Title',
   surveyTitleCreatorSurveyTitleLabel: 'Survey title:'
