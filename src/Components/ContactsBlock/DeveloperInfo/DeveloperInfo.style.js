@@ -5,10 +5,15 @@ export const useStyles = makeStyles(theme => ({
     padding: `${theme.customSpacing.small}`
   },
   socialWrapper: {
-    marginLeft: `${theme.customSpacing.xxLarge}`
+    marginLeft: theme.customSpacing.xLarge,
   },
   socialSection: {
-    display: 'flex'
+    '& .MuiListItem-gutters': {
+      padding: 0,
+      '& .MuiListItemIcon-root': {
+        minWidth: 30
+      }
+    }
   },
   iconContainer: {
     marginRight: `${theme.customSpacing.small}`
