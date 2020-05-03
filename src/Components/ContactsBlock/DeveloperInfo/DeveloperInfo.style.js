@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
   developerInfo: {
-    padding: `${theme.customSpacing.small}`
+    padding: `${theme.customSpacing.small}`,
+    marginBottom: theme.customSpacing.base,
   },
   socialWrapper: {
     marginLeft: theme.customSpacing.xLarge,
@@ -10,6 +11,7 @@ export const useStyles = makeStyles(theme => ({
   socialSection: {
     '& .MuiListItem-gutters': {
       padding: 0,
+      alignItems: 'start',
       '& .MuiListItemIcon-root': {
         minWidth: 30
       }

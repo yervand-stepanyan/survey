@@ -111,13 +111,13 @@ function DeveloperInfo({ developer }) {
             rel="noopener noreferrer"
             className={classes.link}
           >
-            <div className={classes.iconContainer}>
-              <img
-                src={linkedInIcon}
-                alt="likedIn-icon"
-                className={classes.icon}
-              />
-            </div>
+            // <div className={classes.iconContainer}>
+            //   <img
+            //     src={linkedInIcon}
+            //     alt="likedIn-icon"
+            //     className={classes.icon}
+            //   />
+            // </div>
             <div>
               <span>{developer.linkedInPageURL}</span>
             </div>

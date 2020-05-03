@@ -9,20 +9,20 @@ export const useStyles = makeStyles(theme => ({
   // },
   title: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: `${theme.customSpacing.xLarge} 0`
   },
   contactsAndMapWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
     boxSizing: 'border-box',
-    marginTop: `${theme.customSpacing.xLarge}`,
-    padding: `${theme.customSpacing.small}`
   },
   contactsWrapper: {
+    padding: theme.customSpacing.base,
     display: 'flex',
     flexDirection: 'column',
     boxSizing: 'border-box',
-    width: '49%'
+    width: '50%'
   },
   addressWrapper: {
     margin: `${theme.customSpacing.xLarge} 0`,
@@ -30,10 +30,11 @@ export const useStyles = makeStyles(theme => ({
   },
   mapWrapper: {
     borderRadius: `${theme.borders.borderRadius.base}`,
-    boxShadow: `${theme.boxShadow.base}`,
+    marginTop: theme.customSpacing.xLarge,
+    // boxShadow: `${theme.boxShadow.base}`,
     boxSizing: 'border-box',
-    padding: `${theme.customSpacing.small}`,
-    width: '49%',
+    padding: `${theme.customSpacing.base}`,
+    width: '50%',
     height: '414px'
   }
 }));

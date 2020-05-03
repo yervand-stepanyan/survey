@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from '@material-ui/core/Card'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -21,27 +22,29 @@ function ContactsBlock() {
         <div className={classes.title}>
           <Typography variant="h4">{TEXT_LABELS.contactsBlockTitle}</Typography>
         </div>
-        <div className={classes.contactsAndMapWrapper}>
-          <div className={classes.contactsWrapper}>
-            <div>
-              <Typography variant="h5">
-                {TEXT_LABELS.contactsBlockDevelopersSectionTitle}
-              </Typography>
-            </div>
-            <DevelopersSection />
-            <div className={classes.addressWrapper}>
+        <Card>
+          <div className={classes.contactsAndMapWrapper}>
+            <div className={classes.contactsWrapper}>
               <div>
                 <Typography variant="h5">
-                  {TEXT_LABELS.contactsBlockAddressSectionTitle}
+                  {TEXT_LABELS.contactsBlockDevelopersSectionTitle}
                 </Typography>
               </div>
-              <AddressSection />
+              <DevelopersSection />
+              <div className={classes.addressWrapper}>
+                <div>
+                  <Typography variant="h5">
+                    {TEXT_LABELS.contactsBlockAddressSectionTitle}
+                  </Typography>
+                </div>
+                <AddressSection />
+              </div>
+            </div>
+            <div className={classes.mapWrapper}>
+              <MapSection />
             </div>
           </div>
-          <div className={classes.mapWrapper}>
-            <MapSection />
-          </div>
-        </div>
+        </Card>
       </Container>
     </>
   );
