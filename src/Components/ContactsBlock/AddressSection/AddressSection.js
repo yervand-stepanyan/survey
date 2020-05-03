@@ -18,19 +18,19 @@ function AddressSection() {
     <div className={classes.addressSection}>
       <List component="div" className={classes.info}>
         <ListItem>
-          <ListItemIcon>
+          <ListItemIcon className={classes.locationIcon}>
             <RoomIcon />
           </ListItemIcon>
           <ListItemText primary={ADDRESS_SECTION.address} />
         </ListItem>
         <ListItem>
-          <ListItemIcon>
+          <ListItemIcon className={classes.phoneIcon}>
             <PhoneIcon />
           </ListItemIcon>
           <ListItemText primary={ADDRESS_SECTION.phone} />
         </ListItem>
         <ListItem>
-          <ListItemIcon>
+          <ListItemIcon className={classes.emailIcon}>
             <MailOutlineIcon />
           </ListItemIcon>
           <ListItemText primary={ADDRESS_SECTION.email} />

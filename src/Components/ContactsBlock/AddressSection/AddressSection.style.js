@@ -14,20 +14,13 @@ export const useStyles = makeStyles(theme => ({
       }
     }
   },
-  address: {
-    display: 'flex'
+  emailIcon: {
+    color: '21BA67'
   },
-  email: {
-    display: 'flex'
+  locationIcon: {
+    color: '#EA4335',
   },
-  phone: {
-    display: 'flex'
-  },
-  iconContainer: {
-    marginRight: `${theme.customSpacing.small}`
-  },
-  icon: {
-    height: '20px',
-    width: '20px'
+  phoneIcon: {
+    color: '#1976D2'
   }
 }));
