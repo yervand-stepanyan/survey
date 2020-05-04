@@ -1,7 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-  notFoundBlockContainer: {},
+  notFoundBlockContainer: {
+    textAlign: 'center'
+  },
   card: {
     display: 'flex',
     flexDirection: 'column',

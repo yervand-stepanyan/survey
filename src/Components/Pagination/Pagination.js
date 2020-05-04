@@ -13,9 +13,9 @@ function Pagination({ totalPages, handlePaginationChange }) {
       <div>
         <MyPagination
           count={totalPages}
-          variant="outlined"
-          shape="rounded"
           onChange={handlePaginationChange}
+          shape="rounded"
+          variant="outlined"
         />
       </div>
     </div>
@@ -23,8 +23,8 @@ function Pagination({ totalPages, handlePaginationChange }) {
 }
 
 Pagination.propTypes = {
-  totalPages: PropTypes.number.isRequired,
-  handlePaginationChange: PropTypes.func.isRequired
+  handlePaginationChange: PropTypes.func.isRequired,
+  totalPages: PropTypes.number.isRequired
 };
 
 export default Pagination;
