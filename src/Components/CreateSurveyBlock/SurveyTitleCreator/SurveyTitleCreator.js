@@ -2,17 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import Zoom from '@material-ui/core/Zoom';
 
 import { BUTTON_LABELS, TEXT_LABELS } from '../../../Globals/variables';
 import removeSpaces from '../../../helpers/removeSpaces';
+import TooltipIconComponent from '../TooltipIconComponent';
 import { useStyles } from './SurveyTitleCreator.style';
 
 function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
@@ -101,57 +96,18 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
             variant="outlined"
             value={title}
           />
-          <div className={classes.iconWrapper}>
-            {isEmpty ? (
-              <Tooltip
-                arrow
-                classes={{
-                  arrow: classes.errorIconArrow,
-                  tooltip: classes.errorIconTooltip
-                }}
-                open={openErrorTooltip}
-                title={TEXT_LABELS.surveyTitleCreatorErrorTooltipMessage}
-                TransitionComponent={Zoom}
-              >
-                <IconButton
-                  className={classes.errorIcon}
-                  onClick={handleShowErrorTooltip}
-                >
-                  <ErrorIcon />
-                </IconButton>
-              </Tooltip>
-            ) : (
-              <div
-                className={
-                  acceptedTitle ? classes.checkIconWrapper : classes.iconWrapper
-                }
-              >
-                {acceptedTitle ? (
-                  <div className={classes.checkIconContainer}>
-                    <CheckCircleIcon className={classes.checkIcon} />
-                  </div>
-                ) : (
-                  <Tooltip
-                    arrow
-                    classes={{
-                      arrow: classes.helpIconArrow,
-                      tooltip: classes.helpIconTooltip
-                    }}
-                    open={openHelpTooltip}
-                    title={TEXT_LABELS.surveyTitleCreatorHelpTooltipMessage}
-                    TransitionComponent={Zoom}
-                  >
-                    <IconButton
-                      className={classes.helpIcon}
-                      onClick={handleShowHelpTooltip}
-                    >
-                      <InfoIcon />
-                    </IconButton>
-                  </Tooltip>
-                )}
-              </div>
-            )}
-          </div>
+          <TooltipIconComponent
+            checkOrInfoCondition={!!acceptedTitle}
+            errorCondition={isEmpty}
+            errorMessageTitle={
+              TEXT_LABELS.surveyTitleCreatorErrorTooltipMessage
+            }
+            handleShowErrorTooltip={handleShowErrorTooltip}
+            handleShowHelpTooltip={handleShowHelpTooltip}
+            helpMessageTitle={TEXT_LABELS.surveyTitleCreatorHelpTooltipMessage}
+            openErrorTooltip={openErrorTooltip}
+            openHelpTooltip={openHelpTooltip}
+          />
         </div>
       </div>
       <div className={classes.buttonWrapper}>

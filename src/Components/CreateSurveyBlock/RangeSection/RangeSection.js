@@ -2,14 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import Zoom from '@material-ui/core/Zoom';
 
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
@@ -19,6 +13,7 @@ import {
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './RangeSection.style';
+import TooltipIconComponent from '../TooltipIconComponent';
 
 function RangeSection({
   activeId,
@@ -28,6 +23,7 @@ function RangeSection({
 }) {
   const classes = useStyles();
   const [endValue, setEndValue] = useState(endValueProps || '');
+  const [endErrorTooltipTitle, setEndErrorTooltipTitle] = useState('');
   const [isChanged, setIsChanged] = useState(false);
   const [isEndEmpty, setIsEndEmpty] = useState(false);
   const [isEqual, setIsEqual] = useState(false);
@@ -45,15 +41,15 @@ function RangeSection({
   const [openStepErrorTooltip, setOpenStepErrorTooltip] = useState(false);
   const [openStepHelpTooltip, setOpenStepHelpTooltip] = useState(false);
   const [startValue, setStartValue] = useState(startValueProps || '');
+  const [startErrorTooltipTitle, setStartErrorTooltipTitle] = useState('');
   const [stepValue, setStepValue] = useState(stepValueProps || '');
+  const [stepErrorTooltipTitle, setStepErrorTooltipTitle] = useState('');
   const inputEl = useRef(null);
   const {
     disableSave,
     handleAddRangeValues,
     handleSubmitQuestion
   } = useStore();
-  const [endErrorTooltipTitle, setEndErrorTooltipTitle] = useState('');
-  const [startErrorTooltipTitle, setStartErrorTooltipTitle] = useState('');
 
   useEffect(() => {
     if (!activeId) {
@@ -92,6 +88,18 @@ function RangeSection({
       );
     }
   }, [isStartEmpty, isEqual]);
+
+  useEffect(() => {
+    if (isStepEmpty) {
+      setStepErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionStepValueErrorTooltipMessage
+      );
+    } else {
+      setStepErrorTooltipTitle(
+        TEXT_LABELS.rangeSectionInvalidStepValueErrorTooltipMessage
+      );
+    }
+  }, [isStepEmpty]);
 
   const checkStepIsValid = ({
     endValue: end,
@@ -311,59 +319,18 @@ function RangeSection({
               value={startValue}
               variant="outlined"
             />
-            <div className={classes.iconWrapper}>
-              {isStartEmpty || isEqual || isInvalid ? (
-                <Tooltip
-                  arrow
-                  classes={{
-                    arrow: classes.errorIconArrow,
-                    tooltip: classes.errorIconTooltip
-                  }}
-                  open={openStartErrorTooltip}
-                  title={startErrorTooltipTitle}
-                  TransitionComponent={Zoom}
-                >
-                  <IconButton
-                    className={classes.errorIcon}
-                    onClick={handleShowStartErrorTooltip}
-                  >
-                    <ErrorIcon />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <div
-                  className={
-                    startValue ? classes.checkIconWrapper : classes.iconWrapper
-                  }
-                >
-                  {startValue ? (
-                    <div className={classes.checkIconContainer}>
-                      <CheckCircleIcon className={classes.checkIcon} />
-                    </div>
-                  ) : (
-                    <Tooltip
-                      arrow
-                      classes={{
-                        arrow: classes.helpIconArrow,
-                        tooltip: classes.helpIconTooltip
-                      }}
-                      open={openStartHelpTooltip}
-                      title={
-                        TEXT_LABELS.rangeSectionStartValueHelpTooltipMessage
-                      }
-                      TransitionComponent={Zoom}
-                    >
-                      <IconButton
-                        className={classes.helpIcon}
-                        onClick={handleShowStartHelpTooltip}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                </div>
-              )}
-            </div>
+            <TooltipIconComponent
+              checkOrInfoCondition={!!startValue}
+              errorCondition={isStartEmpty || isEqual || isInvalid}
+              errorMessageTitle={startErrorTooltipTitle}
+              handleShowErrorTooltip={handleShowStartErrorTooltip}
+              handleShowHelpTooltip={handleShowStartHelpTooltip}
+              helpMessageTitle={
+                TEXT_LABELS.rangeSectionStartValueHelpTooltipMessage
+              }
+              openErrorTooltip={openStartErrorTooltip}
+              openHelpTooltip={openStartHelpTooltip}
+            />
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
@@ -378,57 +345,18 @@ function RangeSection({
               value={endValue}
               variant="outlined"
             />
-            <div className={classes.iconWrapper}>
-              {isEndEmpty || isEqual || isInvalid ? (
-                <Tooltip
-                  arrow
-                  classes={{
-                    arrow: classes.errorIconArrow,
-                    tooltip: classes.errorIconTooltip
-                  }}
-                  open={openEndErrorTooltip}
-                  title={endErrorTooltipTitle}
-                  TransitionComponent={Zoom}
-                >
-                  <IconButton
-                    className={classes.errorIcon}
-                    onClick={handleShowEndErrorTooltip}
-                  >
-                    <ErrorIcon />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <div
-                  className={
-                    endValue ? classes.checkIconWrapper : classes.iconWrapper
-                  }
-                >
-                  {endValue ? (
-                    <div className={classes.checkIconContainer}>
-                      <CheckCircleIcon className={classes.checkIcon} />
-                    </div>
-                  ) : (
-                    <Tooltip
-                      arrow
-                      classes={{
-                        arrow: classes.helpIconArrow,
-                        tooltip: classes.helpIconTooltip
-                      }}
-                      open={openEndHelpTooltip}
-                      title={TEXT_LABELS.rangeSectionEndValueHelpTooltipMessage}
-                      TransitionComponent={Zoom}
-                    >
-                      <IconButton
-                        className={classes.helpIcon}
-                        onClick={handleShowEndHelpTooltip}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                </div>
-              )}
-            </div>
+            <TooltipIconComponent
+              checkOrInfoCondition={!!endValue}
+              errorCondition={isEndEmpty || isEqual || isInvalid}
+              errorMessageTitle={endErrorTooltipTitle}
+              handleShowErrorTooltip={handleShowEndErrorTooltip}
+              handleShowHelpTooltip={handleShowEndHelpTooltip}
+              helpMessageTitle={
+                TEXT_LABELS.rangeSectionEndValueHelpTooltipMessage
+              }
+              openErrorTooltip={openEndErrorTooltip}
+              openHelpTooltip={openEndHelpTooltip}
+            />
           </div>
           <div className={classes.textFieldWrapper}>
             <TextField
@@ -443,63 +371,18 @@ function RangeSection({
               value={stepValue}
               variant="outlined"
             />
-            <div className={classes.iconWrapper}>
-              {isStepEmpty || !isStepValid ? (
-                <Tooltip
-                  arrow
-                  classes={{
-                    arrow: classes.errorIconArrow,
-                    tooltip: classes.errorIconTooltip
-                  }}
-                  open={openStepErrorTooltip}
-                  title={
-                    isStepEmpty
-                      ? TEXT_LABELS.rangeSectionStepValueErrorTooltipMessage
-                      : TEXT_LABELS.rangeSectionInvalidStepValueErrorTooltipMessage
-                  }
-                  TransitionComponent={Zoom}
-                >
-                  <IconButton
-                    className={classes.errorIcon}
-                    onClick={handleShowStepErrorTooltip}
-                  >
-                    <ErrorIcon />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <div
-                  className={
-                    stepValue ? classes.checkIconWrapper : classes.iconWrapper
-                  }
-                >
-                  {stepValue ? (
-                    <div className={classes.checkIconContainer}>
-                      <CheckCircleIcon className={classes.checkIcon} />
-                    </div>
-                  ) : (
-                    <Tooltip
-                      arrow
-                      classes={{
-                        arrow: classes.helpIconArrow,
-                        tooltip: classes.helpIconTooltip
-                      }}
-                      open={openStepHelpTooltip}
-                      title={
-                        TEXT_LABELS.rangeSectionStepValueHelpTooltipMessage
-                      }
-                      TransitionComponent={Zoom}
-                    >
-                      <IconButton
-                        className={classes.helpIcon}
-                        onClick={handleShowStepHelpTooltip}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                </div>
-              )}
-            </div>
+            <TooltipIconComponent
+              checkOrInfoCondition={!!stepValue}
+              errorCondition={isStepEmpty || !isStepValid}
+              errorMessageTitle={stepErrorTooltipTitle}
+              handleShowErrorTooltip={handleShowStepErrorTooltip}
+              handleShowHelpTooltip={handleShowStepHelpTooltip}
+              helpMessageTitle={
+                TEXT_LABELS.rangeSectionStepValueHelpTooltipMessage
+              }
+              openErrorTooltip={openStepErrorTooltip}
+              openHelpTooltip={openStepHelpTooltip}
+            />
           </div>
         </div>
         <div className={classes.buttonWrapper}>

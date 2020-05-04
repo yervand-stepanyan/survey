@@ -45,45 +45,9 @@ export const useStyles = makeStyles(theme => ({
     top: 0,
     right: 0
   },
-  iconWrapper: {
+  iconContainer: {
     display: 'flex',
-    alignSelf: 'flex-start',
-    marginTop: '5.5px',
-    width: '48px'
-  },
-  checkIconWrapper: {
-    display: 'flex',
-    alignSelf: 'flex-start',
-    marginTop: '17.5px',
-    width: '48px'
-  },
-  checkIconContainer: {
-    margin: '0 auto'
-  },
-  helpIcon: {
-    color: `${theme.color.yellowButton}`
-  },
-  helpIconArrow: {
-    color: `${theme.color.yellowButton}`,
-    fontSize: '10px'
-  },
-  helpIconTooltip: {
-    backgroundColor: `${theme.color.yellowButton}`,
-    fontSize: '14px'
-  },
-  errorIcon: {
-    color: `${theme.color.redButton}`
-  },
-  checkIcon: {
-    color: `${theme.color.mainColorGreen}`
-  },
-  errorIconArrow: {
-    color: `${theme.color.redButton}`,
-    fontSize: '10px'
-  },
-  errorIconTooltip: {
-    backgroundColor: `${theme.color.redButton}`,
-    fontSize: '14px'
+    height: '59px'
   },
   chipsWrapper: {
     display: 'flex',

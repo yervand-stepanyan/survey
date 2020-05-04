@@ -36,44 +36,6 @@ export const useStyles = makeStyles(theme => ({
       width: '30%'
     }
   },
-  iconWrapper: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  helpIcon: {
-    color: `${theme.color.yellowButton}`
-  },
-  helpIconArrow: {
-    color: `${theme.color.yellowButton}`,
-    fontSize: '10px'
-  },
-  helpIconTooltip: {
-    backgroundColor: `${theme.color.yellowButton}`,
-    fontSize: '14px'
-  },
-  errorIcon: {
-    color: `${theme.color.redButton}`
-  },
-  errorIconArrow: {
-    color: `${theme.color.redButton}`,
-    fontSize: '10px'
-  },
-  errorIconTooltip: {
-    backgroundColor: `${theme.color.redButton}`,
-    fontSize: '14px'
-  },
-  checkIconWrapper: {
-    display: 'flex',
-    alignSelf: 'flex-start',
-    width: '48px',
-    marginTop: '16px'
-  },
-  checkIconContainer: {
-    margin: '0 auto'
-  },
-  checkIcon: {
-    color: `${theme.color.mainColorGreen}`
-  },
   buttonWrapper: {
     display: 'flex',
     justifyContent: 'center',

@@ -4,11 +4,8 @@ import uuid from 'react-uuid';
 
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Chip from '@material-ui/core/Chip';
-import ErrorIcon from '@material-ui/icons/Error';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
@@ -23,6 +20,7 @@ import {
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStore } from '../../../State/use-store';
 import { useStyles } from './OptionsContainer.style';
+import TooltipIconComponent from '../TooltipIconComponent';
 
 function OptionsContainer({
   activeId,
@@ -339,57 +337,20 @@ function OptionsContainer({
             </div>
           ) : null}
         </div>
-        <div
-          className={
-            answers.length >= 2 ? classes.checkIconWrapper : classes.iconWrapper
-          }
-        >
-          {answers.length < 2 ? (
-            <div>
-              {(answers.length === 1 && isAnswerRemoved) ||
-              (isAnswerRemoved && isChanged) ? (
-                <Tooltip
-                  arrow
-                  classes={{
-                    arrow: classes.errorIconArrow,
-                    tooltip: classes.errorIconTooltip
-                  }}
-                  open={openErrorTooltip}
-                  title={TEXT_LABELS.optionsContainerTooltipMessage}
-                  TransitionComponent={Zoom}
-                >
-                  <IconButton
-                    className={classes.errorIcon}
-                    onClick={handleShowErrorTooltip}
-                  >
-                    <ErrorIcon />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <Tooltip
-                  arrow
-                  classes={{
-                    arrow: classes.helpIconArrow,
-                    tooltip: classes.helpIconTooltip
-                  }}
-                  open={openHelpTooltip}
-                  title={TEXT_LABELS.optionsContainerTooltipMessage}
-                  TransitionComponent={Zoom}
-                >
-                  <IconButton
-                    className={classes.helpIcon}
-                    onClick={handleShowHelpTooltip}
-                  >
-                    <InfoIcon />
-                  </IconButton>
-                </Tooltip>
-              )}
-            </div>
-          ) : (
-            <div className={classes.checkIconContainer}>
-              <CheckCircleIcon className={classes.checkIcon} />
-            </div>
-          )}
+        <div className={classes.iconContainer}>
+          <TooltipIconComponent
+            checkOrInfoCondition={answers.length >= 2}
+            errorCondition={
+              (answers.length === 1 && isAnswerRemoved) ||
+              (isAnswerRemoved && isChanged)
+            }
+            errorMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
+            handleShowErrorTooltip={handleShowErrorTooltip}
+            handleShowHelpTooltip={handleShowHelpTooltip}
+            helpMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
+            openErrorTooltip={openErrorTooltip}
+            openHelpTooltip={openHelpTooltip}
+          />
         </div>
       </div>
       <div className={classes.buttonWrapper}>
