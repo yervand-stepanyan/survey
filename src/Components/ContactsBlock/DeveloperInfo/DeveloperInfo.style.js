@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { CONTACT_ICONS_COLORS } from '../../../Globals/variables';
 
 export const useStyles = makeStyles(theme => ({
   developerInfo: {
@@ -33,16 +32,16 @@ export const useStyles = makeStyles(theme => ({
     }
   },
   emailIcon: {
-    color: CONTACT_ICONS_COLORS.emailIcon
+    color: `${theme.color.emailIcon}`
   },
   phoneIcon: {
-    color: CONTACT_ICONS_COLORS.phoneIcon
+    color: `${theme.color.phoneIcon}`
   },
 
   githubIcon: {
-    color: CONTACT_ICONS_COLORS.githubIcon
+    color: `${theme.color.githubIcon}`
   },
   linkedInIcon: {
-    color: CONTACT_ICONS_COLORS.linkedInIcon
+    color: `${theme.color.linkedInIcon}`
   }
 }));

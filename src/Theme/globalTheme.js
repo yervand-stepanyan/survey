@@ -11,6 +11,12 @@ const lightGreyBorder = '#e4dddd';
 const redButton = '#EA4335';
 const yellowButton = '#FBBC05';
 
+const emailIcon = '#41C47C';
+const githubIcon = '#000000';
+const linkedInIcon = '#0077B5';
+const locationIcon = '#EA4335';
+const phoneIcon = '#1976D2';
+
 const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
 const MAIN_SPACING_VALUE = 14;
@@ -28,9 +34,14 @@ const theme = createMuiTheme({
   color: {
     boxShadowColor,
     buttonHoverColorGreen,
+    emailIcon,
+    githubIcon,
     lightGreyBorder,
+    linkedInIcon,
+    locationIcon,
     mainColorDarkBlue,
     mainColorGreen,
+    phoneIcon,
     redButton,
     simpleWhite,
     yellowButton
