@@ -6,14 +6,14 @@ export const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   infoIcon: {
-    color: `${theme.color.yellowButton}`
+    color: `${theme.color.infoIconColor}`
   },
   infoIconArrow: {
-    color: `${theme.color.yellowButton}`,
+    color: `${theme.color.infoIconColor}`,
     fontSize: '10px'
   },
   infoIconTooltip: {
-    backgroundColor: `${theme.color.yellowButton}`,
+    backgroundColor: `${theme.color.infoIconColor}`,
     fontSize: '14px'
   },
   errorIcon: {

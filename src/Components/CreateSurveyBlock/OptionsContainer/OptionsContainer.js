@@ -47,7 +47,7 @@ function OptionsContainer({
   const [isTooltip, setIsTooltip] = useState(false);
   const [isTyped, setIsTyped] = useState(false);
   const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
-  const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
+  const [openInfoTooltip, setOpenInfoTooltip] = useState(false);
   const [title, setTitle] = useState('');
   const inputEl = useRef(null);
   const {
@@ -250,14 +250,14 @@ function OptionsContainer({
     setOpenErrorTooltip(!openErrorTooltip);
   };
 
-  const handleShowHelpTooltip = () => {
-    setOpenHelpTooltip(!openHelpTooltip);
+  const handleShowInfoTooltip = () => {
+    setOpenInfoTooltip(!openInfoTooltip);
   };
 
   const handleInputFocus = () => {
     setOpenErrorTooltip(false);
 
-    setOpenHelpTooltip(false);
+    setOpenInfoTooltip(false);
   };
 
   return (
@@ -346,10 +346,10 @@ function OptionsContainer({
             }
             errorMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
             handleShowErrorTooltip={handleShowErrorTooltip}
-            handleShowHelpTooltip={handleShowHelpTooltip}
-            helpMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
+            handleShowInfoTooltip={handleShowInfoTooltip}
+            infoMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
             openErrorTooltip={openErrorTooltip}
-            openHelpTooltip={openHelpTooltip}
+            openInfoTooltip={openInfoTooltip}
           />
         </div>
       </div>

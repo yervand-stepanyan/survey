@@ -35,11 +35,11 @@ function RangeSection({
     (!!startValueProps && !!endValueProps && !!stepValueProps) || false
   );
   const [openEndErrorTooltip, setOpenEndErrorTooltip] = useState(false);
-  const [openEndHelpTooltip, setOpenEndHelpTooltip] = useState(false);
+  const [openEndInfoTooltip, setOpenEndInfoTooltip] = useState(false);
   const [openStartErrorTooltip, setOpenStartErrorTooltip] = useState(false);
-  const [openStartHelpTooltip, setOpenStartHelpTooltip] = useState(false);
+  const [openStartInfoTooltip, setOpenStartInfoTooltip] = useState(false);
   const [openStepErrorTooltip, setOpenStepErrorTooltip] = useState(false);
-  const [openStepHelpTooltip, setOpenStepHelpTooltip] = useState(false);
+  const [openStepInfoTooltip, setOpenStepInfoTooltip] = useState(false);
   const [startValue, setStartValue] = useState(startValueProps || '');
   const [startErrorTooltipTitle, setStartErrorTooltipTitle] = useState('');
   const [stepValue, setStepValue] = useState(stepValueProps || '');
@@ -245,57 +245,57 @@ function RangeSection({
     setOpenStartErrorTooltip(!openStartErrorTooltip);
   };
 
-  const handleShowStartHelpTooltip = () => {
-    setOpenStartHelpTooltip(!openStartHelpTooltip);
+  const handleShowStartInfoTooltip = () => {
+    setOpenStartInfoTooltip(!openStartInfoTooltip);
   };
 
   const handleStartInputFocus = () => {
     setOpenEndErrorTooltip(false);
-    setOpenEndHelpTooltip(false);
+    setOpenEndInfoTooltip(false);
 
     setOpenStartErrorTooltip(false);
-    setOpenStartHelpTooltip(false);
+    setOpenStartInfoTooltip(false);
 
     setOpenStepErrorTooltip(false);
-    setOpenStepHelpTooltip(false);
+    setOpenStepInfoTooltip(false);
   };
 
   const handleShowEndErrorTooltip = () => {
     setOpenEndErrorTooltip(!openEndErrorTooltip);
   };
 
-  const handleShowEndHelpTooltip = () => {
-    setOpenEndHelpTooltip(!openEndHelpTooltip);
+  const handleShowEndInfoTooltip = () => {
+    setOpenEndInfoTooltip(!openEndInfoTooltip);
   };
 
   const handleEndInputFocus = () => {
     setOpenEndErrorTooltip(false);
-    setOpenEndHelpTooltip(false);
+    setOpenEndInfoTooltip(false);
 
     setOpenStartErrorTooltip(false);
-    setOpenStartHelpTooltip(false);
+    setOpenStartInfoTooltip(false);
 
     setOpenStepErrorTooltip(false);
-    setOpenStepHelpTooltip(false);
+    setOpenStepInfoTooltip(false);
   };
 
   const handleShowStepErrorTooltip = () => {
     setOpenStepErrorTooltip(!openStepErrorTooltip);
   };
 
-  const handleShowStepHelpTooltip = () => {
-    setOpenStepHelpTooltip(!openStepHelpTooltip);
+  const handleShowStepInfoTooltip = () => {
+    setOpenStepInfoTooltip(!openStepInfoTooltip);
   };
 
   const handleStepInputFocus = () => {
     setOpenEndErrorTooltip(false);
-    setOpenEndHelpTooltip(false);
+    setOpenEndInfoTooltip(false);
 
     setOpenStartErrorTooltip(false);
-    setOpenStartHelpTooltip(false);
+    setOpenStartInfoTooltip(false);
 
     setOpenStepErrorTooltip(false);
-    setOpenStepHelpTooltip(false);
+    setOpenStepInfoTooltip(false);
   };
 
   return (
@@ -324,12 +324,12 @@ function RangeSection({
               errorCondition={isStartEmpty || isEqual || isInvalid}
               errorMessageTitle={startErrorTooltipTitle}
               handleShowErrorTooltip={handleShowStartErrorTooltip}
-              handleShowHelpTooltip={handleShowStartHelpTooltip}
-              helpMessageTitle={
-                TEXT_LABELS.rangeSectionStartValueHelpTooltipMessage
+              handleShowInfoTooltip={handleShowStartInfoTooltip}
+              infoMessageTitle={
+                TEXT_LABELS.rangeSectionStartValueInfoTooltipMessage
               }
               openErrorTooltip={openStartErrorTooltip}
-              openHelpTooltip={openStartHelpTooltip}
+              openInfoTooltip={openStartInfoTooltip}
             />
           </div>
           <div className={classes.textFieldWrapper}>
@@ -350,12 +350,12 @@ function RangeSection({
               errorCondition={isEndEmpty || isEqual || isInvalid}
               errorMessageTitle={endErrorTooltipTitle}
               handleShowErrorTooltip={handleShowEndErrorTooltip}
-              handleShowHelpTooltip={handleShowEndHelpTooltip}
-              helpMessageTitle={
-                TEXT_LABELS.rangeSectionEndValueHelpTooltipMessage
+              handleShowInfoTooltip={handleShowEndInfoTooltip}
+              infoMessageTitle={
+                TEXT_LABELS.rangeSectionEndValueInfoTooltipMessage
               }
               openErrorTooltip={openEndErrorTooltip}
-              openHelpTooltip={openEndHelpTooltip}
+              openInfoTooltip={openEndInfoTooltip}
             />
           </div>
           <div className={classes.textFieldWrapper}>
@@ -376,12 +376,12 @@ function RangeSection({
               errorCondition={isStepEmpty || !isStepValid}
               errorMessageTitle={stepErrorTooltipTitle}
               handleShowErrorTooltip={handleShowStepErrorTooltip}
-              handleShowHelpTooltip={handleShowStepHelpTooltip}
-              helpMessageTitle={
-                TEXT_LABELS.rangeSectionStepValueHelpTooltipMessage
+              handleShowInfoTooltip={handleShowStepInfoTooltip}
+              infoMessageTitle={
+                TEXT_LABELS.rangeSectionStepValueInfoTooltipMessage
               }
               openErrorTooltip={openStepErrorTooltip}
-              openHelpTooltip={openStepHelpTooltip}
+              openInfoTooltip={openStepInfoTooltip}
             />
           </div>
         </div>

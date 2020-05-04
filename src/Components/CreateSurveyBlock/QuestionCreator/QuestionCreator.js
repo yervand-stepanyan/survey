@@ -21,7 +21,7 @@ function QuestionCreator({
   const [acceptedQuestion, setAcceptedQuestion] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
   const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
-  const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
+  const [openInfoTooltip, setOpenInfoTooltip] = useState(false);
   const [question, setQuestion] = useState(questionProps);
   const inputEl = useRef(null);
 
@@ -71,14 +71,14 @@ function QuestionCreator({
     setOpenErrorTooltip(!openErrorTooltip);
   };
 
-  const handleShowHelpTooltip = () => {
-    setOpenHelpTooltip(!openHelpTooltip);
+  const handleShowInfoTooltip = () => {
+    setOpenInfoTooltip(!openInfoTooltip);
   };
 
   const handleInputFocus = () => {
     setOpenErrorTooltip(false);
 
-    setOpenHelpTooltip(false);
+    setOpenInfoTooltip(false);
   };
 
   return (
@@ -111,10 +111,10 @@ function QuestionCreator({
             errorCondition={isEmpty}
             errorMessageTitle={TEXT_LABELS.questionCreatorErrorTooltipMessage}
             handleShowErrorTooltip={handleShowErrorTooltip}
-            handleShowHelpTooltip={handleShowHelpTooltip}
-            helpMessageTitle={TEXT_LABELS.questionCreatorHelpTooltipMessage}
+            handleShowInfoTooltip={handleShowInfoTooltip}
+            infoMessageTitle={TEXT_LABELS.questionCreatorInfoTooltipMessage}
             openErrorTooltip={openErrorTooltip}
-            openHelpTooltip={openHelpTooltip}
+            openInfoTooltip={openInfoTooltip}
           />
         </div>
       </div>

@@ -17,6 +17,8 @@ const linkedInIcon = '#0077B5';
 const locationIcon = '#EA4335';
 const phoneIcon = '#1976D2';
 
+const infoIconColor = '#3F51B5';
+
 const BORDER_RADIUS_VALUE = 10;
 const MAIN_FONT_SIZE = 14;
 const MAIN_SPACING_VALUE = 14;
@@ -36,6 +38,7 @@ const theme = createMuiTheme({
     buttonHoverColorGreen,
     emailIcon,
     githubIcon,
+    infoIconColor,
     lightGreyBorder,
     linkedInIcon,
     locationIcon,

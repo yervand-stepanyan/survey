@@ -15,10 +15,10 @@ function TooltipIconComponent({
   errorCondition,
   errorMessageTitle,
   handleShowErrorTooltip,
-  handleShowHelpTooltip,
-  helpMessageTitle,
+  handleShowInfoTooltip,
+  infoMessageTitle,
   openErrorTooltip,
-  openHelpTooltip
+  openInfoTooltip
 }) {
   const classes = useStyles();
 
@@ -57,17 +57,18 @@ function TooltipIconComponent({
           ) : (
             <Tooltip
               arrow
+              color="primary"
               classes={{
                 arrow: classes.infoIconArrow,
                 tooltip: classes.infoIconTooltip
               }}
-              open={openHelpTooltip}
-              title={helpMessageTitle}
+              open={openInfoTooltip}
+              title={infoMessageTitle}
               TransitionComponent={Zoom}
             >
               <IconButton
                 className={classes.infoIcon}
-                onClick={handleShowHelpTooltip}
+                onClick={handleShowInfoTooltip}
               >
                 <InfoIcon />
               </IconButton>
@@ -84,10 +85,10 @@ TooltipIconComponent.propTypes = {
   errorCondition: PropTypes.bool.isRequired,
   errorMessageTitle: PropTypes.string.isRequired,
   handleShowErrorTooltip: PropTypes.func.isRequired,
-  handleShowHelpTooltip: PropTypes.func.isRequired,
-  helpMessageTitle: PropTypes.string.isRequired,
+  handleShowInfoTooltip: PropTypes.func.isRequired,
+  infoMessageTitle: PropTypes.string.isRequired,
   openErrorTooltip: PropTypes.bool.isRequired,
-  openHelpTooltip: PropTypes.bool.isRequired
+  openInfoTooltip: PropTypes.bool.isRequired
 };
 
 export default TooltipIconComponent;

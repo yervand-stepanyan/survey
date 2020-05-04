@@ -15,7 +15,7 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
   const [acceptedTitle, setAcceptedTitle] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
   const [openErrorTooltip, setOpenErrorTooltip] = useState(false);
-  const [openHelpTooltip, setOpenHelpTooltip] = useState(false);
+  const [openInfoTooltip, setOpenInfoTooltip] = useState(false);
   const [title, setTitle] = useState(titleProps);
   const inputEl = useRef(null);
 
@@ -61,14 +61,14 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
     setOpenErrorTooltip(!openErrorTooltip);
   };
 
-  const handleShowHelpTooltip = () => {
-    setOpenHelpTooltip(!openHelpTooltip);
+  const handleShowInfoTooltip = () => {
+    setOpenInfoTooltip(!openInfoTooltip);
   };
 
   const handleInputFocus = () => {
     setOpenErrorTooltip(false);
 
-    setOpenHelpTooltip(false);
+    setOpenInfoTooltip(false);
   };
 
   return (
@@ -103,10 +103,10 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
               TEXT_LABELS.surveyTitleCreatorErrorTooltipMessage
             }
             handleShowErrorTooltip={handleShowErrorTooltip}
-            handleShowHelpTooltip={handleShowHelpTooltip}
-            helpMessageTitle={TEXT_LABELS.surveyTitleCreatorHelpTooltipMessage}
+            handleShowInfoTooltip={handleShowInfoTooltip}
+            infoMessageTitle={TEXT_LABELS.surveyTitleCreatorInfoTooltipMessage}
             openErrorTooltip={openErrorTooltip}
-            openHelpTooltip={openHelpTooltip}
+            openInfoTooltip={openInfoTooltip}
           />
         </div>
       </div>
