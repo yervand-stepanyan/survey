@@ -24,7 +24,7 @@ export const useStyles = makeStyles(theme => ({
   label: {
     display: 'flex',
     alignItems: 'center',
-    height: '36px',
+    minHeight: '48px',
     textAlign: 'center',
     '@media only screen and (min-width: 600px)': {
       alignItems: 'flex-start',
@@ -43,6 +43,7 @@ export const useStyles = makeStyles(theme => ({
   editIconWrapper: {
     position: 'absolute',
     right: 0,
+    top: '6px',
     '@media only screen and (min-width: 600px)': {
       top: '-7px'
     }
