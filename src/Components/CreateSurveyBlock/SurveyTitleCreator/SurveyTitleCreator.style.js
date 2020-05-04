@@ -60,6 +60,7 @@ export const useStyles = makeStyles(theme => ({
   },
   checkIconWrapper: {
     display: 'flex',
+    alignSelf: 'flex-start',
     width: '48px',
     marginTop: '16px'
   },

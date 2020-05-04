@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
-import HelpIcon from '@material-ui/icons/Help';
+import InfoIcon from '@material-ui/icons/Info';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -357,7 +357,7 @@ function RangeSection({
                         className={classes.helpIcon}
                         onClick={handleShowStartHelpTooltip}
                       >
-                        <HelpIcon />
+                        <InfoIcon />
                       </IconButton>
                     </Tooltip>
                   )}
@@ -422,7 +422,7 @@ function RangeSection({
                         className={classes.helpIcon}
                         onClick={handleShowEndHelpTooltip}
                       >
-                        <HelpIcon />
+                        <InfoIcon />
                       </IconButton>
                     </Tooltip>
                   )}
@@ -493,7 +493,7 @@ function RangeSection({
                         className={classes.helpIcon}
                         onClick={handleShowStepHelpTooltip}
                       >
-                        <HelpIcon />
+                        <InfoIcon />
                       </IconButton>
                     </Tooltip>
                   )}
