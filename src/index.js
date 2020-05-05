@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Main from './Pages/Main';
+import Main from './pages/Main';
 import * as serviceWorker from './serviceWorker';
-import theme from './Theme/globalTheme';
+import theme from './theme/globalTheme';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

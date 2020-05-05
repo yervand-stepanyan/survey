@@ -5,4 +5,4 @@ const removeSpaces = text => {
   return firstReplace.replace(regex, '');
 };
 
-export { removeSpaces as default };
+export default removeSpaces;
