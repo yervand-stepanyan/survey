@@ -14,12 +14,10 @@ import CustomRangeChart from '../Charts/CustomRangeChart';
 import CustomTextChart from '../Charts/CustomTextChart';
 import NotFoundBlock from '../../NotFoundBlock';
 import PrepareSurveyResults from '../PrepareSurveyResults';
-import { useStore } from '../../../state/use-store';
 import { useStyles } from './ResultsBlock.style';
 
-function ResultsBlock({ answers, surveyTitle }) {
+function ResultsBlock({ answers, isConnectionError, surveyTitle }) {
   const classes = useStyles();
-  const { isConnectionError } = useStore();
   const result = PrepareSurveyResults(answers);
 
   return (
@@ -106,6 +104,7 @@ function ResultsBlock({ answers, surveyTitle }) {
 
 ResultsBlock.propTypes = {
   answers: PropTypes.array.isRequired,
+  isConnectionError: PropTypes.bool.isRequired,
   surveyTitle: PropTypes.string.isRequired
 };
 

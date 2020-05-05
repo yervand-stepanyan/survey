@@ -10,7 +10,12 @@ import { useStyles } from './Results.style';
 function Results() {
   const classes = useStyles();
   const { id } = useParams();
-  const { loadingData, stateSurvey, stateSurveyAnswer } = useStore();
+  const {
+    isConnectionError,
+    loadingData,
+    stateSurvey,
+    stateSurveyAnswer
+  } = useStore();
   const answers = stateSurveyAnswer.filter(
     surveyAnswers => surveyAnswers.survey.id === id
   );
@@ -22,7 +27,11 @@ function Results() {
       {loadingData ? (
         <Loader type={LOADER_TYPE.page} />
       ) : (
-        <ResultsBlock answers={answers} surveyTitle={surveyTitle} />
+        <ResultsBlock
+          answers={answers}
+          isConnectionError={isConnectionError}
+          surveyTitle={surveyTitle}
+        />
       )}
     </div>
   );

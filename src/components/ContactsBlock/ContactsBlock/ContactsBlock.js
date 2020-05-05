@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 
 import AddressSection from '../AddressSection';
 import DevelopersSection from '../DevelopersSection/index';
-
 import MapSection from '../MapSection';
 import { TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './ContactsBlock.style';
@@ -18,7 +17,7 @@ function ContactsBlock() {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth="md" className={classes.contactsBlockContainer}>
+      <Container maxWidth="md">
         <div className={classes.title}>
           <Typography variant="h4">{TEXT_LABEL.contactsBlockTitle}</Typography>
         </div>
