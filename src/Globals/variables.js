@@ -191,8 +191,10 @@ export const TEXT_LABELS = {
   rangeSectionEndValueLabel: 'End value',
   rangeSectionEqualValuesErrorTooltipMessage:
     'Start and End values can not be equal!',
-  rangeSectionInvalidEndValueErrorTooltipMessage: 'Invalid end value!',
-  rangeSectionInvalidStartValueErrorTooltipMessage: 'Invalid start value!',
+  rangeSectionInvalidEndValueErrorTooltipMessage:
+    'End value should be greater than Start value!',
+  rangeSectionInvalidStartValueErrorTooltipMessage:
+    'Start value should be less than End value!',
   rangeSectionInvalidStepValueErrorTooltipMessage: 'Invalid step value!',
   rangeSectionStartValueErrorTooltipMessage: 'Start value can not be empty!',
   rangeSectionStartValueInfoTooltipMessage: 'Input start value!',
