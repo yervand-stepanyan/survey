@@ -89,7 +89,7 @@ function CustomAnswersModal({ customText, title }) {
                 <CheckRoundedIcon />
               </ListItemIcon>
 
-              <ListItemText primary={text} />
+              <ListItemText primary={isDate(text) ? text.slice(0, 10) : text} />
             </ListItem>
           ))}
         </DialogContent>
