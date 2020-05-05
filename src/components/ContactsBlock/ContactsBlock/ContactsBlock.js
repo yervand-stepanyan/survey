@@ -9,7 +9,7 @@ import AddressSection from '../AddressSection';
 import DevelopersSection from '../DevelopersSection/index';
 
 import MapSection from '../MapSection';
-import { TEXT_LABELS } from '../../../globals/constants';
+import { TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './ContactsBlock.style';
 
 function ContactsBlock() {
@@ -20,14 +20,14 @@ function ContactsBlock() {
       <CssBaseline />
       <Container maxWidth="md" className={classes.contactsBlockContainer}>
         <div className={classes.title}>
-          <Typography variant="h4">{TEXT_LABELS.contactsBlockTitle}</Typography>
+          <Typography variant="h4">{TEXT_LABEL.contactsBlockTitle}</Typography>
         </div>
         <Card>
           <div className={classes.contactsAndMapWrapper}>
             <div className={classes.contactsWrapper}>
               <div className={classes.developersTitle}>
                 <Typography variant="h5">
-                  {TEXT_LABELS.contactsBlockDevelopersSectionTitle}
+                  {TEXT_LABEL.contactsBlockDevelopersSectionTitle}
                 </Typography>
               </div>
               <DevelopersSection />
@@ -37,7 +37,7 @@ function ContactsBlock() {
               <div className={classes.addressWrapper}>
                 <div>
                   <Typography variant="h5">
-                    {TEXT_LABELS.contactsBlockAddressSectionTitle}
+                    {TEXT_LABEL.contactsBlockAddressSectionTitle}
                   </Typography>
                 </div>
                 <AddressSection />

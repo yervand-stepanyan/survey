@@ -16,7 +16,7 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-import { BUTTON_LABELS } from '../../../../globals/constants';
+import { BUTTON_LABEL } from '../../../../globals/constants';
 import { useStyles } from './CustomAnswersModal.style';
 
 const styles = theme => ({
@@ -73,7 +73,7 @@ function CustomAnswersModal({ customText, title }) {
     <div>
       <Button color="primary" onClick={handleClickOpen} variant="outlined">
         <PersonPinIcon />
-        {BUTTON_LABELS.customAnswersModalSeeAnswers}
+        {BUTTON_LABEL.customAnswersModalSeeAnswers}
       </Button>
       <Dialog
         aria-labelledby="customized-dialog-title"

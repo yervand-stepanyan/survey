@@ -5,7 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
 
-import { TABINDEX, TEXT_LABELS } from '../../../globals/constants';
+import { TABINDEX, TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './AddNewQuestion.style';
 
 function AddNewQuestion({ handleAddNewQuestion }) {
@@ -33,7 +33,7 @@ function AddNewQuestion({ handleAddNewQuestion }) {
         role="button"
         tabIndex={TABINDEX}
       >
-        <Typography variant="h5">{TEXT_LABELS.addNewQuestionLabel}</Typography>
+        <Typography variant="h5">{TEXT_LABEL.addNewQuestionLabel}</Typography>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Map, Marker } from 'google-maps-react';
 import PropTypes from 'prop-types';
 
-import { MAP_DETAILS } from '../../../globals/constants';
+import { MAP_DETAIL } from '../../../globals/constants';
 import { useStyles } from './MapSection.style';
 
 function MapSection({ google }) {
@@ -12,12 +12,12 @@ function MapSection({ google }) {
     <div className={classes.container}>
       <Map
         google={google}
-        initialCenter={MAP_DETAILS.initialCenter}
-        zoom={MAP_DETAILS.zoom}
+        initialCenter={MAP_DETAIL.initialCenter}
+        zoom={MAP_DETAIL.zoom}
       >
         <Marker
-          position={MAP_DETAILS.initialCenter}
-          title={MAP_DETAILS.markerTitle}
+          position={MAP_DETAIL.initialCenter}
+          title={MAP_DETAIL.markerTitle}
         />
       </Map>
     </div>

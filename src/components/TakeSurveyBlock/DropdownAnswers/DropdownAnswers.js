@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { TEXT_LABELS } from '../../../globals/constants';
+import { TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './DropdownAnswers.style';
 
 function DropdownAnswers({ answers, receiveAnswers, questionId }) {
@@ -28,7 +28,7 @@ function DropdownAnswers({ answers, receiveAnswers, questionId }) {
           value={answer}
         >
           <MenuItem value="">
-            <em>{TEXT_LABELS.dropdownAnswersSelectMenuItemNone}</em>
+            <em>{TEXT_LABEL.dropdownAnswersSelectMenuItemNone}</em>
           </MenuItem>
           {answers.map(({ id, title }) => {
             return (

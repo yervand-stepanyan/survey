@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import { BUTTON_LABELS, TEXT_LABELS } from '../../../globals/constants';
+import { BUTTON_LABEL, TEXT_LABEL } from '../../../globals/constants';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './QuestionCreator.style';
 import TooltipIconComponent from '../TooltipIconComponent';
@@ -86,7 +86,7 @@ function QuestionCreator({
       <div className={classes.textFieldWrapper}>
         <div className={classes.titleLabel}>
           <Typography variant="h5">
-            {TEXT_LABELS.questionCreatorQuestionLabel}
+            {TEXT_LABEL.questionCreatorQuestionLabel}
           </Typography>
         </div>
         <div className={classes.textFieldSection}>
@@ -97,8 +97,8 @@ function QuestionCreator({
             inputRef={inputEl}
             label={
               !isEmpty
-                ? TEXT_LABELS.questionCreatorInputLabel
-                : TEXT_LABELS.questionCreatorInputErrorLabel
+                ? TEXT_LABEL.questionCreatorInputLabel
+                : TEXT_LABEL.questionCreatorInputErrorLabel
             }
             onChange={e => handleChange(e)}
             onFocus={handleInputFocus}
@@ -109,10 +109,10 @@ function QuestionCreator({
           <TooltipIconComponent
             checkOrInfoCondition={!!acceptedQuestion}
             errorCondition={isEmpty}
-            errorMessageTitle={TEXT_LABELS.questionCreatorErrorTooltipMessage}
+            errorMessageTitle={TEXT_LABEL.questionCreatorErrorTooltipMessage}
             handleShowErrorTooltip={handleShowErrorTooltip}
             handleShowInfoTooltip={handleShowInfoTooltip}
-            infoMessageTitle={TEXT_LABELS.questionCreatorInfoTooltipMessage}
+            infoMessageTitle={TEXT_LABEL.questionCreatorInfoTooltipMessage}
             openErrorTooltip={openErrorTooltip}
             openInfoTooltip={openInfoTooltip}
           />
@@ -126,7 +126,7 @@ function QuestionCreator({
           size="large"
           variant="contained"
         >
-          {BUTTON_LABELS.questionCreatorSubmit}
+          {BUTTON_LABEL.questionCreatorSubmit}
         </Button>
         {questionsLength && !questionProps ? (
           <Button
@@ -136,7 +136,7 @@ function QuestionCreator({
             size="large"
             variant="contained"
           >
-            {BUTTON_LABELS.questionCreatorCancel}
+            {BUTTON_LABEL.questionCreatorCancel}
           </Button>
         ) : null}
       </div>

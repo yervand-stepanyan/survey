@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import { BUTTON_LABELS, TEXT_LABELS } from '../../../globals/constants';
+import { BUTTON_LABEL, TEXT_LABEL } from '../../../globals/constants';
 import removeSpaces from '../../../helpers/removeSpaces';
 import TooltipIconComponent from '../TooltipIconComponent';
 import { useStyles } from './SurveyTitleCreator.style';
@@ -76,7 +76,7 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
       <div className={classes.textFieldWrapper}>
         <div className={classes.titleLabel}>
           <Typography variant="h5">
-            {TEXT_LABELS.surveyTitleCreatorSurveyTitleLabel}
+            {TEXT_LABEL.surveyTitleCreatorSurveyTitleLabel}
           </Typography>
         </div>
         <div className={classes.textFieldSection}>
@@ -87,8 +87,8 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
             inputRef={inputEl}
             label={
               !isEmpty
-                ? TEXT_LABELS.surveyTitleCreatorInputLabel
-                : TEXT_LABELS.surveyTitleCreatorInputErrorLabel
+                ? TEXT_LABEL.surveyTitleCreatorInputLabel
+                : TEXT_LABEL.surveyTitleCreatorInputErrorLabel
             }
             onChange={e => handleChange(e)}
             onFocus={handleInputFocus}
@@ -99,12 +99,10 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
           <TooltipIconComponent
             checkOrInfoCondition={!!acceptedTitle}
             errorCondition={isEmpty}
-            errorMessageTitle={
-              TEXT_LABELS.surveyTitleCreatorErrorTooltipMessage
-            }
+            errorMessageTitle={TEXT_LABEL.surveyTitleCreatorErrorTooltipMessage}
             handleShowErrorTooltip={handleShowErrorTooltip}
             handleShowInfoTooltip={handleShowInfoTooltip}
-            infoMessageTitle={TEXT_LABELS.surveyTitleCreatorInfoTooltipMessage}
+            infoMessageTitle={TEXT_LABEL.surveyTitleCreatorInfoTooltipMessage}
             openErrorTooltip={openErrorTooltip}
             openInfoTooltip={openInfoTooltip}
           />
@@ -118,7 +116,7 @@ function SurveyTitleCreator({ handleAddTitle, title: titleProps }) {
           size="large"
           variant="contained"
         >
-          {BUTTON_LABELS.surveyTitleCreatorSubmit}
+          {BUTTON_LABEL.surveyTitleCreatorSubmit}
         </Button>
       </div>
     </div>

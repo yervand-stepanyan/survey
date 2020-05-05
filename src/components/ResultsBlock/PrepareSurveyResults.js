@@ -1,4 +1,4 @@
-import { ANSWER_TYPES } from '../../globals/constants';
+import { ANSWER_TYPE } from '../../globals/constants';
 
 function PrepareSurveyResults(submissions) {
   const results = {};
@@ -19,7 +19,7 @@ function PrepareSurveyResults(submissions) {
         };
       }
 
-      if (results[answer.questionId].type === ANSWER_TYPES.checkbox) {
+      if (results[answer.questionId].type === ANSWER_TYPE.checkbox) {
         answer.markedAnswers.forEach(optionId => {
           const [optionData] = subQuestion.answers.filter(
             item => item.id === optionId
@@ -36,7 +36,7 @@ function PrepareSurveyResults(submissions) {
 
           results[answer.questionId].answers[optionId].value += 1;
         });
-      } else if (results[answer.questionId].type === ANSWER_TYPES.radiobutton) {
+      } else if (results[answer.questionId].type === ANSWER_TYPE.radiobutton) {
         const [optionData] = subQuestion.answers.filter(
           item => item.id === answer.markedAnswers[0]
         );
@@ -69,7 +69,7 @@ function PrepareSurveyResults(submissions) {
             answer.markedAnswers[0]
           ].value += 1;
         }
-      } else if (results[answer.questionId].type === ANSWER_TYPES.dropdown) {
+      } else if (results[answer.questionId].type === ANSWER_TYPE.dropdown) {
         const [optionData] = subQuestion.answers.filter(
           item => item.id === answer.markedAnswers[0]
         );
@@ -86,7 +86,7 @@ function PrepareSurveyResults(submissions) {
         }
 
         results[answer.questionId].answers[answer.markedAnswers[0]].value += 1;
-      } else if (results[answer.questionId].type === ANSWER_TYPES.range) {
+      } else if (results[answer.questionId].type === ANSWER_TYPE.range) {
         if (
           typeof results[answer.questionId].answers[answer.customAnswer] ===
           'undefined'
@@ -102,7 +102,7 @@ function PrepareSurveyResults(submissions) {
         results[answer.questionId].startValue = subQuestion.startValue;
         results[answer.questionId].endValue = subQuestion.endValue;
         results[answer.questionId].steptValue = subQuestion.stepValue;
-      } else if (results[answer.questionId].type === ANSWER_TYPES.input) {
+      } else if (results[answer.questionId].type === ANSWER_TYPE.input) {
         results[answer.questionId].textAnswers.push(answer.customAnswer);
       }
     });

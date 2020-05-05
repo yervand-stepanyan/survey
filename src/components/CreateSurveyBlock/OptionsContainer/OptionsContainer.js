@@ -15,7 +15,7 @@ import Zoom from '@material-ui/core/Zoom';
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
   ANSWER_SECTION_BUTTON_LABEL,
-  TEXT_LABELS
+  TEXT_LABEL
 } from '../../../globals/constants';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStore } from '../../../state/use-store';
@@ -269,7 +269,7 @@ function OptionsContainer({
               <Tooltip
                 open={isTooltip}
                 placement="top-start"
-                title={TEXT_LABELS.optionsContainerInputTooltipLabel}
+                title={TEXT_LABEL.optionsContainerInputTooltipLabel}
                 TransitionComponent={Zoom}
               >
                 <TextField
@@ -279,7 +279,7 @@ function OptionsContainer({
                   id="outlined-basic"
                   InputProps={{ className: classes.inputField }}
                   inputRef={inputEl}
-                  label={TEXT_LABELS.optionsContainerInputLabel}
+                  label={TEXT_LABEL.optionsContainerInputLabel}
                   onChange={e => handleInputChange(e)}
                   onFocus={handleInputFocus}
                   onKeyDown={handleSubmitOnEnter}
@@ -331,7 +331,7 @@ function OptionsContainer({
                       color="primary"
                     />
                   }
-                  label={TEXT_LABELS.optionsContainerCheckboxLabel}
+                  label={TEXT_LABEL.optionsContainerCheckboxLabel}
                 />
               </div>
             </div>
@@ -344,10 +344,10 @@ function OptionsContainer({
               (answers.length === 1 && isAnswerRemoved) ||
               (isAnswerRemoved && isChanged)
             }
-            errorMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
+            errorMessageTitle={TEXT_LABEL.optionsContainerTooltipMessage}
             handleShowErrorTooltip={handleShowErrorTooltip}
             handleShowInfoTooltip={handleShowInfoTooltip}
-            infoMessageTitle={TEXT_LABELS.optionsContainerTooltipMessage}
+            infoMessageTitle={TEXT_LABEL.optionsContainerTooltipMessage}
             openErrorTooltip={openErrorTooltip}
             openInfoTooltip={openInfoTooltip}
           />

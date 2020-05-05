@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 
-import { ANSWER_TYPES, NO_ANSWER_FOR_SURVEY } from '../../../globals/constants';
+import { ANSWER_TYPE, NO_ANSWER_FOR_SURVEY } from '../../../globals/constants';
 import CustomPieChart from '../Charts/CustomPieChart/CustomPieChart';
 import CustomRangeChart from '../Charts/CustomRangeChart';
 import CustomTextChart from '../Charts/CustomTextChart';
@@ -33,7 +33,7 @@ function ResultsBlock({ answers, surveyTitle }) {
           {Object.values(result).length > 0 &&
             Object.values(result).map(res => {
               switch (res.type) {
-                case ANSWER_TYPES.checkbox:
+                case ANSWER_TYPE.checkbox:
                   return (
                     <CustomPieChart
                       data={Object.values(res.answers)}
@@ -41,7 +41,7 @@ function ResultsBlock({ answers, surveyTitle }) {
                       title={res.title}
                     />
                   );
-                case ANSWER_TYPES.radiobutton:
+                case ANSWER_TYPE.radiobutton:
                   return (
                     <CustomPieChart
                       customText={res.textAnswers}
@@ -50,7 +50,7 @@ function ResultsBlock({ answers, surveyTitle }) {
                       title={res.title}
                     />
                   );
-                case ANSWER_TYPES.dropdown:
+                case ANSWER_TYPE.dropdown:
                   return (
                     <CustomPieChart
                       data={Object.values(res.answers)}
@@ -58,7 +58,7 @@ function ResultsBlock({ answers, surveyTitle }) {
                       title={res.title}
                     />
                   );
-                case ANSWER_TYPES.input:
+                case ANSWER_TYPE.input:
                   return (
                     <CustomTextChart
                       count={res.textAnswers.length}
@@ -67,7 +67,7 @@ function ResultsBlock({ answers, surveyTitle }) {
                       title={res.title}
                     />
                   );
-                case ANSWER_TYPES.range:
+                case ANSWER_TYPE.range:
                   return (
                     <CustomRangeChart
                       data={Object.values(res.answers)}

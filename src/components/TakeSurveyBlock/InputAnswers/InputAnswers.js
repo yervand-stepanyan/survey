@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import TextField from '@material-ui/core/TextField';
 
-import { INPUT_TYPES, TEXT_LABELS } from '../../../globals/constants';
+import { INPUT_TYPE, TEXT_LABEL } from '../../../globals/constants';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStyles } from './InputAnswers.style';
 
@@ -37,7 +37,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
     receiveAnswers([], e.target.value, questionId);
   };
 
-  if (inputType === INPUT_TYPES.date) {
+  if (inputType === INPUT_TYPE.date) {
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker
@@ -45,7 +45,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
           keyboardbuttonprops={{
             'aria-label': 'change date'
           }}
-          label={TEXT_LABELS.inputAnswersInputDateLabel}
+          label={TEXT_LABEL.inputAnswersInputDateLabel}
           margin="normal"
           onChange={handleDateChange}
           value={selectedDate}
@@ -53,14 +53,14 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
       </MuiPickersUtilsProvider>
     );
   }
-  if (inputType === INPUT_TYPES.number) {
+  if (inputType === INPUT_TYPE.number) {
     return (
       <TextField
         id="outlined-number"
         InputLabelProps={{
           shrink: true
         }}
-        label={TEXT_LABELS.inputAnswersInputNumberLabel}
+        label={TEXT_LABEL.inputAnswersInputNumberLabel}
         onChange={handleNumberChange}
         type="number"
         value={numberValue}
@@ -68,12 +68,12 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
       />
     );
   }
-  if (inputType === INPUT_TYPES.text) {
+  if (inputType === INPUT_TYPE.text) {
     return (
       <TextField
         className={classes.inputFieldForText}
         id="outlined"
-        label={TEXT_LABELS.inputAnswersInputTextLabel}
+        label={TEXT_LABEL.inputAnswersInputTextLabel}
         onChange={handleTextChange}
         value={textValue}
         variant="outlined"
@@ -81,9 +81,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
     );
   }
   return (
-    <div className={classes.container}>
-      {TEXT_LABELS.inputAnswersErrorLabel}
-    </div>
+    <div className={classes.container}>{TEXT_LABEL.inputAnswersErrorLabel}</div>
   );
 }
 

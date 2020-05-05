@@ -8,7 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-import { TEXT_LABELS } from '../../../globals/constants';
+import { TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './Question.style';
 
 function Question({
@@ -19,7 +19,7 @@ function Question({
   question
 }) {
   const classes = useStyles();
-  const label = `${TEXT_LABELS.questionSectionQuestionLabel} ${index + 1}:`;
+  const label = `${TEXT_LABEL.questionSectionQuestionLabel} ${index + 1}:`;
 
   const handleEdit = () => {
     handleEditQuestion(activeId);

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import PageLoader from '../../components/Loaders/PageLoader';
+import Loader from '../../components/Loader';
+import { LOADER_TYPE } from '../../globals/constants';
 import ResultsBlock from '../../components/ResultsBlock/ResultsBlock';
 import { useStore } from '../../state/use-store';
 import { useStyles } from './Results.style';
@@ -19,7 +20,7 @@ function Results() {
   return (
     <div className={classes.resultsContainer}>
       {loadingData ? (
-        <PageLoader />
+        <Loader type={LOADER_TYPE.page} />
       ) : (
         <ResultsBlock answers={answers} surveyTitle={surveyTitle} />
       )}

@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
   ANSWER_SECTION_BUTTON_LABEL,
-  TEXT_LABELS
+  TEXT_LABEL
 } from '../../../globals/constants';
 import removeSpaces from '../../../helpers/removeSpaces';
 import { useStore } from '../../../state/use-store';
@@ -60,15 +60,15 @@ function RangeSection({
   useEffect(() => {
     if (isEndEmpty) {
       setEndErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionEndValueErrorTooltipMessage
+        TEXT_LABEL.rangeSectionEndValueErrorTooltipMessage
       );
     } else if (isEqual) {
       setEndErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionEqualValuesErrorTooltipMessage
+        TEXT_LABEL.rangeSectionEqualValuesErrorTooltipMessage
       );
     } else {
       setEndErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionInvalidEndValueErrorTooltipMessage
+        TEXT_LABEL.rangeSectionInvalidEndValueErrorTooltipMessage
       );
     }
   }, [isEndEmpty, isEqual]);
@@ -76,15 +76,15 @@ function RangeSection({
   useEffect(() => {
     if (isStartEmpty) {
       setStartErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionStartValueErrorTooltipMessage
+        TEXT_LABEL.rangeSectionStartValueErrorTooltipMessage
       );
     } else if (isEqual) {
       setStartErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionEqualValuesErrorTooltipMessage
+        TEXT_LABEL.rangeSectionEqualValuesErrorTooltipMessage
       );
     } else {
       setStartErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionInvalidStartValueErrorTooltipMessage
+        TEXT_LABEL.rangeSectionInvalidStartValueErrorTooltipMessage
       );
     }
   }, [isStartEmpty, isEqual]);
@@ -92,11 +92,11 @@ function RangeSection({
   useEffect(() => {
     if (isStepEmpty) {
       setStepErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionStepValueErrorTooltipMessage
+        TEXT_LABEL.rangeSectionStepValueErrorTooltipMessage
       );
     } else {
       setStepErrorTooltipTitle(
-        TEXT_LABELS.rangeSectionInvalidStepValueErrorTooltipMessage
+        TEXT_LABEL.rangeSectionInvalidStepValueErrorTooltipMessage
       );
     }
   }, [isStepEmpty]);
@@ -301,7 +301,7 @@ function RangeSection({
   return (
     <div className={classes.rangeSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TEXT_LABELS.rangeSectionTitle}</Typography>
+        <Typography variant="h5">{TEXT_LABEL.rangeSectionTitle}</Typography>
       </div>
       <div className={classes.inputWrapper}>
         <div className={classes.textFieldsSection}>
@@ -311,7 +311,7 @@ function RangeSection({
               fullWidth
               id="outlined-basic"
               inputRef={inputEl}
-              label={TEXT_LABELS.rangeSectionStartValueLabel}
+              label={TEXT_LABEL.rangeSectionStartValueLabel}
               onChange={e => handleStartChange(e)}
               onFocus={handleStartInputFocus}
               onKeyDown={handleSubmitOnEnter}
@@ -326,7 +326,7 @@ function RangeSection({
               handleShowErrorTooltip={handleShowStartErrorTooltip}
               handleShowInfoTooltip={handleShowStartInfoTooltip}
               infoMessageTitle={
-                TEXT_LABELS.rangeSectionStartValueInfoTooltipMessage
+                TEXT_LABEL.rangeSectionStartValueInfoTooltipMessage
               }
               openErrorTooltip={openStartErrorTooltip}
               openInfoTooltip={openStartInfoTooltip}
@@ -337,7 +337,7 @@ function RangeSection({
               error={isEndEmpty || isEqual || isInvalid}
               fullWidth
               id="outlined-basic"
-              label={TEXT_LABELS.rangeSectionEndValueLabel}
+              label={TEXT_LABEL.rangeSectionEndValueLabel}
               onChange={e => handleEndChange(e)}
               onFocus={handleEndInputFocus}
               onKeyDown={handleSubmitOnEnter}
@@ -352,7 +352,7 @@ function RangeSection({
               handleShowErrorTooltip={handleShowEndErrorTooltip}
               handleShowInfoTooltip={handleShowEndInfoTooltip}
               infoMessageTitle={
-                TEXT_LABELS.rangeSectionEndValueInfoTooltipMessage
+                TEXT_LABEL.rangeSectionEndValueInfoTooltipMessage
               }
               openErrorTooltip={openEndErrorTooltip}
               openInfoTooltip={openEndInfoTooltip}
@@ -363,7 +363,7 @@ function RangeSection({
               error={isStepEmpty || !isStepValid}
               fullWidth
               id="outlined-basic"
-              label={TEXT_LABELS.rangeSectionStepValueLabel}
+              label={TEXT_LABEL.rangeSectionStepValueLabel}
               onChange={e => handleStepChange(e)}
               onFocus={handleStepInputFocus}
               onKeyDown={handleSubmitOnEnter}
@@ -378,7 +378,7 @@ function RangeSection({
               handleShowErrorTooltip={handleShowStepErrorTooltip}
               handleShowInfoTooltip={handleShowStepInfoTooltip}
               infoMessageTitle={
-                TEXT_LABELS.rangeSectionStepValueInfoTooltipMessage
+                TEXT_LABEL.rangeSectionStepValueInfoTooltipMessage
               }
               openErrorTooltip={openStepErrorTooltip}
               openInfoTooltip={openStepInfoTooltip}

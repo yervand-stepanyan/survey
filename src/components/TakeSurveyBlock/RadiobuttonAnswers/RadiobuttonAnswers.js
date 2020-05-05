@@ -7,7 +7,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import TextField from '@material-ui/core/TextField';
 
 import removeSpaces from '../../../helpers/removeSpaces';
-import { TEXT_LABELS } from '../../../globals/constants';
+import { TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './RadiobuttonAnswers.style';
 
 function RadiobuttonAnswers({
@@ -104,8 +104,8 @@ function RadiobuttonAnswers({
                       inputRef={inputEl}
                       label={
                         error
-                          ? TEXT_LABELS.radiobuttonAnswersInputErrorLabel
-                          : TEXT_LABELS.radiobuttonAnswersInputLabel
+                          ? TEXT_LABEL.radiobuttonAnswersInputErrorLabel
+                          : TEXT_LABEL.radiobuttonAnswersInputLabel
                       }
                       onChange={handleTextChange}
                       onBlur={handleOnBlur}

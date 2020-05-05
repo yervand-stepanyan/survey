@@ -1,7 +1,8 @@
 import React from 'react';
 
 import ContactsBlock from '../../components/ContactsBlock/ContactsBlock';
-import PageLoader from '../../components/Loaders/PageLoader';
+import Loader from '../../components/Loader';
+import { LOADER_TYPE } from '../../globals/constants';
 import { useStore } from '../../state/use-store';
 import { useStyles } from './Contacts.style';
 
@@ -11,7 +12,7 @@ function Contacts() {
 
   return (
     <div className={classes.contactsContainer}>
-      {loadingData ? <PageLoader /> : <ContactsBlock />}
+      {loadingData ? <Loader type={LOADER_TYPE.page} /> : <ContactsBlock />}
     </div>
   );
 }

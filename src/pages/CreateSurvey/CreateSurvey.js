@@ -1,7 +1,8 @@
 import React from 'react';
 
 import CreateSurveyBlock from '../../components/CreateSurveyBlock/CreateSurveyBlock';
-import PageLoader from '../../components/Loaders/PageLoader';
+import Loader from '../../components/Loader';
+import { LOADER_TYPE } from '../../globals/constants';
 import { useStore } from '../../state/use-store';
 import { useStyles } from './CreateSurvey.style';
 
@@ -11,7 +12,7 @@ function CreateSurvey() {
 
   return (
     <div className={classes.createSurveyContainer}>
-      {loadingData ? <PageLoader /> : <CreateSurveyBlock />}
+      {loadingData ? <Loader type={LOADER_TYPE.page} /> : <CreateSurveyBlock />}
     </div>
   );
 }

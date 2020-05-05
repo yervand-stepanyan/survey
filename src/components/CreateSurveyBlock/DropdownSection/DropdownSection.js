@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 import OptionsContainer from '../OptionsContainer';
-import { TEXT_LABELS } from '../../../globals/constants';
+import { TEXT_LABEL } from '../../../globals/constants';
 import { useStyles } from './DropdownSection.style';
 
 function DropdownSection({ activeId, answers }) {
@@ -13,7 +13,7 @@ function DropdownSection({ activeId, answers }) {
   return (
     <div className={classes.dropdownSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TEXT_LABELS.dropdownSectionTitle}</Typography>
+        <Typography variant="h5">{TEXT_LABEL.dropdownSectionTitle}</Typography>
       </div>
       <OptionsContainer activeId={activeId} answers={answers} />
     </div>

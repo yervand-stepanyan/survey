@@ -8,11 +8,13 @@ import Typography from '@material-ui/core/Typography';
 import { addSurveyAnswer } from '../../../state/actions';
 import API from '../../../fetchAPI/fetchData';
 import {
-  BUTTON_LABELS,
+  BUTTON_LABEL,
+  LOADER_COLOR,
+  LOADER_TYPE,
   TAKE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   TAKE_SURVEY_SNACKBAR_MESSAGE_SUCCESS
 } from '../../../globals/constants';
-import ButtonLoader from '../../Loaders/ButtonLoader';
+import Loader from '../../Loader';
 import ROUTES from '../../../routes/Routes';
 import SurveyQuestion from '../SurveyQuestion';
 import { useStore } from '../../../state/use-store';
@@ -134,9 +136,11 @@ function SurveyQuestions({ questions, surveyId, title: surveyTitle }) {
           size="large"
           variant="contained"
         >
-          {BUTTON_LABELS.surveyQuestionsSubmit}
+          {BUTTON_LABEL.surveyQuestionsSubmit}
         </Button>
-        {loading && <ButtonLoader color="green" />}
+        {loading && (
+          <Loader color={LOADER_COLOR.green} type={LOADER_TYPE.button} />
+        )}
       </div>
     </div>
   );

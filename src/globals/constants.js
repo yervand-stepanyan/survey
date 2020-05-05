@@ -45,7 +45,7 @@ export const ANSWER_OPTION_TYPES = [
 export const ANSWER_SECTION_BUTTON_LABEL = 'Submit & continue';
 export const ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL = 'Accept changes';
 
-export const ANSWER_TYPES = {
+export const ANSWER_TYPE = {
   checkbox: 'CHECKBOX',
   dropdown: 'DROPDOWN',
   input: 'INPUT',
@@ -53,7 +53,7 @@ export const ANSWER_TYPES = {
   range: 'RANGE'
 };
 
-export const BUTTON_LABELS = {
+export const BUTTON_LABEL = {
   customAnswersModalSeeAnswers: 'See answers',
   headerCreateSurvey: 'Create survey',
   questionCreatorCancel: 'Cancel',
@@ -107,7 +107,7 @@ export const DEVELOPERS = [
   }
 ];
 
-export const HOME_ICON_TOOLTIPS = {
+export const HOME_ICON_TOOLTIP = {
   remove: 'Remove',
   results: 'Results',
   take: 'Take Survey'
@@ -119,13 +119,25 @@ export const INPUT_OPTION_TYPES = [
   { name: 'DATE', src: inputDate, tooltip: 'Date', text: 'Date' }
 ];
 
-export const INPUT_TYPES = {
+export const INPUT_TYPE = {
   date: 'DATE',
   number: 'NUMBER',
   text: 'TEXT'
 };
 
-export const MAP_DETAILS = {
+export const LOADER_COLOR = {
+  green: 'green',
+  red: 'red',
+  yellow: 'yellow'
+};
+
+export const LOADER_TYPE = {
+  button: 'button',
+  icon: 'icon',
+  page: 'page'
+};
+
+export const MAP_DETAIL = {
   initialCenter: {
     lat: 40.198929,
     lng: 44.490734
@@ -156,7 +168,7 @@ export const SURVEYS_PER_PAGE = 7;
 
 export const TABINDEX = 0;
 
-export const TEXT_LABELS = {
+export const TEXT_LABEL = {
   addNewQuestionLabel: 'Add question',
   answerTypeSectionTitle: 'Answer type',
   checkboxSectionTitle: 'Checkbox answer options',

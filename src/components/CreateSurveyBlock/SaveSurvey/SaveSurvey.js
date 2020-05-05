@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
 
-import { BUTTON_LABELS } from '../../../globals/constants';
-import ButtonLoader from '../../Loaders/ButtonLoader';
+import {
+  BUTTON_LABEL,
+  LOADER_COLOR,
+  LOADER_TYPE
+} from '../../../globals/constants';
+import Loader from '../../Loader';
 import { useStyles } from './SaveSurvey.style';
 
 function SaveSurvey({ disabled, handleSave, loading }) {
@@ -20,9 +24,11 @@ function SaveSurvey({ disabled, handleSave, loading }) {
           size="large"
           variant="contained"
         >
-          {BUTTON_LABELS.saveSurvey}
+          {BUTTON_LABEL.saveSurvey}
         </Button>
-        {loading && <ButtonLoader color="green" />}
+        {loading && (
+          <Loader color={LOADER_COLOR.green} type={LOADER_TYPE.button} />
+        )}
       </div>
     </div>
   );

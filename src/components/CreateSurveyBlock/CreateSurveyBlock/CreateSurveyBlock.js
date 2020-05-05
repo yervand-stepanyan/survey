@@ -10,7 +10,7 @@ import API from '../../../fetchAPI/fetchData';
 import {
   CREATE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   CREATE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
-  TEXT_LABELS
+  TEXT_LABEL
 } from '../../../globals/constants';
 import QuestionSection from '../QuestionSection';
 import ROUTES from '../../../routes/Routes';
@@ -106,7 +106,7 @@ function CreateSurveyBlock() {
       <div className={classes.createSurveyBlockContainer}>
         <div className={classes.blockTitleWrapper}>
           <Typography variant="h4">
-            {TEXT_LABELS.createSurveyPageTitle}
+            {TEXT_LABEL.createSurveyPageTitle}
           </Typography>
         </div>
         <div className={classes.createSurveyWrapper}>

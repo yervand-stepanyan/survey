@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 
-import { ANSWER_TYPES, TEXT_LABELS } from '../../../globals/constants';
+import { ANSWER_TYPE, TEXT_LABEL } from '../../../globals/constants';
 import CheckboxAnswers from '../CheckboxAnswers';
 import DropdownAnswers from '../DropdownAnswers';
 import InputAnswers from '../InputAnswers';
@@ -29,7 +29,7 @@ function SurveyQuestion({
 
   const pickAnswersType = () => {
     switch (answerType) {
-      case ANSWER_TYPES.radiobutton:
+      case ANSWER_TYPE.radiobutton:
         return (
           <RadiobuttonAnswers
             answers={answers}
@@ -39,7 +39,7 @@ function SurveyQuestion({
             receiveAnswers={receiveAnswers}
           />
         );
-      case ANSWER_TYPES.checkbox:
+      case ANSWER_TYPE.checkbox:
         return (
           <CheckboxAnswers
             answers={answers}
@@ -48,7 +48,7 @@ function SurveyQuestion({
             receiveAnswers={receiveAnswers}
           />
         );
-      case ANSWER_TYPES.dropdown:
+      case ANSWER_TYPE.dropdown:
         return (
           <DropdownAnswers
             answers={answers}
@@ -57,7 +57,7 @@ function SurveyQuestion({
             receiveAnswers={receiveAnswers}
           />
         );
-      case ANSWER_TYPES.range:
+      case ANSWER_TYPE.range:
         return (
           <RangeAnswers
             answers={answers}
@@ -69,7 +69,7 @@ function SurveyQuestion({
             stepValue={Number(stepValue)}
           />
         );
-      case ANSWER_TYPES.input:
+      case ANSWER_TYPE.input:
         return (
           <InputAnswers
             answers={answers}
@@ -80,7 +80,7 @@ function SurveyQuestion({
           />
         );
       default:
-        return TEXT_LABELS.surveyQuestionNoAnswerTypeChosen;
+        return TEXT_LABEL.surveyQuestionNoAnswerTypeChosen;
     }
   };
   return (

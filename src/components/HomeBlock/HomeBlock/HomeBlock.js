@@ -12,7 +12,7 @@ import {
   REMOVE_SURVEY_SNACKBAR_MESSAGE_ERROR,
   REMOVE_SURVEY_SNACKBAR_MESSAGE_SUCCESS,
   SURVEYS_PER_PAGE,
-  TEXT_LABELS
+  TEXT_LABEL
 } from '../../../globals/constants';
 import Pagination from '../../Pagination';
 import SurveyComponent from '../SurveyComponent';
@@ -88,7 +88,7 @@ function HomeBlock() {
         ) : (
           <div>
             <Typography variant="h4" className={classes.surveyHeading}>
-              {TEXT_LABELS.homePageTitle}
+              {TEXT_LABEL.homePageTitle}
             </Typography>
             {currentSurveys.length ? (
               <div>

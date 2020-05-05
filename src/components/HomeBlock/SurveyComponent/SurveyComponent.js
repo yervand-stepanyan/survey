@@ -11,8 +11,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-import { HOME_ICON_TOOLTIPS } from '../../../globals/constants';
-import IconLoader from '../../Loaders/IconLoader';
+import {
+  HOME_ICON_TOOLTIP,
+  LOADER_COLOR,
+  LOADER_TYPE
+} from '../../../globals/constants';
+// import IconLoader from '../../Loader/IconLoader';
+import Loader from '../../Loader';
 import ROUTES from '../../../routes/Routes';
 import { useStyles } from './SurveyComponent.style';
 
@@ -43,7 +48,7 @@ function SurveyComponent({
               <div className={classes.iconWrapper}>
                 <Tooltip
                   arrow
-                  title={HOME_ICON_TOOLTIPS.take}
+                  title={HOME_ICON_TOOLTIP.take}
                   TransitionComponent={Zoom}
                 >
                   <IconButton
@@ -57,7 +62,7 @@ function SurveyComponent({
                   </IconButton>
                 </Tooltip>
                 {buttonToLoad === id && loadingTakeSurveyButton && (
-                  <IconLoader color="green" />
+                  <Loader color={LOADER_COLOR.green} type={LOADER_TYPE.icon} />
                 )}
               </div>
             </div>
@@ -66,7 +71,7 @@ function SurveyComponent({
             <div className={classes.iconWrapper}>
               <Tooltip
                 arrow
-                title={HOME_ICON_TOOLTIPS.results}
+                title={HOME_ICON_TOOLTIP.results}
                 TransitionComponent={Zoom}
               >
                 <IconButton
@@ -79,7 +84,7 @@ function SurveyComponent({
                 </IconButton>
               </Tooltip>
               {buttonToLoad === id && loadingResultsButton && (
-                <IconLoader color="yellow" />
+                <Loader color={LOADER_COLOR.yellow} type={LOADER_TYPE.icon} />
               )}
             </div>
           </Link>
@@ -87,7 +92,7 @@ function SurveyComponent({
             <div className={classes.iconWrapper}>
               <Tooltip
                 arrow
-                title={HOME_ICON_TOOLTIPS.remove}
+                title={HOME_ICON_TOOLTIP.remove}
                 TransitionComponent={Zoom}
               >
                 <IconButton
@@ -101,7 +106,7 @@ function SurveyComponent({
                 </IconButton>
               </Tooltip>
               {buttonToLoad === id && loadingRemove && (
-                <IconLoader color="red" />
+                <Loader color={LOADER_COLOR.red} type={LOADER_TYPE.icon} />
               )}
             </div>
           </div>

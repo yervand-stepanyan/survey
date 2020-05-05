@@ -9,7 +9,7 @@ import {
   ANSWER_SECTION_BUTTON_ACCEPT_CHANGES_LABEL,
   ANSWER_SECTION_BUTTON_LABEL,
   INPUT_OPTION_TYPES,
-  TEXT_LABELS
+  TEXT_LABEL
 } from '../../../globals/constants';
 import { useStore } from '../../../state/use-store';
 import { useStyles } from './InputSection.style';
@@ -52,7 +52,7 @@ function InputSection({ activeId, inputType: inputTypeProps }) {
   return (
     <div className={classes.inputSectionContainer}>
       <div className={classes.titleWrapper}>
-        <Typography variant="h5">{TEXT_LABELS.inputSectionTitle}</Typography>
+        <Typography variant="h5">{TEXT_LABEL.inputSectionTitle}</Typography>
       </div>
       <div className={classes.typeWrapper}>
         {INPUT_OPTION_TYPES.map(type => (
