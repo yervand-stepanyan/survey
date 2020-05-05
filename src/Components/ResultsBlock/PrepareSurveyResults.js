@@ -103,6 +103,7 @@ function PrepareSurveyResults(submissions) {
         results[answer.questionId].endValue = subQuestion.endValue;
         results[answer.questionId].steptValue = subQuestion.stepValue;
       } else if (results[answer.questionId].type === ANSWER_TYPES.input) {
+        console.log(submission)
         results[answer.questionId].textAnswers.push(answer.customAnswer);
       }
     });
