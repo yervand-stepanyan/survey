@@ -42,8 +42,7 @@ function InputAnswers({ inputType, receiveAnswers, questionId }) {
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <DatePicker
           format="MM/dd/yyyy"
-          id="date-picker-dialog"
-          KeyboardButtonProps={{
+          keyboardbuttonprops={{
             'aria-label': 'change date'
           }}
           label={TEXT_LABELS.inputAnswersInputDateLabel}
