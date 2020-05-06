@@ -28,18 +28,26 @@ function DeveloperInfo({ developer }) {
 
       <div className={classes.socialWrapper}>
         <List component="div" className={classes.socialSection}>
-          <ListItem>
-            <ListItemIcon className={classes.phoneIcon}>
-              <PhoneIcon />
-            </ListItemIcon>
-            <ListItemText primary={developer.phone} />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon className={classes.emailIcon}>
-              <MailOutlineIcon />
-            </ListItemIcon>
-            <ListItemText primary={developer.email} />
-          </ListItem>
+          <Link color="inherit" href={`tel:${developer.phone}`} target="_blank">
+            <ListItem>
+              <ListItemIcon className={classes.phoneIcon}>
+                <PhoneIcon />
+              </ListItemIcon>
+              <ListItemText primary={developer.phone} />
+            </ListItem>
+          </Link>
+          <Link
+            color="inherit"
+            href={`mailto:${developer.email}`}
+            target="_blank"
+          >
+            <ListItem>
+              <ListItemIcon className={classes.emailIcon}>
+                <MailOutlineIcon />
+              </ListItemIcon>
+              <ListItemText primary={developer.email} />
+            </ListItem>
+          </Link>
           <Link color="inherit" href={developer.githubPageURL} target="_blank">
             <ListItem>
               <ListItemIcon className={classes.githubIcon}>
