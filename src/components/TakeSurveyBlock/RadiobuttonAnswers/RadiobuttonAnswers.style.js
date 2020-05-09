@@ -8,7 +8,7 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   customText: {
-    width: '50%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
@@ -35,7 +35,7 @@ export const useStyles = makeStyles(theme => ({
       width: '100%'
     },
     '& label': {
-      width: '50%',
+      width: 'inherit',
       '@media (max-width: 992px)': {
         width: '100%'
       }
